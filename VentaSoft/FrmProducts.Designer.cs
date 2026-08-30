@@ -45,6 +45,7 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.FromArgb(0, 122, 204);
             panel1.Location = new Point(-4, -3);
             panel1.Name = "panel1";
@@ -111,7 +112,7 @@
             // 
             // btnUpdatee
             // 
-            btnUpdatee.BackColor = Color.FromArgb(255, 255, 192);
+            btnUpdatee.BackColor = Color.FromArgb(255, 255, 128);
             btnUpdatee.Cursor = Cursors.Hand;
             btnUpdatee.FlatAppearance.BorderSize = 0;
             btnUpdatee.FlatAppearance.MouseOverBackColor = Color.Silver;
@@ -145,9 +146,10 @@
             // 
             // FrmProducts
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
-            AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(857, 600);
+            AutoScaleMode = AutoScaleMode.None;
+            AutoSize = true;
+            ClientSize = new Size(850, 600);
+            ControlBox = false;
             Controls.Add(btnDelete);
             Controls.Add(btnUpdatee);
             Controls.Add(btnRegister);
