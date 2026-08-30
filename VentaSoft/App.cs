@@ -87,12 +87,15 @@ namespace Main
             if (this.PanelContenedor.Controls.Count > 0)
                 this.PanelContenedor.Controls.RemoveAt(0);
 
-            Form fH = FormularioShow as Form;// 
+            Form fH = FormularioShow;
             fH.TopLevel = false;
             fH.FormBorderStyle = FormBorderStyle.None;
-            fH.Dock = DockStyle.Fill;
-            this.PanelContenedor.Controls.Add(fH);
+
+            this.PanelContenedor.Controls.Add(fH);   // 1. Primero se agrega al panel
+            fH.Dock = DockStyle.Fill;                // 2. Luego se aplica el Dock
             this.PanelContenedor.Tag = fH;
+
+            fH.BringToFront();                       // 3. Asegura que quede visible
             fH.Show();
 
 
@@ -125,11 +128,18 @@ namespace Main
             }
         }
 
+        private void MenuClientes_Click(object sender, EventArgs e)
+        {
 
-       
         }
-    
+
+        private void MenuEmpleados_Click(object sender, EventArgs e)
+        {
+            MostrarFormularios(new Frm_Users());
+        }
     }
+
+}
 
 
 
