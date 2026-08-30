@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Data/Data.csproj" Id="93703814-e182-40bc-a827-524ebdbfdf92" />
+  <Project Path="Entitys/Entitys.csproj" Id="340992b8-93ec-4183-bd3c-e30c43c83abd" />
+  <Project Path="Store/Store.csproj" Id="17be0348-3792-4be9-953f-5ddf745979d1" />
+  <Project Path="VentaSoft/Main.csproj" />
+</Solution>
