@@ -9,7 +9,6 @@ using System.Text;
 using System.Windows.Forms;
 using Store;
 using Data;
-using ModuloEntidades;
 using System.Linq;
 
 namespace Main
@@ -39,7 +38,11 @@ namespace Main
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+
+            if (DialogResult.Yes == MessageBox.Show("¿Esta seguro que desea regresar al Login?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            {
+                this.Close();
+            }
         }
 
         private void btnMax_Click(object sender, EventArgs e)
@@ -90,6 +93,7 @@ namespace Main
             Form fH = FormularioShow;
             fH.TopLevel = false;
             fH.FormBorderStyle = FormBorderStyle.None;
+            fH.BackColor = Color.White;
 
             this.PanelContenedor.Controls.Add(fH);   // 1. Primero se agrega al panel
             fH.Dock = DockStyle.Fill;                // 2. Luego se aplica el Dock
@@ -136,6 +140,11 @@ namespace Main
         private void MenuEmpleados_Click(object sender, EventArgs e)
         {
             MostrarFormularios(new Frm_Users());
+        }
+
+        private void panelMenu_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 
