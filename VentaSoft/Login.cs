@@ -1,3 +1,4 @@
+
 namespace VentaSoft
 {
     public partial class Login : Form
@@ -6,6 +7,8 @@ namespace VentaSoft
         {
             InitializeComponent();
         }
+
+        private bool StringPassword=false;
 
         private void textBox_Email_Enter(object sender, EventArgs e)
         {
@@ -21,7 +24,7 @@ namespace VentaSoft
             if (textBox_Email.Text == "")
             {
                 textBox_Email.Text = "Email";
-                textBox_Email.ForeColor = Color.Black;
+                textBox_Email.ForeColor = Color.Silver;
             }
         }
 
@@ -46,7 +49,7 @@ namespace VentaSoft
             if (textBox_Password.Text == "")
             {
                 textBox_Password.Text = "Password";
-                textBox_Password.ForeColor = Color.Black;
+                textBox_Password.ForeColor = Color.Silver;
                 textBox_Password.UseSystemPasswordChar = false;
             }
         }
@@ -54,12 +57,32 @@ namespace VentaSoft
 
         private void button_exit_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("¿Esta seguro que desea salir de la aplicacion?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
             Application.Exit();
         }
 
         private void button_minimize_Click_1(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            StringPassword = !StringPassword;
+            if (StringPassword)
+            {
+                textBox_Password.UseSystemPasswordChar = false;
+                pbPass.Image = Main.Properties.Resources.HidePass;
+
+            }
+            else
+            {
+                textBox_Password.UseSystemPasswordChar = true;
+                pbPass.Image = Main.Properties.Resources.ShowPass;
+
+            }
+
         }
     }
 }

@@ -85,6 +85,7 @@
             // 
             // panelBarraUp
             // 
+            panelBarraUp.BackColor = Color.White;
             panelBarraUp.BorderStyle = BorderStyle.FixedSingle;
             panelBarraUp.Controls.Add(lblUsuario);
             panelBarraUp.Controls.Add(btnMax);
@@ -177,7 +178,7 @@
             PanelContenedor.Dock = DockStyle.Fill;
             PanelContenedor.Location = new Point(250, 50);
             PanelContenedor.Name = "PanelContenedor";
-            PanelContenedor.Size = new Size(1050, 600);
+            PanelContenedor.Size = new Size(1050, 650);
             PanelContenedor.TabIndex = 1;
             // 
             // MenuProducto
@@ -193,7 +194,7 @@
             MenuProducto.ForeColor = Color.White;
             MenuProducto.Image = (Image)resources.GetObject("MenuProducto.Image");
             MenuProducto.ImageAlign = ContentAlignment.MiddleLeft;
-            MenuProducto.Location = new Point(0, 50);
+            MenuProducto.Location = new Point(0, 53);
             MenuProducto.Name = "MenuProducto";
             MenuProducto.Size = new Size(250, 54);
             MenuProducto.TabIndex = 1;
@@ -224,7 +225,7 @@
             MenuAdministrar.ForeColor = Color.White;
             MenuAdministrar.Image = (Image)resources.GetObject("MenuAdministrar.Image");
             MenuAdministrar.ImageAlign = ContentAlignment.MiddleLeft;
-            MenuAdministrar.Location = new Point(0, 592);
+            MenuAdministrar.Location = new Point(-2, 662);
             MenuAdministrar.Name = "MenuAdministrar";
             MenuAdministrar.Size = new Size(250, 38);
             MenuAdministrar.TabIndex = 8;
@@ -244,7 +245,7 @@
             MenuAbout.ForeColor = Color.White;
             MenuAbout.Image = (Image)resources.GetObject("MenuAbout.Image");
             MenuAbout.ImageAlign = ContentAlignment.MiddleLeft;
-            MenuAbout.Location = new Point(0, 548);
+            MenuAbout.Location = new Point(0, 623);
             MenuAbout.Name = "MenuAbout";
             MenuAbout.Size = new Size(250, 38);
             MenuAbout.TabIndex = 9;
@@ -264,7 +265,7 @@
             MenuEmpleados.ForeColor = Color.White;
             MenuEmpleados.Image = (Image)resources.GetObject("MenuEmpleados.Image");
             MenuEmpleados.ImageAlign = ContentAlignment.MiddleLeft;
-            MenuEmpleados.Location = new Point(3, 278);
+            MenuEmpleados.Location = new Point(0, 281);
             MenuEmpleados.Name = "MenuEmpleados";
             MenuEmpleados.Size = new Size(250, 55);
             MenuEmpleados.TabIndex = 6;
@@ -285,7 +286,7 @@
             MenuVentas.ForeColor = Color.White;
             MenuVentas.Image = (Image)resources.GetObject("MenuVentas.Image");
             MenuVentas.ImageAlign = ContentAlignment.MiddleLeft;
-            MenuVentas.Location = new Point(0, 155);
+            MenuVentas.Location = new Point(0, 158);
             MenuVentas.Name = "MenuVentas";
             MenuVentas.Size = new Size(250, 55);
             MenuVentas.TabIndex = 2;
@@ -305,7 +306,7 @@
             MenuProveedores.ForeColor = Color.White;
             MenuProveedores.Image = (Image)resources.GetObject("MenuProveedores.Image");
             MenuProveedores.ImageAlign = ContentAlignment.MiddleLeft;
-            MenuProveedores.Location = new Point(3, 339);
+            MenuProveedores.Location = new Point(-2, 342);
             MenuProveedores.Name = "MenuProveedores";
             MenuProveedores.Size = new Size(250, 55);
             MenuProveedores.TabIndex = 5;
@@ -325,7 +326,7 @@
             MenuCompras.ForeColor = Color.White;
             MenuCompras.Image = (Image)resources.GetObject("MenuCompras.Image");
             MenuCompras.ImageAlign = ContentAlignment.MiddleLeft;
-            MenuCompras.Location = new Point(0, 217);
+            MenuCompras.Location = new Point(0, 220);
             MenuCompras.Name = "MenuCompras";
             MenuCompras.Size = new Size(250, 55);
             MenuCompras.TabIndex = 4;
@@ -345,7 +346,7 @@
             MenuReportes.ForeColor = Color.White;
             MenuReportes.Image = (Image)resources.GetObject("MenuReportes.Image");
             MenuReportes.ImageAlign = ContentAlignment.MiddleLeft;
-            MenuReportes.Location = new Point(6, 400);
+            MenuReportes.Location = new Point(-2, 403);
             MenuReportes.Name = "MenuReportes";
             MenuReportes.Size = new Size(250, 55);
             MenuReportes.TabIndex = 7;
@@ -357,7 +358,7 @@
             // 
             panelSubMenu.Controls.Add(btnReporteShopping);
             panelSubMenu.Controls.Add(btnReportVent);
-            panelSubMenu.Location = new Point(53, 476);
+            panelSubMenu.Location = new Point(50, 464);
             panelSubMenu.Name = "panelSubMenu";
             panelSubMenu.Size = new Size(200, 69);
             panelSubMenu.TabIndex = 10;
@@ -375,7 +376,7 @@
             btnReporteShopping.Font = new Font("Century Gothic", 12F);
             btnReporteShopping.ForeColor = Color.White;
             btnReporteShopping.ImageAlign = ContentAlignment.MiddleLeft;
-            btnReporteShopping.Location = new Point(0, 33);
+            btnReporteShopping.Location = new Point(-4, 33);
             btnReporteShopping.Name = "btnReporteShopping";
             btnReporteShopping.Size = new Size(200, 35);
             btnReporteShopping.TabIndex = 11;
@@ -394,7 +395,7 @@
             btnReportVent.Font = new Font("Century Gothic", 12F);
             btnReportVent.ForeColor = Color.White;
             btnReportVent.ImageAlign = ContentAlignment.MiddleLeft;
-            btnReportVent.Location = new Point(0, 3);
+            btnReportVent.Location = new Point(-3, -8);
             btnReportVent.Name = "btnReportVent";
             btnReportVent.Size = new Size(200, 35);
             btnReportVent.TabIndex = 10;
@@ -415,7 +416,7 @@
             MenuClientes.ForeColor = Color.White;
             MenuClientes.Image = (Image)resources.GetObject("MenuClientes.Image");
             MenuClientes.ImageAlign = ContentAlignment.MiddleLeft;
-            MenuClientes.Location = new Point(0, 108);
+            MenuClientes.Location = new Point(0, 111);
             MenuClientes.Name = "MenuClientes";
             MenuClientes.Size = new Size(250, 55);
             MenuClientes.TabIndex = 3;
@@ -441,14 +442,15 @@
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
             panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(250, 650);
+            panelMenu.Size = new Size(250, 700);
             panelMenu.TabIndex = 0;
+            panelMenu.Paint += panelMenu_Paint;
             // 
             // App
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1300, 650);
+            ClientSize = new Size(1300, 700);
             Controls.Add(PanelContenedor);
             Controls.Add(panelBarraUp);
             Controls.Add(panelMenu);
