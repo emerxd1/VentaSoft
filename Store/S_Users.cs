@@ -45,7 +45,6 @@ namespace Store
         }
 
 
-
         public bool Delete(Entidad_Usuario oUsuario, out string Message)
         {
             return d_Users.DeleteUser(oUsuario, out Message);

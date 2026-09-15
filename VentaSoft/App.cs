@@ -64,10 +64,6 @@ namespace Main
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void btnReports_Click(object sender, EventArgs e)
         {
@@ -94,7 +90,7 @@ namespace Main
             fH.TopLevel = false;
             fH.FormBorderStyle = FormBorderStyle.None;
             fH.BackColor = Color.White;
-
+            fH.Anchor = (AnchorStyles)Top;
             this.PanelContenedor.Controls.Add(fH);   // 1. Primero se agrega al panel
             fH.Dock = DockStyle.Fill;                // 2. Luego se aplica el Dock
             this.PanelContenedor.Tag = fH;
@@ -107,7 +103,7 @@ namespace Main
         private void btnProducts_Click(object sender, EventArgs e)
 
         {
-            MostrarFormularios(new FrmProducts());
+            MostrarFormularios(new FrmCategory());
 
         }
 
@@ -142,7 +138,17 @@ namespace Main
             MostrarFormularios(new Frm_Users());
         }
 
-        private void panelMenu_Paint(object sender, PaintEventArgs e)
+        private void MenuVentas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuProducts_Click(object sender, EventArgs e)
+        {
+            MostrarFormularios(new FrmProducts());
+        }
+
+        private void PanelContenedor_Paint(object sender, PaintEventArgs e)
         {
 
         }
