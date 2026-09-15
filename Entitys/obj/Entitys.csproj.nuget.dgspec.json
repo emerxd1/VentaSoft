@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\Ventasoft\\Entitys\\Entitys.csproj": {}
+    "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Entitys\\Entitys.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\Ventasoft\\Entitys\\Entitys.csproj": {
+    "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Entitys\\Entitys.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\Ventasoft\\Entitys\\Entitys.csproj",
+        "projectUniqueName": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Entitys\\Entitys.csproj",
         "projectName": "Entitys",
-        "projectPath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\Ventasoft\\Entitys\\Entitys.csproj",
+        "projectPath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Entitys\\Entitys.csproj",
         "packagesPath": "C:\\Users\\Andres Castellon\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\Ventasoft\\Entitys\\obj\\",
         "projectStyle": "PackageReference",
@@ -70,7 +70,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

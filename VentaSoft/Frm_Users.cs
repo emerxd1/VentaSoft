@@ -22,6 +22,7 @@ namespace Main
         {
             // Cargar combo de Estado
             cbEstado.Items.Add(new OptionsComboBox() { valor = 1, texto = "Activo" });
+
             cbEstado.Items.Add(new OptionsComboBox() { valor = 0, texto = "No Activo" });
             cbEstado.ValueMember = "valor";
             cbEstado.DisplayMember = "texto";
@@ -39,6 +40,7 @@ namespace Main
             {
                 cbRol.SelectedIndex = 0;
             }
+
 
             // Cargar combo de búsqueda (según columnas visibles del grid)
             foreach (DataGridViewColumn Columna in dgvUsers.Columns)
@@ -81,12 +83,13 @@ namespace Main
                 row.Cells["Rol"].Value = item.oRol.Descripcion; // visible, se muestra al usuario
                 row.Cells["EstadoValor"].Value = item.Estado ? 1 : 0;
                 row.Cells["Estado"].Value = item.Estado ? "Activo" : "No Activo";
+
+
             }
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-
 
             Entidad_Usuario oUsuario = new Entidad_Usuario() // instancia de la entidad usuario, para enviar a la capa de negocio
             {
@@ -101,7 +104,8 @@ namespace Main
                 oRol = new Entidad_Rol() { IdRol = Convert.ToInt32(((OptionsComboBox)cbRol.SelectedItem).valor) },
                 Estado = Convert.ToInt32(((OptionsComboBox)cbEstado.SelectedItem).valor) == 1 ? true : false
             };
-            MessageBox.Show($"DNI antes de registrar: '{oUsuario.DNI}'");
+
+
             int idUserGenerated = new S_Users().Register(oUsuario, out string Message);
 
             // Si el id generado es distinto de 0, significa que se registró correctamente, entonces se agrega al DataGridView
@@ -155,87 +159,46 @@ namespace Main
             txtCheckPassword.Clear();
             cbRol.SelectedIndex = 0;
             cbEstado.SelectedIndex = 0;
+            txtId.Clear();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        //btn de busqueda por filtro
+        private void btnSearch_Click(object sender, EventArgs e)
         {
+            string columnFiltro = Convert.ToString(((OptionsComboBox)cbSearch.SelectedItem).valor);
 
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvUsers_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.RowIndex < 0) return; // para ignorar el header
-
-            if (e.ColumnIndex == 0)
+            if (dgvUsers.Rows.Count > 0)
             {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-
-                var w = Properties.Resources.check.Width;
-                var h = Properties.Resources.check.Height;
-                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
-                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
-
-                e.Graphics.DrawImage(Properties.Resources.check, new Rectangle(x, y, w, h));
-                e.Handled = true;
-            }
-        }
-
-
-        private void dgvUsers_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            // Valida si y solo si se selecciona el btn seleccionar, muestra los datos con respecto al índice
-            if (dgvUsers.Columns[e.ColumnIndex].Name != "btnSeleccion") return;
-
-            int indice = e.RowIndex;
-            if (indice < 0) return;
-            {
-                txtIndice.Text = indice.ToString();
-
-                // Mostrar textos en los textbox
-                txtId.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["IdUsuario"].Value);
-                txtDni.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["DNI"].Value);
-                txtName1.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["Name1"].Value);
-                txtName2.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["Name2"].Value);
-                txtLastName1.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["LastName1"].Value);
-                txtLastName2.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["LastName2"].Value);
-                txtEmail.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["Email"].Value);
-                txtPassword.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["Password"].Value);
-                txtCheckPassword.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["Password"].Value);
-            }
-            // Mostrar dato de Rol en el combobox
-            // Protección contra DBNull: si la celda no tiene valor, se usa 0 en vez de intentar convertir DBNull
-            object valorIdRol = dgvUsers.Rows[indice].Cells["Id_Rol"].Value;
-            int idRolFila = (valorIdRol == null || valorIdRol == DBNull.Value) ? 0 : Convert.ToInt32(valorIdRol);
-
-            foreach (OptionsComboBox oc in cbRol.Items)
-            {
-                if (Convert.ToInt32(oc.valor) == idRolFila)
+                foreach (DataGridViewRow row in dgvUsers.Rows)
                 {
-                    cbRol.SelectedIndex = cbRol.Items.IndexOf(oc);
-                    break;
-                }
-            }
+                    if (row.Cells[columnFiltro].Value.ToString().Trim().ToUpper().Contains(txtSearch.Text.Trim().ToUpper()))
+                    {
+                        row.Visible = true;
+                    }
 
-            // Mostrar dato de Estado en el combobox
-            // Protección contra DBNull: si la celda no tiene valor, se usa 0 en vez de intentar convertir DBNull
-            object valorEstado = dgvUsers.Rows[indice].Cells["EstadoValor"].Value;
-            int idEstadoFila = (valorEstado == null || valorEstado == DBNull.Value) ? 0 : Convert.ToInt32(valorEstado);
+                    else
+                    {
+                        row.Visible = false;
+                    }
 
-            foreach (OptionsComboBox oc1 in cbEstado.Items)
-            {
-                if (Convert.ToInt32(oc1.valor) == idEstadoFila)
-                {
-                    cbEstado.SelectedIndex = cbEstado.Items.IndexOf(oc1);
-                    break;
                 }
 
             }
         }
+
+        /*Btn para borrar el filtro de búsqueda*/
+        private void btnClearSearch_Click(object sender, EventArgs e)
+        {
+            txtSearch.Clear();
+
+            foreach (DataGridViewRow row in dgvUsers.Rows)
+            {
+                row.Visible = true;
+            }
+        }
+
+
 
         private void btnLimpiarTxt_Click_1(object sender, EventArgs e)
         {
@@ -335,6 +298,102 @@ namespace Main
                 }
             }
             // si dr == DialogResult.No, simplemente no se hace nada (el usuario canceló)
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            panel1.Visible = !panel1.Visible;
+        }
+
+        private void dgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            // Valida si y solo si se selecciona el btn seleccionar, muestra los datos con respecto al índice
+            if (dgvUsers.Columns[e.ColumnIndex].Name != "btnSeleccion") return;
+
+            int indice = e.RowIndex;
+            if (indice < 0) return;
+            {
+                txtIndice.Text = indice.ToString();
+
+                // Mostrar textos en los textbox
+                txtId.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["IdUsuario"].Value);
+                txtDni.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["DNI"].Value);
+                txtName1.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["Name1"].Value);
+                txtName2.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["Name2"].Value);
+                txtLastName1.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["LastName1"].Value);
+                txtLastName2.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["LastName2"].Value);
+                txtEmail.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["Email"].Value);
+                txtPassword.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["Password"].Value);
+                txtCheckPassword.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["Password"].Value);
+            }
+            // Mostrar dato de Rol en el combobox
+            // Protección contra DBNull: si la celda no tiene valor, se usa 0 en vez de intentar convertir DBNull
+            object valorIdRol = dgvUsers.Rows[indice].Cells["Id_Rol"].Value;
+            int idRolFila = (valorIdRol == null || valorIdRol == DBNull.Value) ? 0 : Convert.ToInt32(valorIdRol);
+
+            foreach (OptionsComboBox oc in cbRol.Items)
+            {
+                if (Convert.ToInt32(oc.valor) == idRolFila)
+                {
+                    cbRol.SelectedIndex = cbRol.Items.IndexOf(oc);
+                    break;
+                }
+            }
+
+            // Mostrar dato de Estado en el combobox
+            // Protección contra DBNull: si la celda no tiene valor, se usa 0 en vez de intentar convertir DBNull
+            object valorEstado = dgvUsers.Rows[indice].Cells["EstadoValor"].Value;
+            int idEstadoFila = (valorEstado == null || valorEstado == DBNull.Value) ? 0 : Convert.ToInt32(valorEstado);
+
+            foreach (OptionsComboBox oc1 in cbEstado.Items)
+            {
+                if (Convert.ToInt32(oc1.valor) == idEstadoFila)
+                {
+                    cbEstado.SelectedIndex = cbEstado.Items.IndexOf(oc1);
+                    break;
+                }
+
+            }
+
+        }
+
+        private void dgvUsers_CellPainting_1(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0) return; // para ignorar el header
+
+            if (e.ColumnIndex == 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                var w = Properties.Resources.check.Width;
+                var h = Properties.Resources.check.Height;
+                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+
+                e.Graphics.DrawImage(Properties.Resources.check, new Rectangle(x, y, w, h));
+                e.Handled = true;
+            }
+        }
+
+
+        //CAMBIA COLOR DEPENDE DEL ESTADO DEL USUARIO
+        private void dgvUsers_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (this.dgvUsers.Columns[e.ColumnIndex].Name == "Estado")
+            {
+                e.CellStyle.BackColor = e.Value.ToString() == "Activo" ? Color.LightGreen : Color.Salmon;
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

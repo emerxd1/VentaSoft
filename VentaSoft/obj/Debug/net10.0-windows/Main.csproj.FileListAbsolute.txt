@@ -125,6 +125,7 @@ C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Venta
 C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\VentaSoft\obj\Debug\net10.0-windows\Main.genruntimeconfig.cache
 C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\VentaSoft\obj\Debug\net10.0-windows\ref\Main.dll
 C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\Ventasoft\VentaSoft\obj\Debug\net10.0-windows\Main.App.resources
-C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\Ventasoft\VentaSoft\obj\Debug\net10.0-windows\Main.FrmProducts.resources
 C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\Ventasoft\VentaSoft\obj\Debug\net10.0-windows\VentaSoft.Login.resources
 C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\Ventasoft\VentaSoft\obj\Debug\net10.0-windows\Main.Frm_Users.resources
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\Ventasoft\VentaSoft\obj\Debug\net10.0-windows\Main.FrmCategory.resources
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\Ventasoft\VentaSoft\obj\Debug\net10.0-windows\Main.FrmProducts.resources
