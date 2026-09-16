@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4l9LtOjmZek=",
+  "dgSpecHash": "4seFeM24Z7A=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Store\\Store.csproj",
+  "projectFilePath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\Ventasoft\\Store\\Store.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Andres Castellon\\.nuget\\packages\\microsoft.bcl.cryptography\\9.0.13\\microsoft.bcl.cryptography.9.0.13.nupkg.sha512",
     "C:\\Users\\Andres Castellon\\.nuget\\packages\\microsoft.data.sqlclient\\7.0.2\\microsoft.data.sqlclient.7.0.2.nupkg.sha512",
@@ -24,15 +24,5 @@
     "C:\\Users\\Andres Castellon\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\Andres Castellon\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.16.0\\system.identitymodel.tokens.jwt.8.16.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "message": "Error al obtener los datos de vulnerabilidad del paquete: No se puede cargar el índice de servicio del origen https://api.nuget.org/v3/index.json.",
-      "projectPath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Store\\Store.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Store\\Store.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }

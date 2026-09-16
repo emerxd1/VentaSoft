@@ -1012,11 +1012,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Store\\Store.csproj",
+      "projectUniqueName": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\Ventasoft\\Store\\Store.csproj",
       "projectName": "Store",
-      "projectPath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Store\\Store.csproj",
+      "projectPath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\Ventasoft\\Store\\Store.csproj",
       "packagesPath": "C:\\Users\\Andres Castellon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\Ventasoft\\Store\\obj\\",
+      "outputPath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Store\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1038,11 +1038,11 @@
           "framework": "net10.0-windows7.0",
           "targetAlias": "net10.0-windows",
           "projectReferences": {
-            "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Data\\Data.csproj": {
-              "projectPath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Data\\Data.csproj"
+            "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\Ventasoft\\Data\\Data.csproj": {
+              "projectPath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\Ventasoft\\Data\\Data.csproj"
             },
-            "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Entitys\\Entitys.csproj": {
-              "projectPath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Entitys\\Entitys.csproj"
+            "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\Ventasoft\\Entitys\\Entitys.csproj": {
+              "projectPath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\Ventasoft\\Entitys\\Entitys.csproj"
             }
           }
         }
@@ -1375,13 +1375,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error al obtener los datos de vulnerabilidad del paquete: No se puede cargar el índice de servicio del origen https://api.nuget.org/v3/index.json."
-    }
-  ]
+  }
 }
