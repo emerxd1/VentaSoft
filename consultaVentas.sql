@@ -298,6 +298,7 @@ SELECT name FROM sys.triggers WHERE parent_id = OBJECT_ID('Usuario');
 
 
 go
+
 /* REGISTRAR CATEGORIA */
 ALTER PROCEDURE SP_RegisterCategory
 (
@@ -416,3 +417,7 @@ SELECT Nombre,Descripcion,Estado FROM Categoria
 
 INSERT INTO Categoria(Nombre,Descripcion,Estado) VALUES ('Enlatados', 'Productos enlatados como Sardinas, Atun,etc',1)
 INSERT INTO Categoria(Nombre,Descripcion,Estado) VALUES ('Granos Basicos', 'Arroz, Frijoles, Azucar,etc',1)
+
+
+
+CREATE PROCEDURE 

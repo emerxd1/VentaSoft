@@ -130,7 +130,7 @@ namespace Main
 
         private void MenuClientes_Click(object sender, EventArgs e)
         {
-
+            MostrarFormularios(new FrmClientes());
         }
 
         private void MenuEmpleados_Click(object sender, EventArgs e)

@@ -1,0 +1,54 @@
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\bin\Debug\net10.0-windows\Store.deps.json
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\bin\Debug\net10.0-windows\Store.dll
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\bin\Debug\net10.0-windows\Store.pdb
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\bin\Debug\net10.0-windows\Data.dll
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\bin\Debug\net10.0-windows\Entitys.dll
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\bin\Debug\net10.0-windows\Data.pdb
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\bin\Debug\net10.0-windows\Entitys.pdb
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\obj\Debug\net10.0-windows\Store.csproj.AssemblyReference.cache
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\obj\Debug\net10.0-windows\Store.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\obj\Debug\net10.0-windows\Store.AssemblyInfoInputs.cache
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\obj\Debug\net10.0-windows\Store.AssemblyInfo.cs
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\obj\Debug\net10.0-windows\Store.csproj.CoreCompileInputs.cache
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\obj\Debug\net10.0-windows\Store.sourcelink.json
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\obj\Debug\net10.0-windows\Store.csproj.Up2Date
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\obj\Debug\net10.0-windows\Store.dll
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\obj\Debug\net10.0-windows\refint\Store.dll
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\obj\Debug\net10.0-windows\Store.pdb
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\ModuloInicio\Store\obj\Debug\net10.0-windows\ref\Store.dll
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\bin\Debug\net10.0-windows\Store.deps.json
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\bin\Debug\net10.0-windows\Store.dll
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\bin\Debug\net10.0-windows\Store.pdb
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\bin\Debug\net10.0-windows\Data.dll
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\bin\Debug\net10.0-windows\Entitys.dll
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\bin\Debug\net10.0-windows\Data.pdb
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\bin\Debug\net10.0-windows\Entitys.pdb
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\obj\Debug\net10.0-windows\Store.csproj.AssemblyReference.cache
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\obj\Debug\net10.0-windows\Store.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\obj\Debug\net10.0-windows\Store.AssemblyInfoInputs.cache
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\obj\Debug\net10.0-windows\Store.AssemblyInfo.cs
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\obj\Debug\net10.0-windows\Store.csproj.CoreCompileInputs.cache
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\obj\Debug\net10.0-windows\Store.sourcelink.json
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\obj\Debug\net10.0-windows\Store.csproj.Up2Date
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\obj\Debug\net10.0-windows\Store.dll
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\obj\Debug\net10.0-windows\refint\Store.dll
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\obj\Debug\net10.0-windows\Store.pdb
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\VentaSoft\Store\obj\Debug\net10.0-windows\ref\Store.dll
+C:\Users\USER\source\repos\VentaSoft\Store\bin\Debug\net10.0-windows\Store.deps.json
+C:\Users\USER\source\repos\VentaSoft\Store\bin\Debug\net10.0-windows\Store.dll
+C:\Users\USER\source\repos\VentaSoft\Store\bin\Debug\net10.0-windows\Store.pdb
+C:\Users\USER\source\repos\VentaSoft\Store\bin\Debug\net10.0-windows\Data.dll
+C:\Users\USER\source\repos\VentaSoft\Store\bin\Debug\net10.0-windows\Entitys.dll
+C:\Users\USER\source\repos\VentaSoft\Store\bin\Debug\net10.0-windows\Data.pdb
+C:\Users\USER\source\repos\VentaSoft\Store\bin\Debug\net10.0-windows\Entitys.pdb
+C:\Users\USER\source\repos\VentaSoft\Store\obj\Debug\net10.0-windows\Store.csproj.AssemblyReference.cache
+C:\Users\USER\source\repos\VentaSoft\Store\obj\Debug\net10.0-windows\Store.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\source\repos\VentaSoft\Store\obj\Debug\net10.0-windows\Store.AssemblyInfoInputs.cache
+C:\Users\USER\source\repos\VentaSoft\Store\obj\Debug\net10.0-windows\Store.AssemblyInfo.cs
+C:\Users\USER\source\repos\VentaSoft\Store\obj\Debug\net10.0-windows\Store.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\VentaSoft\Store\obj\Debug\net10.0-windows\Store.sourcelink.json
+C:\Users\USER\source\repos\VentaSoft\Store\obj\Debug\net10.0-windows\Store.csproj.Up2Date
+C:\Users\USER\source\repos\VentaSoft\Store\obj\Debug\net10.0-windows\Store.dll
+C:\Users\USER\source\repos\VentaSoft\Store\obj\Debug\net10.0-windows\refint\Store.dll
+C:\Users\USER\source\repos\VentaSoft\Store\obj\Debug\net10.0-windows\Store.pdb
+C:\Users\USER\source\repos\VentaSoft\Store\obj\Debug\net10.0-windows\ref\Store.dll
