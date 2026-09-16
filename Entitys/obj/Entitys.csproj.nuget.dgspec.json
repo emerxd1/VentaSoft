@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Entitys\\Entitys.csproj": {}
+    "C:\\Users\\USER\\source\\repos\\VentaSoft\\Entitys\\Entitys.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Entitys\\Entitys.csproj": {
+    "C:\\Users\\USER\\source\\repos\\VentaSoft\\Entitys\\Entitys.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Entitys\\Entitys.csproj",
+        "projectUniqueName": "C:\\Users\\USER\\source\\repos\\VentaSoft\\Entitys\\Entitys.csproj",
         "projectName": "Entitys",
-        "projectPath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Entitys\\Entitys.csproj",
-        "packagesPath": "C:\\Users\\Andres Castellon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\Ventasoft\\Entitys\\obj\\",
+        "projectPath": "C:\\Users\\USER\\source\\repos\\VentaSoft\\Entitys\\Entitys.csproj",
+        "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\USER\\source\\repos\\VentaSoft\\Entitys\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Andres Castellon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

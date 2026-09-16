@@ -292,5 +292,46 @@ namespace Main
                 row.Visible = true;
             }
         }
+
+        private void btnRegister_Click_1(object sender, EventArgs e)
+        {
+            Entidad_Categoria oCategoria = new Entidad_Categoria() // instancia de la entidad Categoria, para enviar a la capa de negocio
+            {
+                IdCategoria = Convert.ToInt32(txtId.Text),
+                Nombre = txtName.Text,
+                Descripcion = txtDescripcion.Text,
+                Estado = Convert.ToInt32(((OptionsComboBox)cbEstado.SelectedItem).valor) == 1 ? true : false
+            };
+
+            int idCategoryGenerated = new S_Category().Register(oCategoria, out string Mensaje);
+
+            // Si el id generado es distinto de 0, significa que se registró correctamente, entonces se agrega al DataGridView
+            if (idCategoryGenerated != 0)
+            {
+
+                var estadoSeleccionado = (OptionsComboBox)cbEstado.SelectedItem;
+
+                // Se agrega la fila vacía y se asignan los valores por NOMBRE de columna
+                // (evita el desfase que ocurría con Rows.Add(object[]) por posición)
+                int fila = dgvCategory.Rows.Add();
+                DataGridViewRow row = dgvCategory.Rows[fila];
+
+                row.Cells["IdCategory"].Value = idCategoryGenerated;
+                row.Cells["NameCategory"].Value = txtName.Text;
+                row.Cells["DescripcionCategory"].Value = lblDescripcion.Text;
+                row.Cells["EstadoValor"].Value = estadoSeleccionado.valor;
+                row.Cells["Estado"].Value = estadoSeleccionado.texto;
+
+                MessageBox.Show("Categoria registrada correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(Mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            Limpiar();
+        }
+
     }
 }
+

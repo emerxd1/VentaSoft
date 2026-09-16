@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCategory));
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             btnDelete = new Button();
             BtnUpdate = new Button();
             panel1 = new Panel();
@@ -62,8 +62,8 @@
             Estado = new DataGridViewTextBoxColumn();
             EstadoValor = new DataGridViewTextBoxColumn();
             panelGradient1 = new Gradient.PanelGradient();
-            elipseControl1 = new ElipseControl.ElipseControl();
             panelGradient2 = new Gradient.PanelGradient();
+            elipseControl1 = new ElipseControl.ElipseControl();
             panel1.SuspendLayout();
             panelGradient3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCategory).BeginInit();
@@ -80,7 +80,7 @@
             btnDelete.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             btnDelete.ForeColor = SystemColors.ControlText;
             btnDelete.Image = (Image)resources.GetObject("btnDelete.Image");
-            btnDelete.Location = new Point(710, 285);
+            btnDelete.Location = new Point(710, 408);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(145, 48);
             btnDelete.TabIndex = 33;
@@ -99,7 +99,7 @@
             BtnUpdate.FlatStyle = FlatStyle.Flat;
             BtnUpdate.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             BtnUpdate.Image = (Image)resources.GetObject("BtnUpdate.Image");
-            BtnUpdate.Location = new Point(710, 210);
+            BtnUpdate.Location = new Point(710, 333);
             BtnUpdate.Name = "BtnUpdate";
             BtnUpdate.Size = new Size(145, 48);
             BtnUpdate.TabIndex = 32;
@@ -127,7 +127,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1257, 600);
+            panel1.Size = new Size(1257, 723);
             panel1.TabIndex = 8;
             // 
             // btnClearSearch
@@ -169,7 +169,7 @@
             panelGradient3.GradientTopColor = Color.White;
             panelGradient3.Location = new Point(919, 0);
             panelGradient3.Name = "panelGradient3";
-            panelGradient3.Size = new Size(338, 600);
+            panelGradient3.Size = new Size(338, 723);
             panelGradient3.TabIndex = 52;
             // 
             // btnClear
@@ -182,7 +182,7 @@
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             btnClear.Image = (Image)resources.GetObject("btnClear.Image");
-            btnClear.Location = new Point(197, 430);
+            btnClear.Location = new Point(197, 553);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(140, 48);
             btnClear.TabIndex = 64;
@@ -197,7 +197,7 @@
             label11.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.Location = new Point(79, 17);
             label11.Name = "label11";
-            label11.Size = new Size(177, 25);
+            label11.Size = new Size(224, 32);
             label11.TabIndex = 59;
             label11.Text = "Detalles Categorias";
             // 
@@ -211,13 +211,14 @@
             btnRegister.FlatStyle = FlatStyle.Flat;
             btnRegister.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             btnRegister.Image = (Image)resources.GetObject("btnRegister.Image");
-            btnRegister.Location = new Point(21, 430);
+            btnRegister.Location = new Point(21, 553);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(140, 48);
             btnRegister.TabIndex = 63;
             btnRegister.Text = "Registrar";
             btnRegister.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnRegister.UseVisualStyleBackColor = false;
+            btnRegister.Click += btnRegister_Click_1;
             // 
             // label1
             // 
@@ -226,7 +227,7 @@
             label1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label1.Location = new Point(9, 127);
             label1.Name = "label1";
-            label1.Size = new Size(58, 17);
+            label1.Size = new Size(73, 23);
             label1.TabIndex = 54;
             label1.Text = "Nombre";
             // 
@@ -239,7 +240,7 @@
             txtIndice.Location = new Point(9, 82);
             txtIndice.Name = "txtIndice";
             txtIndice.ReadOnly = true;
-            txtIndice.Size = new Size(93, 23);
+            txtIndice.Size = new Size(93, 27);
             txtIndice.TabIndex = 62;
             txtIndice.Text = "Automatico";
             txtIndice.Visible = false;
@@ -252,7 +253,7 @@
             txtName.Location = new Point(9, 145);
             txtName.Name = "txtName";
             txtName.PlaceholderText = "Ej: \"Enlatados\"";
-            txtName.Size = new Size(164, 23);
+            txtName.Size = new Size(164, 27);
             txtName.TabIndex = 53;
             // 
             // label14
@@ -262,7 +263,7 @@
             label14.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label14.Location = new Point(175, 49);
             label14.Name = "label14";
-            label14.Size = new Size(99, 17);
+            label14.Size = new Size(125, 23);
             label14.TabIndex = 61;
             label14.Text = "Id de categoria";
             // 
@@ -273,7 +274,7 @@
             lblDescripcion.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             lblDescripcion.Location = new Point(9, 198);
             lblDescripcion.Name = "lblDescripcion";
-            lblDescripcion.Size = new Size(77, 17);
+            lblDescripcion.Size = new Size(98, 23);
             lblDescripcion.TabIndex = 56;
             lblDescripcion.Text = "Descripcion";
             // 
@@ -286,7 +287,7 @@
             txtId.Location = new Point(282, 49);
             txtId.Name = "txtId";
             txtId.ReadOnly = true;
-            txtId.Size = new Size(26, 16);
+            txtId.Size = new Size(26, 20);
             txtId.TabIndex = 60;
             txtId.Text = "0";
             // 
@@ -309,7 +310,7 @@
             label10.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label10.Location = new Point(16, 336);
             label10.Name = "label10";
-            label10.Size = new Size(49, 17);
+            label10.Size = new Size(61, 23);
             label10.TabIndex = 57;
             label10.Text = "Estado";
             // 
@@ -321,7 +322,7 @@
             cbEstado.FormattingEnabled = true;
             cbEstado.Location = new Point(16, 357);
             cbEstado.Name = "cbEstado";
-            cbEstado.Size = new Size(151, 25);
+            cbEstado.Size = new Size(151, 29);
             cbEstado.TabIndex = 58;
             // 
             // btnDetails
@@ -365,7 +366,7 @@
             txtSearch.Cursor = Cursors.IBeam;
             txtSearch.Location = new Point(533, 55);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(179, 25);
+            txtSearch.Size = new Size(179, 29);
             txtSearch.TabIndex = 44;
             // 
             // cbSearch
@@ -377,7 +378,7 @@
             cbSearch.FormattingEnabled = true;
             cbSearch.Location = new Point(382, 54);
             cbSearch.Name = "cbSearch";
-            cbSearch.Size = new Size(143, 25);
+            cbSearch.Size = new Size(143, 29);
             cbSearch.TabIndex = 46;
             // 
             // label13
@@ -385,9 +386,9 @@
             label13.AutoSize = true;
             label13.BackColor = Color.FromArgb(192, 255, 255);
             label13.Font = new Font("Segoe UI", 9.75F);
-            label13.Location = new Point(301, 54);
+            label13.Location = new Point(287, 54);
             label13.Name = "label13";
-            label13.Size = new Size(74, 17);
+            label13.Size = new Size(95, 23);
             label13.TabIndex = 45;
             label13.Text = "Buscar por:";
             // 
@@ -398,7 +399,7 @@
             label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.Location = new Point(44, 54);
             label12.Name = "label12";
-            label12.Size = new Size(173, 25);
+            label12.Size = new Size(221, 32);
             label12.TabIndex = 43;
             label12.Text = "Lista de Categorias";
             // 
@@ -412,34 +413,36 @@
             dgvCategory.BorderStyle = BorderStyle.None;
             dgvCategory.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvCategory.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(192, 255, 255);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new Padding(1);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(128, 255, 255);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvCategory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(192, 255, 255);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new Padding(1);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(128, 255, 255);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvCategory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvCategory.ColumnHeadersHeight = 29;
             dgvCategory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvCategory.Columns.AddRange(new DataGridViewColumn[] { btnSeleccionar, IdCategory, NameCategory, DescripcionCategory, Estado, EstadoValor });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9.75F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.Silver;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dgvCategory.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.75F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvCategory.DefaultCellStyle = dataGridViewCellStyle2;
             dgvCategory.EnableHeadersVisualStyles = false;
             dgvCategory.GridColor = Color.White;
-            dgvCategory.Location = new Point(82, 184);
+            dgvCategory.Location = new Point(84, 184);
             dgvCategory.Name = "dgvCategory";
             dgvCategory.ReadOnly = true;
             dgvCategory.RowHeadersVisible = false;
+            dgvCategory.RowHeadersWidth = 51;
             dgvCategory.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgvCategory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCategory.Size = new Size(527, 367);
+            dgvCategory.Size = new Size(544, 367);
             dgvCategory.TabIndex = 39;
             dgvCategory.CellContentClick += dgvCategory_CellContentClick;
             dgvCategory.CellFormatting += dgvCategory_CellFormatting;
@@ -448,6 +451,7 @@
             // btnSeleccionar
             // 
             btnSeleccionar.HeaderText = "";
+            btnSeleccionar.MinimumWidth = 6;
             btnSeleccionar.Name = "btnSeleccionar";
             btnSeleccionar.ReadOnly = true;
             btnSeleccionar.Width = 35;
@@ -455,6 +459,7 @@
             // IdCategory
             // 
             IdCategory.HeaderText = "id";
+            IdCategory.MinimumWidth = 6;
             IdCategory.Name = "IdCategory";
             IdCategory.ReadOnly = true;
             IdCategory.Text = "";
@@ -464,12 +469,15 @@
             // NameCategory
             // 
             NameCategory.HeaderText = "Nombre";
+            NameCategory.MinimumWidth = 6;
             NameCategory.Name = "NameCategory";
             NameCategory.ReadOnly = true;
+            NameCategory.Width = 125;
             // 
             // DescripcionCategory
             // 
             DescripcionCategory.HeaderText = "Descripcion";
+            DescripcionCategory.MinimumWidth = 6;
             DescripcionCategory.Name = "DescripcionCategory";
             DescripcionCategory.ReadOnly = true;
             DescripcionCategory.Width = 300;
@@ -477,15 +485,19 @@
             // Estado
             // 
             Estado.HeaderText = "Estado";
+            Estado.MinimumWidth = 6;
             Estado.Name = "Estado";
             Estado.ReadOnly = true;
+            Estado.Width = 125;
             // 
             // EstadoValor
             // 
             EstadoValor.HeaderText = "EstadoValor";
+            EstadoValor.MinimumWidth = 6;
             EstadoValor.Name = "EstadoValor";
             EstadoValor.ReadOnly = true;
             EstadoValor.Visible = false;
+            EstadoValor.Width = 125;
             // 
             // panelGradient1
             // 
@@ -495,13 +507,8 @@
             panelGradient1.GradientTopColor = Color.FromArgb(192, 255, 255);
             panelGradient1.Location = new Point(82, 169);
             panelGradient1.Name = "panelGradient1";
-            panelGradient1.Size = new Size(527, 403);
+            panelGradient1.Size = new Size(547, 403);
             panelGradient1.TabIndex = 50;
-            // 
-            // elipseControl1
-            // 
-            elipseControl1.CornerRadius = 55;
-            elipseControl1.TargetControl = dgvCategory;
             // 
             // panelGradient2
             // 
@@ -514,11 +521,16 @@
             panelGradient2.Size = new Size(831, 75);
             panelGradient2.TabIndex = 53;
             // 
+            // elipseControl1
+            // 
+            elipseControl1.CornerRadius = 55;
+            elipseControl1.TargetControl = dgvCategory;
+            // 
             // FrmCategory
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSize = true;
-            ClientSize = new Size(1257, 600);
+            ClientSize = new Size(1257, 723);
             ControlBox = false;
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
