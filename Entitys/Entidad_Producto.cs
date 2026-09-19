@@ -13,7 +13,7 @@ namespace ModuloEntidades
         public string Descripcion { get; set; }// Descripción del producto
         public decimal PrecioCompra { get; set; }// Precio de compra del producto
         public decimal PrecioVenta { get; set; }// Precio de venta del producto             
-        public Entidad_Categoria IdCategoria { get; set; }// Identificador de la categoría del producto   
+        public Entidad_Categoria oCategoria { get; set; }// Identificador de la categoría del producto   
 
         public int Stock { get; set; }// Cantidad en stock del producto
         public bool Estado { get; set; }// Estado del producto (activo/inactivo)

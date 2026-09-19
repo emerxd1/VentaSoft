@@ -298,7 +298,6 @@ SELECT name FROM sys.triggers WHERE parent_id = OBJECT_ID('Usuario');
 
 
 go
-
 /* REGISTRAR CATEGORIA */
 ALTER PROCEDURE SP_RegisterCategory
 (
@@ -420,4 +419,191 @@ INSERT INTO Categoria(Nombre,Descripcion,Estado) VALUES ('Granos Basicos', 'Arro
 
 
 
-CREATE PROCEDURE 
+
+
+SELECT * FROM Producto
+INSERT INTO Producto(Nombre,Descripcion,IdCategoria,Stock,PrecioCompra,PrecioVenta,Estado) VALUES ('Arroz','Arroz Faisan 1lb',2,12,26.2,28.2,1)
+/*=====================================================================================================================*/
+
+EXEC sp_help 'Producto';
+ALTER TABLE Producto
+DROP COLUMN Codigo;
+
+ALTER TABLE Producto
+DROP CONSTRAINT UQ_CodigoProducto;
+
+ALTER TABLE Producto
+ADD Codigo AS ('P' + RIGHT('0000' + CAST(IdProducto AS VARCHAR(4)), 4)) PERSISTED;
+
+-- CAMBIO: Columna 'Codigo' convertida en columna calculada/autogenerada
+-- Motivo: Evitar que el código de producto se ingrese manualmente,
+--         generándolo automáticamente a partir del Id (correlativo).
+-- 
+-- Pasos realizados:
+--   1. Se eliminó la restricción UNIQUE 'UQ_CodigoProducto' que dependía de Codigo
+--   2. Se eliminó la columna 'Codigo' (manual)
+--   3. Se volvió a crear 'Codigo' como columna calculada PERSISTED:
+--      Formato: 'P' + Id con padding de 4 dígitos (ej: P0001, P0002...)
+--   4. La columna ya no requiere UNIQUE explícito porque el Id 
+--      (IDENTITY) garantiza unicidad por diseño
+-- 
+-- Resultado: Codigo se genera automáticamente al insertar un producto,
+-- el usuario ya no debe llenarlo manualmente en el formulario C#.
+
+/*===================================================================================================*/
+
+/*-----------------PROCEDIMIENTOS PARA PRODUCTOS -----------------------------*/
+
+
+/*================PROCEDIMIENTO PARA REGISTRAR UN PRODUCTO==================*/
+ALTER PROCEDURE SP_REGISTERPRODUCT
+(
+  @Nombre VARCHAR(30),
+  @Descripcion VARCHAR(MAX),
+  @IdCategoria INT,
+  @Estado BIT,
+  @Stock INT,
+  @PrecioCompra DECIMAL(10,2),
+  @PrecioVenta DECIMAL(10,2),
+  @IdResult INT OUTPUT,
+  @Mensaje VARCHAR(500) OUTPUT
+)
+AS
+BEGIN
+    SET @IdResult = 0
+
+    IF NOT EXISTS (SELECT * FROM Producto WHERE Nombre = @Nombre)
+    BEGIN
+         INSERT INTO Producto ( Nombre, Descripcion, IdCategoria, Stock, PrecioCompra, PrecioVenta, Estado)
+        VALUES ( @Nombre, @Descripcion, @IdCategoria, @Stock, @PrecioCompra, @PrecioVenta, @Estado)
+
+        SET @IdResult = SCOPE_IDENTITY()
+        SET @Mensaje = 'Producto registrado correctamente'
+    END
+    ELSE
+    BEGIN
+        SET @Mensaje = 'Ya existe un producto con ese nombre'
+    END
+END
+
+GO 
+
+/*=======================PROCEDIMIENT PARA ACTUALZIAR UN PRODUCTO=========================*/
+CREATE PROCEDURE SP_UPDATEPRODUCT
+(
+  @IdProducto INT,
+  @Nombre VARCHAR(30),
+  @Descripcion VARCHAR(MAX),
+  @IdCategoria INT,
+  @Estado BIT,
+  @Stock INT,
+  @PrecioCompra DECIMAL(10,2),
+  @PrecioVenta DECIMAL(10,2),
+  @Mensaje VARCHAR(500) OUTPUT
+)
+AS
+BEGIN
+    IF NOT EXISTS (SELECT * FROM Producto WHERE IdProducto = @IdProducto)
+    BEGIN
+        SET @Mensaje = 'El producto no existe'
+        RETURN
+    END
+
+    IF EXISTS (SELECT * FROM Producto WHERE Nombre = @Nombre AND IdProducto <> @IdProducto)
+    BEGIN
+        SET @Mensaje = 'Ya existe otro producto con ese nombre'
+        RETURN
+    END
+
+    -- Valida si no hubo ningun cambio real
+    IF EXISTS (
+        SELECT * FROM Producto
+        WHERE IdProducto = @IdProducto
+          AND Nombre = @Nombre
+          AND Descripcion = @Descripcion
+          AND IdCategoria = @IdCategoria
+          AND Estado = @Estado
+          AND Stock = @Stock
+          AND PrecioCompra = @PrecioCompra
+          AND PrecioVenta = @PrecioVenta
+    )
+    BEGIN
+        SET @Mensaje = 'No se detectaron cambios'
+        RETURN
+    END
+
+    -- Si paso todas las validaciones, actualiza
+    UPDATE Producto
+    SET Nombre = @Nombre,
+        Descripcion = @Descripcion,
+        IdCategoria = @IdCategoria,
+        Estado = @Estado,
+        Stock = @Stock,
+        PrecioCompra = @PrecioCompra,
+        PrecioVenta = @PrecioVenta
+    WHERE IdProducto = @IdProducto
+
+    SET @Mensaje = 'Producto actualizado correctamente'
+END
+
+
+
+GO
+
+/*=========================PROCEDIMIENTO PARA ELIMINAR UN PRODUCTO=====================*/
+
+
+CREATE PROCEDURE SP_DELETEPRODUCT
+(
+  @IdProducto INT,
+  @Respuesta BIT OUTPUT,
+  @Mensaje VARCHAR(500) OUTPUT
+)
+AS
+BEGIN
+    SET @Respuesta = 0
+    SET @Mensaje = ''
+    DECLARE @PasoReglas BIT = 1
+
+    -- Verifica que el producto exista
+    IF NOT EXISTS (SELECT * FROM Producto WHERE IdProducto = @IdProducto)
+    BEGIN
+        SET @Mensaje = 'El producto no existe'
+        RETURN
+    END
+
+    -- Valida que no esté relacionado a una COMPRA
+    IF EXISTS (
+        SELECT * FROM DetalleCompra dc
+        INNER JOIN PRODUCTO p ON p.IdProducto = dc.IdProducto
+        WHERE p.IdProducto = @IdProducto
+    )
+    BEGIN
+        SET @PasoReglas = 0
+        SET @Mensaje = @Mensaje + 'No se puede eliminar porque se encuentra relacionado a una COMPRA' + CHAR(13)
+    END
+
+    -- Valida que no esté relacionado a una VENTA
+    IF EXISTS (
+        SELECT * FROM DetalleVenta dv
+        INNER JOIN PRODUCTO p ON p.IdProducto = dv.IdProducto
+        WHERE p.IdProducto = @IdProducto
+    )
+    BEGIN
+        SET @PasoReglas = 0
+        SET @Mensaje = @Mensaje + 'No se puede eliminar porque se encuentra relacionado a una VENTA' + CHAR(13)
+    END
+
+    -- Si no hay relaciones, elimina
+    IF (@PasoReglas = 1)
+    BEGIN
+        DELETE FROM PRODUCTO WHERE IdProducto = @IdProducto
+        SET @Respuesta = 1
+        SET @Mensaje = 'Producto eliminado correctamente'
+    END
+END
+
+
+SELECT IdProducto,Codigo,p.Nombre,p.Descripcion,c.Idcategoria,c.Nombre[Categoria],Stock,
+PrecioCompra,PrecioVenta,p.Estado FROM Producto p
+INNER JOIN Categoria c on c.IdCategoria = p.IdCategoria

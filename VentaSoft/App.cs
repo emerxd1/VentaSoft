@@ -117,15 +117,6 @@ namespace Main
         {
             List<Entidad_Permiso> ListaPermiso = new S_Permises().Lister(UserActual.IdUsuario);
 
-            foreach (Button btnmenu in panelMenu.Controls.OfType<Button>())
-            {
-                bool encontrar = ListaPermiso.Any(m => m.NombreMenu == btnmenu.Name);
-                MessageBox.Show($"Botón: {btnmenu.Name} | Encontrado: {encontrar}");
-                btnmenu.Visible = encontrar;
-
-
-
-            }
         }
 
         private void MenuClientes_Click(object sender, EventArgs e)

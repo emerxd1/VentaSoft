@@ -197,7 +197,7 @@
             label11.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.Location = new Point(79, 17);
             label11.Name = "label11";
-            label11.Size = new Size(224, 32);
+            label11.Size = new Size(177, 25);
             label11.TabIndex = 59;
             label11.Text = "Detalles Categorias";
             // 
@@ -227,7 +227,7 @@
             label1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label1.Location = new Point(9, 127);
             label1.Name = "label1";
-            label1.Size = new Size(73, 23);
+            label1.Size = new Size(58, 17);
             label1.TabIndex = 54;
             label1.Text = "Nombre";
             // 
@@ -240,7 +240,7 @@
             txtIndice.Location = new Point(9, 82);
             txtIndice.Name = "txtIndice";
             txtIndice.ReadOnly = true;
-            txtIndice.Size = new Size(93, 27);
+            txtIndice.Size = new Size(93, 23);
             txtIndice.TabIndex = 62;
             txtIndice.Text = "Automatico";
             txtIndice.Visible = false;
@@ -253,7 +253,7 @@
             txtName.Location = new Point(9, 145);
             txtName.Name = "txtName";
             txtName.PlaceholderText = "Ej: \"Enlatados\"";
-            txtName.Size = new Size(164, 27);
+            txtName.Size = new Size(164, 23);
             txtName.TabIndex = 53;
             // 
             // label14
@@ -263,7 +263,7 @@
             label14.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label14.Location = new Point(175, 49);
             label14.Name = "label14";
-            label14.Size = new Size(125, 23);
+            label14.Size = new Size(99, 17);
             label14.TabIndex = 61;
             label14.Text = "Id de categoria";
             // 
@@ -274,7 +274,7 @@
             lblDescripcion.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             lblDescripcion.Location = new Point(9, 198);
             lblDescripcion.Name = "lblDescripcion";
-            lblDescripcion.Size = new Size(98, 23);
+            lblDescripcion.Size = new Size(77, 17);
             lblDescripcion.TabIndex = 56;
             lblDescripcion.Text = "Descripcion";
             // 
@@ -287,7 +287,7 @@
             txtId.Location = new Point(282, 49);
             txtId.Name = "txtId";
             txtId.ReadOnly = true;
-            txtId.Size = new Size(26, 20);
+            txtId.Size = new Size(26, 16);
             txtId.TabIndex = 60;
             txtId.Text = "0";
             // 
@@ -310,7 +310,7 @@
             label10.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label10.Location = new Point(16, 336);
             label10.Name = "label10";
-            label10.Size = new Size(61, 23);
+            label10.Size = new Size(49, 17);
             label10.TabIndex = 57;
             label10.Text = "Estado";
             // 
@@ -322,7 +322,7 @@
             cbEstado.FormattingEnabled = true;
             cbEstado.Location = new Point(16, 357);
             cbEstado.Name = "cbEstado";
-            cbEstado.Size = new Size(151, 29);
+            cbEstado.Size = new Size(151, 25);
             cbEstado.TabIndex = 58;
             // 
             // btnDetails
@@ -366,19 +366,18 @@
             txtSearch.Cursor = Cursors.IBeam;
             txtSearch.Location = new Point(533, 55);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(179, 29);
+            txtSearch.Size = new Size(179, 25);
             txtSearch.TabIndex = 44;
             // 
             // cbSearch
             // 
             cbSearch.BackColor = Color.FromArgb(192, 255, 255);
             cbSearch.Cursor = Cursors.Hand;
-            cbSearch.DropDownStyle = ComboBoxStyle.DropDownList;
             cbSearch.FlatStyle = FlatStyle.Flat;
             cbSearch.FormattingEnabled = true;
             cbSearch.Location = new Point(382, 54);
             cbSearch.Name = "cbSearch";
-            cbSearch.Size = new Size(143, 29);
+            cbSearch.Size = new Size(143, 25);
             cbSearch.TabIndex = 46;
             // 
             // label13
@@ -388,7 +387,7 @@
             label13.Font = new Font("Segoe UI", 9.75F);
             label13.Location = new Point(287, 54);
             label13.Name = "label13";
-            label13.Size = new Size(95, 23);
+            label13.Size = new Size(74, 17);
             label13.TabIndex = 45;
             label13.Text = "Buscar por:";
             // 
@@ -399,7 +398,7 @@
             label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.Location = new Point(44, 54);
             label12.Name = "label12";
-            label12.Size = new Size(221, 32);
+            label12.Size = new Size(173, 25);
             label12.TabIndex = 43;
             label12.Text = "Lista de Categorias";
             // 
@@ -442,7 +441,7 @@
             dgvCategory.RowHeadersWidth = 51;
             dgvCategory.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgvCategory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCategory.Size = new Size(544, 367);
+            dgvCategory.Size = new Size(585, 367);
             dgvCategory.TabIndex = 39;
             dgvCategory.CellContentClick += dgvCategory_CellContentClick;
             dgvCategory.CellFormatting += dgvCategory_CellFormatting;
@@ -505,9 +504,9 @@
             panelGradient1.ForeColor = Color.Black;
             panelGradient1.GradientBottomColor = Color.FromArgb(192, 255, 255);
             panelGradient1.GradientTopColor = Color.FromArgb(192, 255, 255);
-            panelGradient1.Location = new Point(82, 169);
+            panelGradient1.Location = new Point(84, 169);
             panelGradient1.Name = "panelGradient1";
-            panelGradient1.Size = new Size(547, 403);
+            panelGradient1.Size = new Size(585, 404);
             panelGradient1.TabIndex = 50;
             // 
             // panelGradient2
@@ -523,7 +522,7 @@
             // 
             // elipseControl1
             // 
-            elipseControl1.CornerRadius = 55;
+            elipseControl1.CornerRadius = 15;
             elipseControl1.TargetControl = dgvCategory;
             // 
             // FrmCategory
