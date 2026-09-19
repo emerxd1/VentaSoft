@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using ClosedXML.Excel;
+using Data;
 using Main.Utilities;
 using ModuloEntidades;
 using Store;
@@ -120,44 +121,6 @@ namespace Main
             return true;
         }
 
-        /*===================AGREGAR PRODUCTOS=======================================*/
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            if (!TryObtenerDatosFormulario(out decimal precioCompra, out decimal precioVenta, out int stock))
-                return;
-
-            // NOTA: no se asigna Codigo aquí porque es una columna calculada en la base de datos;
-            // la genera SQL Server automáticamente al insertar, no el usuario.
-            Entidad_Producto oProducto = new Entidad_Producto()
-            {
-                Nombre = txtNameProducto.Text,
-                PrecioCompra = precioCompra,
-                PrecioVenta = precioVenta,
-                Stock = stock,
-                Descripcion = txtDescripcion.Text,
-                oCategoria = new Entidad_Categoria() { IdCategoria = Convert.ToInt32(((OptionsComboBox)cbCategoria.SelectedItem).valor) },
-                Estado = Convert.ToInt32(((OptionsComboBox)cbEstado.SelectedItem).valor) == 1
-            };
-
-            int idGenerated = new S_Product().Register(oProducto, out string Mensaje);
-
-            // Si el id generado es distinto de 0, significa que se registró correctamente
-            if (idGenerated != 0)
-            {
-                MessageBox.Show("Producto registrado correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Se recarga el grid desde la base de datos en vez de armar la fila a mano,
-                // así se refleja el Codigo real generado por la columna calculada.
-                RecargarGrid();
-            }
-            else
-            {
-                MessageBox.Show(Mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-
-            Limpiar();
-        }
-
         //METODO PARA LIMPIAR LOS CAMPOS DEL FORMULARIO
         private void Limpiar()
         {
@@ -171,12 +134,6 @@ namespace Main
             txtNameProducto.Clear();
             cbCategoria.SelectedIndex = 0;
             cbEstado.SelectedIndex = 0;
-        }
-        /*=================METODO PARA LIMPIAR TEXTBOX============================*/
-
-        private void btnClean_Click(object sender, EventArgs e)
-        {
-            Limpiar();
         }
 
 
@@ -383,5 +340,115 @@ namespace Main
             }
             // si dr == DialogResult.No, simplemente no se hace nada (el usuario canceló)
         }
+
+        private void btbExcel_Click(object sender, EventArgs e)
+        {
+            if (dgvProducto.Rows.Count < 1)
+            {
+                MessageBox.Show("No hay datos para exportar", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Nombres de columnas a excluir del reporte
+            string[] columnasExcluidas = { "IdCategoria", "EstadoValor" };
+
+            DataTable dt = new DataTable();
+            List<int> colIndexes = new List<int>();
+
+            foreach (DataGridViewColumn column in dgvProducto.Columns)
+            {
+                if (!(column is DataGridViewButtonColumn) && !columnasExcluidas.Contains(column.Name))
+                {
+                    string encabezado = string.IsNullOrEmpty(column.HeaderText) ? column.Name : column.HeaderText;
+                    dt.Columns.Add(encabezado, typeof(string));
+                    colIndexes.Add(column.Index);
+                }
+            }
+
+            foreach (DataGridViewRow row in dgvProducto.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    object[] values = new object[colIndexes.Count];
+                    for (int i = 0; i < colIndexes.Count; i++)
+                    {
+                        values[i] = row.Cells[colIndexes[i]].Value?.ToString() ?? "";
+                    }
+                    dt.Rows.Add(values);
+                }
+            }
+
+            SaveFileDialog savefile = new SaveFileDialog();
+            savefile.FileName = string.Format("ReporteProducto_{0}.xlsx", DateTime.Now.ToString("ddMMyyyy_HHmmss"));
+            savefile.Filter = "Excel Files (*.xlsx)|*.xlsx";
+
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    using (XLWorkbook wb = new XLWorkbook())
+                    {
+                        var hoja = wb.Worksheets.Add(dt, "Informe");
+                        hoja.ColumnsUsed().AdjustToContents();
+                        wb.SaveAs(savefile.FileName);
+                        MessageBox.Show("Reporte Generado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al generar reporte: " + ex.Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+        }
+
+        /*BOTON PARA AGREGAR UN NUEVO PRODUCTO*/
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (!TryObtenerDatosFormulario(out decimal precioCompra, out decimal precioVenta, out int stock))
+                return;
+
+            // NOTA: no se asigna Codigo aquí porque es una columna calculada en la base de datos;
+            // la genera SQL Server automáticamente al insertar, no el usuario.
+            Entidad_Producto oProducto = new Entidad_Producto()
+            {
+                Nombre = txtNameProducto.Text,
+                PrecioCompra = precioCompra,
+                PrecioVenta = precioVenta,
+                Stock = stock,
+                Descripcion = txtDescripcion.Text,
+                oCategoria = new Entidad_Categoria() { IdCategoria = Convert.ToInt32(((OptionsComboBox)cbCategoria.SelectedItem).valor) },
+                Estado = Convert.ToInt32(((OptionsComboBox)cbEstado.SelectedItem).valor) == 1
+            };
+
+            int idGenerated = new S_Product().Register(oProducto, out string Mensaje);
+
+            // Si el id generado es distinto de 0, significa que se registró correctamente
+            if (idGenerated != 0)
+            {
+                MessageBox.Show("Producto registrado correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Se recarga el grid desde la base de datos en vez de armar la fila a mano,
+                // así se refleja el Codigo real generado por la columna calculada.
+                RecargarGrid();
+            }
+            else
+            {
+                MessageBox.Show(Mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            Limpiar();
+        }
+        /*=================METODO PARA LIMPIAR TEXTBOX============================*/
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
     }
 }
+    
+
+
+
+
+

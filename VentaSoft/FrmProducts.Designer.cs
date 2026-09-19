@@ -32,7 +32,13 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            panel2 = new Panel();
+            btbExcel = new Button();
+            btnClearSearch = new Button();
+            btnSearch = new Button();
             panel4 = new Panel();
+            button9 = new Button();
+            btnnew = new Button();
             txtDescripcion = new TextBox();
             label6 = new Label();
             txtPrecioV = new TextBox();
@@ -63,9 +69,6 @@
             label2 = new Label();
             txtCodigo = new TextBox();
             label1 = new Label();
-            panel2 = new Panel();
-            btnClearSearch = new Button();
-            btnSearch = new Button();
             btnDelete = new Button();
             btnUpdate = new Button();
             txtSearch = new TextBox();
@@ -85,16 +88,93 @@
             NameCategoria = new DataGridViewTextBoxColumn();
             EstadoValor = new DataGridViewTextBoxColumn();
             Estado = new DataGridViewTextBoxColumn();
-            panel4.SuspendLayout();
             panel2.SuspendLayout();
+            panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProducto).BeginInit();
             SuspendLayout();
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(btbExcel);
+            panel2.Controls.Add(btnClearSearch);
+            panel2.Controls.Add(btnSearch);
+            panel2.Controls.Add(panel4);
+            panel2.Controls.Add(btnDelete);
+            panel2.Controls.Add(btnUpdate);
+            panel2.Controls.Add(txtSearch);
+            panel2.Controls.Add(cbSearch);
+            panel2.Controls.Add(label13);
+            panel2.Controls.Add(label12);
+            panel2.Controls.Add(dgvProducto);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1298, 633);
+            panel2.TabIndex = 1;
+            // 
+            // btbExcel
+            // 
+            btbExcel.Anchor = AnchorStyles.Top;
+            btbExcel.BackColor = Color.White;
+            btbExcel.Cursor = Cursors.Hand;
+            btbExcel.FlatAppearance.BorderSize = 0;
+            btbExcel.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btbExcel.FlatStyle = FlatStyle.Flat;
+            btbExcel.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            btbExcel.Image = (Image)resources.GetObject("btbExcel.Image");
+            btbExcel.Location = new Point(545, 526);
+            btbExcel.Name = "btbExcel";
+            btbExcel.Size = new Size(131, 43);
+            btbExcel.TabIndex = 56;
+            btbExcel.Text = "Exportar Excel";
+            btbExcel.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btbExcel.UseVisualStyleBackColor = false;
+            btbExcel.Click += btbExcel_Click;
+            // 
+            // btnClearSearch
+            // 
+            btnClearSearch.Anchor = AnchorStyles.Top;
+            btnClearSearch.BackColor = Color.Transparent;
+            btnClearSearch.Cursor = Cursors.Hand;
+            btnClearSearch.FlatAppearance.BorderSize = 0;
+            btnClearSearch.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnClearSearch.FlatStyle = FlatStyle.Flat;
+            btnClearSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnClearSearch.ForeColor = SystemColors.ControlText;
+            btnClearSearch.Image = (Image)resources.GetObject("btnClearSearch.Image");
+            btnClearSearch.Location = new Point(810, 34);
+            btnClearSearch.Name = "btnClearSearch";
+            btnClearSearch.Size = new Size(24, 24);
+            btnClearSearch.TabIndex = 55;
+            btnClearSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnClearSearch.UseVisualStyleBackColor = false;
+            btnClearSearch.Click += btnClearSearch_Click;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Anchor = AnchorStyles.Top;
+            btnSearch.BackColor = Color.Transparent;
+            btnSearch.Cursor = Cursors.Hand;
+            btnSearch.FlatAppearance.BorderSize = 0;
+            btnSearch.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
+            btnSearch.Location = new Point(768, 34);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(24, 24);
+            btnSearch.TabIndex = 54;
+            btnSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click_1;
             // 
             // panel4
             // 
             panel4.AutoSize = true;
             panel4.BackColor = Color.White;
             panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Controls.Add(button9);
+            panel4.Controls.Add(btnnew);
             panel4.Controls.Add(txtDescripcion);
             panel4.Controls.Add(label6);
             panel4.Controls.Add(txtPrecioV);
@@ -127,10 +207,49 @@
             panel4.Controls.Add(label1);
             panel4.Dock = DockStyle.Right;
             panel4.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            panel4.Location = new Point(837, 0);
+            panel4.Location = new Point(923, 0);
             panel4.Name = "panel4";
-            panel4.Size = new Size(375, 599);
+            panel4.Size = new Size(375, 633);
             panel4.TabIndex = 8;
+            // 
+            // button9
+            // 
+            button9.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            button9.BackColor = Color.White;
+            button9.Cursor = Cursors.Hand;
+            button9.FlatAppearance.BorderSize = 0;
+            button9.FlatAppearance.MouseOverBackColor = Color.FromArgb(144, 213, 255);
+            button9.FlatStyle = FlatStyle.Flat;
+            button9.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            button9.Image = (Image)resources.GetObject("button9.Image");
+            button9.Location = new Point(185, 545);
+            button9.Margin = new Padding(3, 2, 3, 2);
+            button9.Name = "button9";
+            button9.Size = new Size(129, 35);
+            button9.TabIndex = 49;
+            button9.Text = "Limpiar";
+            button9.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button9.UseVisualStyleBackColor = false;
+            button9.Click += button9_Click;
+            // 
+            // btnnew
+            // 
+            btnnew.Anchor = AnchorStyles.Top;
+            btnnew.BackColor = Color.White;
+            btnnew.Cursor = Cursors.Hand;
+            btnnew.FlatAppearance.BorderSize = 0;
+            btnnew.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 255, 128);
+            btnnew.FlatStyle = FlatStyle.Flat;
+            btnnew.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            btnnew.Image = (Image)resources.GetObject("btnnew.Image");
+            btnnew.Location = new Point(31, 545);
+            btnnew.Name = "btnnew";
+            btnnew.Size = new Size(129, 35);
+            btnnew.TabIndex = 48;
+            btnnew.Text = "Registrar";
+            btnnew.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnnew.UseVisualStyleBackColor = false;
+            btnnew.Click += button8_Click;
             // 
             // txtDescripcion
             // 
@@ -182,14 +301,13 @@
             btnClean.FlatStyle = FlatStyle.Flat;
             btnClean.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             btnClean.Image = (Image)resources.GetObject("btnClean.Image");
-            btnClean.Location = new Point(226, 529);
+            btnClean.Location = new Point(226, 1008);
             btnClean.Name = "btnClean";
             btnClean.Size = new Size(120, 43);
             btnClean.TabIndex = 38;
             btnClean.Text = "Limpiar";
             btnClean.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnClean.UseVisualStyleBackColor = false;
-            btnClean.Click += btnClean_Click;
             // 
             // btnAdd
             // 
@@ -201,14 +319,13 @@
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             btnAdd.Image = (Image)resources.GetObject("btnAdd.Image");
-            btnAdd.Location = new Point(55, 529);
+            btnAdd.Location = new Point(55, 1008);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(120, 43);
             btnAdd.TabIndex = 35;
             btnAdd.Text = "Registrar";
             btnAdd.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAdd.UseVisualStyleBackColor = false;
-            btnAdd.Click += btnAdd_Click;
             // 
             // button4
             // 
@@ -220,7 +337,7 @@
             button4.FlatStyle = FlatStyle.Flat;
             button4.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             button4.Image = (Image)resources.GetObject("button4.Image");
-            button4.Location = new Point(202, 1045);
+            button4.Location = new Point(202, 1524);
             button4.Name = "button4";
             button4.Size = new Size(168, 51);
             button4.TabIndex = 34;
@@ -239,7 +356,7 @@
             button5.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             button5.ForeColor = SystemColors.ControlText;
             button5.Image = (Image)resources.GetObject("button5.Image");
-            button5.Location = new Point(35, 1045);
+            button5.Location = new Point(35, 1524);
             button5.Name = "button5";
             button5.Size = new Size(160, 51);
             button5.TabIndex = 33;
@@ -257,7 +374,7 @@
             button6.FlatStyle = FlatStyle.Flat;
             button6.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             button6.Image = (Image)resources.GetObject("button6.Image");
-            button6.Location = new Point(202, 974);
+            button6.Location = new Point(202, 1453);
             button6.Name = "button6";
             button6.Size = new Size(168, 51);
             button6.TabIndex = 32;
@@ -275,7 +392,7 @@
             button7.FlatStyle = FlatStyle.Flat;
             button7.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             button7.Image = (Image)resources.GetObject("button7.Image");
-            button7.Location = new Point(35, 974);
+            button7.Location = new Point(35, 1453);
             button7.Name = "button7";
             button7.Size = new Size(160, 51);
             button7.TabIndex = 31;
@@ -317,7 +434,7 @@
             btnLimpiarTxt.FlatStyle = FlatStyle.Flat;
             btnLimpiarTxt.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             btnLimpiarTxt.Image = (Image)resources.GetObject("btnLimpiarTxt.Image");
-            btnLimpiarTxt.Location = new Point(202, 1588);
+            btnLimpiarTxt.Location = new Point(202, 2067);
             btnLimpiarTxt.Name = "btnLimpiarTxt";
             btnLimpiarTxt.Size = new Size(168, 51);
             btnLimpiarTxt.TabIndex = 28;
@@ -359,7 +476,7 @@
             button1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             button1.ForeColor = SystemColors.ControlText;
             button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(35, 1588);
+            button1.Location = new Point(35, 2067);
             button1.Name = "button1";
             button1.Size = new Size(160, 51);
             button1.TabIndex = 24;
@@ -377,7 +494,7 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.Location = new Point(202, 1516);
+            button2.Location = new Point(202, 1995);
             button2.Name = "button2";
             button2.Size = new Size(168, 51);
             button2.TabIndex = 23;
@@ -395,7 +512,7 @@
             button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             button3.Image = (Image)resources.GetObject("button3.Image");
-            button3.Location = new Point(35, 1516);
+            button3.Location = new Point(35, 1995);
             button3.Name = "button3";
             button3.Size = new Size(160, 51);
             button3.TabIndex = 22;
@@ -521,63 +638,9 @@
             label1.TabIndex = 1;
             label1.Text = "Codigo";
             // 
-            // panel2
-            // 
-            panel2.Controls.Add(btnClearSearch);
-            panel2.Controls.Add(btnSearch);
-            panel2.Controls.Add(panel4);
-            panel2.Controls.Add(btnDelete);
-            panel2.Controls.Add(btnUpdate);
-            panel2.Controls.Add(txtSearch);
-            panel2.Controls.Add(cbSearch);
-            panel2.Controls.Add(label13);
-            panel2.Controls.Add(label12);
-            panel2.Controls.Add(dgvProducto);
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1212, 599);
-            panel2.TabIndex = 1;
-            // 
-            // btnClearSearch
-            // 
-            btnClearSearch.BackColor = Color.Transparent;
-            btnClearSearch.Cursor = Cursors.Hand;
-            btnClearSearch.FlatAppearance.BorderSize = 0;
-            btnClearSearch.FlatAppearance.MouseOverBackColor = Color.Silver;
-            btnClearSearch.FlatStyle = FlatStyle.Flat;
-            btnClearSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnClearSearch.ForeColor = SystemColors.ControlText;
-            btnClearSearch.Image = (Image)resources.GetObject("btnClearSearch.Image");
-            btnClearSearch.Location = new Point(767, 34);
-            btnClearSearch.Name = "btnClearSearch";
-            btnClearSearch.Size = new Size(24, 24);
-            btnClearSearch.TabIndex = 55;
-            btnClearSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnClearSearch.UseVisualStyleBackColor = false;
-            btnClearSearch.Click += btnClearSearch_Click;
-            // 
-            // btnSearch
-            // 
-            btnSearch.Anchor = AnchorStyles.Top;
-            btnSearch.BackColor = Color.Transparent;
-            btnSearch.Cursor = Cursors.Hand;
-            btnSearch.FlatAppearance.BorderSize = 0;
-            btnSearch.FlatAppearance.MouseOverBackColor = Color.Silver;
-            btnSearch.FlatStyle = FlatStyle.Flat;
-            btnSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
-            btnSearch.Location = new Point(725, 34);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(24, 24);
-            btnSearch.TabIndex = 54;
-            btnSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnSearch.UseVisualStyleBackColor = false;
-            btnSearch.Click += btnSearch_Click_1;
-            // 
             // btnDelete
             // 
-            btnDelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnDelete.Anchor = AnchorStyles.Top;
             btnDelete.BackColor = Color.White;
             btnDelete.Cursor = Cursors.Hand;
             btnDelete.FlatAppearance.BorderSize = 0;
@@ -586,7 +649,7 @@
             btnDelete.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             btnDelete.ForeColor = SystemColors.ControlText;
             btnDelete.Image = (Image)resources.GetObject("btnDelete.Image");
-            btnDelete.Location = new Point(60, 526);
+            btnDelete.Location = new Point(103, 526);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(131, 43);
             btnDelete.TabIndex = 48;
@@ -597,7 +660,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnUpdate.Anchor = AnchorStyles.Top;
             btnUpdate.BackColor = Color.White;
             btnUpdate.Cursor = Cursors.Hand;
             btnUpdate.FlatAppearance.BorderSize = 0;
@@ -605,7 +668,7 @@
             btnUpdate.FlatStyle = FlatStyle.Flat;
             btnUpdate.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             btnUpdate.Image = (Image)resources.GetObject("btnUpdate.Image");
-            btnUpdate.Location = new Point(266, 526);
+            btnUpdate.Location = new Point(309, 526);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(131, 43);
             btnUpdate.TabIndex = 47;
@@ -616,28 +679,31 @@
             // 
             // txtSearch
             // 
+            txtSearch.Anchor = AnchorStyles.Top;
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Cursor = Cursors.IBeam;
-            txtSearch.Location = new Point(515, 34);
+            txtSearch.Location = new Point(558, 34);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(204, 22);
             txtSearch.TabIndex = 51;
             // 
             // cbSearch
             // 
+            cbSearch.Anchor = AnchorStyles.Top;
             cbSearch.Cursor = Cursors.Hand;
             cbSearch.DropDownStyle = ComboBoxStyle.DropDownList;
             cbSearch.FormattingEnabled = true;
-            cbSearch.Location = new Point(343, 33);
+            cbSearch.Location = new Point(386, 33);
             cbSearch.Name = "cbSearch";
             cbSearch.Size = new Size(163, 24);
             cbSearch.TabIndex = 53;
             // 
             // label13
             // 
+            label13.Anchor = AnchorStyles.Top;
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 9.75F);
-            label13.Location = new Point(250, 33);
+            label13.Location = new Point(293, 33);
             label13.Name = "label13";
             label13.Size = new Size(74, 17);
             label13.TabIndex = 52;
@@ -645,9 +711,10 @@
             // 
             // label12
             // 
+            label12.Anchor = AnchorStyles.Top;
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(31, 31);
+            label12.Location = new Point(74, 31);
             label12.Name = "label12";
             label12.Size = new Size(168, 25);
             label12.TabIndex = 50;
@@ -659,6 +726,7 @@
             dgvProducto.AllowUserToDeleteRows = false;
             dgvProducto.AllowUserToResizeColumns = false;
             dgvProducto.AllowUserToResizeRows = false;
+            dgvProducto.Anchor = AnchorStyles.Top;
             dgvProducto.BackgroundColor = Color.White;
             dgvProducto.BorderStyle = BorderStyle.None;
             dgvProducto.CellBorderStyle = DataGridViewCellBorderStyle.None;
@@ -683,7 +751,7 @@
             dgvProducto.DefaultCellStyle = dataGridViewCellStyle2;
             dgvProducto.EnableHeadersVisualStyles = false;
             dgvProducto.GridColor = Color.White;
-            dgvProducto.Location = new Point(31, 111);
+            dgvProducto.Location = new Point(74, 111);
             dgvProducto.Name = "dgvProducto";
             dgvProducto.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -799,22 +867,44 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1212, 599);
+            ClientSize = new Size(1298, 633);
             Controls.Add(panel2);
             Font = new Font("Bookman Old Style", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "FrmProducts";
             Text = "FrmProducts";
             Load += FrmProducts_Load;
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProducto).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
         private Panel panel2;
+        private Button btnDelete;
+        private Button btnUpdate;
+        private TextBox txtSearch;
+        private ComboBox cbSearch;
+        private Label label13;
+        private Label label12;
+        private DataGridView dgvProducto;
+        private DataGridViewButtonColumn btnSeleccion;
+        private DataGridViewTextBoxColumn IdProducto;
+        private DataGridViewTextBoxColumn Codigo;
+        private DataGridViewTextBoxColumn NombreProducto;
+        private DataGridViewTextBoxColumn Descripcion;
+        private DataGridViewTextBoxColumn PrecioVenta;
+        private DataGridViewTextBoxColumn PrecioCompra;
+        private DataGridViewTextBoxColumn Stock;
+        private DataGridViewTextBoxColumn IdCategoria;
+        private DataGridViewTextBoxColumn NameCategoria;
+        private DataGridViewTextBoxColumn EstadoValor;
+        private DataGridViewTextBoxColumn Estado;
+        private Button btnClearSearch;
+        private Button btnSearch;
+        private Button btbExcel;
         private Panel panel4;
         private TextBox txtDescripcion;
         private Label label6;
@@ -846,26 +936,7 @@
         private Label label2;
         private TextBox txtCodigo;
         private Label label1;
-        private Button btnDelete;
-        private Button btnUpdate;
-        private TextBox txtSearch;
-        private ComboBox cbSearch;
-        private Label label13;
-        private Label label12;
-        private DataGridView dgvProducto;
-        private DataGridViewButtonColumn btnSeleccion;
-        private DataGridViewTextBoxColumn IdProducto;
-        private DataGridViewTextBoxColumn Codigo;
-        private DataGridViewTextBoxColumn NombreProducto;
-        private DataGridViewTextBoxColumn Descripcion;
-        private DataGridViewTextBoxColumn PrecioVenta;
-        private DataGridViewTextBoxColumn PrecioCompra;
-        private DataGridViewTextBoxColumn Stock;
-        private DataGridViewTextBoxColumn IdCategoria;
-        private DataGridViewTextBoxColumn NameCategoria;
-        private DataGridViewTextBoxColumn EstadoValor;
-        private DataGridViewTextBoxColumn Estado;
-        private Button btnClearSearch;
-        private Button btnSearch;
+        private Button btnnew;
+        private Button button9;
     }
 }
