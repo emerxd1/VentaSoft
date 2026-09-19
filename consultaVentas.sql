@@ -607,3 +607,141 @@ END
 SELECT IdProducto,Codigo,p.Nombre,p.Descripcion,c.Idcategoria,c.Nombre[Categoria],Stock,
 PrecioCompra,PrecioVenta,p.Estado FROM Producto p
 INNER JOIN Categoria c on c.IdCategoria = p.IdCategoria
+
+
+/*----------Procedimientos para Cliente----------*/
+
+-- Registrar Cliente
+create PROC sp_RegistrarCliente(
+    @DNI varchar(50),
+    @Nombre1 varchar(50),
+    @Nombre2 varchar(50),
+    @Apellido1 varchar(50),
+    @Apellido2 varchar(50),
+    @Correo varchar(100),
+    @Telefono varchar(20),
+    @Estado bit,
+    @Resultado int output,
+    @Mensaje varchar(100) output
+)
+as
+begin
+    set @Resultado = 0
+    set @Mensaje = ''
+
+    if not exists (select 1 from Cliente where DNI = @DNI)
+    begin
+        insert into Cliente(DNI,Nombre1,Nombre2,Apellido1,Apellido2,Correo,Telefono,Estado)
+        values(@DNI,@Nombre1,@Nombre2,@Apellido1,@Apellido2,@Correo,@Telefono,@Estado)
+
+        set @Resultado = scope_identity()
+        set @Mensaje = 'Cliente registrado correctamente'
+    end
+    else
+        set @Mensaje = 'El DNI ya existe'
+end
+go
+
+-- Modificar Cliente
+create PROC sp_ModificarCliente(
+    @IdCliente int,
+    @DNI varchar(50),
+    @Nombre1 varchar(50),
+    @Nombre2 varchar(50),
+    @Apellido1 varchar(50),
+    @Apellido2 varchar(50),
+    @Correo varchar(100),
+    @Telefono varchar(20),
+    @Estado bit,
+    @Resultado int output,
+    @Mensaje varchar(100) output
+)
+as
+begin
+    set @Resultado = 0
+    set @Mensaje = ''
+
+    -- 1. Validar que el cliente exista
+    if not exists (select 1 from Cliente where IdCliente = @IdCliente)
+    begin
+        set @Mensaje = 'El cliente no existe'
+        return
+    end
+
+    -- 2. Validar que el DNI no pertenezca a otro cliente
+    if exists (select 1 from Cliente where DNI = @DNI and IdCliente != @IdCliente)
+    begin
+        set @Mensaje = 'El DNI ya está asignado a otro cliente'
+        return
+    end
+
+    -- 3. Validar que haya al menos un cambio
+    --    (ISNULL evita problemas de comparación con valores NULL)
+    if exists (
+        select 1 from Cliente
+        where IdCliente = @IdCliente
+          and DNI = @DNI
+          and Nombre1 = @Nombre1
+          and ISNULL(Nombre2,'') = ISNULL(@Nombre2,'')
+          and Apellido1 = @Apellido1
+          and ISNULL(Apellido2,'') = ISNULL(@Apellido2,'')
+          and ISNULL(Correo,'') = ISNULL(@Correo,'')
+          and ISNULL(Telefono,'') = ISNULL(@Telefono,'')
+          and Estado = @Estado
+    )
+    begin
+        set @Mensaje = 'No se realizaron cambios: los datos son iguales a los actuales'
+        return
+    end
+
+    -- 4. Actualizar
+    update Cliente set
+        DNI = @DNI,
+        Nombre1 = @Nombre1,
+        Nombre2 = @Nombre2,
+        Apellido1 = @Apellido1,
+        Apellido2 = @Apellido2,
+        Correo = @Correo,
+        Telefono = @Telefono,
+        Estado = @Estado
+    where IdCliente = @IdCliente
+
+    set @Resultado = 1
+    set @Mensaje = 'Cliente actualizado correctamente'
+end
+go
+
+-- Eliminar Cliente
+create PROC sp_EliminarCliente(
+    @IdCliente int,
+    @Resultado int output,
+    @Mensaje varchar(500) output
+)
+as
+begin
+    set @Resultado = 0
+    set @Mensaje = ''
+
+    -- 1. Validar que el cliente exista
+    if not exists (select 1 from Cliente where IdCliente = @IdCliente)
+    begin
+        set @Mensaje = 'El cliente no existe'
+        return
+    end
+
+    -- 2. Validar que no esté relacionado con ventas
+    if exists (select 1 from Venta where IdCliente = @IdCliente)
+    begin
+        set @Mensaje = 'No se puede eliminar: cliente relacionado con ventas'
+        return
+    end
+
+    -- 3. Eliminar
+    delete from Cliente where IdCliente = @IdCliente
+
+    set @Resultado = 1
+    set @Mensaje = 'Cliente eliminado correctamente'
+end
+go
+
+select IdCliente,DNI,Nombre1,Nombre2,Apellido1,Apellido2,Correo,Telefono,Estado from Cliente
