@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmClientes));
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             textBox1 = new TextBox();
             label7 = new Label();
@@ -65,7 +65,6 @@
             label13 = new Label();
             label12 = new Label();
             dgvUsers = new DataGridView();
-            btnClearSearch = new Button();
             btnSeleccion = new DataGridViewButtonColumn();
             IdCliente = new DataGridViewTextBoxColumn();
             DNI = new DataGridViewTextBoxColumn();
@@ -77,6 +76,7 @@
             NumTelefono = new DataGridViewTextBoxColumn();
             EstadoValor = new DataGridViewTextBoxColumn();
             Estado = new DataGridViewTextBoxColumn();
+            btnClearSearch = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
             SuspendLayout();
@@ -157,6 +157,7 @@
             button1.Text = "Limpiar";
             button1.TextImageRelation = TextImageRelation.ImageBeforeText;
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -522,26 +523,26 @@
             dgvUsers.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvUsers.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dgvUsers.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(192, 255, 255);
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.Padding = new Padding(2);
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(128, 255, 255);
-            dataGridViewCellStyle7.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(192, 255, 255);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(128, 255, 255);
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvUsers.ColumnHeadersHeight = 30;
             dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvUsers.Columns.AddRange(new DataGridViewColumn[] { btnSeleccion, IdCliente, DNI, Name1, Name2, LastName1, LastName2, Email, NumTelefono, EstadoValor, Estado });
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.Window;
-            dataGridViewCellStyle8.Font = new Font("Bookman Old Style", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = Color.Silver;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dgvUsers.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Bookman Old Style", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvUsers.DefaultCellStyle = dataGridViewCellStyle2;
             dgvUsers.EnableHeadersVisualStyles = false;
             dgvUsers.GridColor = Color.Black;
             dgvUsers.Location = new Point(46, 111);
@@ -549,15 +550,15 @@
             dgvUsers.MultiSelect = false;
             dgvUsers.Name = "dgvUsers";
             dgvUsers.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(192, 255, 255);
-            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle9.Padding = new Padding(2);
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(255, 192, 192);
-            dataGridViewCellStyle9.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(192, 255, 255);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(255, 192, 192);
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvUsers.RowHeadersVisible = false;
             dgvUsers.RowHeadersWidth = 51;
             dgvUsers.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.TopCenter;
@@ -565,24 +566,6 @@
             dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUsers.Size = new Size(818, 404);
             dgvUsers.TabIndex = 42;
-            // 
-            // btnClearSearch
-            // 
-            btnClearSearch.BackColor = Color.White;
-            btnClearSearch.Cursor = Cursors.Hand;
-            btnClearSearch.FlatAppearance.BorderSize = 0;
-            btnClearSearch.FlatAppearance.MouseOverBackColor = Color.Silver;
-            btnClearSearch.FlatStyle = FlatStyle.Flat;
-            btnClearSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnClearSearch.ForeColor = SystemColors.ControlText;
-            btnClearSearch.Image = (Image)resources.GetObject("btnClearSearch.Image");
-            btnClearSearch.Location = new Point(804, 50);
-            btnClearSearch.Margin = new Padding(3, 2, 3, 2);
-            btnClearSearch.Name = "btnClearSearch";
-            btnClearSearch.Size = new Size(21, 18);
-            btnClearSearch.TabIndex = 49;
-            btnClearSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnClearSearch.UseVisualStyleBackColor = false;
             // 
             // btnSeleccion
             // 
@@ -677,6 +660,24 @@
             Estado.Name = "Estado";
             Estado.ReadOnly = true;
             Estado.Width = 125;
+            // 
+            // btnClearSearch
+            // 
+            btnClearSearch.BackColor = Color.White;
+            btnClearSearch.Cursor = Cursors.Hand;
+            btnClearSearch.FlatAppearance.BorderSize = 0;
+            btnClearSearch.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnClearSearch.FlatStyle = FlatStyle.Flat;
+            btnClearSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnClearSearch.ForeColor = SystemColors.ControlText;
+            btnClearSearch.Image = (Image)resources.GetObject("btnClearSearch.Image");
+            btnClearSearch.Location = new Point(804, 50);
+            btnClearSearch.Margin = new Padding(3, 2, 3, 2);
+            btnClearSearch.Name = "btnClearSearch";
+            btnClearSearch.Size = new Size(21, 18);
+            btnClearSearch.TabIndex = 49;
+            btnClearSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnClearSearch.UseVisualStyleBackColor = false;
             // 
             // FrmClientes
             // 

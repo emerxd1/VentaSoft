@@ -71,7 +71,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnDelete.Anchor = AnchorStyles.Top;
             btnDelete.BackColor = Color.White;
             btnDelete.Cursor = Cursors.Hand;
             btnDelete.FlatAppearance.BorderSize = 0;
@@ -91,7 +91,7 @@
             // 
             // BtnUpdate
             // 
-            BtnUpdate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            BtnUpdate.Anchor = AnchorStyles.Top;
             BtnUpdate.BackColor = Color.White;
             BtnUpdate.Cursor = Cursors.Hand;
             BtnUpdate.FlatAppearance.BorderSize = 0;
@@ -132,6 +132,7 @@
             // 
             // btnClearSearch
             // 
+            btnClearSearch.Anchor = AnchorStyles.Top;
             btnClearSearch.BackColor = Color.FromArgb(192, 255, 255);
             btnClearSearch.Cursor = Cursors.Hand;
             btnClearSearch.FlatAppearance.BorderSize = 0;
@@ -149,6 +150,7 @@
             // 
             // panelGradient3
             // 
+            panelGradient3.Anchor = AnchorStyles.Top;
             panelGradient3.BackColor = SystemColors.WindowFrame;
             panelGradient3.BorderStyle = BorderStyle.FixedSingle;
             panelGradient3.Controls.Add(btnClear);
@@ -163,7 +165,6 @@
             panelGradient3.Controls.Add(txtDescripcion);
             panelGradient3.Controls.Add(label10);
             panelGradient3.Controls.Add(cbEstado);
-            panelGradient3.Dock = DockStyle.Right;
             panelGradient3.ForeColor = Color.Black;
             panelGradient3.GradientBottomColor = Color.White;
             panelGradient3.GradientTopColor = Color.White;
@@ -327,6 +328,7 @@
             // 
             // btnDetails
             // 
+            btnDetails.Anchor = AnchorStyles.Top;
             btnDetails.BackColor = Color.White;
             btnDetails.Cursor = Cursors.Hand;
             btnDetails.FlatAppearance.BorderSize = 0;
@@ -345,6 +347,7 @@
             // 
             // btnSearch
             // 
+            btnSearch.Anchor = AnchorStyles.Top;
             btnSearch.BackColor = Color.FromArgb(192, 255, 255);
             btnSearch.Cursor = Cursors.Hand;
             btnSearch.FlatAppearance.BorderSize = 0;
@@ -361,6 +364,7 @@
             // 
             // txtSearch
             // 
+            txtSearch.Anchor = AnchorStyles.Top;
             txtSearch.BackColor = Color.FromArgb(192, 255, 255);
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Cursor = Cursors.IBeam;
@@ -371,6 +375,7 @@
             // 
             // cbSearch
             // 
+            cbSearch.Anchor = AnchorStyles.Top;
             cbSearch.BackColor = Color.FromArgb(192, 255, 255);
             cbSearch.Cursor = Cursors.Hand;
             cbSearch.FlatStyle = FlatStyle.Flat;
@@ -382,6 +387,7 @@
             // 
             // label13
             // 
+            label13.Anchor = AnchorStyles.Top;
             label13.AutoSize = true;
             label13.BackColor = Color.FromArgb(192, 255, 255);
             label13.Font = new Font("Segoe UI", 9.75F);
@@ -393,6 +399,7 @@
             // 
             // label12
             // 
+            label12.Anchor = AnchorStyles.Top;
             label12.AutoSize = true;
             label12.BackColor = Color.FromArgb(192, 255, 255);
             label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -408,6 +415,7 @@
             dgvCategory.AllowUserToDeleteRows = false;
             dgvCategory.AllowUserToResizeColumns = false;
             dgvCategory.AllowUserToResizeRows = false;
+            dgvCategory.Anchor = AnchorStyles.Top;
             dgvCategory.BackgroundColor = Color.White;
             dgvCategory.BorderStyle = BorderStyle.None;
             dgvCategory.CellBorderStyle = DataGridViewCellBorderStyle.None;
@@ -500,6 +508,7 @@
             // 
             // panelGradient1
             // 
+            panelGradient1.Anchor = AnchorStyles.Top;
             panelGradient1.BackColor = Color.White;
             panelGradient1.ForeColor = Color.Black;
             panelGradient1.GradientBottomColor = Color.FromArgb(192, 255, 255);
@@ -511,6 +520,7 @@
             // 
             // panelGradient2
             // 
+            panelGradient2.Anchor = AnchorStyles.Top;
             panelGradient2.BackColor = Color.White;
             panelGradient2.ForeColor = Color.Black;
             panelGradient2.GradientBottomColor = Color.FromArgb(192, 255, 255);
