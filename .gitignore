@@ -12,10 +12,6 @@ obj/
 # Archivos de configuración con datos sensibles (cadenas de conexión, etc.)
 App.config
 
-# Paquetes NuGet
-packages/
-*.nupkg
-*.snupkg
 
 # Logs y archivos temporales
 *.log
