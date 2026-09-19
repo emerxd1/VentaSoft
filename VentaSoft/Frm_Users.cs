@@ -149,7 +149,7 @@ namespace Main
         private void Limpiar()
         {
             txtIndice.Text = "-1";
-            txtDni.Text="";
+            txtDni.Text = "";
             txtName1.Clear();
             txtName2.Clear();
             txtLastName1.Clear();
@@ -397,6 +397,11 @@ namespace Main
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtLastName1_TextChanged(object sender, EventArgs e)
         {
 
         }
