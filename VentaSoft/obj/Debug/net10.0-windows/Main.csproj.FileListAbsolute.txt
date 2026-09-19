@@ -197,3 +197,4 @@ C:\Users\USER\source\repos\VentaSoft\VentaSoft\obj\Debug\net10.0-windows\Main.pd
 C:\Users\USER\source\repos\VentaSoft\VentaSoft\obj\Debug\net10.0-windows\Main.genruntimeconfig.cache
 C:\Users\USER\source\repos\VentaSoft\VentaSoft\obj\Debug\net10.0-windows\ref\Main.dll
 C:\Users\USER\source\repos\VentaSoft\VentaSoft\obj\Debug\net10.0-windows\Main.FrmClientes.resources
+C:\Users\Andres Castellon\source\repos\AED 2026\Clase Practica 1\Ventasoft\VentaSoft\obj\Debug\net10.0-windows\Main.FrmClientes.resources
