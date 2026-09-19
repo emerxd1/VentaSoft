@@ -50,7 +50,10 @@ namespace VentaSoft
             button_exit = new Button();
             button_minimize = new Button();
             panel1 = new Panel();
+            textBoxp2 = new TextBoxRGB.TextBoxP();
             pbPass = new PictureBox();
+            textBoxp1 = new TextBoxRGB.TextBoxP();
+            elipseControl1 = new ElipseControl.ElipseControl();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -67,13 +70,14 @@ namespace VentaSoft
             // textBox_Password
             // 
             textBox_Password.BackColor = Color.White;
+            textBox_Password.BorderStyle = BorderStyle.None;
             textBox_Password.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_Password.ForeColor = Color.Silver;
-            textBox_Password.Location = new Point(69, 355);
+            textBox_Password.ForeColor = Color.DimGray;
+            textBox_Password.Location = new Point(70, 358);
             textBox_Password.Name = "textBox_Password";
-            textBox_Password.Size = new Size(322, 27);
+            textBox_Password.PlaceholderText = "Password";
+            textBox_Password.Size = new Size(322, 20);
             textBox_Password.TabIndex = 2;
-            textBox_Password.Text = "Password";
             textBox_Password.Enter += textBox_Password_Enter;
             textBox_Password.Leave += textBox_Password_Leave;
             // 
@@ -139,7 +143,7 @@ namespace VentaSoft
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(0, 122, 204);
+            button1.BackColor = Color.FromArgb(0, 192, 192);
             button1.Cursor = Cursors.Hand;
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 122, 204);
@@ -166,15 +170,14 @@ namespace VentaSoft
             // textBox_Email
             // 
             textBox_Email.BackColor = Color.White;
+            textBox_Email.BorderStyle = BorderStyle.None;
             textBox_Email.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_Email.ForeColor = Color.Silver;
+            textBox_Email.ForeColor = Color.DimGray;
             textBox_Email.Location = new Point(69, 280);
             textBox_Email.Name = "textBox_Email";
-            textBox_Email.Size = new Size(319, 27);
+            textBox_Email.PlaceholderText = "Email";
+            textBox_Email.Size = new Size(319, 20);
             textBox_Email.TabIndex = 1;
-            textBox_Email.Text = "Email";
-            textBox_Email.Enter += textBox_Email_Enter;
-            textBox_Email.Leave += textBox_Email_Leave;
             // 
             // linkLabelPass
             // 
@@ -220,11 +223,12 @@ namespace VentaSoft
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(textBox_Email);
+            panel1.Controls.Add(textBoxp2);
             panel1.Controls.Add(pbPass);
             panel1.Controls.Add(button_minimize);
             panel1.Controls.Add(button_exit);
             panel1.Controls.Add(linkLabelPass);
-            panel1.Controls.Add(textBox_Email);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(pictureBox3);
@@ -234,10 +238,24 @@ namespace VentaSoft
             panel1.Controls.Add(checkBox1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(textBox_Password);
+            panel1.Controls.Add(textBoxp1);
             panel1.Location = new Point(-26, -32);
             panel1.Name = "panel1";
             panel1.Size = new Size(439, 684);
             panel1.TabIndex = 0;
+            // 
+            // textBoxp2
+            // 
+            textBoxp2.BackColor = SystemColors.Window;
+            textBoxp2.BorderColor = Color.FromArgb(0, 192, 192);
+            textBoxp2.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBoxp2.ForeColor = Color.DimGray;
+            textBoxp2.Location = new Point(69, 280);
+            textBoxp2.Name = "textBoxp2";
+            textBoxp2.Padding = new Padding(2);
+            textBoxp2.Size = new Size(330, 22);
+            textBoxp2.TabIndex = 16;
+            textBoxp2.Underlinedstyle = true;
             // 
             // pbPass
             // 
@@ -251,6 +269,25 @@ namespace VentaSoft
             pbPass.TabIndex = 14;
             pbPass.TabStop = false;
             pbPass.Click += pictureBox4_Click;
+            // 
+            // textBoxp1
+            // 
+            textBoxp1.BackColor = SystemColors.Window;
+            textBoxp1.BorderColor = Color.FromArgb(0, 192, 192);
+            textBoxp1.BorderFocusColor = Color.MediumOrchid;
+            textBoxp1.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBoxp1.ForeColor = Color.DimGray;
+            textBoxp1.Location = new Point(69, 360);
+            textBoxp1.Name = "textBoxp1";
+            textBoxp1.Padding = new Padding(2);
+            textBoxp1.Size = new Size(330, 22);
+            textBoxp1.TabIndex = 15;
+            textBoxp1.Underlinedstyle = true;
+            // 
+            // elipseControl1
+            // 
+            elipseControl1.CornerRadius = 30;
+            elipseControl1.TargetControl = button1;
             // 
             // Login
             // 
@@ -323,5 +360,8 @@ namespace VentaSoft
         private Button button_minimize;
         private Panel panel1;
         private PictureBox pbPass;
+        private TextBoxRGB.TextBoxP textBoxp1;
+        private TextBoxRGB.TextBoxP textBoxp2;
+        private ElipseControl.ElipseControl elipseControl1;
     }
 }

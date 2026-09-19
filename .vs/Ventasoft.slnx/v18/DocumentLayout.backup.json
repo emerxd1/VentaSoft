@@ -3,24 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{93703814-E182-40BC-A827-524EBDBFDF92}|Data\\Data.csproj|c:\\users\\andres castellon\\source\\repos\\aed 2026\\clase practica 1\\ventasoft\\data\\d_product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93703814-E182-40BC-A827-524EBDBFDF92}|Data\\Data.csproj|solutionrelative:data\\d_product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{577091C7-F403-9980-35B5-085D4C941DC5}|VentaSoft\\Main.csproj|c:\\users\\andres castellon\\source\\repos\\aed 2026\\clase practica 1\\ventasoft\\ventasoft\\frm_users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{577091C7-F403-9980-35B5-085D4C941DC5}|VentaSoft\\Main.csproj|solutionrelative:ventasoft\\frm_users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{577091C7-F403-9980-35B5-085D4C941DC5}|VentaSoft\\Main.csproj|c:\\users\\andres castellon\\source\\repos\\aed 2026\\clase practica 1\\ventasoft\\ventasoft\\frmproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{577091C7-F403-9980-35B5-085D4C941DC5}|VentaSoft\\Main.csproj|solutionrelative:ventasoft\\frmproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{577091C7-F403-9980-35B5-085D4C941DC5}|VentaSoft\\Main.csproj|C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\ventasoft\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{577091C7-F403-9980-35B5-085D4C941DC5}|VentaSoft\\Main.csproj|solutionrelative:ventasoft\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{577091C7-F403-9980-35B5-085D4C941DC5}|VentaSoft\\Main.csproj|c:\\users\\andres castellon\\source\\repos\\aed 2026\\clase practica 1\\ventasoft\\ventasoft\\frm_users.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{577091C7-F403-9980-35B5-085D4C941DC5}|VentaSoft\\Main.csproj|solutionrelative:ventasoft\\frm_users.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{577091C7-F403-9980-35B5-085D4C941DC5}|VentaSoft\\Main.csproj|c:\\users\\andres castellon\\source\\repos\\aed 2026\\clase practica 1\\ventasoft\\ventasoft\\frm_users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{577091C7-F403-9980-35B5-085D4C941DC5}|VentaSoft\\Main.csproj|solutionrelative:ventasoft\\frm_users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{577091C7-F403-9980-35B5-085D4C941DC5}|VentaSoft\\Main.csproj|C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\ventasoft\\frmproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{577091C7-F403-9980-35B5-085D4C941DC5}|VentaSoft\\Main.csproj|solutionrelative:ventasoft\\frmproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{577091C7-F403-9980-35B5-085D4C941DC5}|VentaSoft\\Main.csproj|C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\ventasoft\\frm_users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{577091C7-F403-9980-35B5-085D4C941DC5}|VentaSoft\\Main.csproj|solutionrelative:ventasoft\\frm_users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,65 +50,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "D_Product.cs",
-              "DocumentMoniker": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Data\\D_Product.cs",
-              "RelativeDocumentMoniker": "Data\\D_Product.cs",
-              "ToolTip": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\Data\\D_Product.cs",
-              "RelativeToolTip": "Data\\D_Product.cs",
-              "ViewState": "AgIAAL0AAAAAAAAAAAAUwNEAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Frm_Users.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\VentaSoft\\Frm_Users.Designer.cs",
+              "RelativeDocumentMoniker": "VentaSoft\\Frm_Users.Designer.cs",
+              "ToolTip": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\VentaSoft\\Frm_Users.Designer.cs",
+              "RelativeToolTip": "VentaSoft\\Frm_Users.Designer.cs",
+              "ViewState": "AgIAADQDAAAAAAAAAIAywEUDAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-19T01:23:46.571Z",
+              "WhenOpened": "2026-09-19T03:53:32.42Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Frm_Users.cs",
               "DocumentMoniker": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\VentaSoft\\Frm_Users.cs",
               "RelativeDocumentMoniker": "VentaSoft\\Frm_Users.cs",
               "ToolTip": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\VentaSoft\\Frm_Users.cs",
               "RelativeToolTip": "VentaSoft\\Frm_Users.cs",
-              "ViewState": "AgIAAA8BAAAAAAAAAAAiwCsBAABZAAAAAAAAAA==",
+              "ViewState": "AgIAADABAAAAAAAAAAAMwD8BAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-18T23:42:43.871Z",
+              "WhenOpened": "2026-09-19T03:51:18.646Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "Frm_Users.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\VentaSoft\\Frm_Users.cs",
               "RelativeDocumentMoniker": "VentaSoft\\Frm_Users.cs",
               "ToolTip": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\VentaSoft\\Frm_Users.cs [Dise\u00F1o]",
               "RelativeToolTip": "VentaSoft\\Frm_Users.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-18T23:42:16.213Z"
+              "WhenOpened": "2026-09-19T03:44:58.591Z",
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FrmProducts.cs",
-              "DocumentMoniker": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\VentaSoft\\FrmProducts.cs",
-              "RelativeDocumentMoniker": "VentaSoft\\FrmProducts.cs",
-              "ToolTip": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\VentaSoft\\FrmProducts.cs",
-              "RelativeToolTip": "VentaSoft\\FrmProducts.cs",
-              "ViewState": "AgIAAGMBAAAAAAAAAAAUwHcBAAA7AAAAAAAAAA==",
+              "Title": "Login.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\VentaSoft\\Login.cs",
+              "RelativeDocumentMoniker": "VentaSoft\\Login.cs",
+              "ToolTip": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\VentaSoft\\Login.cs [Dise\u00F1o]",
+              "RelativeToolTip": "VentaSoft\\Login.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-18T16:26:00.982Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FrmProducts.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\VentaSoft\\FrmProducts.cs",
-              "RelativeDocumentMoniker": "VentaSoft\\FrmProducts.cs",
-              "ToolTip": "C:\\Users\\Andres Castellon\\source\\repos\\AED 2026\\Clase Practica 1\\VentaSoft\\VentaSoft\\FrmProducts.cs [Dise\u00F1o]",
-              "RelativeToolTip": "VentaSoft\\FrmProducts.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-18T16:25:59.643Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-09-19T03:42:38.56Z"
             }
           ]
         }
