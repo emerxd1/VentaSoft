@@ -10,23 +10,6 @@ namespace VentaSoft
 
         private bool StringPassword=false;
 
-        private void textBox_Email_Enter(object sender, EventArgs e)
-        {
-            if (textBox_Email.Text == "Email")
-            {
-                textBox_Email.Text = "";
-                textBox_Email.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBox_Email_Leave(object sender, EventArgs e)
-        {
-            if (textBox_Email.Text == "")
-            {
-                textBox_Email.Text = "Email";
-                textBox_Email.ForeColor = Color.Silver;
-            }
-        }
 
         private void btnexit_Click(object sender, EventArgs e)
         {

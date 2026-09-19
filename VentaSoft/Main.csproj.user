@@ -31,5 +31,8 @@
     <Compile Update="PanelGradient.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="TextBoxP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

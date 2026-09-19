@@ -57,7 +57,6 @@
             label3 = new Label();
             txtName1 = new TextBox();
             label2 = new Label();
-            txtDni = new TextBox();
             label1 = new Label();
             btnDelete = new Button();
             btnUpdatee = new Button();
@@ -86,6 +85,7 @@
             btnSearch = new Button();
             panelGradient1 = new Gradient.PanelGradient();
             elipseControl1 = new ElipseControl.ElipseControl();
+            txtDni = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
@@ -98,6 +98,7 @@
             panel1.AutoSize = true;
             panel1.BackColor = Color.White;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(txtDni);
             panel1.Controls.Add(txtIndice);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(btnLimpiarTxt);
@@ -122,7 +123,6 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(txtName1);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(txtDni);
             panel1.Controls.Add(label1);
             panel1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             panel1.Location = new Point(874, 0);
@@ -402,17 +402,6 @@
             label2.Text = "Primer Nombre";
             label2.Click += label2_Click;
             // 
-            // txtDni
-            // 
-            txtDni.BackColor = Color.White;
-            txtDni.Font = new Font("Century Gothic", 9.75F);
-            txtDni.ForeColor = Color.Black;
-            txtDni.Location = new Point(7, 130);
-            txtDni.Name = "txtDni";
-            txtDni.PlaceholderText = "Ej: \"008-021194-5592M\"";
-            txtDni.Size = new Size(164, 23);
-            txtDni.TabIndex = 1;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -683,7 +672,7 @@
             panelGradient2.GradientTopColor = Color.FromArgb(0, 192, 192);
             panelGradient2.Location = new Point(14, 38);
             panelGradient2.Name = "panelGradient2";
-            panelGradient2.Size = new Size(836, 75);
+            panelGradient2.Size = new Size(853, 75);
             panelGradient2.TabIndex = 54;
             // 
             // label12
@@ -704,7 +693,7 @@
             cbSearch.Cursor = Cursors.Hand;
             cbSearch.FlatStyle = FlatStyle.Flat;
             cbSearch.FormattingEnabled = true;
-            cbSearch.Location = new Point(409, 24);
+            cbSearch.Location = new Point(417, 24);
             cbSearch.Name = "cbSearch";
             cbSearch.Size = new Size(143, 25);
             cbSearch.TabIndex = 36;
@@ -715,7 +704,7 @@
             txtSearch.BackColor = Color.PaleTurquoise;
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Cursor = Cursors.IBeam;
-            txtSearch.Location = new Point(558, 25);
+            txtSearch.Location = new Point(566, 25);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(179, 25);
             txtSearch.TabIndex = 34;
@@ -730,9 +719,9 @@
             btnClearSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnClearSearch.ForeColor = SystemColors.ControlText;
             btnClearSearch.Image = (Image)resources.GetObject("btnClearSearch.Image");
-            btnClearSearch.Location = new Point(795, 27);
+            btnClearSearch.Location = new Point(807, 25);
             btnClearSearch.Name = "btnClearSearch";
-            btnClearSearch.Size = new Size(24, 24);
+            btnClearSearch.Size = new Size(32, 32);
             btnClearSearch.TabIndex = 38;
             btnClearSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnClearSearch.UseVisualStyleBackColor = false;
@@ -744,7 +733,7 @@
             label13.AutoSize = true;
             label13.BackColor = Color.Transparent;
             label13.Font = new Font("Segoe UI", 9.75F);
-            label13.Location = new Point(308, 24);
+            label13.Location = new Point(316, 24);
             label13.Name = "label13";
             label13.Size = new Size(74, 17);
             label13.TabIndex = 35;
@@ -760,9 +749,9 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
-            btnSearch.Location = new Point(753, 27);
+            btnSearch.Location = new Point(761, 24);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(24, 24);
+            btnSearch.Size = new Size(32, 32);
             btnSearch.TabIndex = 37;
             btnSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSearch.UseVisualStyleBackColor = false;
@@ -784,6 +773,16 @@
             // 
             elipseControl1.CornerRadius = 35;
             elipseControl1.TargetControl = dgvUsers;
+            // 
+            // txtDni
+            // 
+            txtDni.BackColor = Color.White;
+            txtDni.Font = new Font("Century Gothic", 9.75F);
+            txtDni.Location = new Point(7, 130);
+            txtDni.Name = "txtDni";
+            txtDni.PlaceholderText = "Ej: \"001-150212-22010J\"";
+            txtDni.Size = new Size(164, 23);
+            txtDni.TabIndex = 31;
             // 
             // Frm_Users
             // 
@@ -810,7 +809,6 @@
         #endregion
 
         private Panel panel1;
-        private TextBox txtDni;
         private Label label1;
         private TextBox txtName1;
         private Label label2;
@@ -863,5 +861,6 @@
         private Button btnSearch;
         private Gradient.PanelGradient panelGradient1;
         private ElipseControl.ElipseControl elipseControl1;
+        private TextBox txtDni;
     }
 }

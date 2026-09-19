@@ -149,7 +149,7 @@ namespace Main
         private void Limpiar()
         {
             txtIndice.Text = "-1";
-            txtDni.Clear();
+            txtDni.Text="";
             txtName1.Clear();
             txtName2.Clear();
             txtLastName1.Clear();
