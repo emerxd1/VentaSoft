@@ -1,6 +1,25 @@
+# Carpetas de compilación
+bin/
+obj/
+
+# Carpeta de configuración de Visual Studio
+.vs/
+
+# Archivos de usuario (configuración local del IDE, no se comparte)
+*.user
+*.suo
+
+# Archivos de configuración con datos sensibles (cadenas de conexión, etc.)
 App.config
 
-   bin/
-   obj/
-   .vs/
-   *.user
+# Paquetes NuGet
+packages/
+*.nupkg
+*.snupkg
+
+# Logs y archivos temporales
+*.log
+*.tmp
+
+# Resultados de pruebas
+TestResults/
