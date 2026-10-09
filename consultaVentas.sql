@@ -745,3 +745,170 @@ end
 go
 
 select IdCliente,DNI,Nombre1,Nombre2,Apellido1,Apellido2,Correo,Telefono,Estado from Cliente
+
+GO
+
+/*==================== Procedimiento para Proveedores ====================*/
+IF COL_LENGTH('Proveedor', 'RUC') IS NULL
+    ALTER TABLE Proveedor ADD RUC VARCHAR(50) NULL;
+GO
+
+CREATE OR ALTER PROC sp_RegistrarProveedores(
+    @RUC varchar(50),
+    @RazonSocial varchar(100),
+    @Correo varchar(100),
+    @Telefono varchar(20),
+    @Estado bit,
+    @Resultado int output,
+    @Mensaje varchar(500) output
+)
+AS
+BEGIN
+    SET @Resultado = 0
+    SET @Mensaje = ''
+
+    -- Validación 1: el RUC no puede repetirse
+    IF EXISTS (SELECT 1 FROM Proveedor WHERE RUC = @RUC)
+    BEGIN
+        SET @Mensaje = 'El N° de RUC ya existe'
+        RETURN
+    END
+
+    -- Validación 2: la Razón Social no puede repetirse
+    IF EXISTS (SELECT 1 FROM Proveedor WHERE RazonSocial = @RazonSocial)
+    BEGIN
+        SET @Mensaje = 'Ya existe un proveedor con esa Razón Social'
+        RETURN
+    END
+
+    -- Validación 3: la columna Correo tiene restricción UNIQUE.
+    IF ISNULL(@Correo, '') <> ''
+       AND EXISTS (SELECT 1 FROM Proveedor WHERE Correo = @Correo)
+    BEGIN
+        SET @Mensaje = 'El correo ya está asignado a otro proveedor'
+        RETURN
+    END
+
+    -- Validación 4: el teléfono no puede repetirse
+    IF EXISTS (SELECT 1 FROM Proveedor WHERE Telefono = @Telefono)
+    BEGIN
+        SET @Mensaje = 'El teléfono ya está asignado a otro proveedor'
+        RETURN
+    END
+
+    INSERT INTO Proveedor (RUC, RazonSocial, Correo, Telefono, Estado)
+    VALUES (@RUC, @RazonSocial, NULLIF(@Correo, ''), @Telefono, @Estado)
+
+    SET @Resultado = SCOPE_IDENTITY()
+    SET @Mensaje = 'Proveedor registrado correctamente'
+END
+GO
+
+
+/*---------------------------------------------------------------------
+  MODIFICAR PROVEEDOR
+---------------------------------------------------------------------*/
+CREATE OR ALTER PROC sp_ModificarProveedores(
+    @IdProveedor int,
+    @RUC varchar(50),
+    @RazonSocial varchar(100),
+    @Correo varchar(100),
+    @Telefono varchar(20),
+    @Estado bit,
+    @Resultado int output,
+    @Mensaje varchar(500) output
+)
+AS
+BEGIN
+    SET @Resultado = 0
+    SET @Mensaje = ''
+
+    -- Validación 1: el proveedor debe existir
+    IF NOT EXISTS (SELECT 1 FROM Proveedor WHERE IdProveedor = @IdProveedor)
+    BEGIN
+        SET @Mensaje = 'El proveedor no existe'
+        RETURN
+    END
+
+    -- Validación 2: el RUC no debe pertenecer a OTRO proveedor
+    IF EXISTS (SELECT 1 FROM Proveedor WHERE RUC = @RUC AND IdProveedor <> @IdProveedor)
+    BEGIN
+        SET @Mensaje = 'El N° de RUC ya existe'
+        RETURN
+    END
+
+    -- Validación 3: la Razón Social no debe pertenecer a OTRO proveedor
+    IF EXISTS (SELECT 1 FROM Proveedor WHERE RazonSocial = @RazonSocial AND IdProveedor <> @IdProveedor)
+    BEGIN
+        SET @Mensaje = 'Ya existe un proveedor con esa Razón Social'
+        RETURN
+    END
+
+    -- Validación 4: lo mismo para el correo (UNIQUE)
+    IF ISNULL(@Correo, '') <> ''
+       AND EXISTS (SELECT 1 FROM Proveedor WHERE Correo = @Correo AND IdProveedor <> @IdProveedor)
+    BEGIN
+        SET @Mensaje = 'El correo ya está asignado a otro proveedor'
+        RETURN
+    END
+
+    -- Validación 5: el teléfono no debe pertenecer a OTRO proveedor
+    IF EXISTS (SELECT 1 FROM Proveedor WHERE Telefono = @Telefono AND IdProveedor <> @IdProveedor)
+    BEGIN
+        SET @Mensaje = 'El teléfono ya está asignado a otro proveedor'
+        RETURN
+    END
+
+    UPDATE Proveedor SET
+        RUC = @RUC,
+        RazonSocial = @RazonSocial,
+        Correo = NULLIF(@Correo, ''),
+        Telefono = @Telefono,
+        Estado = @Estado
+    WHERE IdProveedor = @IdProveedor
+
+    SET @Resultado = 1
+    SET @Mensaje = 'Proveedor actualizado correctamente'
+END
+GO
+
+
+/*---------------------------------------------------------------------
+  ELIMINAR PROVEEDOR
+---------------------------------------------------------------------*/
+CREATE OR ALTER PROC sp_EliminarProveedores(
+    @IdProveedor int,
+    @Resultado bit output,
+    @Mensaje varchar(500) output
+)
+AS
+BEGIN
+    SET @Resultado = 0
+    SET @Mensaje = ''
+
+    IF NOT EXISTS (SELECT 1 FROM Proveedor WHERE IdProveedor = @IdProveedor)
+    BEGIN
+        SET @Mensaje = 'El proveedor no existe'
+        RETURN
+    END
+
+    IF EXISTS (SELECT 1 FROM Compra WHERE IdProveedor = @IdProveedor)
+    BEGIN
+        SET @Mensaje = 'El proveedor se encuentra relacionado a una compra'
+        RETURN
+    END
+
+    DELETE FROM Proveedor WHERE IdProveedor = @IdProveedor
+
+    SET @Resultado = 1
+    SET @Mensaje = 'Proveedor eliminado correctamente'
+END
+GO
+
+
+/*---------------------------------------------------------------------
+  CONSULTA FINAL
+---------------------------------------------------------------------*/
+SELECT IdProveedor, RUC, RazonSocial, Correo, Telefono, Estado
+FROM Proveedor
+GO

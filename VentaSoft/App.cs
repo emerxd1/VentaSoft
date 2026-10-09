@@ -143,6 +143,11 @@ namespace Main
         {
 
         }
+
+        private void MenuProveedores_Click(object sender, EventArgs e)
+        {
+            MostrarFormularios(new Frm_Proveedor());
+        }
     }
 
 }
