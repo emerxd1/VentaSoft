@@ -29,9 +29,10 @@ CREATE TABLE Producto (
     FOREIGN KEY (IdCategoria) REFERENCES Categoria(IdCategoria)
 );
 
--- Tabla PROVEEDOR
+-- Tabla PROVEEDOR 
 CREATE TABLE Proveedor (
     IdProveedor INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
+    RUC VARCHAR(50) NULL,
     RazonSocial VARCHAR(100) NOT NULL,
     Correo VARCHAR(100) UNIQUE NULL,
     Telefono VARCHAR(20) NOT NULL,

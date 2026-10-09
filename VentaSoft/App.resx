@@ -149,14 +149,14 @@
   <data name="btnMin.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAACZJREFUSEtjYBgFo2AUjAKiAAsDA0M1jTDIbNpbMApGwSgYBQQAAFdaFTX0vIr6
+        DwAACw8BkvkDpQAAACZJREFUSEtjYBgFo2AUjAKiAAsDA0M1jTDIbNpbMApGwSgYBQQAAFdaFTX0vIr6
         AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="btnExit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAAItJREFUSEvtlVsKgDAMBPdcPkAP69m8hkRcKDFK0qZ/HRCksTNQQYFBkAPAohcD
+        DwAACw8BkvkDpQAAAItJREFUSEvtlVsKgDAMBPdcPkAP69m8hkRcKDFK0qZ/HRCksTNQQYFBkAPAohcD
         yF5xfDIBOAFseuBg9u6tibjlJBIJywkjux4UVMsJBVakWU6sSJqclJF0OVkfsVxyn07XQHks1jtpwjrz
         tIgl17PqyJ+ceJ4xiWyMfFZuInLijtTIiSvS/YczeHEBlHouzTBcWoMAAAAASUVORK5CYII=
 </value>
@@ -164,7 +164,7 @@
   <data name="btnMenu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAAExJREFUWEft1rEJACAMBdGM5uhupr2/DVyEe3BNygjBKulze1B1BhUDslgVmaQ2
+        DwAACw8BkvkDpQAAAExJREFUWEft1rEJACAMBdGM5uhupr2/DVyEe3BNygjBKulze1B1BhUDslgVmaQ2
         a1BxeMhiQBYDsng3Mklt3t8WWRweshiQxarIpH9duSJumxndx5sAAAAASUVORK5CYII=
 </value>
   </data>
