@@ -252,5 +252,10 @@ namespace Main
         {
 
         }
+
+        private void dgvProducto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -770,3 +770,112 @@ GO
 SELECT IdProveedor, RUC, RazonSocial, Correo, Telefono, Estado
 FROM Proveedor
 GO
+
+--Añadi la columna RUC para proovedor ya que no estaba
+IF COL_LENGTH('Proveedor', 'RUC') IS NULL
+    ALTER TABLE Proveedor ADD RUC VARCHAR(50) NULL;
+GO
+
+SELECT name FROM sys.procedures WHERE name LIKE '%Proveedor%';
+
+
+
+-------------------*Procedimientos para compra*----------------------
+
+--Actualizacion a la base de datos
+IF COL_LENGTH('Compra', 'TipoDocumento') IS NULL
+    ALTER TABLE Compra ADD TipoDocumento VARCHAR(500) NULL;
+IF COL_LENGTH('Compra', 'NumeroDocumento') IS NULL
+    ALTER TABLE Compra ADD NumeroDocumento VARCHAR(500) NULL;
+GO
+
+CREATE TYPE [dbo].[EDetalle_Compra] AS TABLE  --Tipo de tabla definido por el usuario
+(
+    [IdProducto] int NULL,
+    [PrecioCompra] decimal(18,2) NULL,
+    [PrecioVenta] decimal(18,2) NULL,
+    [Cantidad] int NULL,
+    [MontoTotal] decimal(18,2) NULL
+)
+
+GO
+
+--Codigo autogenerado para compras
+--00001
+--00002 
+
+--Procedimiento almacenado para registrar una nueva compra en el sistema con su detalle
+CREATE OR ALTER PROCEDURE sp_RegistrarCompra
+(
+    @IdUsuario int,
+    @IdProveedor int,
+    @TipoDocumento varchar(500),
+    @NumeroDocumento varchar(500),
+    @MontoTotal decimal(18,2),
+    @DetalleCompra dbo.EDetalle_Compra READONLY,
+    @Resultado bit output,
+    @Mensaje varchar(500) output
+)
+AS
+BEGIN
+    BEGIN TRY
+        --inicializamos las variables de repuesta
+        DECLARE @idcompra int = 0
+        SET @Resultado = 1
+        SET @Mensaje = ''
+
+        BEGIN TRANSACTION registro --iniciamos la transaccion
+
+        --Registramos el encavesado de la compra
+        INSERT INTO Compra(IdUsuario, IdProveedor, TipoDocumento, NumeroDocumento, MontoTotal)
+        VALUES (@IdUsuario, @IdProveedor, @TipoDocumento, @NumeroDocumento, @MontoTotal)
+
+        --Obtenemos el id de la compra recien creada
+        SET @idcompra = SCOPE_IDENTITY()
+
+        --Registrar los detalles de los productos comprados
+        INSERT INTO DetalleCompra(IdCompra, IdProducto, PrecioCompra, PrecioVenta, Cantidad, Total)
+        SELECT @idcompra, IdProducto, PrecioCompra, PrecioVenta, Cantidad, MontoTotal FROM @DetalleCompra
+
+        --Actualizar el stock y los precios en el inventario de los productos
+        UPDATE p SET p.Stock = p.Stock + dc.Cantidad,
+            p.PrecioCompra = dc.PrecioCompra,
+            p.PrecioVenta = dc.PrecioVenta
+        FROM Producto p
+        INNER JOIN @DetalleCompra dc ON dc.IdProducto = p.IdProducto
+
+        --Si todo sale bien se confirma los cambios
+        COMMIT TRANSACTION registro
+    END TRY
+    BEGIN CATCH
+    -- Si ocurre un error, el mensaje se captura y deshace todo
+        SET @Resultado = 0
+        SET @Mensaje = ERROR_MESSAGE()
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION
+    END CATCH
+END
+GO
+
+--Comprobacion
+
+SELECT * FROM Compra;
+SELECT * FROM DetalleCompra;
+SELECT IdProducto, Stock, PrecioCompra, PrecioVenta FROM Producto;
+
+USE SistemaVentas;
+
+--------------------------DETALLES DE LA COMPRA----------------------------------
+SELECT c.IdCompra,
+u.Nombre1,u.Nombre2,u.Apellido1,u.Apellido2,
+pr.RUC,pr.RazonSocial,
+c.TipoDocumento,c.NumeroDocumento,c.MontoTotal,convert(char(10),FechaRegistro,103)[FechaRegistro]
+FROM Compra c
+inner join Usuario u on u.IdUsuario = c.IdUsuario
+inner join Proveedor pr on pr.IdProveedor = c.IdProveedor
+where c.NumeroDocumento ='00001'
+
+select p.Nombre,dc.PrecioCompra,dc.Cantidad,dc.Total
+from DetalleCompra dc
+inner join Producto p on p.IdProducto = dc.IdProducto
+where dc.IdCompra = 1

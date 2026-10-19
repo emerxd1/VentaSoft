@@ -54,12 +54,15 @@
             MenuCategory = new Button();
             MenuProducto = new Button();
             label1 = new Label();
-            panelMenu = new Panel();
+            pasubcompra = new Panel();
+            panelsubCompra = new Panel();
+            btnDetalleCom = new Button();
             panelBarraUp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnMenu).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelSubMenu.SuspendLayout();
-            panelMenu.SuspendLayout();
+            pasubcompra.SuspendLayout();
+            panelsubCompra.SuspendLayout();
             SuspendLayout();
             // 
             // lblUsuario
@@ -332,6 +335,7 @@
             MenuCompras.TabIndex = 4;
             MenuCompras.Text = "Compras";
             MenuCompras.UseVisualStyleBackColor = false;
+            MenuCompras.Click += MenuCompras_Click;
             // 
             // MenuReportes
             // 
@@ -364,6 +368,7 @@
             panelSubMenu.Size = new Size(200, 69);
             panelSubMenu.TabIndex = 10;
             panelSubMenu.Visible = false;
+            panelSubMenu.Paint += panelSubMenu_Paint;
             // 
             // btnReporteShopping
             // 
@@ -508,7 +513,7 @@
             ClientSize = new Size(1366, 788);
             Controls.Add(PanelContenedor);
             Controls.Add(panelBarraUp);
-            Controls.Add(panelMenu);
+            Controls.Add(pasubcompra);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "App";
@@ -521,8 +526,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelSubMenu.ResumeLayout(false);
             panelSubMenu.PerformLayout();
-            panelMenu.ResumeLayout(false);
-            panelMenu.PerformLayout();
+            pasubcompra.ResumeLayout(false);
+            pasubcompra.PerformLayout();
+            panelsubCompra.ResumeLayout(false);
+            panelsubCompra.PerformLayout();
             ResumeLayout(false);
         }
 

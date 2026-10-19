@@ -9,6 +9,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Plantilla\logo.png" />
+    <None Remove="Plantilla\PlantillaCompra.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Plantilla\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plantilla\PlantillaCompra.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.105.1" />
     <PackageReference Include="Gu5.UI" Version="1.0.3.1" />
     <PackageReference Include="Krypton.Toolkit" Version="105.26.7.201" />
