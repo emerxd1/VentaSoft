@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmClientes));
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             txtTelefono = new TextBox();
             label7 = new Label();
@@ -514,17 +514,17 @@
             label12.TabIndex = 43;
             label12.Text = "Lista de Clientes";
             // 
-            // dgvUsers
+            // dgvClients
             // 
-            dgvUsers.AllowUserToAddRows = false;
-            dgvUsers.AllowUserToDeleteRows = false;
-            dgvUsers.AllowUserToResizeColumns = false;
-            dgvUsers.AllowUserToResizeRows = false;
-            dgvUsers.BackgroundColor = Color.White;
-            dgvUsers.BorderStyle = BorderStyle.None;
-            dgvUsers.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dgvUsers.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dgvUsers.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvClients.AllowUserToAddRows = false;
+            dgvClients.AllowUserToDeleteRows = false;
+            dgvClients.AllowUserToResizeColumns = false;
+            dgvClients.AllowUserToResizeRows = false;
+            dgvClients.BackgroundColor = Color.White;
+            dgvClients.BorderStyle = BorderStyle.None;
+            dgvClients.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dgvClients.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            dgvClients.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.TopCenter;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(192, 255, 255);
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -533,10 +533,10 @@
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(128, 255, 255);
             dataGridViewCellStyle1.SelectionForeColor = Color.Black;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgvUsers.ColumnHeadersHeight = 30;
-            dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvUsers.Columns.AddRange(new DataGridViewColumn[] { btnSeleccion, IdCliente, DNI, Name1, Name2, LastName1, LastName2, Email, NumTelefono, EstadoValor, Estado });
+            dgvClients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvClients.ColumnHeadersHeight = 30;
+            dgvClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvClients.Columns.AddRange(new DataGridViewColumn[] { btnSeleccion, IdCliente, DNI, Name1, Name2, LastName1, LastName2, Email, NumTelefono, EstadoValor, Estado });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Bookman Old Style", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -544,13 +544,13 @@
             dataGridViewCellStyle2.SelectionBackColor = Color.Silver;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.Desktop;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvUsers.DefaultCellStyle = dataGridViewCellStyle2;
-            dgvUsers.EnableHeadersVisualStyles = false;
-            dgvUsers.GridColor = Color.Black;
-            dgvUsers.Location = new Point(57, 150);
-            dgvUsers.MultiSelect = false;
-            dgvUsers.Name = "dgvUsers";
-            dgvUsers.ReadOnly = true;
+            dgvClients.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvClients.EnableHeadersVisualStyles = false;
+            dgvClients.GridColor = Color.Black;
+            dgvClients.Location = new Point(57, 150);
+            dgvClients.MultiSelect = false;
+            dgvClients.Name = "dgvClients";
+            dgvClients.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopCenter;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(192, 255, 255);
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -559,14 +559,14 @@
             dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(255, 192, 192);
             dataGridViewCellStyle3.SelectionForeColor = Color.Black;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dgvUsers.RowHeadersVisible = false;
-            dgvUsers.RowHeadersWidth = 51;
-            dgvUsers.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.TopCenter;
-            dgvUsers.RowTemplate.Height = 28;
-            dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvUsers.Size = new Size(935, 539);
-            dgvUsers.TabIndex = 42;
+            dgvClients.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvClients.RowHeadersVisible = false;
+            dgvClients.RowHeadersWidth = 51;
+            dgvClients.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.TopCenter;
+            dgvClients.RowTemplate.Height = 28;
+            dgvClients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvClients.Size = new Size(935, 539);
+            dgvClients.TabIndex = 42;
             // 
             // btnSeleccion
             // 
