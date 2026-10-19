@@ -53,7 +53,7 @@ namespace Data
         }
 
         // REGISTRAR PROVEEDOR -> sp_RegistrarProveedores
-        public int RegisterUser(Entidad_Proveedor oProveedor, out string Message)
+        public int RegisterProveedor(Entidad_Proveedor oProveedor, out string Message)
         {
             Message = string.Empty;
             int resultId = 0;
@@ -94,7 +94,7 @@ namespace Data
         }
 
         // ACTUALIZAR PROVEEDOR -> sp_ModificarProveedores
-        public bool UpdateUser(Entidad_Proveedor oProveedor, out string Message)
+        public bool UpdateProveedor(Entidad_Proveedor oProveedor, out string Message)
         {
             Message = string.Empty;
             bool result = false;
@@ -136,7 +136,7 @@ namespace Data
         }
 
         // ELIMINAR PROVEEDOR -> sp_EliminarProveedores
-        public bool DeleteUser(Entidad_Proveedor oProveedor, out string Message)
+        public bool DeleteProveedor(Entidad_Proveedor oProveedor, out string Message)
         {
             Message = string.Empty;
             bool result = false;

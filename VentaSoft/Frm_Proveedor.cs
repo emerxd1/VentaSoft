@@ -1,4 +1,6 @@
 ﻿using Data;
+using DocumentFormat.OpenXml.Drawing.Wordprocessing;
+using Main.Utilities;
 using ModuloEntidades;
 using Store;
 using System;
@@ -8,7 +10,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Main.Utilities;
 
 namespace Main
 {
@@ -174,39 +175,37 @@ namespace Main
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
-                var w = Properties.Resources.check.Width;
-                var h = Properties.Resources.check.Height;
+                var w = Properties.Resources.Check.Width;
+                var h = Properties.Resources.Check.Height;
                 var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
                 var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
 
-                e.Graphics.DrawImage(Properties.Resources.check, new Rectangle(x, y, w, h));
+                e.Graphics.DrawImage(Properties.Resources.Check, new Rectangle(x, y, w, h));
                 e.Handled = true;
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(txtId.Text) != 0)
+            if (!int.TryParse(txtId.Text.Trim(), out int idProveedor) || idProveedor <= 0)
             {
-                if (MessageBox.Show("¿Desea eliminar el proveedor?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                MessageBox.Show("Debe seleccionar un proveedor para eliminar.", "Mensaje",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (MessageBox.Show("¿Desea eliminar el proveedor?", "Mensaje",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                bool respuesta = new S_Proveedor().Delete(
+                    new Entidad_Proveedor() { IdProveedor = idProveedor }, out string mensaje);
+
+                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK,
+                                respuesta ? MessageBoxIcon.Information : MessageBoxIcon.Exclamation);
+
+                if (respuesta)
                 {
-                    string mensaje = string.Empty;
-                    Entidad_Proveedor obj = new Entidad_Proveedor()
-                    {
-                        IdProveedor = Convert.ToInt32(txtId.Text)
-                    };
-
-                    bool respuesta = new S_Proveedor().Delete(obj, out mensaje);
-
-                    if (respuesta)
-                    {
-                        dgvUsers.Rows.RemoveAt(Convert.ToInt32(txtIndice.Text));
-                        Limpiar();
-                    }
-                    else
-                    {
-                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
+                    Limpiar();
                 }
             }
         }

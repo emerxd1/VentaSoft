@@ -77,50 +77,53 @@ inner join Rol r on r.IdRol = u.IdRol /*consulta para mostrar datos en datagridv
 WHERE IdPermiso IN (1003,1004,1005,1006,1007,1008);*/
 
 
+/*====================================================================================
+  PROCEDIMIENTOS ALMACENADOS - VentaSoft
+  - Los procedimientos de "eliminar" hacen BORRADO LOGICO: ponen Estado = 0 (inactivo)
+    en lugar de borrar el registro. 
+====================================================================================*/
 
-/*-----------------------PROCEDIMIENTOS PRA CRUD DE EMPLEADOS --------------------------------------*/
 
-/*METODO PARA REGISTRAR USUARIOS*/
+/*------------------------------------------------------------------------------------
+  USUARIOS (EMPLEADOS)
+------------------------------------------------------------------------------------*/
 
+/* REGISTRAR USUARIO */
 ALTER PROCEDURE SP_REGISTERUSER
 (
-@DNI VARCHAR(30),
-@Nombre1 VARCHAR(50),
-@Nombre2 VARCHAR(50),
-@Apellido1 VARCHAR(50),
-@Apellido2 VARCHAR(50),
-@Correo VARCHAR(100),
-@Clave VARCHAR(20),
-@IdRol int,
-@Estado bit,
-@IdUsuarioResultado int output,
-@Mensaje VARCHAR(500) output/*DEVUELVEN RESULTADOS DEL SP*/
-
+    @DNI VARCHAR(30),
+    @Nombre1 VARCHAR(50),
+    @Nombre2 VARCHAR(50),
+    @Apellido1 VARCHAR(50),
+    @Apellido2 VARCHAR(50),
+    @Correo VARCHAR(100),
+    @Clave VARCHAR(20),
+    @IdRol int,
+    @Estado bit,
+    @IdUsuarioResultado int output,
+    @Mensaje VARCHAR(500) output
 )
-AS 
+AS
 BEGIN
-SET @IdUsuarioResultado=0
-SET @Mensaje=''
+    SET @IdUsuarioResultado = 0
+    SET @Mensaje = ''
 
-IF NOT EXISTS (SELECT * FROM Usuario WHERE DNI = @DNI )
-BEGIN 
-INSERT INTO Usuario(DNI,Nombre1,Nombre2,Apellido1,Apellido2,
-Correo,Clave,IdRol,Estado) VALUES
-(@DNI,@Nombre1,@Nombre2,@Apellido1,@Apellido2,
-@Correo,@Clave,@IdRol,@Estado)
+    IF NOT EXISTS (SELECT * FROM Usuario WHERE DNI = @DNI)
+    BEGIN
+        INSERT INTO Usuario(DNI, Nombre1, Nombre2, Apellido1, Apellido2,
+                            Correo, Clave, IdRol, Estado)
+        VALUES (@DNI, @Nombre1, @Nombre2, @Apellido1, @Apellido2,
+                @Correo, @Clave, @IdRol, @Estado)
 
-SET @IdUsuarioResultado = SCOPE_IDENTITY()
-SET @Mensaje =''
+        SET @IdUsuarioResultado = SCOPE_IDENTITY()
+        SET @Mensaje = ''
+    END
+    ELSE
+        SET @Mensaje = 'El valor ingresado ya se encuentra asignado a otro usuario. No se permiten valores duplicados.'
 END
-ELSE 
-SET @Mensaje = 'El valor ingresado ya se encuentra asignado a otro usuario. No se permiten valores duplicados.'
-
-
-END
-
-/*METODO PARA EDITAR USUARIOS*/
 GO
 
+/* EDITAR USUARIO */
 ALTER PROC SP_EDITUSER
 (
     @IdUsuario int,
@@ -136,18 +139,14 @@ ALTER PROC SP_EDITUSER
     @Error bit OUTPUT,
     @Mensaje VARCHAR(500) OUTPUT
 )
-AS 
+AS
 BEGIN
     SET @Error = 0
     SET @Mensaje = ''
 
-    -- Validar duplicados
-        -- Verifica si el DNI ya pertenece a OTRO usuario (IdUsuario distinto al que se está editando).
-    -- Usamos IdUsuario <> @IdUsuario para excluir la propia fila que estamos editando,
-    -- ya que si comparamos contra el mismo usuario (sin cambiar el DNI), siempre se
-    -- encontraría a sí mismo y bloquearía la actualización por error.
+    -- Verifica si el DNI ya pertenece a OTRO usuario (se excluye la propia fila)
     IF NOT EXISTS (SELECT 1 FROM Usuario WHERE DNI = @DNI AND IdUsuario <> @IdUsuario)
-    BEGIN 
+    BEGIN
         -- Verificar si hay diferencias reales
         IF EXISTS (
             SELECT 1 FROM Usuario
@@ -165,7 +164,7 @@ BEGIN
               )
         )
         BEGIN
-            UPDATE Usuario 
+            UPDATE Usuario
             SET DNI = @DNI,
                 Nombre1 = @Nombre1,
                 Nombre2 = @Nombre2,
@@ -185,127 +184,60 @@ BEGIN
             SET @Mensaje = 'No se registraron cambios en el usuario.'
         END
     END
-    ELSE 
+    ELSE
     BEGIN
         SET @Mensaje = 'El valor ingresado ya se encuentra asignado a otro usuario. No se permiten valores duplicados.'
     END
-    /*ANTES SOLO EDITABA EL USUARIO SI EL USUARIO CAMBIABA EL DNI AHORA NO*/
 END
-
-
-
-
-/*METODO PARA ELIMINAR USUARIO*/
 GO
 
-CREATE PROC SP_DELETEUSER
+/* ELIMINAR USUARIO (BORRADO LOGICO) */
+ALTER PROC SP_DELETEUSER
 (
-@IdUsuario int,
-@Error bit output,
-@Mensaje VARCHAR(500) output/*DEVUELVEN RESULTADOS DEL SP*/
-
+    @IdUsuario int,
+    @Error bit output,
+    @Mensaje VARCHAR(500) output
 )
-AS 
+AS
 BEGIN
-SET @Error=0
-SET @Mensaje=''
-DECLARE @Pasavalidaciones bit =1
+    SET @Error = 0
+    SET @Mensaje = ''
 
-/*PARA VALIDAR SI UN USUARIO RELACIONADO A UNA COMPRA EXISTE, QUE NO SE ELIMINE*/
-IF EXISTS (SELECT * FROM Compra c
-INNER JOIN  Usuario u on u.IdUsuario = c.IdUsuario
-WHERE u.IdUsuario = @IdUsuario
+    -- El usuario debe existir
+    IF NOT EXISTS (SELECT 1 FROM Usuario WHERE IdUsuario = @IdUsuario)
+    BEGIN
+        SET @Mensaje = 'El usuario no existe.'
+        RETURN
+    END
 
-)
+    -- Si ya esta inactivo no hay nada que hacer
+    IF EXISTS (SELECT 1 FROM Usuario WHERE IdUsuario = @IdUsuario AND Estado = 0)
+    BEGIN
+        SET @Mensaje = 'El usuario ya se encuentra inactivo.'
+        RETURN
+    END
 
-BEGIN 
+    -- Borrado logico: se inactiva en lugar de eliminar
+    UPDATE Usuario SET Estado = 0 WHERE IdUsuario = @IdUsuario
 
-SET @Pasavalidaciones = 0
-SET @Error=0
-SET @Mensaje= @Mensaje + 'No se puede eliminar un usuario relacionado a una Compra\n'
-
-
+    SET @Error = 1
+    SET @Mensaje = 'Usuario inactivado correctamente.'
 END
+GO
 
 
-/*PARA VALIDAR SI UN USUARIO RELACIONADO A UNA VENTA EXISTE, QUE NO SE ELIMINE*/
+/*------------------------------------------------------------------------------------
+  CATEGORIAS
+------------------------------------------------------------------------------------*/
 
-IF EXISTS (SELECT * FROM Venta v
-INNER JOIN  Usuario u on u.IdUsuario = v.IdUsuario
-WHERE u.IdUsuario = @IdUsuario
-
-)
-
-BEGIN 
-
-SET @Pasavalidaciones = 0
-SET @Error=0
-SET @Mensaje= @Mensaje + 'No se puede eliminar un usuario relacionado a una Venta\n'
-
-
-END
-
-
-
-IF (@Pasavalidaciones = 1 )
-
-BEGIN 
-DELETE FROM Usuario WHERE IdUsuario= @IdUsuario
-set @Error = 1
-END 
-
-
-END
-
-DBCC CHECKIDENT ('Usuario', NORESEED);
-DBCC CHECKIDENT ('Usuario', RESEED, 2);
-
-
-/*VALIDANDO CORREO PARA QUE SEA NO NULO YA QUE AIN CORREO NO HAY LOGIN*/
-
-ALTER TABLE Usuario
-ALTER COLUMN Correo VARCHAR(100) NOT NULL;
-
-
-
-/*PRIMERO HAY QUE QUITAR LA RESTRICCION */
-ALTER TABLE Usuario
-DROP CONSTRAINT UQ_Correo_Usuario;
-
-/*AGREGANDO OTRA VEZ LA RESTRICCION*/
-ALTER TABLE Usuario
-ADD CONSTRAINT UQ_Correo_Usuario UNIQUE (Correo);
-
-
-/* MEJORAS Y CORRECCIONES DE ERRORES*/
-SELECT IdUsuario, DNI, Nombre1, IdRol, Estado, FechaCreacion 
-FROM Usuario 
-WHERE IdRol IS NULL OR Estado IS NULL OR FechaCreacion IS NULL;
-
-ALTER TABLE Usuario ALTER COLUMN IdRol INT NOT NULL;
-ALTER TABLE Usuario ALTER COLUMN Estado BIT NOT NULL;
-
-
-
-
-sp_helptext 'SP_EDITUSER'
-
-SELECT name FROM sys.triggers WHERE parent_id = OBJECT_ID('Usuario');
-
-
-
-/*---------------------PROCEDIMIENTO PARA GESTIONAR CATEGORIAS DE PRODUCTOS (CRUD)----------------*/
-
-
-go
 /* REGISTRAR CATEGORIA */
 ALTER PROCEDURE SP_RegisterCategory
 (
- @Nombre VARCHAR(100),
- @Descripcion VARCHAR(MAX),
- @Estado bit,
- @Resultado INT OUTPUT,
- @Mensaje VARCHAR(500) OUTPUT
+    @Nombre VARCHAR(100),
+    @Descripcion VARCHAR(MAX),
+    @Estado bit,
+    @Resultado INT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
 )
 AS
 BEGIN
@@ -313,7 +245,7 @@ BEGIN
 
     IF NOT EXISTS (SELECT 1 FROM Categoria WHERE Nombre = @Nombre)
     BEGIN
-        INSERT INTO Categoria (Nombre,Descripcion,Estado) VALUES (@Nombre,@Descripcion,@Estado); /*SEA AGREGO ESTADO NO ESTABA EN EL PROCESO*/
+        INSERT INTO Categoria (Nombre, Descripcion, Estado) VALUES (@Nombre, @Descripcion, @Estado);
         SET @Resultado = SCOPE_IDENTITY();
         SET @Mensaje = 'Categoría registrada correctamente.';
     END
@@ -322,19 +254,17 @@ BEGIN
         SET @Mensaje = 'La categoría ingresada ya existe. No se permiten valores duplicados.';
     END
 END
-
 GO
-
 
 /* ACTUALIZAR CATEGORIA */
 ALTER PROCEDURE SP_UpdateCategory
 (
- @IdCategoria INT,
- @Nombre VARCHAR(100),
- @Descripcion VARCHAR(MAX),
- @Estado BIT, -- Nuevo campo para estado (activo/inactivo)
- @Resultado INT OUTPUT,
- @Mensaje VARCHAR(500) OUTPUT
+    @IdCategoria INT,
+    @Nombre VARCHAR(100),
+    @Descripcion VARCHAR(MAX),
+    @Estado BIT,
+    @Resultado INT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
 )
 AS
 BEGIN
@@ -374,99 +304,59 @@ BEGIN
         END
     END
 END
-
-
-
 GO
 
-
-/* ELIMINAR CATEGORIA */
-CREATE PROCEDURE SP_DeleteCategory
+/* ELIMINAR CATEGORIA (BORRADO LOGICO) */
+ALTER PROCEDURE SP_DeleteCategory
 (
- @IdCategoria INT,
- @Resultado INT OUTPUT,
- @Mensaje VARCHAR(500) OUTPUT
+    @IdCategoria INT,
+    @Resultado INT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
 )
 AS
 BEGIN
-    SET @Resultado = 1;
+    SET @Resultado = 0;
+    SET @Mensaje = '';
 
-    IF NOT EXISTS (
-        SELECT 1
-        FROM Categoria c
-        INNER JOIN Producto p ON p.IdCategoria = c.IdCategoria
-        WHERE c.IdCategoria = @IdCategoria
-    )
+    -- La categoria debe existir
+    IF NOT EXISTS (SELECT 1 FROM Categoria WHERE IdCategoria = @IdCategoria)
     BEGIN
-        DELETE FROM Categoria WHERE IdCategoria = @IdCategoria;
-        SET @Mensaje = 'Categoría eliminada correctamente.';
+        SET @Mensaje = 'La categoría no existe.';
+        RETURN
     END
-    ELSE
+
+    -- Si ya esta inactiva no hay nada que hacer
+    IF EXISTS (SELECT 1 FROM Categoria WHERE IdCategoria = @IdCategoria AND Estado = 0)
     BEGIN
-        SET @Resultado = 0;
-        SET @Mensaje = 'La categoría está relacionada a un producto. No se puede eliminar.';
+        SET @Mensaje = 'La categoría ya se encuentra inactiva.';
+        RETURN
     END
+
+    -- Borrado logico: se inactiva en lugar de eliminar
+    UPDATE Categoria SET Estado = 0 WHERE IdCategoria = @IdCategoria;
+
+    SET @Resultado = 1;
+    SET @Mensaje = 'Categoría inactivada correctamente.';
 END
 GO
 
 
+/*------------------------------------------------------------------------------------
+  PRODUCTOS
+------------------------------------------------------------------------------------*/
 
-SELECT Nombre,Descripcion,Estado FROM Categoria
-
-
-INSERT INTO Categoria(Nombre,Descripcion,Estado) VALUES ('Enlatados', 'Productos enlatados como Sardinas, Atun,etc',1)
-INSERT INTO Categoria(Nombre,Descripcion,Estado) VALUES ('Granos Basicos', 'Arroz, Frijoles, Azucar,etc',1)
-
-
-
-
-
-SELECT * FROM Producto
-INSERT INTO Producto(Nombre,Descripcion,IdCategoria,Stock,PrecioCompra,PrecioVenta,Estado) VALUES ('Arroz','Arroz Faisan 1lb',2,12,26.2,28.2,1)
-/*=====================================================================================================================*/
-
-EXEC sp_help 'Producto';
-ALTER TABLE Producto
-DROP COLUMN Codigo;
-
-ALTER TABLE Producto
-DROP CONSTRAINT UQ_CodigoProducto;
-
-ALTER TABLE Producto
-ADD Codigo AS ('P' + RIGHT('0000' + CAST(IdProducto AS VARCHAR(4)), 4)) PERSISTED;
-
--- CAMBIO: Columna 'Codigo' convertida en columna calculada/autogenerada
--- Motivo: Evitar que el código de producto se ingrese manualmente,
---         generándolo automáticamente a partir del Id (correlativo).
--- 
--- Pasos realizados:
---   1. Se eliminó la restricción UNIQUE 'UQ_CodigoProducto' que dependía de Codigo
---   2. Se eliminó la columna 'Codigo' (manual)
---   3. Se volvió a crear 'Codigo' como columna calculada PERSISTED:
---      Formato: 'P' + Id con padding de 4 dígitos (ej: P0001, P0002...)
---   4. La columna ya no requiere UNIQUE explícito porque el Id 
---      (IDENTITY) garantiza unicidad por diseño
--- 
--- Resultado: Codigo se genera automáticamente al insertar un producto,
--- el usuario ya no debe llenarlo manualmente en el formulario C#.
-
-/*===================================================================================================*/
-
-/*-----------------PROCEDIMIENTOS PARA PRODUCTOS -----------------------------*/
-
-
-/*================PROCEDIMIENTO PARA REGISTRAR UN PRODUCTO==================*/
+/* REGISTRAR PRODUCTO */
 ALTER PROCEDURE SP_REGISTERPRODUCT
 (
-  @Nombre VARCHAR(30),
-  @Descripcion VARCHAR(MAX),
-  @IdCategoria INT,
-  @Estado BIT,
-  @Stock INT,
-  @PrecioCompra DECIMAL(10,2),
-  @PrecioVenta DECIMAL(10,2),
-  @IdResult INT OUTPUT,
-  @Mensaje VARCHAR(500) OUTPUT
+    @Nombre VARCHAR(30),
+    @Descripcion VARCHAR(MAX),
+    @IdCategoria INT,
+    @Estado BIT,
+    @Stock INT,
+    @PrecioCompra DECIMAL(10,2),
+    @PrecioVenta DECIMAL(10,2),
+    @IdResult INT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
 )
 AS
 BEGIN
@@ -474,8 +364,8 @@ BEGIN
 
     IF NOT EXISTS (SELECT * FROM Producto WHERE Nombre = @Nombre)
     BEGIN
-         INSERT INTO Producto ( Nombre, Descripcion, IdCategoria, Stock, PrecioCompra, PrecioVenta, Estado)
-        VALUES ( @Nombre, @Descripcion, @IdCategoria, @Stock, @PrecioCompra, @PrecioVenta, @Estado)
+        INSERT INTO Producto (Nombre, Descripcion, IdCategoria, Stock, PrecioCompra, PrecioVenta, Estado)
+        VALUES (@Nombre, @Descripcion, @IdCategoria, @Stock, @PrecioCompra, @PrecioVenta, @Estado)
 
         SET @IdResult = SCOPE_IDENTITY()
         SET @Mensaje = 'Producto registrado correctamente'
@@ -485,21 +375,20 @@ BEGIN
         SET @Mensaje = 'Ya existe un producto con ese nombre'
     END
 END
+GO
 
-GO 
-
-/*=======================PROCEDIMIENT PARA ACTUALZIAR UN PRODUCTO=========================*/
-CREATE PROCEDURE SP_UPDATEPRODUCT
+/* ACTUALIZAR PRODUCTO */
+ALTER PROCEDURE SP_UPDATEPRODUCT
 (
-  @IdProducto INT,
-  @Nombre VARCHAR(30),
-  @Descripcion VARCHAR(MAX),
-  @IdCategoria INT,
-  @Estado BIT,
-  @Stock INT,
-  @PrecioCompra DECIMAL(10,2),
-  @PrecioVenta DECIMAL(10,2),
-  @Mensaje VARCHAR(500) OUTPUT
+    @IdProducto INT,
+    @Nombre VARCHAR(30),
+    @Descripcion VARCHAR(MAX),
+    @IdCategoria INT,
+    @Estado BIT,
+    @Stock INT,
+    @PrecioCompra DECIMAL(10,2),
+    @PrecioVenta DECIMAL(10,2),
+    @Mensaje VARCHAR(500) OUTPUT
 )
 AS
 BEGIN
@@ -532,7 +421,6 @@ BEGIN
         RETURN
     END
 
-    -- Si paso todas las validaciones, actualiza
     UPDATE Producto
     SET Nombre = @Nombre,
         Descripcion = @Descripcion,
@@ -545,74 +433,49 @@ BEGIN
 
     SET @Mensaje = 'Producto actualizado correctamente'
 END
-
-
-
 GO
 
-/*=========================PROCEDIMIENTO PARA ELIMINAR UN PRODUCTO=====================*/
-
-
-CREATE PROCEDURE SP_DELETEPRODUCT
+/* ELIMINAR PRODUCTO (BORRADO LOGICO) */
+ALTER PROCEDURE SP_DELETEPRODUCT
 (
-  @IdProducto INT,
-  @Respuesta BIT OUTPUT,
-  @Mensaje VARCHAR(500) OUTPUT
+    @IdProducto INT,
+    @Respuesta BIT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
 )
 AS
 BEGIN
     SET @Respuesta = 0
     SET @Mensaje = ''
-    DECLARE @PasoReglas BIT = 1
 
-    -- Verifica que el producto exista
+    -- El producto debe existir
     IF NOT EXISTS (SELECT * FROM Producto WHERE IdProducto = @IdProducto)
     BEGIN
         SET @Mensaje = 'El producto no existe'
         RETURN
     END
 
-    -- Valida que no esté relacionado a una COMPRA
-    IF EXISTS (
-        SELECT * FROM DetalleCompra dc
-        INNER JOIN PRODUCTO p ON p.IdProducto = dc.IdProducto
-        WHERE p.IdProducto = @IdProducto
-    )
+    -- Si ya esta inactivo no hay nada que hacer
+    IF EXISTS (SELECT * FROM Producto WHERE IdProducto = @IdProducto AND Estado = 0)
     BEGIN
-        SET @PasoReglas = 0
-        SET @Mensaje = @Mensaje + 'No se puede eliminar porque se encuentra relacionado a una COMPRA' + CHAR(13)
+        SET @Mensaje = 'El producto ya se encuentra inactivo'
+        RETURN
     END
 
-    -- Valida que no esté relacionado a una VENTA
-    IF EXISTS (
-        SELECT * FROM DetalleVenta dv
-        INNER JOIN PRODUCTO p ON p.IdProducto = dv.IdProducto
-        WHERE p.IdProducto = @IdProducto
-    )
-    BEGIN
-        SET @PasoReglas = 0
-        SET @Mensaje = @Mensaje + 'No se puede eliminar porque se encuentra relacionado a una VENTA' + CHAR(13)
-    END
+    -- Borrado logico: se inactiva en lugar de eliminar
+    UPDATE Producto SET Estado = 0 WHERE IdProducto = @IdProducto
 
-    -- Si no hay relaciones, elimina
-    IF (@PasoReglas = 1)
-    BEGIN
-        DELETE FROM PRODUCTO WHERE IdProducto = @IdProducto
-        SET @Respuesta = 1
-        SET @Mensaje = 'Producto eliminado correctamente'
-    END
+    SET @Respuesta = 1
+    SET @Mensaje = 'Producto inactivado correctamente'
 END
+GO
 
 
-SELECT IdProducto,Codigo,p.Nombre,p.Descripcion,c.Idcategoria,c.Nombre[Categoria],Stock,
-PrecioCompra,PrecioVenta,p.Estado FROM Producto p
-INNER JOIN Categoria c on c.IdCategoria = p.IdCategoria
+/*------------------------------------------------------------------------------------
+  CLIENTES
+------------------------------------------------------------------------------------*/
 
-
-/*----------Procedimientos para Cliente----------*/
-
--- Registrar Cliente
-create PROC sp_RegistrarCliente(
+/* REGISTRAR CLIENTE */
+ALTER PROC sp_RegistrarCliente(
     @DNI varchar(50),
     @Nombre1 varchar(50),
     @Nombre2 varchar(50),
@@ -624,26 +487,26 @@ create PROC sp_RegistrarCliente(
     @Resultado int output,
     @Mensaje varchar(100) output
 )
-as
-begin
-    set @Resultado = 0
-    set @Mensaje = ''
+AS
+BEGIN
+    SET @Resultado = 0
+    SET @Mensaje = ''
 
-    if not exists (select 1 from Cliente where DNI = @DNI)
-    begin
-        insert into Cliente(DNI,Nombre1,Nombre2,Apellido1,Apellido2,Correo,Telefono,Estado)
-        values(@DNI,@Nombre1,@Nombre2,@Apellido1,@Apellido2,@Correo,@Telefono,@Estado)
+    IF NOT EXISTS (SELECT 1 FROM Cliente WHERE DNI = @DNI)
+    BEGIN
+        INSERT INTO Cliente(DNI, Nombre1, Nombre2, Apellido1, Apellido2, Correo, Telefono, Estado)
+        VALUES (@DNI, @Nombre1, @Nombre2, @Apellido1, @Apellido2, @Correo, @Telefono, @Estado)
 
-        set @Resultado = scope_identity()
-        set @Mensaje = 'Cliente registrado correctamente'
-    end
-    else
-        set @Mensaje = 'El DNI ya existe'
-end
-go
+        SET @Resultado = SCOPE_IDENTITY()
+        SET @Mensaje = 'Cliente registrado correctamente'
+    END
+    ELSE
+        SET @Mensaje = 'El DNI ya existe'
+END
+GO
 
--- Modificar Cliente
-create PROC sp_ModificarCliente(
+/* MODIFICAR CLIENTE */
+ALTER PROC sp_ModificarCliente(
     @IdCliente int,
     @DNI varchar(50),
     @Nombre1 varchar(50),
@@ -656,46 +519,45 @@ create PROC sp_ModificarCliente(
     @Resultado int output,
     @Mensaje varchar(100) output
 )
-as
-begin
-    set @Resultado = 0
-    set @Mensaje = ''
+AS
+BEGIN
+    SET @Resultado = 0
+    SET @Mensaje = ''
 
     -- 1. Validar que el cliente exista
-    if not exists (select 1 from Cliente where IdCliente = @IdCliente)
-    begin
-        set @Mensaje = 'El cliente no existe'
-        return
-    end
+    IF NOT EXISTS (SELECT 1 FROM Cliente WHERE IdCliente = @IdCliente)
+    BEGIN
+        SET @Mensaje = 'El cliente no existe'
+        RETURN
+    END
 
     -- 2. Validar que el DNI no pertenezca a otro cliente
-    if exists (select 1 from Cliente where DNI = @DNI and IdCliente != @IdCliente)
-    begin
-        set @Mensaje = 'El DNI ya está asignado a otro cliente'
-        return
-    end
+    IF EXISTS (SELECT 1 FROM Cliente WHERE DNI = @DNI AND IdCliente != @IdCliente)
+    BEGIN
+        SET @Mensaje = 'El DNI ya está asignado a otro cliente'
+        RETURN
+    END
 
-    -- 3. Validar que haya al menos un cambio
-    --    (ISNULL evita problemas de comparación con valores NULL)
-    if exists (
-        select 1 from Cliente
-        where IdCliente = @IdCliente
-          and DNI = @DNI
-          and Nombre1 = @Nombre1
-          and ISNULL(Nombre2,'') = ISNULL(@Nombre2,'')
-          and Apellido1 = @Apellido1
-          and ISNULL(Apellido2,'') = ISNULL(@Apellido2,'')
-          and ISNULL(Correo,'') = ISNULL(@Correo,'')
-          and ISNULL(Telefono,'') = ISNULL(@Telefono,'')
-          and Estado = @Estado
+    -- 3. Validar que haya al menos un cambio (ISNULL evita problemas con NULL)
+    IF EXISTS (
+        SELECT 1 FROM Cliente
+        WHERE IdCliente = @IdCliente
+          AND DNI = @DNI
+          AND Nombre1 = @Nombre1
+          AND ISNULL(Nombre2,'') = ISNULL(@Nombre2,'')
+          AND Apellido1 = @Apellido1
+          AND ISNULL(Apellido2,'') = ISNULL(@Apellido2,'')
+          AND ISNULL(Correo,'') = ISNULL(@Correo,'')
+          AND ISNULL(Telefono,'') = ISNULL(@Telefono,'')
+          AND Estado = @Estado
     )
-    begin
-        set @Mensaje = 'No se realizaron cambios: los datos son iguales a los actuales'
-        return
-    end
+    BEGIN
+        SET @Mensaje = 'No se realizaron cambios: los datos son iguales a los actuales'
+        RETURN
+    END
 
     -- 4. Actualizar
-    update Cliente set
+    UPDATE Cliente SET
         DNI = @DNI,
         Nombre1 = @Nombre1,
         Nombre2 = @Nombre2,
@@ -704,56 +566,57 @@ begin
         Correo = @Correo,
         Telefono = @Telefono,
         Estado = @Estado
-    where IdCliente = @IdCliente
+    WHERE IdCliente = @IdCliente
 
-    set @Resultado = 1
-    set @Mensaje = 'Cliente actualizado correctamente'
-end
-go
+    SET @Resultado = 1
+    SET @Mensaje = 'Cliente actualizado correctamente'
+END
+GO
 
--- Eliminar Cliente
-create PROC sp_EliminarCliente(
+/* ELIMINAR CLIENTE (BORRADO LOGICO) */
+ALTER PROC sp_EliminarCliente(
     @IdCliente int,
     @Resultado int output,
     @Mensaje varchar(500) output
 )
-as
-begin
-    set @Resultado = 0
-    set @Mensaje = ''
+AS
+BEGIN
+    SET @Resultado = 0
+    SET @Mensaje = ''
 
     -- 1. Validar que el cliente exista
-    if not exists (select 1 from Cliente where IdCliente = @IdCliente)
-    begin
-        set @Mensaje = 'El cliente no existe'
-        return
-    end
+    IF NOT EXISTS (SELECT 1 FROM Cliente WHERE IdCliente = @IdCliente)
+    BEGIN
+        SET @Mensaje = 'El cliente no existe'
+        RETURN
+    END
 
-    -- 2. Validar que no esté relacionado con ventas
-    if exists (select 1 from Venta where IdCliente = @IdCliente)
-    begin
-        set @Mensaje = 'No se puede eliminar: cliente relacionado con ventas'
-        return
-    end
+    -- 2. Si ya esta inactivo no hay nada que hacer
+    IF EXISTS (SELECT 1 FROM Cliente WHERE IdCliente = @IdCliente AND Estado = 0)
+    BEGIN
+        SET @Mensaje = 'El cliente ya se encuentra inactivo'
+        RETURN
+    END
 
-    -- 3. Eliminar
-    delete from Cliente where IdCliente = @IdCliente
+    -- 3. Borrado logico: se inactiva en lugar de eliminar
+    UPDATE Cliente SET Estado = 0 WHERE IdCliente = @IdCliente
 
-    set @Resultado = 1
-    set @Mensaje = 'Cliente eliminado correctamente'
-end
-go
-
-select IdCliente,DNI,Nombre1,Nombre2,Apellido1,Apellido2,Correo,Telefono,Estado from Cliente
-
+    SET @Resultado = 1
+    SET @Mensaje = 'Cliente inactivado correctamente'
+END
 GO
 
-/*==================== Procedimiento para Proveedores ====================*/
+
+/*------------------------------------------------------------------------------------
+  PROVEEDORES
+  (La columna RUC se agrega una sola vez, solo si todavia no existe)
+------------------------------------------------------------------------------------*/
 IF COL_LENGTH('Proveedor', 'RUC') IS NULL
     ALTER TABLE Proveedor ADD RUC VARCHAR(50) NULL;
 GO
 
-CREATE OR ALTER PROC sp_RegistrarProveedores(
+/* REGISTRAR PROVEEDOR */
+ALTER PROC sp_RegistrarProveedores(
     @RUC varchar(50),
     @RazonSocial varchar(100),
     @Correo varchar(100),
@@ -781,7 +644,7 @@ BEGIN
         RETURN
     END
 
-    -- Validación 3: la columna Correo tiene restricción UNIQUE.
+    -- Validación 3: la columna Correo tiene restricción UNIQUE
     IF ISNULL(@Correo, '') <> ''
        AND EXISTS (SELECT 1 FROM Proveedor WHERE Correo = @Correo)
     BEGIN
@@ -804,11 +667,8 @@ BEGIN
 END
 GO
 
-
-/*---------------------------------------------------------------------
-  MODIFICAR PROVEEDOR
----------------------------------------------------------------------*/
-CREATE OR ALTER PROC sp_ModificarProveedores(
+/* MODIFICAR PROVEEDOR */
+ALTER PROC sp_ModificarProveedores(
     @IdProveedor int,
     @RUC varchar(50),
     @RazonSocial varchar(100),
@@ -872,11 +732,8 @@ BEGIN
 END
 GO
 
-
-/*---------------------------------------------------------------------
-  ELIMINAR PROVEEDOR
----------------------------------------------------------------------*/
-CREATE OR ALTER PROC sp_EliminarProveedores(
+/* ELIMINAR PROVEEDOR (BORRADO LOGICO) */
+ALTER PROC sp_EliminarProveedores(
     @IdProveedor int,
     @Resultado bit output,
     @Mensaje varchar(500) output
@@ -892,19 +749,20 @@ BEGIN
         RETURN
     END
 
-    IF EXISTS (SELECT 1 FROM Compra WHERE IdProveedor = @IdProveedor)
+    -- Si ya esta inactivo no hay nada que hacer
+    IF EXISTS (SELECT 1 FROM Proveedor WHERE IdProveedor = @IdProveedor AND Estado = 0)
     BEGIN
-        SET @Mensaje = 'El proveedor se encuentra relacionado a una compra'
+        SET @Mensaje = 'El proveedor ya se encuentra inactivo'
         RETURN
     END
 
-    DELETE FROM Proveedor WHERE IdProveedor = @IdProveedor
+    -- Borrado logico: se inactiva en lugar de eliminar
+    UPDATE Proveedor SET Estado = 0 WHERE IdProveedor = @IdProveedor
 
     SET @Resultado = 1
-    SET @Mensaje = 'Proveedor eliminado correctamente'
+    SET @Mensaje = 'Proveedor inactivado correctamente'
 END
 GO
-
 
 /*---------------------------------------------------------------------
   CONSULTA FINAL

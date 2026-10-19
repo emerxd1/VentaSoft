@@ -88,6 +88,8 @@
             NameCategoria = new DataGridViewTextBoxColumn();
             EstadoValor = new DataGridViewTextBoxColumn();
             Estado = new DataGridViewTextBoxColumn();
+            elipseControl1 = new ElipseControlLib.ElipseControl();
+            panelGradient1 = new Gradient.PanelGradient();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProducto).BeginInit();
@@ -106,6 +108,7 @@
             panel2.Controls.Add(label13);
             panel2.Controls.Add(label12);
             panel2.Controls.Add(dgvProducto);
+            panel2.Controls.Add(panelGradient1);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
@@ -134,7 +137,7 @@
             // btnClearSearch
             // 
             btnClearSearch.Anchor = AnchorStyles.Top;
-            btnClearSearch.BackColor = Color.Transparent;
+            btnClearSearch.BackColor = Color.FromArgb(0, 192, 192);
             btnClearSearch.Cursor = Cursors.Hand;
             btnClearSearch.FlatAppearance.BorderSize = 0;
             btnClearSearch.FlatAppearance.MouseOverBackColor = Color.Silver;
@@ -153,7 +156,7 @@
             // btnSearch
             // 
             btnSearch.Anchor = AnchorStyles.Top;
-            btnSearch.BackColor = Color.Transparent;
+            btnSearch.BackColor = Color.FromArgb(0, 192, 192);
             btnSearch.Cursor = Cursors.Hand;
             btnSearch.FlatAppearance.BorderSize = 0;
             btnSearch.FlatAppearance.MouseOverBackColor = Color.Silver;
@@ -680,6 +683,7 @@
             // txtSearch
             // 
             txtSearch.Anchor = AnchorStyles.Top;
+            txtSearch.BackColor = Color.FromArgb(0, 192, 192);
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Cursor = Cursors.IBeam;
             txtSearch.Location = new Point(558, 34);
@@ -690,6 +694,7 @@
             // cbSearch
             // 
             cbSearch.Anchor = AnchorStyles.Top;
+            cbSearch.BackColor = Color.FromArgb(0, 192, 192);
             cbSearch.Cursor = Cursors.Hand;
             cbSearch.DropDownStyle = ComboBoxStyle.DropDownList;
             cbSearch.FormattingEnabled = true;
@@ -702,6 +707,7 @@
             // 
             label13.Anchor = AnchorStyles.Top;
             label13.AutoSize = true;
+            label13.BackColor = Color.FromArgb(0, 192, 192);
             label13.Font = new Font("Segoe UI", 9.75F);
             label13.Location = new Point(293, 33);
             label13.Name = "label13";
@@ -713,6 +719,7 @@
             // 
             label12.Anchor = AnchorStyles.Top;
             label12.AutoSize = true;
+            label12.BackColor = Color.FromArgb(0, 192, 192);
             label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.Location = new Point(74, 31);
             label12.Name = "label12";
@@ -863,6 +870,22 @@
             Estado.ReadOnly = true;
             Estado.Width = 125;
             // 
+            // elipseControl1
+            // 
+            elipseControl1.CornerRadius = 6;
+            elipseControl1.TargetControl = dgvProducto;
+            // 
+            // panelGradient1
+            // 
+            panelGradient1.BackColor = Color.FromArgb(0, 192, 192);
+            panelGradient1.ForeColor = Color.Black;
+            panelGradient1.GradientBottomColor = Color.FromArgb(0, 192, 192);
+            panelGradient1.GradientTopColor = Color.FromArgb(0, 192, 192);
+            panelGradient1.Location = new Point(50, 12);
+            panelGradient1.Name = "panelGradient1";
+            panelGradient1.Size = new Size(821, 68);
+            panelGradient1.TabIndex = 57;
+            // 
             // FrmProducts
             // 
             AutoScaleDimensions = new SizeF(8F, 16F);
@@ -938,5 +961,7 @@
         private Label label1;
         private Button btnnew;
         private Button button9;
+        private ElipseControlLib.ElipseControl elipseControl1;
+        private Gradient.PanelGradient panelGradient1;
     }
 }

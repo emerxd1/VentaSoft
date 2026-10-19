@@ -92,7 +92,7 @@ namespace Main
 
                 row.Cells["IdCategory"].Value = idCategoryGenerated;
                 row.Cells["NameCategory"].Value = txtName.Text;
-                row.Cells["DescripcionCategory"].Value = lblDescripcion.Text;
+                row.Cells["DescripcionCategory"].Value = txtDescripcion.Text;
                 row.Cells["EstadoValor"].Value = estadoSeleccionado.valor;
                 row.Cells["Estado"].Value = estadoSeleccionado.texto;
 
@@ -209,23 +209,15 @@ namespace Main
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
-                var w = Properties.Resources.check.Width;
-                var h = Properties.Resources.check.Height;
+                var w = Properties.Resources.Check.Width;
+                var h = Properties.Resources.Check.Height;
                 var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
                 var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
 
-                e.Graphics.DrawImage(Properties.Resources.check, new Rectangle(x, y, w, h));
+                e.Graphics.DrawImage(Properties.Resources.Check, new Rectangle(x, y, w, h));
                 e.Handled = true;
             }
         }
-
-
-        //BOTON PARA LIMPIAR TEXTOBOX DE DETALLES DE CATEGORIA
-        private void button4_Click(object sender, EventArgs e)
-        {
-            Limpiar();
-        }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             // Validación segura: evita la excepción de Convert.ToInt32("") cuando no hay selección
@@ -318,7 +310,7 @@ namespace Main
 
                 row.Cells["IdCategory"].Value = idCategoryGenerated;
                 row.Cells["NameCategory"].Value = txtName.Text;
-                row.Cells["DescripcionCategory"].Value = lblDescripcion.Text;
+                row.Cells["DescripcionCategory"].Value = txtDescripcion.Text;
                 row.Cells["EstadoValor"].Value = estadoSeleccionado.valor;
                 row.Cells["Estado"].Value = estadoSeleccionado.texto;
 
@@ -332,6 +324,10 @@ namespace Main
             Limpiar();
         }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
     }
 }
 
