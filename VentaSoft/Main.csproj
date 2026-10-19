@@ -9,7 +9,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Plantilla\logo.png" />
+    <None Remove="Plantilla\PlantillaCompra.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Plantilla\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plantilla\PlantillaCompra.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.105.1" />
+    <PackageReference Include="itext7.pdfhtml" Version="6.3.4" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.6" />
+    <PackageReference Include="itextsharp.xmlworker" Version="5.5.13.6" />
   </ItemGroup>
 
   <ItemGroup>

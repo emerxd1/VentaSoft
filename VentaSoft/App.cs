@@ -19,20 +19,20 @@ namespace Main
         public App(Entidad_Usuario O_user)
         {
 
-            UserActual = O_user;
+            UserActual = O_user; // El usuario actual
             InitializeComponent();
 
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            if (panelMenu.Width == 70)
+            if (pasubcompra.Width == 70)
             {
-                panelMenu.Width = 250;
+                pasubcompra.Width = 250;
             }
             else
             {
-                panelMenu.Width = 70;
+                pasubcompra.Width = 70;
             }
         }
 
@@ -116,7 +116,7 @@ namespace Main
         private void App_Load(object sender, EventArgs e)
         {
             List<Entidad_Permiso> ListaPermiso = new S_Permises().Lister(UserActual.IdUsuario);
-
+            panelsubCompra.Visible = false; // el submenu de compras empieza oculto
         }
 
         private void MenuClientes_Click(object sender, EventArgs e)
@@ -148,10 +148,37 @@ namespace Main
         {
             MostrarFormularios(new Frm_Proveedor());
         }
+
+        // Abre el formulario de compras pasando el usuario actual que esta conectado al sistema 
+        private void MenuCompras_Click(object sender, EventArgs e)
+        {
+            MostrarFormularios(new FrmPurchase(UserActual));
+
+            // se abre desde "compra"
+            panelsubCompra.Visible = !panelsubCompra.Visible;
+            panelSubMenu.Visible = false; // cierra el submenú de Reportes
+            if (panelsubCompra.Visible) panelsubCompra.BringToFront();
+        }
+
+        private void panelSubMenu_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnDetalleCom_Click(object sender, EventArgs e)
+        {
+            //mostrar el diseño con click en detalle de compras
+            MostrarFormularios(new Frm_DetalleCompra());
+            panelsubCompra.Visible = false;
+        }
+
+        private void panelsubCompra_Click(object sender, EventArgs e)
+        {
+            //se abre desde "compras"
+            panelsubCompra.Visible = !panelsubCompra.Visible;
+            panelSubMenu.Visible = false; //cierra el submenú de Reportes
+            if (panelsubCompra.Visible) panelsubCompra.BringToFront(); //se dibuja encima de Empleados y Proveedore
+        }
     }
 
 }
-
-
-
-
