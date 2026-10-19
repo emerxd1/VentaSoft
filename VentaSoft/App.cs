@@ -28,13 +28,13 @@ namespace Main
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            if (pasubcompra.Width == 70)
+            if (panelMenu.Width == 70)
             {
-                pasubcompra.Width = 250;
+                panelMenu.Width = 250;
             }
             else
             {
-                pasubcompra.Width = 70;
+                panelMenu.Width = 70;
             }
         }
 
