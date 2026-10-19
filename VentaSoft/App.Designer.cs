@@ -54,15 +54,15 @@
             MenuCategory = new Button();
             MenuProducto = new Button();
             label1 = new Label();
-            pasubcompra = new Panel();
+            panelMenu = new Panel();
             panelsubCompra = new Panel();
             btnDetalleCom = new Button();
             panelBarraUp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnMenu).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelSubMenu.SuspendLayout();
-            pasubcompra.SuspendLayout();
             panelsubCompra.SuspendLayout();
+            panelMenu.SuspendLayout();
             SuspendLayout();
             // 
             // lblUsuario
@@ -493,6 +493,7 @@
             panelMenu.Controls.Add(MenuClientes);
             panelMenu.Controls.Add(panelSubMenu);
             panelMenu.Controls.Add(MenuReportes);
+            panelMenu.Controls.Add(panelsubCompra);
             panelMenu.Controls.Add(MenuCompras);
             panelMenu.Controls.Add(MenuProveedores);
             panelMenu.Controls.Add(MenuVentas);
@@ -506,6 +507,36 @@
             panelMenu.Size = new Size(250, 788);
             panelMenu.TabIndex = 0;
             // 
+            // panelsubCompra
+            // 
+            panelsubCompra.BackColor = Color.Transparent;
+            panelsubCompra.Controls.Add(btnDetalleCom);
+            panelsubCompra.Location = new Point(44, 344);
+            panelsubCompra.Name = "panelsubCompra";
+            panelsubCompra.Size = new Size(204, 34);
+            panelsubCompra.TabIndex = 0;
+            panelsubCompra.Click += panelsubCompra_Click;
+            panelsubCompra.Paint += panelSubMenu_Paint;
+            // 
+            // btnDetalleCom
+            // 
+            btnDetalleCom.AutoSize = true;
+            btnDetalleCom.BackColor = Color.Transparent;
+            btnDetalleCom.Cursor = Cursors.Hand;
+            btnDetalleCom.FlatAppearance.BorderSize = 0;
+            btnDetalleCom.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
+            btnDetalleCom.FlatStyle = FlatStyle.Flat;
+            btnDetalleCom.Font = new Font("Century Gothic", 12F);
+            btnDetalleCom.ForeColor = Color.Lime;
+            btnDetalleCom.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDetalleCom.Location = new Point(11, 0);
+            btnDetalleCom.Name = "btnDetalleCom";
+            btnDetalleCom.Size = new Size(189, 31);
+            btnDetalleCom.TabIndex = 12;
+            btnDetalleCom.Text = "Detalle de Compras";
+            btnDetalleCom.UseVisualStyleBackColor = false;
+            btnDetalleCom.Click += btnDetalleCom_Click;
+            // 
             // App
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -513,7 +544,7 @@
             ClientSize = new Size(1366, 788);
             Controls.Add(PanelContenedor);
             Controls.Add(panelBarraUp);
-            Controls.Add(pasubcompra);
+            Controls.Add(panelMenu);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "App";
@@ -526,10 +557,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelSubMenu.ResumeLayout(false);
             panelSubMenu.PerformLayout();
-            pasubcompra.ResumeLayout(false);
-            pasubcompra.PerformLayout();
             panelsubCompra.ResumeLayout(false);
             panelsubCompra.PerformLayout();
+            panelMenu.ResumeLayout(false);
+            panelMenu.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -559,6 +590,8 @@
         private Button MenuProducto;
         private Label label1;
         private Panel panelMenu;
+        private Panel panelsubCompra;
+        private Button btnDetalleCom;
         private Label lblRol;
     }
 }
