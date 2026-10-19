@@ -28,13 +28,13 @@ namespace Main
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            if (pasubcompra.Width == 70)
+            if (panelMenu.Width == 70)
             {
-                pasubcompra.Width = 250;
+                panelMenu.Width = 250;
             }
             else
             {
-                pasubcompra.Width = 70;
+                panelMenu.Width = 70;
             }
         }
 
@@ -111,7 +111,7 @@ namespace Main
 
         private void panelBarraUp_Paint(object sender, PaintEventArgs e)
         {
-           lblUsuario.Text = UserActual.Nombre1;
+            lblUsuario.Text = UserActual.Nombre1;
             lblRol.Text = UserActual.oRol.Descripcion;
         }
 
@@ -181,6 +181,16 @@ namespace Main
             panelsubCompra.Visible = !panelsubCompra.Visible;
             panelSubMenu.Visible = false; //cierra el submenú de Reportes
             if (panelsubCompra.Visible) panelsubCompra.BringToFront(); //se dibuja encima de Empleados y Proveedore
+        }
+
+        private void menu1_SelectChanged(object sender, AntdUI.MenuSelectEventArgs e)
+        {
+
+        }
+
+        private void panelMenu_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 

@@ -11,28 +11,6 @@ namespace Main
         public FrmClientes()
         {
             InitializeComponent();
-            this.Shown += FrmClientes_Shown;   // diagnóstico temporal de bordes (borrar al terminar)
-        }
-
-        // DIAGNÓSTICO TEMPORAL: se ejecuta cuando el formulario ya se mostró y el grid ya tiene filas.
-        // Cuando resuelvas lo de las líneas, borra este método y la línea "this.Shown += ..." del constructor.
-        private void FrmClientes_Shown(object sender, EventArgs e)
-        {
-            var g = dgvClients;   // tu ModernGrid
-            var a = g.AdvancedCellBorderStyle;
-            var h = g.AdvancedColumnHeadersBorderStyle;
-
-            string divCol = g.Columns.Count > 0 ? g.Columns[0].DividerWidth.ToString() : "sin columnas";
-            string divFila = g.Rows.Count > 0 ? g.Rows[0].DividerHeight.ToString() : "sin filas";
-
-            MessageBox.Show(
-                "Celdas  L/T/R/B: " + a.Left + " / " + a.Top + " / " + a.Right + " / " + a.Bottom + "\n" +
-                "Cabecera L/T/R/B: " + h.Left + " / " + h.Top + " / " + h.Right + " / " + h.Bottom + "\n" +
-                "ColumnHeadersBorderStyle: " + g.ColumnHeadersBorderStyle + "\n" +
-                "RowHeadersBorderStyle: " + g.RowHeadersBorderStyle + "\n" +
-                "BorderStyle: " + g.BorderStyle + "\n" +
-                "DividerWidth col0: " + divCol + "\n" +
-                "DividerHeight fila0: " + divFila);
         }
 
         // Handlers vacíos: se conservan porque el diseñador puede referenciarlos.
@@ -92,6 +70,10 @@ namespace Main
                 int fila = dgvClients.Rows.Add();
                 DataGridViewRow row = dgvClients.Rows[fila];
 
+                // Se guarda el cliente completo en la fila: al seleccionarla se leen
+                // de aquí los nombres, apellidos y teléfono (el grid solo muestra algunos).
+                row.Tag = item;
+
                 row.Cells["IdCliente"].Value = item.IdCliente;
                 row.Cells["DNI"].Value = item.DNI;
 
@@ -122,6 +104,13 @@ namespace Main
             cbEstado.ForeColor = Color.Gray;
             txtId.Text = "ID#";
             txtDni.Clear();
+        }
+
+        // Devuelve el Id numérico mostrado en txtId ("ID#5" -> 5). Devuelve 0 si no hay ninguno.
+        // Úsalo al actualizar o eliminar.
+        private int ObtenerIdSeleccionado()
+        {
+            return int.TryParse(txtId.Text.Replace("ID#", "").Trim(), out int id) ? id : 0;
         }
 
         // Aplica el filtro de búsqueda sobre el grid según la columna elegida.
@@ -211,6 +200,7 @@ namespace Main
                 else
                 {
                     MessageBox.Show(Mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    Limpiar();
                 }
             }
             catch (Exception ex)
@@ -218,6 +208,7 @@ namespace Main
                 // Cualquier error inesperado (conexión, SP, etc.) se muestra sin tumbar el formulario.
                 MessageBox.Show("Ocurrió un error al registrar el cliente: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Limpiar();
             }
         }
         /*BOTON PARA LIMPIAR TEXTBOXES
@@ -234,6 +225,7 @@ namespace Main
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+
             try
             {
                 // as devuelve null (en vez de lanzar error) si no hay nada seleccionado
@@ -269,24 +261,38 @@ namespace Main
                 if (!valido)
                 {
                     MessageBox.Show(errores, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    Limpiar();
+                    return;
+
+                }
+
+                int idCliente = ObtenerIdSeleccionado();
+
+                if (txtIndice.Text == "-1" || idCliente == 0)
+                {
+                    MessageBox.Show("Debe seleccionar un cliente para actualizar.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
-                int idGenerated = servicio.Register(oCliente, out string Mensaje);
+                // OJO: esto sigue llamando a Register (igual que agregar). Cuando exista el método
+                // de edición en S_Clients, úsalo aquí con el Id de ObtenerIdSeleccionado().
+                bool isUpdated = servicio.Edit(oCliente, out string Mensaje);
 
                 // Id distinto de 0 = registro exitoso.
-                if (idGenerated != 0)
+                if (isUpdated)
                 {
                     // Se recarga el grid desde la BD en lugar de duplicar el llenado de celdas.
                     CargarClientes();
 
-                    MessageBox.Show("Cliente registrado correctamente.", "Mensaje",
+                    MessageBox.Show("Cliente actualizado correctamente.", "Mensaje",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpiar();
                 }
                 else
                 {
                     MessageBox.Show(Mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    Limpiar();
                 }
             }
             catch (Exception ex)
@@ -294,6 +300,7 @@ namespace Main
                 // Cualquier error inesperado (conexión, SP, etc.) se muestra sin tumbar el formulario.
                 MessageBox.Show("Ocurrió un error al registrar el cliente: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Limpiar();
             }
         }
 
@@ -302,58 +309,89 @@ namespace Main
             AplicarFiltro();
         }
 
-        private void dgvClients_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            // Valida si y solo si se selecciona el btn seleccionar, muestra los datos con respecto al índice
-            if (dgvClients.Columns[e.ColumnIndex].Name != "btnSeleccion") return;
 
-            int indice = e.RowIndex;
-            if (indice < 0) return;
-            {
-                txtIndice.Text = indice.ToString();
-
-                // Mostrar textos en los textbox
-                txtId.Text = Convert.ToString(dgvClients.Rows[indice].Cells["IdCliente"].Value);
-                txtDni.Text = Convert.ToString(dgvClients.Rows[indice].Cells["DNI"].Value);
-                txtName1.Text = Convert.ToString(dgvClients.Rows[indice].Cells["Name1"].Value);
-                txtName2.Text = Convert.ToString(dgvClients.Rows[indice].Cells["Name2"].Value);
-                txtLastName1.Text = Convert.ToString(dgvClients.Rows[indice].Cells["LastName1"].Value);
-                txtLastName2.Text = Convert.ToString(dgvClients.Rows[indice].Cells["LastName2"].Value);
-                txtEmail.Text = Convert.ToString(dgvClients.Rows[indice].Cells["Email"].Value);
-            }
-
-
-            // Mostrar dato de Estado en el combobox
-            // Protección contra DBNull: si la celda no tiene valor, se usa 0 en vez de intentar convertir DBNull
-            object valorEstado = dgvClients.Rows[indice].Cells["EstadoValor"].Value;
-            int idEstadoFila = (valorEstado == null || valorEstado == DBNull.Value) ? 0 : Convert.ToInt32(valorEstado);
-
-            foreach (OptionsComboBox oc1 in cbEstado.Items)
-            {
-                if (Convert.ToInt32(oc1.valor) == idEstadoFila)
-                {
-                    cbEstado.SelectedIndex = cbEstado.Items.IndexOf(oc1);
-                    break;
-                }
-
-            }
         }
 
-        private void dgvClients_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void dgvClients_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return; // para ignorar el header
+            if (e.RowIndex < 0) return;
+            if (dgvClients.Rows[e.RowIndex].IsNewRow) return;
 
-            if (e.ColumnIndex == 0)
+            DataGridViewRow row = dgvClients.Rows[e.RowIndex];
+
+            // El cliente completo se guardó en Tag al cargar el grid
+            if (!(row.Tag is Entidad_Cliente cliente)) return;
+
+            txtIndice.Text = e.RowIndex.ToString();
+
+            // ID con prefijo: ID#5
+            txtId.Text = "ID#" + cliente.IdCliente;
+
+            // Mostrar textos en los textbox
+            txtDni.Text = cliente.DNI;
+            txtName1.Text = cliente.Nombre1;
+            txtName2.Text = cliente.Nombre2;
+            txtLastName1.Text = cliente.Apellido1;
+            txtLastName2.Text = cliente.Apellido2;
+            txtEmail.Text = cliente.Correo;
+            txtTelefono.Text = cliente.Telefono;
+
+            // Mostrar el Estado en el combobox
+            int valorEstado = cliente.Estado ? 1 : 0;
+            foreach (OptionsComboBox oc in cbEstado.Items)
             {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                if (Convert.ToInt32(oc.valor) == valorEstado)
+                {
+                    cbEstado.SelectedItem = oc;
+                    break;
+                }
+            }
 
-                var w = Properties.Resources.Check.Width;
-                var h = Properties.Resources.Check.Height;
-                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
-                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+            // Limpiar() deja el combo en gris; aquí se restaura el color normal
+            cbEstado.ForeColor = Color.Black;
+        }
 
-                e.Graphics.DrawImage(Properties.Resources.Check, new Rectangle(x, y, w, h));
-                e.Handled = true;
+        private void btnDelete_Click_1(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtId.Text) || !int.TryParse(txtId.Text.Replace("ID#", "").Trim(), out int idCliente) || idCliente == 0)
+            {
+                MessageBox.Show("Seleccione un Cliente de la lista para eliminar.", "Mensaje",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            DialogResult dr = MessageBox.Show("¿Está seguro que desea eliminar este Cliente?",
+                "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dr == DialogResult.Yes)
+            {
+                Entidad_Cliente oCliente = new Entidad_Cliente()
+                {
+                    IdCliente = idCliente
+                };
+
+                bool result = new S_Clients().Delete(oCliente, out string Mensaje);
+
+                if (result)
+                {
+                    int indice = Convert.ToInt32(txtIndice.Text);
+
+                    if (indice >= 0 && indice < dgvClients.Rows.Count)
+                    {
+                        dgvClients.Rows.RemoveAt(indice);
+                    }
+
+                    MessageBox.Show("Cliente eliminado correctamente.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(Mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
 
         }
