@@ -22,14 +22,14 @@
     </Content>
   </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="ClosedXML" Version="0.105.1" />
-		<PackageReference Include="Gu5.UI" Version="1.0.3.1" />
-		<PackageReference Include="itext.pdfhtml" Version="6.3.4" />
-		<PackageReference Include="Krypton.Toolkit" Version="105.26.7.201" />
-		<PackageReference Include="ReaLTaiizor" Version="3.8.2.1" />
-		<PackageReference Include="SunnyUI" Version="3.9.8" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.105.1" />
+    <PackageReference Include="Gu5.UI" Version="1.0.3.1" />
+    <PackageReference Include="itext.pdfhtml" Version="6.3.4" />
+    <PackageReference Include="Krypton.Toolkit" Version="105.26.7.201" />
+    <PackageReference Include="ReaLTaiizor" Version="3.8.2.1" />
+    <PackageReference Include="SunnyUI" Version="3.9.8" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Entitys\Entitys.csproj" />
