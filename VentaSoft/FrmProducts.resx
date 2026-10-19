@@ -121,7 +121,7 @@
   <data name="btbExcel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAAqBJREFUWEdjYBgFWABPkfkqniKL/+Rg7iKLDnTzSAbkOiB3TfV/qSpHyh1BrgOm
+        DAAACwwBP0AiyAAAAqBJREFUWEdjYBgFWABPkfkqniKL/+Rg7iKLDnTzSAbkOiB3TfV/qSpHyh1BrgOm
         H5nxf9PV1ZQ7ghIH3Hl7gnJHUOoAih1BDQdQ5AhqOQDVEeZF6PbgBOQ6wKov4n/g7AwMrN8e+B9kJro9
         OAG5DsCPqeAAy57Y/+su7AVjk85IFLnph1eBxWMWVGHoo5oDeIst/59+eOU/CGy4uA8uHjW/Aiz25sv7
         /3K17hj6qOYAELbtS/j/99/f///+/ftv35/4n7/E6v+NF/fBDkhd2oihnuoOAOElp7aALdx+9cj/gjVd
@@ -186,7 +186,7 @@
   <data name="btnnew.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAAgFJREFUWEftlL9LHEEUx98JKbQRVK7NH+DdYhmr4G6ygxBRAxeCXSobIZWNxh+E
+        DgAACw4BQL7hQQAAAgFJREFUWEftlL9LHEEUx98JKbQRVK7NH+DdYhmr4G6ygxBRAxeCXSobIZWNxh+E
         kFbT5G5XyAzCEW8lpSmDCSSFEqLVWYlCCsVGsokkcPDCu2OH3bdnLrnba8J+4QvL3c58vvPm7QNIlSok
         3MpNoWf46BnYJfu4nZ/kXC308ltNFiXrSv4152phxfBiC5J2xfA4VysNgF5uFMs3F1AOfuqKaW8vN8q5
         EaEDBSwBdsUOFDgvpjRAGiAN8F8F+Fa6gYfuAH7cyGLV7ccrp+ch58WURICvTh+uvBpBW9poKaEt1F3f
@@ -478,5 +478,8 @@
   </metadata>
   <metadata name="Estado.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="elipseControl1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
 </root>

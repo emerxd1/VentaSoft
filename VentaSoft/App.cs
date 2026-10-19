@@ -16,10 +16,12 @@ namespace Main
     public partial class App : Form
     {
         private static Entidad_Usuario UserActual;
+        private static Entidad_Usuario Rol;
         public App(Entidad_Usuario O_user)
         {
 
             UserActual = O_user;
+            Rol = O_user;
             InitializeComponent();
 
         }
@@ -109,7 +111,8 @@ namespace Main
 
         private void panelBarraUp_Paint(object sender, PaintEventArgs e)
         {
-            lblUsuario.Text = UserActual.Nombre1;
+           lblUsuario.Text = UserActual.Nombre1;
+            lblRol.Text = UserActual.oRol.Descripcion;
         }
 
 

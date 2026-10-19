@@ -1,48 +1,28 @@
-
 namespace VentaSoft
 {
     public partial class Login : Form
     {
+        // false = contraseña oculta (estado por defecto)
+        private bool passwordVisible = false;
+
         public Login()
         {
             InitializeComponent();
+          //  ApplyPasswordState();   // la contraseña arranca oculta
         }
 
-        private bool StringPassword=false;
-
-
-        private void btnexit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void textBox_Password_Enter(object sender, EventArgs e)
-        {
-            if (textBox_Password.Text == "Password")
-            {
-                textBox_Password.Text = "";
-                textBox_Password.ForeColor = Color.Black;
-                textBox_Password.UseSystemPasswordChar = true;
-            }
-
-        }
-
-        private void textBox_Password_Leave(object sender, EventArgs e)
-        {
-            if (textBox_Password.Text == "")
-            {
-                textBox_Password.Text = "Password";
-                textBox_Password.ForeColor = Color.Silver;
-                textBox_Password.UseSystemPasswordChar = false;
-            }
-        }
-
+      
 
         private void button_exit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("¿Esta seguro que desea salir de la aplicacion?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show(
+                "¿Está seguro que desea salir de la aplicación?",
+                "Mensaje",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
 
-            Application.Exit();
+            if (respuesta == DialogResult.Yes)
+                Application.Exit();
         }
 
         private void button_minimize_Click_1(object sender, EventArgs e)
@@ -50,21 +30,16 @@ namespace VentaSoft
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void pictureBox4_Click(object sender, EventArgs e)
+        private void pbPass_Click_1(object sender, EventArgs e)
         {
-            StringPassword = !StringPassword;
-            if (StringPassword)
-            {
-                textBox_Password.UseSystemPasswordChar = false;
-                pbPass.Image = Main.Properties.Resources.HidePass;
 
-            }
-            else
-            {
-                textBox_Password.UseSystemPasswordChar = true;
-                pbPass.Image = Main.Properties.Resources.ShowPass;
+            passwordVisible = !passwordVisible;
+           // ApplyPasswordState();
+            textBox_Password.FocusTexto();   // devuelve el cursor al cuadro de texto
+        }
 
-            }
+        private void textBox_Email_TextBoxTextChanged(object sender, EventArgs e)
+        {
 
         }
     }

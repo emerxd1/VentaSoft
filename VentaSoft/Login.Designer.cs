@@ -36,7 +36,7 @@ namespace VentaSoft
             sqlDataAdapter1 = new Microsoft.Data.SqlClient.SqlDataAdapter();
             sqlConnection1 = new Microsoft.Data.SqlClient.SqlConnection();
             sqlCommandBuilder1 = new Microsoft.Data.SqlClient.SqlCommandBuilder();
-            textBox_Password = new TextBox();
+            textBox_Password = new TextBoxRGB.TextBoxP();
             label1 = new Label();
             checkBox1 = new CheckBox();
             pictureBox1 = new PictureBox();
@@ -45,20 +45,17 @@ namespace VentaSoft
             pictureBox3 = new PictureBox();
             button1 = new Button();
             label3 = new Label();
-            textBox_Email = new TextBox();
             linkLabelPass = new LinkLabel();
             button_exit = new Button();
             button_minimize = new Button();
-            panel1 = new Panel();
-            textBoxp2 = new TextBoxRGB.TextBoxP();
             pbPass = new PictureBox();
-            textBoxp1 = new TextBoxRGB.TextBoxP();
-            elipseControl1 = new ElipseControl.ElipseControl();
+            textBox_Email = new TextBoxRGB.TextBoxP();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbPass).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // sqlConnection1
@@ -69,23 +66,25 @@ namespace VentaSoft
             // 
             // textBox_Password
             // 
-            textBox_Password.BackColor = Color.White;
-            textBox_Password.BorderStyle = BorderStyle.None;
-            textBox_Password.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_Password.ForeColor = Color.DimGray;
-            textBox_Password.Location = new Point(70, 358);
+            textBox_Password.BackColor = SystemColors.Window;
+            textBox_Password.BorderColor = Color.FromArgb(75, 105, 126);
+            textBox_Password.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox_Password.ForeColor = Color.FromArgb(31, 45, 56);
+            textBox_Password.Holdertext = "Password";
+            textBox_Password.Location = new Point(63, 354);
+            textBox_Password.Margin = new Padding(5, 4, 5, 4);
             textBox_Password.Name = "textBox_Password";
-            textBox_Password.PlaceholderText = "Password";
-            textBox_Password.Size = new Size(322, 20);
-            textBox_Password.TabIndex = 2;
-            textBox_Password.Enter += textBox_Password_Enter;
-            textBox_Password.Leave += textBox_Password_Leave;
+            textBox_Password.Padding = new Padding(3);
+            textBox_Password.Size = new Size(330, 32);
+            textBox_Password.TabIndex = 15;
+            textBox_Password.Underlinedstyle = true;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Constantia", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(154, 61);
+            label1.ForeColor = Color.FromArgb(31, 45, 56);
+            label1.Location = new Point(154, 65);
             label1.Name = "label1";
             label1.Size = new Size(177, 42);
             label1.TabIndex = 0;
@@ -96,7 +95,7 @@ namespace VentaSoft
             checkBox1.AutoSize = true;
             checkBox1.Location = new Point(0, 0);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(82, 19);
+            checkBox1.Size = new Size(80, 20);
             checkBox1.TabIndex = 1;
             checkBox1.Text = "checkBox1";
             checkBox1.UseVisualStyleBackColor = true;
@@ -104,7 +103,7 @@ namespace VentaSoft
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(85, 44);
+            pictureBox1.Location = new Point(79, 48);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(76, 76);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -115,7 +114,8 @@ namespace VentaSoft
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(143, 227);
+            label2.ForeColor = Color.FromArgb(31, 45, 56);
+            label2.Location = new Point(137, 231);
             label2.Name = "label2";
             label2.Size = new Size(189, 28);
             label2.TabIndex = 3;
@@ -124,7 +124,7 @@ namespace VentaSoft
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(31, 275);
+            pictureBox2.Location = new Point(25, 279);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(32, 32);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -134,7 +134,7 @@ namespace VentaSoft
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(31, 350);
+            pictureBox3.Location = new Point(25, 354);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(32, 32);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -143,13 +143,15 @@ namespace VentaSoft
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(0, 192, 192);
+            button1.BackColor = Color.FromArgb(75, 105, 126);
             button1.Cursor = Cursors.Hand;
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 122, 204);
-            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
+            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(58, 85, 104);
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(39, 459);
+            button1.Font = new Font("Segoe Fluent Icons", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(33, 463);
             button1.Name = "button1";
             button1.Size = new Size(360, 37);
             button1.TabIndex = 3;
@@ -163,28 +165,16 @@ namespace VentaSoft
             label3.ForeColor = Color.Gray;
             label3.Location = new Point(133, 617);
             label3.Name = "label3";
-            label3.Size = new Size(184, 15);
+            label3.Size = new Size(182, 16);
             label3.TabIndex = 11;
             label3.Text = "Developed by: \"Los Algoritmicos\"";
-            // 
-            // textBox_Email
-            // 
-            textBox_Email.BackColor = Color.White;
-            textBox_Email.BorderStyle = BorderStyle.None;
-            textBox_Email.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_Email.ForeColor = Color.DimGray;
-            textBox_Email.Location = new Point(69, 280);
-            textBox_Email.Name = "textBox_Email";
-            textBox_Email.PlaceholderText = "Email";
-            textBox_Email.Size = new Size(319, 20);
-            textBox_Email.TabIndex = 1;
             // 
             // linkLabelPass
             // 
             linkLabelPass.AutoSize = true;
-            linkLabelPass.Location = new Point(261, 397);
+            linkLabelPass.Location = new Point(255, 401);
             linkLabelPass.Name = "linkLabelPass";
-            linkLabelPass.Size = new Size(127, 15);
+            linkLabelPass.Size = new Size(128, 16);
             linkLabelPass.TabIndex = 0;
             linkLabelPass.TabStop = true;
             linkLabelPass.Text = "Forgot yout Password?";
@@ -197,7 +187,7 @@ namespace VentaSoft
             button_exit.FlatAppearance.MouseOverBackColor = Color.Silver;
             button_exit.FlatStyle = FlatStyle.Flat;
             button_exit.Image = (Image)resources.GetObject("button_exit.Image");
-            button_exit.Location = new Point(388, 34);
+            button_exit.Location = new Point(382, 38);
             button_exit.Name = "button_exit";
             button_exit.Size = new Size(25, 25);
             button_exit.TabIndex = 12;
@@ -213,18 +203,46 @@ namespace VentaSoft
             button_minimize.FlatAppearance.MouseOverBackColor = Color.Silver;
             button_minimize.FlatStyle = FlatStyle.Flat;
             button_minimize.Image = (Image)resources.GetObject("button_minimize.Image");
-            button_minimize.Location = new Point(355, 30);
+            button_minimize.Location = new Point(349, 34);
             button_minimize.Name = "button_minimize";
             button_minimize.Size = new Size(25, 25);
             button_minimize.TabIndex = 13;
             button_minimize.UseVisualStyleBackColor = true;
             button_minimize.Click += button_minimize_Click_1;
             // 
+            // pbPass
+            // 
+            pbPass.BackgroundImageLayout = ImageLayout.None;
+            pbPass.Cursor = Cursors.Hand;
+            pbPass.Image = (Image)resources.GetObject("pbPass.Image");
+            pbPass.Location = new Point(367, 362);
+            pbPass.Name = "pbPass";
+            pbPass.Size = new Size(20, 20);
+            pbPass.SizeMode = PictureBoxSizeMode.Zoom;
+            pbPass.TabIndex = 14;
+            pbPass.TabStop = false;
+            pbPass.Click += pbPass_Click_1;
+            // 
+            // textBox_Email
+            // 
+            textBox_Email.BackColor = SystemColors.Window;
+            textBox_Email.BorderColor = Color.FromArgb(75, 105, 126);
+            textBox_Email.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox_Email.ForeColor = Color.FromArgb(31, 45, 56);
+            textBox_Email.Holdertext = "Email";
+            textBox_Email.Location = new Point(63, 279);
+            textBox_Email.Margin = new Padding(5, 4, 5, 4);
+            textBox_Email.Name = "textBox_Email";
+            textBox_Email.Padding = new Padding(3);
+            textBox_Email.Size = new Size(330, 32);
+            textBox_Email.TabIndex = 16;
+            textBox_Email.Underlinedstyle = true;
+            textBox_Email.TextBoxTextChanged += textBox_Email_TextBoxTextChanged;
+            // 
             // panel1
             // 
-            panel1.BackColor = Color.White;
+            panel1.BackColor = Color.Transparent;
             panel1.Controls.Add(textBox_Email);
-            panel1.Controls.Add(textBoxp2);
             panel1.Controls.Add(pbPass);
             panel1.Controls.Add(button_minimize);
             panel1.Controls.Add(button_exit);
@@ -238,56 +256,11 @@ namespace VentaSoft
             panel1.Controls.Add(checkBox1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(textBox_Password);
-            panel1.Controls.Add(textBoxp1);
+            panel1.Font = new Font("Segoe UI Variable Display", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             panel1.Location = new Point(-26, -32);
             panel1.Name = "panel1";
-            panel1.Size = new Size(439, 684);
+            panel1.Size = new Size(913, 684);
             panel1.TabIndex = 0;
-            // 
-            // textBoxp2
-            // 
-            textBoxp2.BackColor = SystemColors.Window;
-            textBoxp2.BorderColor = Color.FromArgb(0, 192, 192);
-            textBoxp2.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBoxp2.ForeColor = Color.DimGray;
-            textBoxp2.Location = new Point(69, 280);
-            textBoxp2.Name = "textBoxp2";
-            textBoxp2.Padding = new Padding(2);
-            textBoxp2.Size = new Size(330, 22);
-            textBoxp2.TabIndex = 16;
-            textBoxp2.Underlinedstyle = true;
-            // 
-            // pbPass
-            // 
-            pbPass.BackgroundImageLayout = ImageLayout.None;
-            pbPass.Cursor = Cursors.Hand;
-            pbPass.Image = (Image)resources.GetObject("pbPass.Image");
-            pbPass.Location = new Point(373, 358);
-            pbPass.Name = "pbPass";
-            pbPass.Size = new Size(20, 20);
-            pbPass.SizeMode = PictureBoxSizeMode.Zoom;
-            pbPass.TabIndex = 14;
-            pbPass.TabStop = false;
-            pbPass.Click += pictureBox4_Click;
-            // 
-            // textBoxp1
-            // 
-            textBoxp1.BackColor = SystemColors.Window;
-            textBoxp1.BorderColor = Color.FromArgb(0, 192, 192);
-            textBoxp1.BorderFocusColor = Color.MediumOrchid;
-            textBoxp1.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBoxp1.ForeColor = Color.DimGray;
-            textBoxp1.Location = new Point(69, 360);
-            textBoxp1.Name = "textBoxp1";
-            textBoxp1.Padding = new Padding(2);
-            textBoxp1.Size = new Size(330, 22);
-            textBoxp1.TabIndex = 15;
-            textBoxp1.Underlinedstyle = true;
-            // 
-            // elipseControl1
-            // 
-            elipseControl1.CornerRadius = 30;
-            elipseControl1.TargetControl = button1;
             // 
             // Login
             // 
@@ -306,9 +279,9 @@ namespace VentaSoft
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbPass).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pbPass).EndInit();
             ResumeLayout(false);
         }
 
@@ -345,7 +318,7 @@ namespace VentaSoft
         private Microsoft.Data.SqlClient.SqlDataAdapter sqlDataAdapter1;
         private Microsoft.Data.SqlClient.SqlConnection sqlConnection1;
         private Microsoft.Data.SqlClient.SqlCommandBuilder sqlCommandBuilder1;
-        private TextBox textBox_Password;
+        private TextBoxRGB.TextBoxP textBox_Password;
         private Label label1;
         private CheckBox checkBox1;
         private PictureBox pictureBox1;
@@ -354,14 +327,11 @@ namespace VentaSoft
         private PictureBox pictureBox3;
         private Button button1;
         private Label label3;
-        private TextBox textBox_Email;
         private LinkLabel linkLabelPass;
         private Button button_exit;
         private Button button_minimize;
-        private Panel panel1;
         private PictureBox pbPass;
-        private TextBoxRGB.TextBoxP textBoxp1;
-        private TextBoxRGB.TextBoxP textBoxp2;
-        private ElipseControl.ElipseControl elipseControl1;
+        private TextBoxRGB.TextBoxP textBox_Email;
+        private Panel panel1;
     }
 }

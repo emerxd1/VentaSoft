@@ -76,10 +76,11 @@
             // 
             textBox1.BackColor = Color.White;
             textBox1.Font = new Font("Century Gothic", 9.75F);
-            textBox1.Location = new Point(93, 412);
+            textBox1.Location = new Point(81, 309);
+            textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Ej: \"+50555001205\"";
-            textBox1.Size = new Size(153, 27);
+            textBox1.Size = new Size(134, 23);
             textBox1.TabIndex = 33;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
@@ -87,9 +88,9 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            label7.Location = new Point(130, 376);
+            label7.Location = new Point(114, 282);
             label7.Name = "label7";
-            label7.Size = new Size(75, 23);
+            label7.Size = new Size(59, 17);
             label7.TabIndex = 34;
             label7.Text = "Telefono";
             label7.Click += label7_Click;
@@ -104,9 +105,10 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(194, 1108);
+            button1.Location = new Point(170, 831);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(147, 48);
+            button1.Size = new Size(129, 36);
             button1.TabIndex = 32;
             button1.Text = "Limpiar";
             button1.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -122,9 +124,10 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.Location = new Point(48, 1108);
+            button2.Location = new Point(42, 831);
+            button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
-            button2.Size = new Size(139, 48);
+            button2.Size = new Size(122, 36);
             button2.TabIndex = 31;
             button2.Text = "Registrar";
             button2.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -136,10 +139,11 @@
             txtIndice.BorderStyle = BorderStyle.FixedSingle;
             txtIndice.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtIndice.ForeColor = Color.Silver;
-            txtIndice.Location = new Point(3, 105);
+            txtIndice.Location = new Point(3, 79);
+            txtIndice.Margin = new Padding(3, 2, 3, 2);
             txtIndice.Name = "txtIndice";
             txtIndice.ReadOnly = true;
-            txtIndice.Size = new Size(93, 27);
+            txtIndice.Size = new Size(82, 23);
             txtIndice.TabIndex = 30;
             txtIndice.Text = "Automatico";
             txtIndice.Visible = false;
@@ -148,9 +152,9 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            label14.Location = new Point(105, 55);
+            label14.Location = new Point(92, 41);
             label14.Name = "label14";
-            label14.Size = new Size(124, 23);
+            label14.Size = new Size(99, 17);
             label14.TabIndex = 29;
             label14.Text = "Id de Provedor";
             // 
@@ -164,9 +168,10 @@
             btnLimpiarTxt.FlatStyle = FlatStyle.Flat;
             btnLimpiarTxt.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             btnLimpiarTxt.Image = (Image)resources.GetObject("btnLimpiarTxt.Image");
-            btnLimpiarTxt.Location = new Point(177, 530);
+            btnLimpiarTxt.Location = new Point(155, 398);
+            btnLimpiarTxt.Margin = new Padding(3, 2, 3, 2);
             btnLimpiarTxt.Name = "btnLimpiarTxt";
-            btnLimpiarTxt.Size = new Size(147, 48);
+            btnLimpiarTxt.Size = new Size(129, 36);
             btnLimpiarTxt.TabIndex = 28;
             btnLimpiarTxt.Text = "Limpiar";
             btnLimpiarTxt.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -179,10 +184,11 @@
             txtId.BorderStyle = BorderStyle.None;
             txtId.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtId.ForeColor = Color.Gray;
-            txtId.Location = new Point(117, 92);
+            txtId.Location = new Point(102, 69);
+            txtId.Margin = new Padding(3, 2, 3, 2);
             txtId.Name = "txtId";
             txtId.ReadOnly = true;
-            txtId.Size = new Size(93, 20);
+            txtId.Size = new Size(81, 16);
             txtId.TabIndex = 26;
             txtId.Text = "0";
             txtId.TextAlign = HorizontalAlignment.Center;
@@ -192,9 +198,9 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(37, 12);
+            label11.Location = new Point(32, 9);
             label11.Name = "label11";
-            label11.Size = new Size(277, 32);
+            label11.Size = new Size(218, 25);
             label11.TabIndex = 25;
             label11.Text = "Detalles de Proveedores";
             // 
@@ -208,9 +214,10 @@
             btnRegister.FlatStyle = FlatStyle.Flat;
             btnRegister.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             btnRegister.Image = (Image)resources.GetObject("btnRegister.Image");
-            btnRegister.Location = new Point(3, 530);
+            btnRegister.Location = new Point(3, 398);
+            btnRegister.Margin = new Padding(3, 2, 3, 2);
             btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(139, 48);
+            btnRegister.Size = new Size(122, 36);
             btnRegister.TabIndex = 22;
             btnRegister.Text = "Registrar";
             btnRegister.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -223,18 +230,19 @@
             cbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             cbEstado.Font = new Font("Century Gothic", 9.75F);
             cbEstado.FormattingEnabled = true;
-            cbEstado.Location = new Point(95, 495);
+            cbEstado.Location = new Point(83, 371);
+            cbEstado.Margin = new Padding(3, 2, 3, 2);
             cbEstado.Name = "cbEstado";
-            cbEstado.Size = new Size(151, 29);
+            cbEstado.Size = new Size(133, 25);
             cbEstado.TabIndex = 21;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            label10.Location = new Point(135, 461);
+            label10.Location = new Point(118, 346);
             label10.Name = "label10";
-            label10.Size = new Size(61, 23);
+            label10.Size = new Size(49, 17);
             label10.TabIndex = 19;
             label10.Text = "Estado";
             // 
@@ -242,19 +250,20 @@
             // 
             txtEmail.BackColor = Color.White;
             txtEmail.Font = new Font("Century Gothic", 9.75F);
-            txtEmail.Location = new Point(95, 335);
+            txtEmail.Location = new Point(83, 251);
+            txtEmail.Margin = new Padding(3, 2, 3, 2);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Ej: \"cocacola@gmail.com\"";
-            txtEmail.Size = new Size(153, 27);
+            txtEmail.Size = new Size(134, 23);
             txtEmail.TabIndex = 10;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            label6.Location = new Point(130, 288);
+            label6.Location = new Point(114, 216);
             label6.Name = "label6";
-            label6.Size = new Size(62, 23);
+            label6.Size = new Size(49, 17);
             label6.TabIndex = 11;
             label6.Text = "Correo";
             label6.Click += label6_Click;
@@ -263,10 +272,11 @@
             // 
             txtName1.BackColor = Color.White;
             txtName1.Font = new Font("Century Gothic", 9.75F);
-            txtName1.Location = new Point(93, 249);
+            txtName1.Location = new Point(81, 187);
+            txtName1.Margin = new Padding(3, 2, 3, 2);
             txtName1.Name = "txtName1";
             txtName1.PlaceholderText = "Ej: \"Coca Cola\"";
-            txtName1.Size = new Size(153, 27);
+            txtName1.Size = new Size(134, 23);
             txtName1.TabIndex = 2;
             txtName1.TextChanged += txtName1_TextChanged;
             // 
@@ -280,9 +290,10 @@
             btnClearSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnClearSearch.ForeColor = SystemColors.ControlText;
             btnClearSearch.Image = (Image)resources.GetObject("btnClearSearch.Image");
-            btnClearSearch.Location = new Point(840, 69);
+            btnClearSearch.Location = new Point(735, 52);
+            btnClearSearch.Margin = new Padding(3, 2, 3, 2);
             btnClearSearch.Name = "btnClearSearch";
-            btnClearSearch.Size = new Size(25, 24);
+            btnClearSearch.Size = new Size(22, 18);
             btnClearSearch.TabIndex = 59;
             btnClearSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnClearSearch.UseVisualStyleBackColor = false;
@@ -292,9 +303,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            label2.Location = new Point(122, 214);
+            label2.Location = new Point(107, 160);
             label2.Name = "label2";
-            label2.Size = new Size(107, 23);
+            label2.Size = new Size(83, 17);
             label2.TabIndex = 3;
             label2.Text = "Razon Social";
             // 
@@ -307,9 +318,10 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
-            btnSearch.Location = new Point(800, 67);
+            btnSearch.Location = new Point(700, 50);
+            btnSearch.Margin = new Padding(3, 2, 3, 2);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(18, 24);
+            btnSearch.Size = new Size(16, 18);
             btnSearch.TabIndex = 58;
             btnSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSearch.UseVisualStyleBackColor = false;
@@ -319,9 +331,10 @@
             // 
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Cursor = Cursors.IBeam;
-            txtSearch.Location = new Point(611, 67);
+            txtSearch.Location = new Point(535, 50);
+            txtSearch.Margin = new Padding(3, 2, 3, 2);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(161, 27);
+            txtSearch.Size = new Size(141, 23);
             txtSearch.TabIndex = 55;
             // 
             // cbSearch
@@ -329,9 +342,10 @@
             cbSearch.Cursor = Cursors.Hand;
             cbSearch.DropDownStyle = ComboBoxStyle.DropDownList;
             cbSearch.FormattingEnabled = true;
-            cbSearch.Location = new Point(461, 66);
+            cbSearch.Location = new Point(403, 50);
+            cbSearch.Margin = new Padding(3, 2, 3, 2);
             cbSearch.Name = "cbSearch";
-            cbSearch.Size = new Size(125, 28);
+            cbSearch.Size = new Size(110, 23);
             cbSearch.TabIndex = 57;
             // 
             // btnDelete
@@ -345,9 +359,10 @@
             btnDelete.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             btnDelete.ForeColor = SystemColors.ControlText;
             btnDelete.Image = (Image)resources.GetObject("btnDelete.Image");
-            btnDelete.Location = new Point(37, 575);
+            btnDelete.Location = new Point(32, 431);
+            btnDelete.Margin = new Padding(3, 2, 3, 2);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(121, 48);
+            btnDelete.Size = new Size(106, 36);
             btnDelete.TabIndex = 52;
             btnDelete.Text = "Eliminar";
             btnDelete.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -364,9 +379,10 @@
             btnUpdatee.FlatStyle = FlatStyle.Flat;
             btnUpdatee.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             btnUpdatee.Image = (Image)resources.GetObject("btnUpdatee.Image");
-            btnUpdatee.Location = new Point(233, 575);
+            btnUpdatee.Location = new Point(204, 431);
+            btnUpdatee.Margin = new Padding(3, 2, 3, 2);
             btnUpdatee.Name = "btnUpdatee";
-            btnUpdatee.Size = new Size(136, 48);
+            btnUpdatee.Size = new Size(119, 36);
             btnUpdatee.TabIndex = 51;
             btnUpdatee.Text = "Actualizar";
             btnUpdatee.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -377,9 +393,9 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 9.75F);
-            label13.Location = new Point(360, 66);
+            label13.Location = new Point(315, 50);
             label13.Name = "label13";
-            label13.Size = new Size(95, 23);
+            label13.Size = new Size(74, 17);
             label13.TabIndex = 56;
             label13.Text = "Buscar por:";
             // 
@@ -387,9 +403,9 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(91, 66);
+            label12.Location = new Point(80, 50);
             label12.Name = "label12";
-            label12.Size = new Size(240, 32);
+            label12.Size = new Size(188, 25);
             label12.TabIndex = 54;
             label12.Text = "Lista de Proveedores\r\n";
             // 
@@ -398,10 +414,11 @@
             txtRUC.BackColor = Color.White;
             txtRUC.Font = new Font("Century Gothic", 9.75F);
             txtRUC.ForeColor = Color.Black;
-            txtRUC.Location = new Point(95, 172);
+            txtRUC.Location = new Point(83, 129);
+            txtRUC.Margin = new Padding(3, 2, 3, 2);
             txtRUC.Name = "txtRUC";
             txtRUC.PlaceholderText = "Ej: \"008-021194-5592M\"";
-            txtRUC.Size = new Size(164, 27);
+            txtRUC.Size = new Size(144, 23);
             txtRUC.TabIndex = 1;
             txtRUC.TextChanged += txtRUC_TextChanged;
             // 
@@ -409,9 +426,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            label1.Location = new Point(135, 125);
+            label1.Location = new Point(118, 94);
             label1.Name = "label1";
-            label1.Size = new Size(44, 23);
+            label1.Size = new Size(33, 17);
             label1.TabIndex = 1;
             label1.Text = "RUC";
             // 
@@ -448,7 +465,8 @@
             dgvUsers.DefaultCellStyle = dataGridViewCellStyle2;
             dgvUsers.EnableHeadersVisualStyles = false;
             dgvUsers.GridColor = Color.Black;
-            dgvUsers.Location = new Point(41, 97);
+            dgvUsers.Location = new Point(36, 73);
+            dgvUsers.Margin = new Padding(3, 2, 3, 2);
             dgvUsers.MultiSelect = false;
             dgvUsers.Name = "dgvUsers";
             dgvUsers.ReadOnly = true;
@@ -466,7 +484,7 @@
             dgvUsers.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.TopCenter;
             dgvUsers.RowTemplate.Height = 28;
             dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvUsers.Size = new Size(845, 468);
+            dgvUsers.Size = new Size(739, 351);
             dgvUsers.TabIndex = 53;
             dgvUsers.CellContentClick += dgvUsers_CellContentClick;
             dgvUsers.CellPainting += dgvUsers_CellPainting;
@@ -561,16 +579,17 @@
             panel1.Controls.Add(txtRUC);
             panel1.Controls.Add(label1);
             panel1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            panel1.Location = new Point(888, 41);
+            panel1.Location = new Point(777, 31);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(349, 619);
+            panel1.Size = new Size(306, 465);
             panel1.TabIndex = 50;
             // 
             // Frm_Proveedor
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1370, 749);
+            ClientSize = new Size(1199, 562);
             Controls.Add(btnClearSearch);
             Controls.Add(btnSearch);
             Controls.Add(txtSearch);
@@ -581,6 +600,7 @@
             Controls.Add(label12);
             Controls.Add(dgvUsers);
             Controls.Add(panel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Frm_Proveedor";
             Text = "Frm_Proveedor";
             Load += Frm_Proveedor_Load;

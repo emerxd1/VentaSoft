@@ -33,7 +33,7 @@ namespace Store
             if (!Validar(oProveedor, out Message))
                 return 0;
 
-            return d_Proveedor.RegisterUser(oProveedor, out Message);
+            return d_Proveedor.RegisterProveedor(oProveedor, out Message);
         }
 
         // EDITAR: valida y luego llama a D_Proveedor.UpdateUser
@@ -42,14 +42,14 @@ namespace Store
             if (!Validar(oProveedor, out Message))
                 return false;
 
-            return d_Proveedor.UpdateUser(oProveedor, out Message);
+            return d_Proveedor.UpdateProveedor(oProveedor, out Message);
         }
 
         // ELIMINAR: no necesita validar campos, solo el Id.
         // Las reglas (existe / tiene compras) las valida el procedimiento en SQL.
         public bool Delete(Entidad_Proveedor oProveedor, out string Message)
         {
-            return d_Proveedor.DeleteUser(oProveedor, out Message);
+            return d_Proveedor.DeleteProveedor(oProveedor, out Message);
         }
 
         // VALIDACIONES antes de llegar a la base de datos

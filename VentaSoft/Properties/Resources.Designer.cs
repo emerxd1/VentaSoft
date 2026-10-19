@@ -63,19 +63,9 @@ namespace Main.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap check {
+        internal static System.Drawing.Bitmap Check {
             get {
-                object obj = ResourceManager.GetObject("check", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap HidePass {
-            get {
-                object obj = ResourceManager.GetObject("HidePass", resourceCulture);
+                object obj = ResourceManager.GetObject("Check", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -86,16 +76,6 @@ namespace Main.Properties {
         internal static System.Drawing.Bitmap papelera {
             get {
                 object obj = ResourceManager.GetObject("papelera", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ShowPass {
-            get {
-                object obj = ResourceManager.GetObject("ShowPass", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

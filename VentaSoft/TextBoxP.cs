@@ -159,7 +159,7 @@ namespace TextBoxRGB
         [Browsable(true)]
         [Category("Comportamiento")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string Texts
+        public string Text
         {
             get { return textBox1.Text; }
             set { textBox1.Text = value; }
@@ -190,6 +190,48 @@ namespace TextBoxRGB
                 if (!value && textBox1.IsHandleCreated)
                     SendMessage(textBox1.Handle, EM_SETCUEBANNER, 0, holderText);
             }
+        }
+
+        [Browsable(true)]
+        [Category("Comportamiento")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [DefaultValue(false)]
+        public bool ReadOnly
+        {
+            get { return textBox1.ReadOnly; }
+            set { textBox1.ReadOnly = value; }
+        }
+
+        [Browsable(true)]
+        [Category("Comportamiento")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [DefaultValue(32767)]
+        public int MaxLength
+        {
+            get { return textBox1.MaxLength; }
+            set { textBox1.MaxLength = value; }
+        }
+
+        //Métodos públicos (reenvían al TextBox interno)
+        public void Clear()
+        {
+            textBox1.Clear();
+        }
+
+        public void SelectAll()
+        {
+            textBox1.SelectAll();
+        }
+
+        public void AppendText(string texto)
+        {
+            textBox1.AppendText(texto);
+        }
+
+        // Control.Focus() no se puede sobrescribir; este método pone el cursor en el TextBox interno
+        public void FocusTexto()
+        {
+            textBox1.Focus();
         }
 
         //Overridden methods

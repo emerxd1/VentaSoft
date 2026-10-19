@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Users));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             panel1 = new Panel();
             txtDni = new TextBox();
             txtIndice = new TextBox();
@@ -85,7 +85,6 @@
             label13 = new Label();
             btnSearch = new Button();
             panelGradient1 = new Gradient.PanelGradient();
-            elipseControl1 = new ElipseControl.ElipseControl();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
@@ -137,7 +136,7 @@
             txtDni.Location = new Point(7, 130);
             txtDni.Name = "txtDni";
             txtDni.PlaceholderText = "Ej: \"001-150212-22010J\"";
-            txtDni.Size = new Size(164, 27);
+            txtDni.Size = new Size(164, 23);
             txtDni.TabIndex = 31;
             // 
             // txtIndice
@@ -149,7 +148,7 @@
             txtIndice.Location = new Point(7, 67);
             txtIndice.Name = "txtIndice";
             txtIndice.ReadOnly = true;
-            txtIndice.Size = new Size(93, 27);
+            txtIndice.Size = new Size(93, 23);
             txtIndice.TabIndex = 30;
             txtIndice.Text = "Automatico";
             txtIndice.Visible = false;
@@ -160,7 +159,7 @@
             label14.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label14.Location = new Point(182, 47);
             label14.Name = "label14";
-            label14.Size = new Size(110, 23);
+            label14.Size = new Size(88, 17);
             label14.TabIndex = 29;
             label14.Text = "Id de usuario";
             label14.Click += label14_Click;
@@ -193,7 +192,7 @@
             txtId.Location = new Point(247, 47);
             txtId.Name = "txtId";
             txtId.ReadOnly = true;
-            txtId.Size = new Size(93, 20);
+            txtId.Size = new Size(93, 16);
             txtId.TabIndex = 26;
             txtId.Text = "0";
             txtId.TextAlign = HorizontalAlignment.Center;
@@ -204,7 +203,7 @@
             label11.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.Location = new Point(67, 3);
             label11.Name = "label11";
-            label11.Size = new Size(259, 32);
+            label11.Size = new Size(205, 25);
             label11.TabIndex = 25;
             label11.Text = "Detalles de Empleados";
             // 
@@ -235,7 +234,7 @@
             cbEstado.FormattingEnabled = true;
             cbEstado.Location = new Point(197, 400);
             cbEstado.Name = "cbEstado";
-            cbEstado.Size = new Size(151, 29);
+            cbEstado.Size = new Size(151, 25);
             cbEstado.TabIndex = 21;
             // 
             // cbRol
@@ -246,7 +245,7 @@
             cbRol.FormattingEnabled = true;
             cbRol.Location = new Point(14, 400);
             cbRol.Name = "cbRol";
-            cbRol.Size = new Size(164, 29);
+            cbRol.Size = new Size(164, 25);
             cbRol.TabIndex = 20;
             // 
             // label10
@@ -255,7 +254,7 @@
             label10.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label10.Location = new Point(197, 379);
             label10.Name = "label10";
-            label10.Size = new Size(61, 23);
+            label10.Size = new Size(49, 17);
             label10.TabIndex = 19;
             label10.Text = "Estado";
             // 
@@ -265,7 +264,7 @@
             label9.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label9.Location = new Point(14, 379);
             label9.Name = "label9";
-            label9.Size = new Size(35, 23);
+            label9.Size = new Size(27, 17);
             label9.TabIndex = 17;
             label9.Text = "Rol";
             // 
@@ -277,7 +276,7 @@
             txtCheckPassword.Name = "txtCheckPassword";
             txtCheckPassword.PasswordChar = '*';
             txtCheckPassword.PlaceholderText = "123";
-            txtCheckPassword.Size = new Size(152, 27);
+            txtCheckPassword.Size = new Size(152, 23);
             txtCheckPassword.TabIndex = 14;
             // 
             // label8
@@ -286,7 +285,7 @@
             label8.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label8.Location = new Point(190, 310);
             label8.Name = "label8";
-            label8.Size = new Size(179, 23);
+            label8.Size = new Size(141, 17);
             label8.TabIndex = 15;
             label8.Text = "Confirmar Contraseña";
             // 
@@ -298,7 +297,7 @@
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
             txtPassword.PlaceholderText = "123";
-            txtPassword.Size = new Size(164, 27);
+            txtPassword.Size = new Size(164, 23);
             txtPassword.TabIndex = 12;
             // 
             // label7
@@ -307,7 +306,7 @@
             label7.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label7.Location = new Point(5, 310);
             label7.Name = "label7";
-            label7.Size = new Size(97, 23);
+            label7.Size = new Size(77, 17);
             label7.TabIndex = 13;
             label7.Text = "Contraseña";
             // 
@@ -318,7 +317,7 @@
             txtEmail.Location = new Point(190, 267);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Ej: \"juanmora1@gmail.com\"";
-            txtEmail.Size = new Size(152, 27);
+            txtEmail.Size = new Size(152, 23);
             txtEmail.TabIndex = 10;
             // 
             // label6
@@ -327,7 +326,7 @@
             label6.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label6.Location = new Point(190, 247);
             label6.Name = "label6";
-            label6.Size = new Size(62, 23);
+            label6.Size = new Size(49, 17);
             label6.TabIndex = 11;
             label6.Text = "Correo";
             // 
@@ -338,7 +337,7 @@
             txtLastName2.Location = new Point(7, 267);
             txtLastName2.Name = "txtLastName2";
             txtLastName2.PlaceholderText = "Ej: \"Garcia\"";
-            txtLastName2.Size = new Size(164, 27);
+            txtLastName2.Size = new Size(164, 23);
             txtLastName2.TabIndex = 8;
             // 
             // label5
@@ -347,7 +346,7 @@
             label5.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label5.Location = new Point(5, 247);
             label5.Name = "label5";
-            label5.Size = new Size(145, 23);
+            label5.Size = new Size(115, 17);
             label5.TabIndex = 9;
             label5.Text = "Segundo Apellido";
             // 
@@ -358,7 +357,7 @@
             txtLastName1.Location = new Point(190, 200);
             txtLastName1.Name = "txtLastName1";
             txtLastName1.PlaceholderText = "Ej: \"Mora\"";
-            txtLastName1.Size = new Size(152, 27);
+            txtLastName1.Size = new Size(152, 23);
             txtLastName1.TabIndex = 6;
             txtLastName1.TextChanged += txtLastName1_TextChanged;
             // 
@@ -368,7 +367,7 @@
             label4.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label4.Location = new Point(190, 177);
             label4.Name = "label4";
-            label4.Size = new Size(127, 23);
+            label4.Size = new Size(101, 17);
             label4.TabIndex = 7;
             label4.Text = "Primer Apellido";
             // 
@@ -379,7 +378,7 @@
             txtName2.Location = new Point(7, 200);
             txtName2.Name = "txtName2";
             txtName2.PlaceholderText = "Ej: \"Alberto\"";
-            txtName2.Size = new Size(164, 27);
+            txtName2.Size = new Size(164, 23);
             txtName2.TabIndex = 4;
             // 
             // label3
@@ -388,7 +387,7 @@
             label3.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label3.Location = new Point(7, 177);
             label3.Name = "label3";
-            label3.Size = new Size(146, 23);
+            label3.Size = new Size(116, 17);
             label3.TabIndex = 5;
             label3.Text = "Segundo Nombre";
             // 
@@ -399,7 +398,7 @@
             txtName1.Location = new Point(190, 130);
             txtName1.Name = "txtName1";
             txtName1.PlaceholderText = "Ej: \"Juan\"";
-            txtName1.Size = new Size(152, 27);
+            txtName1.Size = new Size(152, 23);
             txtName1.TabIndex = 2;
             // 
             // label2
@@ -408,7 +407,7 @@
             label2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label2.Location = new Point(190, 110);
             label2.Name = "label2";
-            label2.Size = new Size(128, 23);
+            label2.Size = new Size(102, 17);
             label2.TabIndex = 3;
             label2.Text = "Primer Nombre";
             label2.Click += label2_Click;
@@ -419,7 +418,7 @@
             label1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label1.Location = new Point(7, 112);
             label1.Name = "label1";
-            label1.Size = new Size(40, 23);
+            label1.Size = new Size(31, 17);
             label1.TabIndex = 1;
             label1.Text = "DNI";
             // 
@@ -510,41 +509,41 @@
             dgvUsers.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvUsers.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dgvUsers.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 192, 192);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(0, 192, 192);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.Padding = new Padding(2);
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvUsers.ColumnHeadersHeight = 30;
             dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvUsers.Columns.AddRange(new DataGridViewColumn[] { btnSeleccion, IdUsuario, DNI, Name1, Name2, LastName1, LastName2, Email, Password, Id_Rol, Rol, EstadoValor, Estado });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Bookman Old Style", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.Silver;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvUsers.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Bookman Old Style", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = Color.Silver;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dgvUsers.DefaultCellStyle = dataGridViewCellStyle5;
             dgvUsers.EnableHeadersVisualStyles = false;
             dgvUsers.GridColor = Color.Black;
             dgvUsers.Location = new Point(31, 158);
             dgvUsers.MultiSelect = false;
             dgvUsers.Name = "dgvUsers";
             dgvUsers.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(192, 255, 255);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(255, 192, 192);
-            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(192, 255, 255);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.Padding = new Padding(2);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(255, 192, 192);
+            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvUsers.RowHeadersVisible = false;
             dgvUsers.RowHeadersWidth = 51;
             dgvUsers.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.TopCenter;
@@ -693,7 +692,7 @@
             label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.Location = new Point(21, 18);
             label12.Name = "label12";
-            label12.Size = new Size(222, 32);
+            label12.Size = new Size(175, 25);
             label12.TabIndex = 33;
             label12.Text = "Lista de Empleados";
             // 
@@ -706,7 +705,7 @@
             cbSearch.FormattingEnabled = true;
             cbSearch.Location = new Point(417, 24);
             cbSearch.Name = "cbSearch";
-            cbSearch.Size = new Size(143, 29);
+            cbSearch.Size = new Size(143, 25);
             cbSearch.TabIndex = 36;
             // 
             // txtSearch
@@ -717,7 +716,7 @@
             txtSearch.Cursor = Cursors.IBeam;
             txtSearch.Location = new Point(566, 25);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(179, 29);
+            txtSearch.Size = new Size(179, 25);
             txtSearch.TabIndex = 34;
             // 
             // btnClearSearch
@@ -746,7 +745,7 @@
             label13.Font = new Font("Segoe UI", 9.75F);
             label13.Location = new Point(316, 24);
             label13.Name = "label13";
-            label13.Size = new Size(95, 23);
+            label13.Size = new Size(74, 17);
             label13.TabIndex = 35;
             label13.Text = "Buscar por:";
             // 
@@ -775,19 +774,16 @@
             panelGradient1.ForeColor = Color.Black;
             panelGradient1.GradientBottomColor = Color.FromArgb(0, 192, 192);
             panelGradient1.GradientTopColor = Color.FromArgb(0, 192, 192);
-            panelGradient1.Location = new Point(31, 141);
+            panelGradient1.Location = new Point(31, 200);
             panelGradient1.Name = "panelGradient1";
-            panelGradient1.Size = new Size(809, 426);
+            panelGradient1.Size = new Size(809, 367);
             panelGradient1.TabIndex = 55;
             // 
             // elipseControl1
             // 
-            elipseControl1.CornerRadius = 35;
-            elipseControl1.TargetControl = dgvUsers;
-            // 
             // Frm_Users
             // 
-            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.White;
             ClientSize = new Size(1227, 749);
@@ -861,7 +857,6 @@
         private Label label13;
         private Button btnSearch;
         private Gradient.PanelGradient panelGradient1;
-        private ElipseControl.ElipseControl elipseControl1;
         private TextBox txtDni;
     }
 }
