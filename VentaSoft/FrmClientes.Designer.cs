@@ -800,7 +800,7 @@
             txtDni.ShowText = false;
             txtDni.Size = new Size(393, 49);
             txtDni.Style = Sunny.UI.UIStyle.Custom;
-            txtDni.Symbol = 62146;
+            txtDni.Symbol = 62147;
             txtDni.SymbolColor = Color.FromArgb(57, 79, 71);
             txtDni.TabIndex = 64;
             txtDni.TextAlignment = ContentAlignment.MiddleLeft;

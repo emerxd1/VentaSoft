@@ -99,7 +99,7 @@ namespace Main
 
                 Hide(); // ocultar login
 
-                App mtr = new App(O_user);
+              FrmMain mtr = new FrmMain(O_user);
                 mtr.FormClosed += (s, args) =>
                 {
                     textBox_Email.Clear();
