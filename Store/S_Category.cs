@@ -47,7 +47,7 @@ namespace Store
             return d_Category.DeleteCategory(oCategoria, out Mensaje);
         }
 
-        private bool Validar(Entidad_Categoria oCategoria, out string Mensaje)
+      public bool Validar(Entidad_Categoria oCategoria, out string Mensaje)
         {
             Mensaje = string.Empty;
             string errores = string.Empty;

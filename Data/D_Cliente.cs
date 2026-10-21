@@ -21,7 +21,7 @@ namespace Data
                 try
                 {
                     string query = "select IdCliente, DNI, Nombre1, Nombre2, Apellido1, Apellido2, " +
-                                   "Correo, Telefono, Estado from Cliente";
+                                   "Correo, Telefono, Estado from Cliente ";
 
                     SqlCommand cm = new SqlCommand(query, oconnect);
                     cm.CommandType = CommandType.Text;
