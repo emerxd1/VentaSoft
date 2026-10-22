@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MdProductos));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             label12 = new Label();
             cbSearch = new ComboBox();
             label13 = new Label();
@@ -50,8 +50,9 @@
             // 
             // label12
             // 
-            label12.BackColor = Color.SandyBrown;
+            label12.BackColor = Color.DarkGreen;
             label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label12.ForeColor = Color.White;
             label12.Location = new Point(0, 0);
             label12.Name = "label12";
             label12.Size = new Size(812, 45);
@@ -62,18 +63,19 @@
             // 
             cbSearch.Cursor = Cursors.Hand;
             cbSearch.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbSearch.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbSearch.FormattingEnabled = true;
-            cbSearch.Location = new Point(0, 68);
+            cbSearch.Location = new Point(12, 68);
             cbSearch.Name = "cbSearch";
-            cbSearch.Size = new Size(139, 23);
+            cbSearch.Size = new Size(148, 28);
             cbSearch.TabIndex = 55;
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.BackColor = Color.Cyan;
+            label13.BackColor = Color.White;
             label13.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label13.Location = new Point(0, 45);
+            label13.Location = new Point(12, 45);
             label13.Name = "label13";
             label13.Size = new Size(89, 20);
             label13.TabIndex = 54;
@@ -81,17 +83,17 @@
             // 
             // btnClearSearch
             // 
-            btnClearSearch.BackColor = Color.Transparent;
+            btnClearSearch.BackColor = Color.White;
             btnClearSearch.Cursor = Cursors.Hand;
             btnClearSearch.FlatAppearance.BorderSize = 0;
             btnClearSearch.FlatAppearance.MouseOverBackColor = Color.Silver;
             btnClearSearch.FlatStyle = FlatStyle.Flat;
             btnClearSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnClearSearch.ForeColor = SystemColors.ControlText;
-            btnClearSearch.Image = (Image)resources.GetObject("btnClearSearch.Image");
-            btnClearSearch.Location = new Point(186, 55);
+            btnClearSearch.Image = Properties.Resources.recargar;
+            btnClearSearch.Location = new Point(206, 55);
             btnClearSearch.Name = "btnClearSearch";
-            btnClearSearch.Size = new Size(41, 36);
+            btnClearSearch.Size = new Size(29, 36);
             btnClearSearch.TabIndex = 58;
             btnClearSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnClearSearch.UseVisualStyleBackColor = false;
@@ -99,16 +101,17 @@
             // 
             // btnSearch
             // 
-            btnSearch.BackColor = Color.Transparent;
+            btnSearch.BackColor = Color.White;
+            btnSearch.BackgroundImageLayout = ImageLayout.Center;
             btnSearch.Cursor = Cursors.Hand;
             btnSearch.FlatAppearance.BorderSize = 0;
             btnSearch.FlatAppearance.MouseOverBackColor = Color.Silver;
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
-            btnSearch.Location = new Point(145, 55);
+            btnSearch.Image = Properties.Resources.lupa;
+            btnSearch.Location = new Point(168, 55);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(46, 36);
+            btnSearch.Size = new Size(32, 36);
             btnSearch.TabIndex = 57;
             btnSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSearch.UseVisualStyleBackColor = false;
@@ -118,9 +121,10 @@
             // 
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Cursor = Cursors.IBeam;
-            txtSearch.Location = new Point(0, 97);
+            txtSearch.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearch.Location = new Point(12, 106);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(227, 23);
+            txtSearch.Size = new Size(223, 27);
             txtSearch.TabIndex = 56;
             // 
             // dgvProducto
@@ -129,9 +133,9 @@
             dgvProducto.BackgroundColor = Color.White;
             dgvProducto.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.Cyan;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.BackColor = Color.SeaGreen;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
@@ -148,9 +152,17 @@
             dgvProducto.DefaultCellStyle = dataGridViewCellStyle2;
             dgvProducto.EnableHeadersVisualStyles = false;
             dgvProducto.GridColor = Color.White;
-            dgvProducto.Location = new Point(233, 45);
+            dgvProducto.Location = new Point(253, 48);
             dgvProducto.Name = "dgvProducto";
-            dgvProducto.Size = new Size(346, 265);
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvProducto.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvProducto.Size = new Size(404, 265);
             dgvProducto.TabIndex = 59;
             dgvProducto.CellDoubleClick += dgvProducto_CellDoubleClick;
             // 
@@ -169,11 +181,13 @@
             // 
             Nombre.HeaderText = "Nombre";
             Nombre.Name = "Nombre";
+            Nombre.Width = 130;
             // 
             // Categoria
             // 
             Categoria.HeaderText = "Categoria";
             Categoria.Name = "Categoria";
+            Categoria.Width = 130;
             // 
             // Stock
             // 
@@ -197,8 +211,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.CornflowerBlue;
-            ClientSize = new Size(579, 312);
+            BackColor = Color.Green;
+            ClientSize = new Size(657, 312);
             Controls.Add(dgvProducto);
             Controls.Add(btnClearSearch);
             Controls.Add(btnSearch);

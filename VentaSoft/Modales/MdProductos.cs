@@ -42,7 +42,7 @@ namespace Main.Modales
             {
                 if (!item.Estado) continue;
 
-               
+
                 int index = dgvProducto.Rows.Add(new object[] {
                     item.IdProducto, item.Codigo, item.Nombre,
                     item.oCategoria?.Nombre ?? "",
@@ -61,7 +61,7 @@ namespace Main.Modales
             DataGridViewRow fila = dgvProducto.Rows[e.RowIndex];
             if (fila.IsNewRow || fila.Cells[0].Value == null) return;
 
-           
+
             Entidad_Producto seleccionado = fila.Tag as Entidad_Producto;
             if (seleccionado == null) return;
 
@@ -103,6 +103,11 @@ namespace Main.Modales
             {
                 row.Visible = true;
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

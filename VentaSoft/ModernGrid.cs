@@ -40,6 +40,12 @@
 // RADIOS (editables también desde la ventana de Propiedades):
 //   grid.RowRadius    = 10;  // esquinas de la cabecera y de la fila seleccionada/hover (0 = rectas)
 //   grid.CornerRadius = 0;   // esquinas del control completo (0 = rectas)
+//
+//   1) Propiedad ShowColumnDividers (false por defecto) -> activa líneas verticales entre columnas.
+//   2) PaintHeaderCell: dibuja la línea vertical en el encabezado si ShowColumnDividers = true.
+//   3) OnCellPainting:  dibuja la línea vertical en las filas si ShowColumnDividers = true.
+//   Como el valor por defecto es false, las demás tablas se ven exactamente igual que antes.
+//   Uso (en el formulario que quiera las líneas):  grid.ShowColumnDividers = true;
 
 using System;
 using System.Collections.Generic;
@@ -61,20 +67,39 @@ namespace ModernControls
         // ---- Paleta (editable desde fuera) ----
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Color AccentColor { get; set; } = Color.FromArgb(15, 123, 90);
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        // ===== ahora visible en la ventana de Propiedades (categoria "Modern") =====
+        [Category("Modern"), Description("Color de la fila seleccionada.")]
         public Color SelectionColor { get; set; } = Color.FromArgb(228, 243, 234);
+        private bool ShouldSerializeSelectionColor() => SelectionColor != Color.FromArgb(228, 243, 234);
+        private void ResetSelectionColor() => SelectionColor = Color.FromArgb(228, 243, 234);
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Color HoverColor { get; set; } = Color.FromArgb(244, 249, 246);
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        // ===== ahora visible en la ventana de Propiedades (categoria "Modern") =====
+        [Category("Modern"), Description("Color de las lineas entre filas y entre columnas.")]
         public Color LineColor { get; set; } = Color.FromArgb(228, 233, 230);
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        private bool ShouldSerializeLineColor() => LineColor != Color.FromArgb(228, 233, 230);
+        private void ResetLineColor() => LineColor = Color.FromArgb(228, 233, 230);
+        // ===== ahora visible en la ventana de Propiedades (categoria "Modern") =====
+        [Category("Modern"), Description("Color de fondo del encabezado (donde estan los nombres de columna).")]
         public Color HeaderBack { get; set; } = Color.FromArgb(241, 245, 243);
+        private bool ShouldSerializeHeaderBack() => HeaderBack != Color.FromArgb(241, 245, 243);
+        private void ResetHeaderBack() => HeaderBack = Color.FromArgb(241, 245, 243);
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Color TextColor { get; set; } = Color.FromArgb(16, 30, 24);
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        // ahora visible en la ventana de Propiedades (categoria "Modern") =====
+        [Category("Modern"), Description("Color del texto del encabezado y de las columnas en gris.")]
         public Color MutedColor { get; set; } = Color.FromArgb(100, 116, 146);
+        private bool ShouldSerializeMutedColor() => MutedColor != Color.FromArgb(100, 116, 146);
+        private void ResetMutedColor() => MutedColor = Color.FromArgb(100, 116, 146);
         [DefaultValue(true)]
         public bool AllowDeleteKey { get; set; } = true;
+
+        // Interruptor para dibujar líneas VERTICALES entre columnas (encabezado y filas).
+        // Por defecto está en false, así que NO cambia nada en las demás tablas que usan este control.
+        // Para activarlo solo en una tabla:  miTabla.ShowColumnDividers = true;
+        // El color de las líneas es LineColor (se puede cambiar por tabla: miTabla.LineColor = ...).
+        [Category("Modern"), DefaultValue(false), Description("Dibuja lineas verticales entre columnas.")]
+        public bool ShowColumnDividers { get; set; } = false;
 
         /// <summary>
         /// Este control no usa las líneas de celda del DataGridView (dibuja sus propios separadores),
@@ -784,6 +809,24 @@ namespace ModernControls
                 // Línea separadora entre filas
                 using (var pen = new Pen(LineColor)) g.DrawLine(pen, b.Left, b.Bottom - 1, b.Right, b.Bottom - 1);
             }
+            
+            //  columna con icono (se activa poniendo una imagen en column.Tag)
+            if (column.Tag is Image icono)
+            {
+                int iw = 18, ih = 18;
+                var ir = new Rectangle(b.X + (b.Width - iw) / 2, b.Y + (b.Height - ih) / 2, iw, ih);
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.DrawImage(icono, ir);
+                e.Handled = true;
+                return;
+            }
+
+            // Línea vertical entre columnas en las filas. Solo se dibuja si ShowColumnDividers = true
+            // y no en la última columna. Queda separada 10 px del borde de arriba y de abajo.
+            bool lastCol = column == Columns.GetLastColumn(DataGridViewElementStates.Visible, DataGridViewElementStates.None);
+            if (ShowColumnDividers && !lastCol)
+                using (var vpen = new Pen(LineColor))
+                    g.DrawLine(vpen, b.Right - 1, b.Top + 10, b.Right - 1, b.Bottom - 10);
 
             string text = e.FormattedValue?.ToString() ?? "";
 
@@ -824,6 +867,12 @@ namespace ModernControls
             using (var white = new SolidBrush(Color.White)) g.FillRectangle(white, b);
             using (var br = new SolidBrush(HeaderBack))
                 FillRowShape(g, br, new Rectangle(b.X, b.Y + 2, b.Width, b.Height - 4), _rowRadius, first, last);
+
+            // Línea vertical entre columnas en el encabezado. Solo se dibuja si ShowColumnDividers = true
+            // y no en la última columna. Queda separada 12 px del borde de arriba y de abajo.
+            if (ShowColumnDividers && !last)
+                using (var vpen = new Pen(LineColor))
+                    g.DrawLine(vpen, b.Right - 1, b.Y + 12, b.Right - 1, b.Bottom - 12);
 
             DrawText(g, (col.HeaderText ?? "").ToUpperInvariant(), "Segoe UI Semibold", 8.5f, MutedColor,
                      new Rectangle(b.X + PadLeft, b.Y, b.Width - PadLeft - 4, b.Height), StringAlignment.Near);

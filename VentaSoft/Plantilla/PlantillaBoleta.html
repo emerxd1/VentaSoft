@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Boleta de Compra</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #1E2A25;
+        }
+    </style>
+</head>
+<body>
+    <!-- BOLETA TIPO TICKET-->
+    <table align="center" style="width:340px;border:1px solid #B8C4BF;border-collapse:collapse">
+        <tr>
+            <td style="padding:22px 26px">
+
+                <!-- LOGO Y DATOS DEL NEGOCIO -->
+                <div style="text-align:center">@logo</div>
+                <div style="height:8px !important"></div>
+                <div style="text-align:center;font-size:17px;font-weight:bold">@nombrenegocio</div>
+                <div style="text-align:center;font-size:11px;color:#6B7570;margin-top:3px">@direcnegocio</div>
+                <div style="text-align:center;font-size:11px;color:#6B7570">Tel. @telnegocio</div>
+
+                <div style="height:16px !important"></div>
+                <div style="text-align:center;font-size:15px;font-weight:bold">Número de la boleta</div>
+                <div style="text-align:center;font-size:12px;color:#6B7570">N° @numerodocumento</div>
+
+                <div style="height:14px !important"></div>
+                <div style="border-top:1px dashed #8A948F;height:1px"></div>
+                <div style="height:8px !important"></div>
+
+                <!-- FECHA, USUARIO Y PROVEEDOR -->
+                <table border="0" style="width:100%;font-size:11px">
+                    <tr>
+                        <td style="color:#6B7570;padding:2px 0">Fecha</td>
+                        <td style="text-align:right;padding:2px 0">@fecharegistro</td>
+                    </tr>
+                    <tr>
+                        <td style="color:#6B7570;padding:2px 0">Atendió</td>
+                        <td style="text-align:right;padding:2px 0">@usuarioregistro</td>
+                    </tr>
+                    <tr>
+                        <td style="color:#6B7570;padding:2px 0">Proveedor</td>
+                        <td style="text-align:right;padding:2px 0">@nombreproveedor</td>
+                    </tr>
+                </table>
+
+                <div style="height:8px !important"></div>
+                <div style="border-top:1px dashed #8A948F;height:1px"></div>
+                <div style="height:6px !important"></div>
+
+                <!-- PRODUCTOS: cada uno en dos lineas (nombre y total, luego cantidad x precio) -->
+                <table border="0" style="width:100%">
+                    @filas
+                </table>
+
+                <div style="height:8px !important"></div>
+                <div style="border-top:1px dashed #8A948F;height:1px"></div>
+                <div style="height:8px !important"></div>
+
+                <!-- TOTAL -->
+                <table border="0" style="width:100%">
+                    <tr>
+                        <td style="font-size:16px;font-weight:bold">Total</td>
+                        <td style="text-align:right;font-size:16px;font-weight:bold">C$ @montototal</td>
+                    </tr>
+                </table>
+
+                <div style="height:14px !important"></div>
+                <div style="text-align:center;font-size:11px;color:#6B7570">Gracias por su compra</div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

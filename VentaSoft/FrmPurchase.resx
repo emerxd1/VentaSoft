@@ -117,21 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="BtnsearchPro.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAAfRJREFUWEft1r9LVlEcx/FHCaypoIb2FAkNgoYwiLRICJdcWh0aKpoqBBUEW4J0
-        MgqyUbf+g3IKgnBzaogImgpKiX7RD3+93/B84RI+de499mTgB16IXzzfc+713nNu7X/N3vrPpmQXBjGL
-        1/iBdXzDS9zHWbRgyzOA53DCP3mGHmxJWnELa4gJvuMxpnETd/EUK4i/+YmryM49RNPPmECj//tB3EH8
-        azSMyrmEaPQK3UhJL97Dcas4h9I5gA+wyRLaUSbH8BWx+DaUym3E1V+wUCEjiB5XLKTG18jXzIGL9d+r
-        ZA/ewj5PLKTmCGLloxYyMgP7+Ibss5CS84gFnLKQkSFEr6MWUnIZMajTQkb6Eb2S34ZKq26Q4t08bSEl
-        xVW79+fkGqLXYQsp2Q+3Ugc9sJCRedjHvcRtPTm+Ng50M3JTqhKvOC7EE7RU3HwcKF+lsvFqHyF6uDOW
-        ipvPAqJB2ZNtCjF2zkKVdGAZ0WgSu/G7eFI6YYxR1oPch4+IZm7RPtmHEPFueVKO4x2Kk8tjPGtD68IL
-        /NrYT7E3KJ7/jWQvwuPUK3fCzSYILvQi/Db8Uq8FF+G3QlZ8uk9gDH6KPYQfozdwHMWT053vryyiTE7i
-        E4qLcFFn0LTsLCKy2TNxHU1N8U74IP+TeCeafuXbPbXaBk02wrNl9OwgAAAAAElFTkSuQmCC
-</value>
-  </data>
   <metadata name="idProducto.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -153,18 +138,4 @@
   <metadata name="BtnEliminar.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="BtnBuscarProd.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAAfRJREFUWEft1r9LVlEcx/FHCaypoIb2FAkNgoYwiLRICJdcWh0aKpoqBBUEW4J0
-        MgqyUbf+g3IKgnBzaogImgpKiX7RD3+93/B84RI+de499mTgB16IXzzfc+713nNu7X/N3vrPpmQXBjGL
-        1/iBdXzDS9zHWbRgyzOA53DCP3mGHmxJWnELa4gJvuMxpnETd/EUK4i/+YmryM49RNPPmECj//tB3EH8
-        azSMyrmEaPQK3UhJL97Dcas4h9I5gA+wyRLaUSbH8BWx+DaUym3E1V+wUCEjiB5XLKTG18jXzIGL9d+r
-        ZA/ewj5PLKTmCGLloxYyMgP7+Ibss5CS84gFnLKQkSFEr6MWUnIZMajTQkb6Eb2S34ZKq26Q4t08bSEl
-        xVW79+fkGqLXYQsp2Q+3Ugc9sJCRedjHvcRtPTm+Ng50M3JTqhKvOC7EE7RU3HwcKF+lsvFqHyF6uDOW
-        ipvPAqJB2ZNtCjF2zkKVdGAZ0WgSu/G7eFI6YYxR1oPch4+IZm7RPtmHEPFueVKO4x2Kk8tjPGtD68IL
-        /NrYT7E3KJ7/jWQvwuPUK3fCzSYILvQi/Db8Uq8FF+G3QlZ8uk9gDH6KPYQfozdwHMWT053vryyiTE7i
-        E4qLcFFn0LTsLCKy2TNxHU1N8U74IP+TeCeafuXbPbXaBk02wrNl9OwgAAAAAElFTkSuQmCC
-</value>
-  </data>
 </root>

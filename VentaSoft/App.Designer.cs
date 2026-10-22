@@ -61,8 +61,8 @@
             ((System.ComponentModel.ISupportInitialize)btnMenu).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelSubMenu.SuspendLayout();
-            panelsubCompra.SuspendLayout();
             panelMenu.SuspendLayout();
+            panelsubCompra.SuspendLayout();
             SuspendLayout();
             // 
             // lblUsuario
@@ -557,10 +557,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelSubMenu.ResumeLayout(false);
             panelSubMenu.PerformLayout();
-            panelsubCompra.ResumeLayout(false);
-            panelsubCompra.PerformLayout();
             panelMenu.ResumeLayout(false);
             panelMenu.PerformLayout();
+            panelsubCompra.ResumeLayout(false);
+            panelsubCompra.PerformLayout();
             ResumeLayout(false);
         }
 

@@ -134,7 +134,7 @@ namespace Main
 
         private void MenuVentas_Click(object sender, EventArgs e)
         {
-
+            MostrarFormularios(new FrmSales()); //abre el formulario de ventas dentro del panel
         }
 
         private void MenuProducts_Click(object sender, EventArgs e)
@@ -182,6 +182,8 @@ namespace Main
             panelSubMenu.Visible = false; //cierra el submenú de Reportes
             if (panelsubCompra.Visible) panelsubCompra.BringToFront(); //se dibuja encima de Empleados y Proveedore
         }
+
+
     }
 
 }

@@ -131,5 +131,9 @@ namespace Main
             WindowState = FormWindowState.Minimized;
         }
 
+        private void panel1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -51,10 +51,11 @@
             txtSearch.BackColor = Color.White;
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Cursor = Cursors.IBeam;
-            txtSearch.Location = new Point(12, 89);
+            txtSearch.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearch.Location = new Point(12, 104);
             txtSearch.Margin = new Padding(3, 2, 3, 2);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(205, 23);
+            txtSearch.Size = new Size(205, 27);
             txtSearch.TabIndex = 61;
             // 
             // cbSearch
@@ -62,18 +63,19 @@
             cbSearch.BackColor = Color.White;
             cbSearch.Cursor = Cursors.Hand;
             cbSearch.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbSearch.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbSearch.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbSearch.ForeColor = Color.Black;
             cbSearch.FormattingEnabled = true;
             cbSearch.Location = new Point(12, 62);
             cbSearch.Margin = new Padding(3, 2, 3, 2);
             cbSearch.Name = "cbSearch";
-            cbSearch.Size = new Size(125, 23);
+            cbSearch.Size = new Size(125, 28);
             cbSearch.TabIndex = 63;
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.BackColor = Color.Cyan;
+            label13.BackColor = Color.White;
             label13.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label13.Location = new Point(12, 37);
             label13.Name = "label13";
@@ -83,7 +85,7 @@
             // 
             // btnbuscar
             // 
-            btnbuscar.BackColor = Color.CornflowerBlue;
+            btnbuscar.BackColor = Color.White;
             btnbuscar.Image = (Image)resources.GetObject("btnbuscar.Image");
             btnbuscar.Location = new Point(143, 52);
             btnbuscar.Name = "btnbuscar";
@@ -94,7 +96,7 @@
             // 
             // btneliminar
             // 
-            btneliminar.BackColor = Color.CornflowerBlue;
+            btneliminar.BackColor = Color.White;
             btneliminar.Image = Properties.Resources.recargar;
             btneliminar.Location = new Point(185, 52);
             btneliminar.Name = "btneliminar";
@@ -109,10 +111,10 @@
             DvgMduser.BackgroundColor = Color.White;
             DvgMduser.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.Cyan;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.BackColor = Color.SeaGreen;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.SeaGreen;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             DvgMduser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
@@ -141,7 +143,7 @@
             DvgMduser.RowTemplate.DefaultCellStyle.SelectionBackColor = SystemColors.ActiveCaption;
             DvgMduser.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
             DvgMduser.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DvgMduser.Size = new Size(295, 226);
+            DvgMduser.Size = new Size(343, 226);
             DvgMduser.TabIndex = 66;
             DvgMduser.CellDoubleClick += DvgMduser_CellDoubleClick;
             // 
@@ -161,21 +163,22 @@
             // 
             RazonSocial.HeaderText = "Razon Social";
             RazonSocial.Name = "RazonSocial";
+            RazonSocial.Width = 150;
             // 
             // label1
             // 
-            label1.BackColor = Color.SandyBrown;
+            label1.BackColor = Color.DarkGreen;
             label1.Location = new Point(-9, -6);
             label1.Name = "label1";
-            label1.Size = new Size(541, 40);
+            label1.Size = new Size(575, 40);
             label1.TabIndex = 68;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = Color.SandyBrown;
+            label2.BackColor = Color.DarkGreen;
             label2.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.Black;
+            label2.ForeColor = Color.White;
             label2.Location = new Point(1, 9);
             label2.Name = "label2";
             label2.Size = new Size(188, 25);
@@ -186,8 +189,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.CornflowerBlue;
-            ClientSize = new Size(518, 269);
+            BackColor = Color.Green;
+            ClientSize = new Size(566, 269);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(DvgMduser);

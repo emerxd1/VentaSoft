@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Factura de Compra</title>
+    <style>
+        /* Colores de la factura (para cambiarlos: Ctrl+H en este archivo)
+           #0C2F22 = verde oscuro   #86D9B5 = verde menta   #B8C4BF = borde gris
+           #F1F5F3 = fila alterna   #6B7570 = texto gris */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #1E2A25;
+        }
+
+        table.items {
+            border-collapse: collapse;
+        }
+
+            table.items th {
+                background-color: #0C2F22;
+                color: #FFFFFF;
+                padding: 8px;
+                font-size: 12px;
+            }
+    </style>
+</head>
+<body>
+    <!-- banda verde oscuro con logo, datos del negocio y tipo,numero de documento -->
+    <table style="width:100%;background-color:#0C2F22;border-collapse:collapse">
+        <tr>
+            <td style="width:16%;padding:16px 0 16px 18px" valign="middle">
+                <div style="background-color:#FFFFFF;border-radius:8px;padding:6px;text-align:center">@logo</div>
+            </td>
+            <td style="width:52%;padding:16px 10px" valign="middle">
+                <div style="font-size:22px;font-weight:bold;color:#FFFFFF">@nombrenegocio</div>
+                <div style="font-size:12px;color:#86D9B5;margin-top:4px">RUC @docnegocio</div>
+                <div style="font-size:12px;color:#86D9B5;margin-top:2px">@direcnegocio</div>
+            </td>
+            <td style="width:32%;padding:16px 18px 16px 0" valign="middle" align="right">
+                <div style="border:1px solid #86D9B5;border-radius:8px;padding:10px;text-align:center">
+                    <div style="font-size:16px;font-weight:bold;color:#FFFFFF">@tipodocumento</div>
+                    <div style="font-size:12px;color:#86D9B5;margin-top:3px">N° @numerodocumento</div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div style="height:18px !important"></div>
+
+    <!-- TARJETAS: PROVEEDOR Y DATOS DEL REGISTRO -->
+    <table border="0" style="width:100%">
+        <tr>
+            <td style="width:49%" valign="top">
+                <div style="border:1px solid #B8C4BF;border-radius:8px;padding:10px 12px">
+                    <div style="font-size:12px;color:#6B7570">Proveedor</div>
+                    <div style="font-size:13px;font-weight:bold;margin-top:3px">@nombreproveedor</div>
+                    <div style="font-size:12px;color:#6B7570;margin-top:3px">RUC @docproveedor</div>
+                </div>
+            </td>
+            <td style="width:2%"></td>
+            <td style="width:49%" valign="top">
+                <div style="border:1px solid #B8C4BF;border-radius:8px;padding:10px 12px">
+                    <div style="font-size:12px;color:#6B7570">Datos del registro</div>
+                    <div style="font-size:13px;font-weight:bold;margin-top:3px">@fecharegistro</div>
+                    <div style="font-size:12px;color:#6B7570;margin-top:3px">Registró: @usuarioregistro</div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div style="height:16px !important"></div>
+
+    <!-- DETALLE DE PRODUCTOS -->
+    <table style="width:100%" class="items">
+        <thead>
+            <tr>
+                <th style="text-align:left">Producto</th>
+                <th style="text-align:right">Precio</th>
+                <th style="text-align:right">Cantidad.</th>
+                <th style="text-align:right">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @filas
+        </tbody>
+    </table>
+    <div style="height:14px !important"></div>
+
+    <!-- TOTALES: Subtotal y Total (sin IVA) -->
+    <table border="0" style="width:100%">
+        <tr>
+            <td style="width:58%"></td>
+            <td style="width:42%">
+                <table border="0" style="width:100%;font-size:12px">
+                    <tr>
+                        <td style="color:#6B7570;padding:3px 0">Subtotal</td>
+                        <td style="text-align:right;padding:3px 0">@subtotal</td>
+                    </tr>
+                </table>
+                <div style="background-color:#0C2F22;border-radius:6px;padding:9px 12px;margin-top:6px">
+                    <table border="0" style="width:100%">
+                        <tr>
+                            <td style="color:#FFFFFF;font-size:13px;font-weight:bold">Total</td>
+                            <td style="color:#FFFFFF;font-size:14px;font-weight:bold;text-align:right">C$ @montototal</td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <!-- FIRMAS -->
+    <div style="height:60px !important"></div>
+    <table border="0" style="width:100%">
+        <tr>
+            <td style="width:46%;border-top:1px solid #6B7570;text-align:center;font-size:12px;color:#6B7570;padding-top:6px">Elaborado por</td>
+            <td style="width:8%"></td>
+            <td style="width:46%;border-top:1px solid #6B7570;text-align:center;font-size:12px;color:#6B7570;padding-top:6px">Recibido por</td>
+        </tr>
+    </table>
+</body>
+</html>

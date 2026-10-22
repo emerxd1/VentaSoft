@@ -129,16 +129,4 @@
   <metadata name="SubTotal.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btndescargarpdff.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        cAAAAHABznhikwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEUSURBVDhPY4CB
-        xyo6Ds9Ute48VdX6j45fOnvceRudIgNVih0AFd5C1wjDL738/r9LSb/zKiFBAqocEwAV/kbXCMMgA96m
-        Z/1/k5px/VNcnDBUCyoAKiRoABgnp19+n5AgANWGAECFOA14Yev4/1VgKBy/9PY7DNWGAECFOA3Agn9D
-        tSEASBBNET48mA34tm3H/x8nTv3/NGnK/z9Pnvz/cfAwOPR/P3z0/+uqNcQZ8H3v/v8fWjv+f127/v+7
-        /KL/XxYv/f/79p3/76tqCRsA0vTc1Or/Cyv7/79u3Pz/fd+B/28SU/5/njMPphm/AURiWhigonUTi0Jc
-        +DpUGwI8U9W0A0rcRlOIDd96pqZlC9HFwAAAmaewJykhOfQAAAAASUVORK5CYII=
-</value>
-  </data>
 </root>
