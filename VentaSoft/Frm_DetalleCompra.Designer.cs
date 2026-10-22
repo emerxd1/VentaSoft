@@ -631,6 +631,7 @@
             Controls.Add(groupBox1);
             Controls.Add(btnlimpiarr);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Frm_DetalleCompra";
             Text = "  ";
             Load += Frm_DetalleCompra_Load;

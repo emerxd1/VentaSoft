@@ -1,6 +1,7 @@
 SELECT * FROM Rol
 SELECT * FROM Usuario
 SELECT * FROM Permiso
+SELECT * FROM Cliente
 SELECT * FROM Categoria
 
 insert into Permiso (IdRol,NombreMenu) values 
@@ -70,7 +71,8 @@ insert into Usuario (DNI,Nombre1,Nombre2,Apellido1,Apellido2,Correo,Clave,IdRol,
 VALUES ('002-894566-8922O','Empleado','Prueba','Numero','1', 'empleadoex@gmail.com','user',2,1)
 
 select u.IdUsuario,u.DNI,u.Nombre1,u.Nombre2,u.Apellido1,u.Apellido2,u.Correo,u.Clave,u.Estado, r.IdRol,r.Descripcion from Usuario u
-inner join Rol r on r.IdRol = u.IdRol /*consulta para mostrar datos en datagridview usuarios o empleados */
+inner join Rol r on r.IdRol = u.IdRol 
+/*consulta para mostrar datos en datagridview usuarios o empleados */
 
 
 /*Select *  FROM dbo.Permiso
@@ -501,7 +503,8 @@ BEGIN
         SET @Mensaje = 'Cliente registrado correctamente'
     END
     ELSE
-        SET @Mensaje = 'El DNI ya existe'
+                SET @Mensaje = 'El Cliente ingresado ya está registrado. No se permiten duplicados.';
+
 END
 GO
 
@@ -534,7 +537,7 @@ BEGIN
     -- 2. Validar que el DNI no pertenezca a otro cliente
     IF EXISTS (SELECT 1 FROM Cliente WHERE DNI = @DNI AND IdCliente != @IdCliente)
     BEGIN
-        SET @Mensaje = 'El DNI ya está asignado a otro cliente'
+        SET @Mensaje = 'El DNI ya está asignado a otro cliente.No se permiten valores duplicados'
         RETURN
     END
 

@@ -7,9 +7,6 @@
     <ActiveDebugProfile>Main</ActiveDebugProfile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="App.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="ComboBoxUp.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -22,10 +19,16 @@
     <Compile Update="FrmClientes.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FrmProducts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FrmPrueva.cs">
+    <Compile Update="FrmPurchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Frm_DetalleCompra.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmPurchase.cs">
@@ -43,10 +46,13 @@
     <Compile Update="Frm_Users.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Login.cs">
+    <Compile Update="LoginM.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="LoginM.cs">
+    <Compile Update="Modales\MdProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Modales\MdProveedor.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Modales\MdClientes.cs">

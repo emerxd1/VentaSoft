@@ -88,63 +88,6 @@ namespace Main
             }
         }
 
-        private void btnRegister_Click(object sender, EventArgs e)
-        {
-
-            Entidad_Usuario oUsuario = new Entidad_Usuario() // instancia de la entidad usuario, para enviar a la capa de negocio
-            {
-                IdUsuario = Convert.ToInt32(txtId.Text),
-                DNI = txtDni.Text,
-                Nombre1 = txtName1.Text,
-                Nombre2 = txtName2.Text,
-                Apellido1 = txtLastName1.Text,
-                Apellido2 = txtLastName2.Text,
-                Correo = txtEmail.Text,
-                Clave = txtPassword.Text,
-                oRol = new Entidad_Rol() { IdRol = Convert.ToInt32(((OptionsComboBox)cbRol.SelectedItem).valor) },
-                Estado = Convert.ToInt32(((OptionsComboBox)cbEstado.SelectedItem).valor) == 1 ? true : false
-            };
-
-
-            int idUserGenerated = new S_Users().Register(oUsuario, out string Message);
-
-            // Si el id generado es distinto de 0, significa que se registró correctamente, entonces se agrega al DataGridView
-            if (idUserGenerated != 0)
-            {
-
-                var rolSeleccionado = (OptionsComboBox)cbRol.SelectedItem;
-                var estadoSeleccionado = (OptionsComboBox)cbEstado.SelectedItem;
-
-                // Se agrega la fila vacía y se asignan los valores por NOMBRE de columna
-                // (evita el desfase que ocurría con Rows.Add(object[]) por posición)
-                int fila = dgvUsers.Rows.Add();
-                DataGridViewRow row = dgvUsers.Rows[fila];
-
-                row.Cells["IdUsuario"].Value = idUserGenerated;
-                row.Cells["DNI"].Value = txtDni.Text;
-                row.Cells["Name1"].Value = txtName1.Text;
-                row.Cells["Name2"].Value = txtName2.Text;
-                row.Cells["LastName1"].Value = txtLastName1.Text;
-                row.Cells["LastName2"].Value = txtLastName2.Text;
-                row.Cells["Email"].Value = txtEmail.Text;
-                row.Cells["Password"].Value = txtPassword.Text;
-                row.Cells["Id_Rol"].Value = rolSeleccionado.valor;
-                row.Cells["Rol"].Value = rolSeleccionado.texto;
-                row.Cells["EstadoValor"].Value = estadoSeleccionado.valor;
-                row.Cells["Estado"].Value = estadoSeleccionado.texto;
-
-                MessageBox.Show("Usuario registrado correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show(Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-
-            Limpiar();
-
-        }
-
-
         //METODO PARA LIMPIAR LOS CAMPOS DEL FORMULARIO
         private void Limpiar()
         {
@@ -157,8 +100,10 @@ namespace Main
             txtEmail.Clear();
             txtPassword.Clear();
             txtCheckPassword.Clear();
-            cbRol.SelectedIndex = 0;
-            cbEstado.SelectedIndex = 0;
+            cbRol.Text = "Seleccione un rol";
+            cbRol.ForeColor = Color.Gray;
+            cbEstado.Text = "Seleccione un estado";
+            cbEstado.ForeColor = Color.Gray;
             txtId.Clear();
         }
 
@@ -198,12 +143,6 @@ namespace Main
             }
         }
 
-
-
-        private void btnLimpiarTxt_Click_1(object sender, EventArgs e)
-        {
-            Limpiar();
-        }
 
         private void btnUpdatee_Click(object sender, EventArgs e)
         {
@@ -300,10 +239,6 @@ namespace Main
             // si dr == DialogResult.No, simplemente no se hace nada (el usuario canceló)
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            panel1.Visible = !panel1.Visible;
-        }
 
         private void dgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -404,6 +339,66 @@ namespace Main
         private void txtLastName1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            Entidad_Usuario oUsuario = new Entidad_Usuario() // instancia de la entidad usuario, para enviar a la capa de negocio
+            {
+                IdUsuario = Convert.ToInt32(txtId.Text),
+                DNI = txtDni.Text,
+                Nombre1 = txtName1.Text,
+                Nombre2 = txtName2.Text,
+                Apellido1 = txtLastName1.Text,
+                Apellido2 = txtLastName2.Text,
+                Correo = txtEmail.Text,
+                Clave = txtPassword.Text,
+                oRol = new Entidad_Rol() { IdRol = Convert.ToInt32(((OptionsComboBox)cbRol.SelectedItem).valor) },
+                Estado = Convert.ToInt32(((OptionsComboBox)cbEstado.SelectedItem).valor) == 1 ? true : false
+            };
+
+
+            int idUserGenerated = new S_Users().Register(oUsuario, out string Message);
+
+            // Si el id generado es distinto de 0, significa que se registró correctamente, entonces se agrega al DataGridView
+            if (idUserGenerated != 0)
+            {
+
+                var rolSeleccionado = (OptionsComboBox)cbRol.SelectedItem;
+                var estadoSeleccionado = (OptionsComboBox)cbEstado.SelectedItem;
+
+                // Se agrega la fila vacía y se asignan los valores por NOMBRE de columna
+                // (evita el desfase que ocurría con Rows.Add(object[]) por posición)
+                int fila = dgvUsers.Rows.Add();
+                DataGridViewRow row = dgvUsers.Rows[fila];
+
+                row.Cells["IdUsuario"].Value = idUserGenerated;
+                row.Cells["DNI"].Value = txtDni.Text;
+                row.Cells["Name1"].Value = txtName1.Text;
+                row.Cells["Name2"].Value = txtName2.Text;
+                row.Cells["LastName1"].Value = txtLastName1.Text;
+                row.Cells["LastName2"].Value = txtLastName2.Text;
+                row.Cells["Email"].Value = txtEmail.Text;
+                row.Cells["Password"].Value = txtPassword.Text;
+                row.Cells["Id_Rol"].Value = rolSeleccionado.valor;
+                row.Cells["Rol"].Value = rolSeleccionado.texto;
+                row.Cells["EstadoValor"].Value = estadoSeleccionado.valor;
+                row.Cells["Estado"].Value = estadoSeleccionado.texto;
+
+                MessageBox.Show("Usuario registrado correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            Limpiar();
+
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Limpiar();
         }
     }
 }

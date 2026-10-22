@@ -38,7 +38,7 @@
             label12 = new Label();
             uiPanel1 = new Sunny.UI.UIPanel();
             dgvClients = new ModernControls.ModernGrid();
-            btnSeleccion = new DataGridViewButtonColumn();
+            btnSeleccion = new DataGridViewImageColumn();
             IdCliente = new DataGridViewTextBoxColumn();
             DNI = new DataGridViewTextBoxColumn();
             Cliente = new DataGridViewTextBoxColumn();
@@ -165,7 +165,7 @@
             dgvClients.ColumnHeadersHeight = 44;
             dgvClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvClients.Columns.AddRange(new DataGridViewColumn[] { btnSeleccion, IdCliente, DNI, Cliente, Name1, Name2, LastName1, LastName2, Email, NumTelefono, EstadoValor, Estado });
-            dgvClients.CornerRadius = 5;
+            dgvClients.CornerRadius = 10;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.White;
             dataGridViewCellStyle4.Font = new Font("Segoe UI", 9.5F);
@@ -192,6 +192,7 @@
             dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
             dgvClients.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvClients.RowHeadersVisible = false;
+            dgvClients.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = Color.White;
             dataGridViewCellStyle6.Font = new Font("Segoe UI", 9.5F);
@@ -206,18 +207,21 @@
             dgvClients.ShowCellToolTips = false;
             dgvClients.Size = new Size(799, 448);
             dgvClients.TabIndex = 83;
-            dgvClients.CellContentClick += dgvClients_CellContentClick;
-            dgvClients.CellPainting += dgvClients_CellPainting;
+            dgvClients.CellClick += dgvClients_CellClick;
             // 
             // btnSeleccion
             // 
+            btnSeleccion.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             btnSeleccion.DefaultCellStyle = dataGridViewCellStyle3;
             btnSeleccion.FillWeight = 117F;
             btnSeleccion.HeaderText = "Cargar Datos";
+            btnSeleccion.Image = Properties.Resources.Check;
             btnSeleccion.MinimumWidth = 117;
             btnSeleccion.Name = "btnSeleccion";
             btnSeleccion.ReadOnly = true;
-            btnSeleccion.Text = "Cargar Datos";
+            btnSeleccion.Resizable = DataGridViewTriState.False;
+            btnSeleccion.Visible = false;
+            btnSeleccion.Width = 117;
             // 
             // IdCliente
             // 
@@ -315,7 +319,17 @@
             // 
             // txtSearch
             // 
+            txtSearch.ButtonFillColor = Color.White;
+            txtSearch.ButtonFillHoverColor = Color.White;
+            txtSearch.ButtonFillPressColor = Color.White;
+            txtSearch.ButtonForeColor = Color.FromArgb(57, 79, 71);
+            txtSearch.ButtonRectColor = Color.White;
+            txtSearch.ButtonRectHoverColor = Color.White;
+            txtSearch.ButtonRectPressColor = Color.White;
+            txtSearch.ButtonStyleInherited = false;
+            txtSearch.ButtonSymbol = 0;
             txtSearch.Font = new Font("Microsoft Sans Serif", 12F);
+            txtSearch.IconSize = 20;
             txtSearch.Location = new Point(249, 49);
             txtSearch.Margin = new Padding(4, 5, 4, 5);
             txtSearch.MinimumSize = new Size(1, 16);
@@ -324,7 +338,7 @@
             txtSearch.Radius = 10;
             txtSearch.RectColor = Color.Silver;
             txtSearch.ShowText = false;
-            txtSearch.Size = new Size(277, 26);
+            txtSearch.Size = new Size(338, 26);
             txtSearch.Style = Sunny.UI.UIStyle.Custom;
             txtSearch.Symbol = 61442;
             txtSearch.SymbolColor = Color.FromArgb(57, 79, 71);
@@ -361,6 +375,7 @@
             btnDelete.TabIndex = 82;
             btnDelete.Text = "Eliminar";
             btnDelete.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            btnDelete.Click += btnDelete_Click_1;
             // 
             // btnUpdate
             // 
@@ -785,7 +800,7 @@
             txtDni.ShowText = false;
             txtDni.Size = new Size(393, 49);
             txtDni.Style = Sunny.UI.UIStyle.Custom;
-            txtDni.Symbol = 62146;
+            txtDni.Symbol = 62147;
             txtDni.SymbolColor = Color.FromArgb(57, 79, 71);
             txtDni.TabIndex = 64;
             txtDni.TextAlignment = ContentAlignment.MiddleLeft;
@@ -925,7 +940,7 @@
         private Label label2;
         private Sunny.UI.UITextBox txtSearch;
         private ModernControls.ModernGrid dgvClients;
-        private DataGridViewButtonColumn btnSeleccion;
+        private DataGridViewImageColumn btnSeleccion;
         private DataGridViewTextBoxColumn IdCliente;
         private DataGridViewTextBoxColumn DNI;
         private DataGridViewTextBoxColumn Cliente;
