@@ -258,7 +258,7 @@
             btnVentas.TabIndex = 25;
             btnVentas.Text = "Ventas";
             btnVentas.TipsFont = new Font("Microsoft Sans Serif", 9F);
-            btnVentas.Click += uiSymbolButton1_Click;
+            btnVentas.Click += FrmSales_Click;
             // 
             // panel6
             // 
@@ -810,6 +810,7 @@
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(187, 266);
             flowLayoutPanel1.TabIndex = 31;
+            flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
             // panel14
             // 

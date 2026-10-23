@@ -248,5 +248,10 @@ namespace Main
         {
 
         }
+
+        private void txtnombreproveedoorr_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

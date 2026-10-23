@@ -68,13 +68,14 @@ namespace Main
             {
                 submenuCompras.Height = 40;
             }
-
-            MostrarFormularios(new FrmPurchase());
+            MostrarFormularios(new FrmPurchase(UserActual)); //se le pasa el usuario que está comprando
         }
 
         /*BOTON MENU DE VENTAS*/
-        private void uiSymbolButton1_Click(object sender, EventArgs e)
+        private void FrmSales_Click(object sender, EventArgs e)
         {
+
+
             if (SubmenuVentas.Height == 40)
             {
                 SubmenuVentas.Height = 80;
@@ -83,6 +84,8 @@ namespace Main
             {
                 SubmenuVentas.Height = 40;
             }
+
+            MostrarFormularios(new FrmSales(UserActual));
         }
 
         private void btnReportes_Click(object sender, EventArgs e)
@@ -146,7 +149,7 @@ namespace Main
         /*BOTON DE SUBMENU DE VENTAS*/
         private void btnDetallesVentas_Click(object sender, EventArgs e)
         {
-
+            MostrarFormularios(new FrmDetallesVentas());
         }
 
         private void uiSymbolButton1_Click_1(object sender, EventArgs e)
@@ -155,6 +158,11 @@ namespace Main
         }
 
         private void btnHome_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

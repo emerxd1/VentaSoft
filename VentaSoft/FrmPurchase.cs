@@ -69,7 +69,7 @@ namespace Main
             }
 
             int idcorrelativo = new S_Compras().ObtenerCorrelativo();
-            string numeroDocumento = string.Format("{0:00000}", idcorrelativo);
+            string numeroDocumento = "C" + idcorrelativo.ToString("0000"); // C0001, C0002 Para codigo Compra
 
             Entidad_Compra oCompra = new Entidad_Compra()
             {

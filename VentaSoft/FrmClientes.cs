@@ -395,5 +395,10 @@ namespace Main
             }
 
         }
+
+        private void dgvClients_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -23,10 +23,10 @@
 
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             lblTitulo = new Label();
             groupBox1 = new Sunny.UI.UIPanel();
             lblTituloGrupo1 = new Label();
@@ -141,7 +141,7 @@
             // 
             TxtFecha.Cursor = Cursors.IBeam;
             TxtFecha.FillReadOnlyColor = Color.White;
-            TxtFecha.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TxtFecha.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             TxtFecha.ForeReadOnlyColor = Color.White;
             TxtFecha.Location = new Point(14, 52);
             TxtFecha.Margin = new Padding(3, 2, 3, 2);
@@ -219,7 +219,7 @@
             groupBox2.Name = "groupBox2";
             groupBox2.Radius = 12;
             groupBox2.RectColor = Color.Silver;
-            groupBox2.Size = new Size(348, 150);
+            groupBox2.Size = new Size(348, 154);
             groupBox2.TabIndex = 2;
             groupBox2.Text = null;
             groupBox2.TextAlignment = ContentAlignment.MiddleCenter;
@@ -243,7 +243,7 @@
             label3.BackColor = Color.White;
             label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(31, 58, 48);
-            label3.Location = new Point(14, 30);
+            label3.Location = new Point(14, 26);
             label3.Name = "label3";
             label3.Size = new Size(46, 20);
             label3.TabIndex = 1;
@@ -253,8 +253,8 @@
             // 
             TxtdocProveedor.Cursor = Cursors.IBeam;
             TxtdocProveedor.FillReadOnlyColor = Color.White;
-            TxtdocProveedor.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            TxtdocProveedor.Location = new Point(14, 52);
+            TxtdocProveedor.Font = new Font("Microsoft Sans Serif", 12F);
+            TxtdocProveedor.Location = new Point(14, 48);
             TxtdocProveedor.Margin = new Padding(3, 2, 3, 2);
             TxtdocProveedor.MinimumSize = new Size(1, 16);
             TxtdocProveedor.Name = "TxtdocProveedor";
@@ -302,7 +302,7 @@
             label4.BackColor = Color.White;
             label4.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.FromArgb(31, 58, 48);
-            label4.Location = new Point(14, 90);
+            label4.Location = new Point(14, 82);
             label4.Name = "label4";
             label4.Size = new Size(103, 20);
             label4.TabIndex = 4;
@@ -312,26 +312,27 @@
             // 
             TxtnameProveedor.Cursor = Cursors.IBeam;
             TxtnameProveedor.FillReadOnlyColor = Color.White;
-            TxtnameProveedor.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            TxtnameProveedor.Location = new Point(14, 112);
+            TxtnameProveedor.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TxtnameProveedor.Location = new Point(14, 105);
             TxtnameProveedor.Margin = new Padding(3, 2, 3, 2);
             TxtnameProveedor.MinimumSize = new Size(1, 16);
+            TxtnameProveedor.Multiline = true;
             TxtnameProveedor.Name = "TxtnameProveedor";
             TxtnameProveedor.Padding = new Padding(5);
             TxtnameProveedor.Radius = 10;
             TxtnameProveedor.ReadOnly = true;
             TxtnameProveedor.RectColor = Color.Silver;
             TxtnameProveedor.ShowText = false;
-            TxtnameProveedor.Size = new Size(322, 28);
+            TxtnameProveedor.Size = new Size(322, 46);
             TxtnameProveedor.Style = Sunny.UI.UIStyle.Custom;
             TxtnameProveedor.SymbolColor = Color.FromArgb(57, 79, 71);
             TxtnameProveedor.TabIndex = 5;
-            TxtnameProveedor.TextAlignment = ContentAlignment.MiddleLeft;
+            TxtnameProveedor.TextAlignment = ContentAlignment.TopLeft;
             TxtnameProveedor.Watermark = "AUTOGENERADO";
             // 
             // TxtidProv
             // 
-            TxtidProv.Location = new Point(244, 81);
+            TxtidProv.Location = new Point(246, 76);
             TxtidProv.Name = "TxtidProv";
             TxtidProv.Size = new Size(40, 26);
             TxtidProv.TabIndex = 6;
@@ -396,7 +397,7 @@
             // 
             TxtcodProd.Cursor = Cursors.IBeam;
             TxtcodProd.FillReadOnlyColor = Color.White;
-            TxtcodProd.Font = new Font("Segoe UI", 9F);
+            TxtcodProd.Font = new Font("Microsoft Sans Serif", 12F);
             TxtcodProd.Location = new Point(14, 52);
             TxtcodProd.Margin = new Padding(3, 2, 3, 2);
             TxtcodProd.MinimumSize = new Size(1, 16);
@@ -463,7 +464,7 @@
             // 
             TxtNombreProd.Cursor = Cursors.IBeam;
             TxtNombreProd.FillReadOnlyColor = Color.White;
-            TxtNombreProd.Font = new Font("Segoe UI", 9F);
+            TxtNombreProd.Font = new Font("Microsoft Sans Serif", 12F);
             TxtNombreProd.Location = new Point(14, 112);
             TxtNombreProd.Margin = new Padding(3, 2, 3, 2);
             TxtNombreProd.MinimumSize = new Size(1, 16);
@@ -496,7 +497,7 @@
             // 
             TxtPrecioCompra.Cursor = Cursors.IBeam;
             TxtPrecioCompra.FillReadOnlyColor = Color.White;
-            TxtPrecioCompra.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            TxtPrecioCompra.Font = new Font("Microsoft Sans Serif", 12F);
             TxtPrecioCompra.Location = new Point(14, 174);
             TxtPrecioCompra.Margin = new Padding(3, 2, 3, 2);
             TxtPrecioCompra.MinimumSize = new Size(1, 16);
@@ -530,7 +531,7 @@
             // 
             TxtPrecioVenta.Cursor = Cursors.IBeam;
             TxtPrecioVenta.FillReadOnlyColor = Color.White;
-            TxtPrecioVenta.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            TxtPrecioVenta.Font = new Font("Microsoft Sans Serif", 12F);
             TxtPrecioVenta.Location = new Point(124, 174);
             TxtPrecioVenta.Margin = new Padding(3, 2, 3, 2);
             TxtPrecioVenta.MinimumSize = new Size(1, 16);
@@ -598,61 +599,61 @@
             DgvData.AllowUserToDeleteRows = false;
             DgvData.AllowUserToResizeColumns = false;
             DgvData.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.White;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle1.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle1.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(228, 243, 234);
-            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            DgvData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle5.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle5.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(228, 243, 234);
+            dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            DgvData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             DgvData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DgvData.BackgroundColor = Color.White;
             DgvData.BorderStyle = BorderStyle.None;
             DgvData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(8, 92, 63);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 8.5F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(8, 92, 63);
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            DgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(8, 92, 63);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI Semibold", 8.5F);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(8, 92, 63);
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            DgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             DgvData.ColumnHeadersHeight = 44;
             DgvData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             DgvData.Columns.AddRange(new DataGridViewColumn[] { idProducto, Producto, PrecioCompra, PrecioVenta, Canti, Subto, BtnEliminar });
             DgvData.CornerRadius = 5;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle3.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(228, 243, 234);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            DgvData.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.White;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle7.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle7.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(228, 243, 234);
+            dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            DgvData.DefaultCellStyle = dataGridViewCellStyle7;
             DgvData.EnableHeadersVisualStyles = false;
             DgvData.Font = new Font("Segoe UI", 9.5F);
             DgvData.GridColor = Color.White;
             DgvData.HeaderBack = Color.FromArgb(8, 92, 63);
             DgvData.LineColor = Color.FromArgb(200, 208, 204);
-            DgvData.Location = new Point(9, 1);
+            DgvData.Location = new Point(6, 1);
             DgvData.MultiSelect = false;
             DgvData.MutedColor = Color.White;
             DgvData.Name = "DgvData";
             DgvData.ReadOnly = true;
             DgvData.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             DgvData.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.White;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle4.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle4.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(228, 243, 234);
-            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            DgvData.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.White;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle8.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle8.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(228, 243, 234);
+            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            DgvData.RowsDefaultCellStyle = dataGridViewCellStyle8;
             DgvData.RowTemplate.Height = 56;
             DgvData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             DgvData.ShowCellToolTips = false;
@@ -769,7 +770,7 @@
             TxtTotalPago.BackColor = Color.White;
             TxtTotalPago.Cursor = Cursors.IBeam;
             TxtTotalPago.FillReadOnlyColor = Color.White;
-            TxtTotalPago.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TxtTotalPago.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             TxtTotalPago.Location = new Point(496, 560);
             TxtTotalPago.Margin = new Padding(3, 2, 3, 2);
             TxtTotalPago.MinimumSize = new Size(1, 16);
@@ -818,7 +819,7 @@
             // FrmPurchase
             // 
             AutoScaleMode = AutoScaleMode.None;
-            BackColor = Color.FromArgb(239, 239, 239);
+            BackColor = Color.White;
             ClientSize = new Size(1000, 608);
             Controls.Add(BtnRegistrer);
             Controls.Add(TxtTotalPago);

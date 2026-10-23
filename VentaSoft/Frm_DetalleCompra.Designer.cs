@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             label1 = new Label();
             txtbusquedaa = new Sunny.UI.UITextBox();
             btnlimpiarr = new Sunny.UI.UISymbolButton();
@@ -61,12 +61,12 @@
             PrecioCompra = new DataGridViewTextBoxColumn();
             Cantidad = new DataGridViewTextBoxColumn();
             SubTotal = new DataGridViewTextBoxColumn();
-            uiGroupBox1 = new Sunny.UI.UIGroupBox();
             label5 = new Label();
+            uiPanel1 = new Sunny.UI.UIPanel();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            uiGroupBox1.SuspendLayout();
+            uiPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -82,7 +82,7 @@
             // txtbusquedaa
             // 
             txtbusquedaa.Cursor = Cursors.IBeam;
-            txtbusquedaa.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtbusquedaa.Font = new Font("Microsoft Sans Serif", 12F);
             txtbusquedaa.Location = new Point(190, 44);
             txtbusquedaa.Margin = new Padding(3, 2, 3, 2);
             txtbusquedaa.MinimumSize = new Size(1, 16);
@@ -96,7 +96,7 @@
             txtbusquedaa.SymbolColor = Color.FromArgb(57, 79, 71);
             txtbusquedaa.TabIndex = 60;
             txtbusquedaa.TextAlignment = ContentAlignment.MiddleLeft;
-            txtbusquedaa.Watermark = "EJ: 00001";
+            txtbusquedaa.Watermark = "EJ: C0001";
             txtbusquedaa.KeyDown += txtbusquedaa_KeyDown;
             // 
             // btnlimpiarr
@@ -146,7 +146,7 @@
             groupBox1.MinimumSize = new Size(1, 1);
             groupBox1.Name = "groupBox1";
             groupBox1.Radius = 1;
-            groupBox1.RectColor = Color.White;
+            groupBox1.RectColor = Color.Silver;
             groupBox1.Size = new Size(520, 137);
             groupBox1.TabIndex = 63;
             groupBox1.Text = null;
@@ -155,7 +155,8 @@
             // txtUsuarioo
             // 
             txtUsuarioo.Cursor = Cursors.IBeam;
-            txtUsuarioo.Font = new Font("Segoe UI", 9F);
+            txtUsuarioo.FillDisableColor = Color.White;
+            txtUsuarioo.Font = new Font("Microsoft Sans Serif", 12F);
             txtUsuarioo.Location = new Point(324, 64);
             txtUsuarioo.Margin = new Padding(3, 2, 3, 2);
             txtUsuarioo.MinimumSize = new Size(1, 16);
@@ -174,7 +175,8 @@
             // txtTipodedocumentoo
             // 
             txtTipodedocumentoo.Cursor = Cursors.IBeam;
-            txtTipodedocumentoo.Font = new Font("Segoe UI", 9F);
+            txtTipodedocumentoo.FillDisableColor = Color.White;
+            txtTipodedocumentoo.Font = new Font("Microsoft Sans Serif", 12F);
             txtTipodedocumentoo.Location = new Point(144, 64);
             txtTipodedocumentoo.Margin = new Padding(3, 2, 3, 2);
             txtTipodedocumentoo.MinimumSize = new Size(1, 16);
@@ -205,7 +207,8 @@
             // txtFechaa
             // 
             txtFechaa.Cursor = Cursors.IBeam;
-            txtFechaa.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtFechaa.FillDisableColor = Color.White;
+            txtFechaa.Font = new Font("Microsoft Sans Serif", 12F);
             txtFechaa.Location = new Point(0, 64);
             txtFechaa.Margin = new Padding(3, 2, 3, 2);
             txtFechaa.MinimumSize = new Size(1, 16);
@@ -273,7 +276,7 @@
             groupBox2.MinimumSize = new Size(1, 1);
             groupBox2.Name = "groupBox2";
             groupBox2.Radius = 1;
-            groupBox2.RectColor = Color.White;
+            groupBox2.RectColor = Color.Silver;
             groupBox2.Size = new Size(520, 137);
             groupBox2.TabIndex = 64;
             groupBox2.Text = null;
@@ -326,7 +329,8 @@
             // txtnombreproveedoorr
             // 
             txtnombreproveedoorr.Cursor = Cursors.IBeam;
-            txtnombreproveedoorr.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtnombreproveedoorr.FillDisableColor = Color.White;
+            txtnombreproveedoorr.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtnombreproveedoorr.Location = new Point(212, 61);
             txtnombreproveedoorr.Margin = new Padding(3, 2, 3, 2);
             txtnombreproveedoorr.MinimumSize = new Size(1, 16);
@@ -334,18 +338,21 @@
             txtnombreproveedoorr.Padding = new Padding(5);
             txtnombreproveedoorr.Radius = 10;
             txtnombreproveedoorr.RectColor = Color.Silver;
+            txtnombreproveedoorr.RectDisableColor = Color.White;
             txtnombreproveedoorr.ShowText = false;
-            txtnombreproveedoorr.Size = new Size(235, 30);
+            txtnombreproveedoorr.Size = new Size(305, 50);
             txtnombreproveedoorr.Style = Sunny.UI.UIStyle.Custom;
             txtnombreproveedoorr.SymbolColor = Color.FromArgb(57, 79, 71);
             txtnombreproveedoorr.TabIndex = 66;
-            txtnombreproveedoorr.TextAlignment = ContentAlignment.MiddleLeft;
+            txtnombreproveedoorr.TextAlignment = ContentAlignment.TopLeft;
             txtnombreproveedoorr.Watermark = "";
+            txtnombreproveedoorr.TextChanged += txtnombreproveedoorr_TextChanged;
             // 
             // txtdocproveedoorr
             // 
             txtdocproveedoorr.Cursor = Cursors.IBeam;
-            txtdocproveedoorr.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtdocproveedoorr.FillDisableColor = Color.White;
+            txtdocproveedoorr.Font = new Font("Microsoft Sans Serif", 12F);
             txtdocproveedoorr.Location = new Point(3, 61);
             txtdocproveedoorr.Margin = new Padding(3, 2, 3, 2);
             txtdocproveedoorr.MinimumSize = new Size(1, 16);
@@ -375,7 +382,8 @@
             // 
             txtmontototall.BackColor = Color.White;
             txtmontototall.Cursor = Cursors.IBeam;
-            txtmontototall.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtmontototall.FillDisableColor = Color.White;
+            txtmontototall.Font = new Font("Microsoft Sans Serif", 12F);
             txtmontototall.Location = new Point(294, 408);
             txtmontototall.Margin = new Padding(3, 2, 3, 2);
             txtmontototall.MinimumSize = new Size(1, 16);
@@ -424,7 +432,7 @@
             bigLabel1.ForeColor = Color.White;
             bigLabel1.Location = new Point(2, 1);
             bigLabel1.Name = "bigLabel1";
-            bigLabel1.Size = new Size(521, 36);
+            bigLabel1.Size = new Size(1146, 36);
             bigLabel1.TabIndex = 69;
             bigLabel1.Text = "Detalles de la Compra";
             // 
@@ -486,45 +494,45 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle5.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle5.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(228, 243, 234);
-            dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle1.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(228, 243, 234);
+            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(8, 92, 63);
-            dataGridViewCellStyle6.Font = new Font("Segoe UI Semibold", 8.5F);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(8, 92, 63);
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(8, 92, 63);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 8.5F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(8, 92, 63);
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.ColumnHeadersHeight = 44;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Producto, PrecioCompra, Cantidad, SubTotal });
             dataGridView1.CornerRadius = 1;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.White;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle7.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle7.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(228, 243, 234);
-            dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle3.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(228, 243, 234);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.Font = new Font("Segoe UI", 9.5F);
             dataGridView1.GridColor = Color.White;
             dataGridView1.HeaderBack = Color.FromArgb(8, 92, 63);
-            dataGridView1.Location = new Point(2, 16);
+            dataGridView1.Location = new Point(3, 2);
             dataGridView1.MultiSelect = false;
             dataGridView1.MutedColor = Color.White;
             dataGridView1.Name = "dataGridView1";
@@ -532,19 +540,19 @@
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowRadius = 1;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.White;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle8.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle8.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(228, 243, 234);
-            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle4.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle4.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(228, 243, 234);
+            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView1.RowTemplate.Height = 56;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.ShowCellToolTips = false;
-            dataGridView1.Size = new Size(611, 488);
+            dataGridView1.Size = new Size(612, 478);
             dataGridView1.TabIndex = 65;
             dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
             // 
@@ -584,25 +592,6 @@
             SubTotal.ReadOnly = true;
             SubTotal.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
-            // uiGroupBox1
-            // 
-            uiGroupBox1.BackColor = Color.White;
-            uiGroupBox1.Controls.Add(dataGridView1);
-            uiGroupBox1.FillColor = Color.White;
-            uiGroupBox1.Font = new Font("Microsoft Sans Serif", 12F);
-            uiGroupBox1.Location = new Point(526, -15);
-            uiGroupBox1.Margin = new Padding(4, 5, 4, 5);
-            uiGroupBox1.MinimumSize = new Size(1, 1);
-            uiGroupBox1.Name = "uiGroupBox1";
-            uiGroupBox1.Padding = new Padding(0, 32, 0, 0);
-            uiGroupBox1.RectColor = Color.Gray;
-            uiGroupBox1.Size = new Size(616, 522);
-            uiGroupBox1.Style = Sunny.UI.UIStyle.Custom;
-            uiGroupBox1.TabIndex = 82;
-            uiGroupBox1.Text = null;
-            uiGroupBox1.TextAlignment = ContentAlignment.MiddleLeft;
-            uiGroupBox1.Click += uiGroupBox1_Click;
-            // 
             // label5
             // 
             label5.BackColor = Color.FromArgb(8, 92, 63);
@@ -613,13 +602,29 @@
             label5.Size = new Size(520, 23);
             label5.TabIndex = 83;
             // 
+            // uiPanel1
+            // 
+            uiPanel1.BackColor = Color.White;
+            uiPanel1.Controls.Add(dataGridView1);
+            uiPanel1.FillColor = Color.White;
+            uiPanel1.Font = new Font("Microsoft Sans Serif", 12F);
+            uiPanel1.Location = new Point(530, 40);
+            uiPanel1.Margin = new Padding(4, 5, 4, 5);
+            uiPanel1.MinimumSize = new Size(1, 1);
+            uiPanel1.Name = "uiPanel1";
+            uiPanel1.RectColor = Color.Silver;
+            uiPanel1.Size = new Size(618, 481);
+            uiPanel1.TabIndex = 84;
+            uiPanel1.Text = null;
+            uiPanel1.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
             // Frm_DetalleCompra
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1158, 529);
+            ClientSize = new Size(1149, 522);
+            Controls.Add(uiPanel1);
             Controls.Add(label5);
-            Controls.Add(uiGroupBox1);
             Controls.Add(btnbuscarr);
             Controls.Add(label4);
             Controls.Add(label16);
@@ -631,7 +636,6 @@
             Controls.Add(groupBox1);
             Controls.Add(btnlimpiarr);
             Controls.Add(label1);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Frm_DetalleCompra";
             Text = "  ";
             Load += Frm_DetalleCompra_Load;
@@ -640,7 +644,7 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            uiGroupBox1.ResumeLayout(false);
+            uiPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -676,8 +680,8 @@
         private DataGridViewTextBoxColumn PrecioCompra;
         private DataGridViewTextBoxColumn Cantidad;
         private DataGridViewTextBoxColumn SubTotal;
-        private Sunny.UI.UIGroupBox uiGroupBox1;
         private Label label5;
         private Label lblTituloGrupo2;
+        private Sunny.UI.UIPanel uiPanel1;
     }
 }

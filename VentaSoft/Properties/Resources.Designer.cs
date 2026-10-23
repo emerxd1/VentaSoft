@@ -103,6 +103,16 @@ namespace Main.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dgvdelate {
+            get {
+                object obj = ResourceManager.GetObject("dgvdelate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap escoba {
             get {
                 object obj = ResourceManager.GetObject("escoba", resourceCulture);
