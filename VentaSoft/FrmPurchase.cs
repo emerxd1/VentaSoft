@@ -12,6 +12,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Text;
 using System.Windows.Forms;
+using System.Drawing.Imaging;
 
 namespace Main
 {
@@ -31,7 +32,7 @@ namespace Main
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BtnRegistrer_Click(object sender, EventArgs e)
         {
             if (Convert.ToInt32(TxtidProv.Text) == 0)
             {
@@ -68,7 +69,7 @@ namespace Main
             }
 
             int idcorrelativo = new S_Compras().ObtenerCorrelativo();
-            string numeroDocumento = string.Format("{0:00000}", idcorrelativo);
+            string numeroDocumento = "C" + idcorrelativo.ToString("0000"); // C0001, C0002 Para codigo Compra
 
             Entidad_Compra oCompra = new Entidad_Compra()
             {
@@ -106,7 +107,7 @@ namespace Main
         //Inicia el menu desplegable del tipo de documento para las opciones Boleta y Factura
         private void FrmPurchase_Load(object sender, EventArgs e)
         {
-
+            DgvData.Columns["BtnEliminar"].Tag = ColorearIcono(Properties.Resources.borrar__1_, Color.Red); //icono de eliminar
             CbTipodeDocumento.Items.Add(new OptionsComboBox() { valor = "Boleta", texto = "Boleta" });
 
             CbTipodeDocumento.Items.Add(new OptionsComboBox() { valor = "Factura", texto = "Factura" });
@@ -331,15 +332,17 @@ namespace Main
             }
         }
 
-        private void DgvData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        // CellClick responde en cualquier punto de la celda, aunque esté vacía
+        private void DgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
             if (DgvData.Columns[e.ColumnIndex].Name != "BtnEliminar") return;
             if (DgvData.Rows[e.RowIndex].IsNewRow) return;
 
             DgvData.Rows.RemoveAt(e.RowIndex);
             calcularTotal();
         }
+
 
         private void TxtPrecioCompra_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -391,6 +394,33 @@ namespace Main
                     }
                 }
             }
+        }
+
+        private void DgvData_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        //  repinta un icono de un solo color conservando su forma y transparencia
+        private static Bitmap ColorearIcono(Image origen, Color color)
+        {
+            var bmp = new Bitmap(origen.Width, origen.Height);
+            using (var g = Graphics.FromImage(bmp))
+            using (var ia = new ImageAttributes())
+            {
+                var cm = new ColorMatrix(new float[][]
+                {
+            new float[] { 0, 0, 0, 0, 0 },
+            new float[] { 0, 0, 0, 0, 0 },
+            new float[] { 0, 0, 0, 0, 0 },
+            new float[] { 0, 0, 0, 1, 0 },
+            new float[] { color.R / 255f, color.G / 255f, color.B / 255f, 0, 1 }
+                });
+                ia.SetColorMatrix(cm);
+                g.DrawImage(origen, new Rectangle(0, 0, bmp.Width, bmp.Height),
+                            0, 0, origen.Width, origen.Height, GraphicsUnit.Pixel, ia);
+            }
+            return bmp;
         }
     }
 }

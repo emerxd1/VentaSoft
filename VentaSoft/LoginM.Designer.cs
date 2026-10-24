@@ -81,6 +81,7 @@
             panel1.Size = new Size(884, 521);
             panel1.TabIndex = 1;
             panel1.Text = "Developed by \"Los algoritmicos\"";
+            panel1.Click += panel1_Click;
             // 
             // btnMin
             // 

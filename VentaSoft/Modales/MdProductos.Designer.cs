@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MdProductos));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            label12 = new Label();
-            cbSearch = new ComboBox();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            cbSearchPr = new ComboBox();
             label13 = new Label();
             btnClearSearch = new Button();
             btnSearch = new Button();
-            txtSearch = new TextBox();
+            txtSearchPr = new TextBox();
             dgvProducto = new DataGridView();
             Id = new DataGridViewTextBoxColumn();
             Codigo = new DataGridViewTextBoxColumn();
@@ -45,53 +45,48 @@
             Stock = new DataGridViewTextBoxColumn();
             PrecioCompra = new DataGridViewTextBoxColumn();
             PrecioVenta = new DataGridViewTextBoxColumn();
+            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             ((System.ComponentModel.ISupportInitialize)dgvProducto).BeginInit();
             SuspendLayout();
             // 
-            // label12
+            // cbSearchPr
             // 
-            label12.BackColor = Color.SandyBrown;
-            label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(0, 0);
-            label12.Name = "label12";
-            label12.Size = new Size(812, 45);
-            label12.TabIndex = 51;
-            label12.Text = "Lista de Productos";
-            // 
-            // cbSearch
-            // 
-            cbSearch.Cursor = Cursors.Hand;
-            cbSearch.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbSearch.FormattingEnabled = true;
-            cbSearch.Location = new Point(0, 68);
-            cbSearch.Name = "cbSearch";
-            cbSearch.Size = new Size(139, 23);
-            cbSearch.TabIndex = 55;
+            cbSearchPr.Cursor = Cursors.Hand;
+            cbSearchPr.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbSearchPr.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbSearchPr.FormattingEnabled = true;
+            cbSearchPr.Location = new Point(0, 68);
+            cbSearchPr.Name = "cbSearchPr";
+            cbSearchPr.Size = new Size(148, 28);
+            cbSearchPr.TabIndex = 55;
+            cbSearchPr.SelectedIndexChanged += cbSearchPr_TabIndexChanged;
+            cbSearchPr.TabIndexChanged += cbSearchPr_TabIndexChanged;
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.BackColor = Color.Cyan;
-            label13.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label13.Location = new Point(0, 45);
+            label13.BackColor = Color.Transparent;
+            label13.Font = new Font("Segoe UI Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label13.ForeColor = Color.Black;
+            label13.Location = new Point(0, 43);
             label13.Name = "label13";
-            label13.Size = new Size(89, 20);
+            label13.Size = new Size(95, 20);
             label13.TabIndex = 54;
-            label13.Text = "Buscar por:";
+            label13.Text = "Buscar por*";
             // 
             // btnClearSearch
             // 
             btnClearSearch.BackColor = Color.Transparent;
             btnClearSearch.Cursor = Cursors.Hand;
             btnClearSearch.FlatAppearance.BorderSize = 0;
-            btnClearSearch.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnClearSearch.FlatAppearance.MouseOverBackColor = Color.SeaGreen;
             btnClearSearch.FlatStyle = FlatStyle.Flat;
             btnClearSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnClearSearch.ForeColor = SystemColors.ControlText;
-            btnClearSearch.Image = (Image)resources.GetObject("btnClearSearch.Image");
-            btnClearSearch.Location = new Point(186, 55);
+            btnClearSearch.Image = Properties.Resources.recargar;
+            btnClearSearch.Location = new Point(212, 56);
             btnClearSearch.Name = "btnClearSearch";
-            btnClearSearch.Size = new Size(41, 36);
+            btnClearSearch.Size = new Size(43, 40);
             btnClearSearch.TabIndex = 58;
             btnClearSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnClearSearch.UseVisualStyleBackColor = false;
@@ -100,57 +95,77 @@
             // btnSearch
             // 
             btnSearch.BackColor = Color.Transparent;
+            btnSearch.BackgroundImageLayout = ImageLayout.Center;
             btnSearch.Cursor = Cursors.Hand;
             btnSearch.FlatAppearance.BorderSize = 0;
-            btnSearch.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnSearch.FlatAppearance.MouseOverBackColor = Color.SeaGreen;
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
-            btnSearch.Location = new Point(145, 55);
+            btnSearch.Image = Properties.Resources.lupa;
+            btnSearch.Location = new Point(163, 56);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(46, 36);
+            btnSearch.Size = new Size(43, 40);
             btnSearch.TabIndex = 57;
             btnSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
             // 
-            // txtSearch
+            // txtSearchPr
             // 
-            txtSearch.BorderStyle = BorderStyle.FixedSingle;
-            txtSearch.Cursor = Cursors.IBeam;
-            txtSearch.Location = new Point(0, 97);
-            txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(227, 23);
-            txtSearch.TabIndex = 56;
+            txtSearchPr.BorderStyle = BorderStyle.FixedSingle;
+            txtSearchPr.Cursor = Cursors.IBeam;
+            txtSearchPr.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearchPr.Location = new Point(0, 98);
+            txtSearchPr.Name = "txtSearchPr";
+            txtSearchPr.Size = new Size(255, 29);
+            txtSearchPr.TabIndex = 56;
+            txtSearchPr.Tag = "";
+            txtSearchPr.KeyDown += txtSearchPr_KeyDown;
             // 
             // dgvProducto
             // 
             dgvProducto.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.ForeColor = Color.Transparent;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumSpringGreen;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dgvProducto.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvProducto.BackgroundColor = Color.White;
             dgvProducto.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.Cyan;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(8, 92, 63);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(8, 92, 63);
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvProducto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProducto.Columns.AddRange(new DataGridViewColumn[] { Id, Codigo, Nombre, Categoria, Stock, PrecioCompra, PrecioVenta });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvProducto.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = Color.MediumSpringGreen;
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvProducto.DefaultCellStyle = dataGridViewCellStyle3;
             dgvProducto.EnableHeadersVisualStyles = false;
             dgvProducto.GridColor = Color.White;
-            dgvProducto.Location = new Point(233, 45);
+            dgvProducto.Location = new Point(0, 133);
             dgvProducto.Name = "dgvProducto";
-            dgvProducto.Size = new Size(346, 265);
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = Color.MediumSpringGreen;
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvProducto.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dgvProducto.RowHeadersVisible = false;
+            dgvProducto.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
+            dgvProducto.RowTemplate.Height = 36;
+            dgvProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProducto.Size = new Size(538, 330);
             dgvProducto.TabIndex = 59;
             dgvProducto.CellDoubleClick += dgvProducto_CellDoubleClick;
             // 
@@ -163,17 +178,22 @@
             // Codigo
             // 
             Codigo.HeaderText = "Codigo";
+            Codigo.MinimumWidth = 10;
             Codigo.Name = "Codigo";
             // 
             // Nombre
             // 
             Nombre.HeaderText = "Nombre";
+            Nombre.MinimumWidth = 10;
             Nombre.Name = "Nombre";
+            Nombre.Width = 200;
             // 
             // Categoria
             // 
             Categoria.HeaderText = "Categoria";
+            Categoria.MinimumWidth = 10;
             Categoria.Name = "Categoria";
+            Categoria.Width = 240;
             // 
             // Stock
             // 
@@ -193,19 +213,30 @@
             PrecioVenta.Name = "PrecioVenta";
             PrecioVenta.Visible = false;
             // 
+            // bigLabel1
+            // 
+            bigLabel1.BackColor = Color.FromArgb(8, 92, 63);
+            bigLabel1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bigLabel1.ForeColor = Color.White;
+            bigLabel1.Location = new Point(0, -3);
+            bigLabel1.Name = "bigLabel1";
+            bigLabel1.Size = new Size(657, 36);
+            bigLabel1.TabIndex = 71;
+            bigLabel1.Text = "Lista de Productos*";
+            // 
             // MdProductos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.CornflowerBlue;
-            ClientSize = new Size(579, 312);
+            BackColor = Color.SeaGreen;
+            ClientSize = new Size(543, 464);
+            Controls.Add(bigLabel1);
             Controls.Add(dgvProducto);
             Controls.Add(btnClearSearch);
             Controls.Add(btnSearch);
-            Controls.Add(txtSearch);
-            Controls.Add(cbSearch);
+            Controls.Add(txtSearchPr);
+            Controls.Add(cbSearchPr);
             Controls.Add(label13);
-            Controls.Add(label12);
             Name = "MdProductos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MdProductos";
@@ -216,13 +247,11 @@
         }
 
         #endregion
-
-        private Label label12;
-        private ComboBox cbSearch;
+        private ComboBox cbSearchPr;
         private Label label13;
         private Button btnClearSearch;
         private Button btnSearch;
-        private TextBox txtSearch;
+        private TextBox txtSearchPr;
         private DataGridView dgvProducto;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn Codigo;
@@ -231,5 +260,6 @@
         private DataGridViewTextBoxColumn Stock;
         private DataGridViewTextBoxColumn PrecioCompra;
         private DataGridViewTextBoxColumn PrecioVenta;
+        private ReaLTaiizor.Controls.BigLabel bigLabel1;
     }
 }

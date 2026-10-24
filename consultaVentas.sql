@@ -876,9 +876,124 @@ c.TipoDocumento,c.NumeroDocumento,c.MontoTotal,convert(char(10),FechaRegistro,10
 FROM Compra c
 inner join Usuario u on u.IdUsuario = c.IdUsuario
 inner join Proveedor pr on pr.IdProveedor = c.IdProveedor
-where c.NumeroDocumento ='00001'
+where c.NumeroDocumento ='C0001'
 
 select p.Nombre,dc.PrecioCompra,dc.Cantidad,dc.Total
 from DetalleCompra dc
 inner join Producto p on p.IdProducto = dc.IdProducto
 where dc.IdCompra = 1
+
+
+
+/*-----Procesos para registrar una venta-----*/
+IF TYPE_ID('dbo.EDetalle_Venta') IS NULL
+CREATE TYPE [dbo].[EDetalle_Venta] AS TABLE
+(
+    [IdProducto]  int NULL,
+    [PrecioVenta] decimal(18,2) NULL,
+    [Cantidad]    int NULL,
+    [SubTotal]    decimal(18,2) NULL
+)
+GO
+
+CREATE OR ALTER PROCEDURE sp_RegistrarVenta
+(
+    @IdUsuario     int,
+    @IdCliente     int,
+    @TipoDocumento varchar(50),
+    @NumeroFactura varchar(50),
+    @MontoPago     decimal(18,2),
+    @MontoCambio   decimal(18,2),
+    @MontoTotal    decimal(18,2),
+    @DetalleVenta  dbo.EDetalle_Venta READONLY,
+    @Resultado     bit          OUTPUT,
+    @Mensaje       varchar(500) OUTPUT
+)
+AS
+BEGIN
+    SET NOCOUNT ON
+    BEGIN TRY
+        DECLARE @idventa int = 0
+        DECLARE @Nombre1 varchar(50), @Apellido1 varchar(50)
+        DECLARE @faltante varchar(200) = NULL
+        SET @Resultado = 1
+        SET @Mensaje = ''
+
+        BEGIN TRANSACTION registro
+
+        -- Nombre y apellido salen del cliente not null
+        SELECT @Nombre1 = Nombre1, @Apellido1 = Apellido1
+        FROM Cliente WHERE IdCliente = @IdCliente
+
+        IF @Nombre1 IS NULL
+            RAISERROR('El cliente seleccionado no existe', 16, 1)
+
+        -- Validar el stock
+        SELECT TOP 1 @faltante = p.Nombre
+        FROM Producto p WITH (UPDLOCK, HOLDLOCK)
+        INNER JOIN (SELECT IdProducto, SUM(Cantidad) AS Cantidad
+                    FROM @DetalleVenta GROUP BY IdProducto) dv
+                ON dv.IdProducto = p.IdProducto
+        WHERE p.Stock < dv.Cantidad
+
+        IF @faltante IS NOT NULL
+            RAISERROR('Stock insuficiente para el producto: %s', 16, 1, @faltante)
+
+        INSERT INTO Venta(IdUsuario, IdCliente, TipoDocumento, NumeroFactura, Nombre1, Apellido1,
+                          MontoPago, MontoCambio, MontoTotal, FechaRegistro)
+        VALUES (@IdUsuario, @IdCliente, @TipoDocumento, @NumeroFactura, @Nombre1, @Apellido1,
+                @MontoPago, @MontoCambio, @MontoTotal, GETDATE())
+
+        SET @idventa = SCOPE_IDENTITY()
+
+        INSERT INTO DetalleVenta(IdVenta, IdProducto, PrecioVenta, Cantidad, SubTotal)
+        SELECT @idventa, IdProducto, PrecioVenta, Cantidad, SubTotal FROM @DetalleVenta
+
+        -- Descontar stock
+        UPDATE p SET p.Stock = p.Stock - dv.Cantidad
+        FROM Producto p
+        INNER JOIN (SELECT IdProducto, SUM(Cantidad) AS Cantidad
+                    FROM @DetalleVenta GROUP BY IdProducto) dv
+                ON dv.IdProducto = p.IdProducto
+
+        COMMIT TRANSACTION registro
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0
+        SET @Mensaje = ERROR_MESSAGE()
+        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION
+    END CATCH
+END
+GO
+
+------------consultas de la venta------------
+
+SELECT v.IdVenta,
+       u.Nombre1 AS UsuNombre1, u.Apellido1 AS UsuApellido1,
+       c.DNI AS DNICliente,
+       c.Nombre1 AS CliNombre1, c.Nombre2 AS CliNombre2,
+       c.Apellido1 AS CliApellido1, c.Apellido2 AS CliApellido2,
+       v.TipoDocumento, v.NumeroFactura,
+       v.MontoPago, v.MontoCambio, v.MontoTotal,
+       CONVERT(char(10), v.FechaRegistro, 103) AS FechaRegistro
+FROM Venta v
+INNER JOIN Usuario u ON u.IdUsuario = v.IdUsuario
+INNER JOIN Cliente c ON c.IdCliente = v.IdCliente
+WHERE v.NumeroFactura = 'V0001'
+
+SELECT p.Nombre, dv.PrecioVenta, dv.Cantidad, dv.SubTotal
+FROM DetalleVenta dv
+INNER JOIN Producto p ON p.IdProducto = dv.IdProducto
+WHERE dv.IdVenta = 1
+
+
+----------cambio de codigo para ventas y  compras-------
+----------Ventas: V0001--------
+----------Compras C0001-------
+
+
+UPDATE Compra SET NumeroDocumento = 'C' + RIGHT(NumeroDocumento, 4)
+WHERE NumeroDocumento IS NOT NULL AND NumeroDocumento NOT LIKE 'C%';
+
+UPDATE Venta SET NumeroFactura = 'V' + RIGHT(NumeroFactura, 4)
+WHERE NumeroFactura IS NOT NULL AND NumeroFactura NOT LIKE 'V%';

@@ -27,10 +27,10 @@ namespace Main.Modales
         private void btnbuscar_Click(object sender, EventArgs e)
         {
 
-            if (cbSearch.SelectedItem == null) return;
+            if (cbSearchProve.SelectedItem == null) return;
 
-            string columnFiltro = Convert.ToString(((OptionsComboBox)cbSearch.SelectedItem).valor);
-            string texto = txtSearch.Text.Trim().ToUpper();
+            string columnFiltro = Convert.ToString(((OptionsComboBox)cbSearchProve.SelectedItem).valor);
+            string texto = txtSearchProve.Text.Trim().ToUpper();
 
             foreach (DataGridViewRow row in DvgMduser.Rows)
             {
@@ -48,12 +48,12 @@ namespace Main.Modales
             {
                 if (columna.Visible == true)
                 {
-                    cbSearch.Items.Add(new OptionsComboBox() { valor = columna.Name, texto = columna.HeaderText });
+                    cbSearchProve.Items.Add(new OptionsComboBox() { valor = columna.Name, texto = columna.HeaderText });
                 }
             }
-            cbSearch.DisplayMember = "texto"; // cm se comporta el menu desplegable
-            cbSearch.ValueMember = "valor";
-            cbSearch.SelectedIndex = 0;
+            cbSearchProve.DisplayMember = "texto"; // cm se comporta el menu desplegable
+            cbSearchProve.ValueMember = "valor";
+            cbSearchProve.SelectedIndex = 0;
 
             //Traemos la lista completa de los proveedores registrados y lo muestra en la tabla
             List<Entidad_Proveedor> lista = new S_Proveedor().Lister();
@@ -62,6 +62,8 @@ namespace Main.Modales
             {
                 DvgMduser.Rows.Add(new object[] { item.IdProveedor, item.RUC, item.RazonSocial });
             }
+
+
         }
 
         //propiedades celldoubleclick 
@@ -88,13 +90,43 @@ namespace Main.Modales
         // Borra lo que el usuario escribío
         private void btneliminar_Click(object sender, EventArgs e)
         {
-            txtSearch.Clear();
+            txtSearchProve.Clear();
 
             foreach (DataGridViewRow row in DvgMduser.Rows)
             {
                 row.Visible = true;
             }
         }
+
+        private void cbSearchProve_TabIndexChanged(object sender, EventArgs e)
+        {
+
+            OptionsComboBox temporal = (OptionsComboBox)cbSearchProve.SelectedItem;
+            string textppl = temporal.texto;
+
+            if (textppl == "RUC")
+            {
+                txtSearchProve.PlaceholderText = "EJ: 008-092008-0989Z";
+            }
+            else if (textppl == "Razon Social")
+            {
+                txtSearchProve.PlaceholderText = "EJ: test";
+            }
+            else
+            {
+                txtSearchProve.PlaceholderText = "Buscar...";
+            }
+        }
+
+        private void txtSearchProve_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btnbuscar.PerformClick();
+                txtSearchProve.Focus();
+            }
+        }
     }
-    
+
 }

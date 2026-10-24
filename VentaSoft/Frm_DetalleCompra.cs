@@ -19,11 +19,6 @@ namespace Main
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnbuscarr_Click(object sender, EventArgs e)
         {
             Entidad_Compra oEntidad_Compra = new S_Compras().ObtenerCompra(txtbusquedaa.Text.Trim());
@@ -62,9 +57,14 @@ namespace Main
         private void Frm_DetalleCompra_Load(object sender, EventArgs e)
         {
 
+            dataGridView1.HeaderBack = Color.FromArgb(11, 127, 87);   // fondo donde están los nombres
+            dataGridView1.MutedColor = Color.White;    // texto de los nombres
+            dataGridView1.LineColor = Color.FromArgb(200, 208, 204);    // color de las líneas
+            dataGridView1.ShowColumnDividers = true;                    // líneas verticales
+            dataGridView1.Invalidate();
         }
 
-        // NUEVO: método del botón Limpiar (el diseñador ya lo tenía conectado y faltaba)
+        // método del botón Limpiar
         private void btnlimpiarr_Click(object sender, EventArgs e)
         {
             txtbusquedaa.Clear();
@@ -91,8 +91,15 @@ namespace Main
             string nombreNegocio = "VentaSoft";
             string docNegocio = "000-000000-0000X";
             string direcNegocio = "Managua, Nicaragua, del barrio villa nueva 3km.S";
+            string telNegocio = "8888-8888"; // telefono del negocio
 
             string rutaPlantilla = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plantilla", "PlantillaCompra.html");
+
+            // elige la plantilla segun el tipo de documento Factura o Boleta
+            bool esFactura = string.Equals(txtTipodedocumentoo.Text.Trim(), "Factura", StringComparison.OrdinalIgnoreCase);
+            string archivoPlantilla = esFactura ? "PlantillaFactura.html" : "PlantillaBoleta.html";
+            rutaPlantilla = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plantilla", archivoPlantilla);
+
             if (!File.Exists(rutaPlantilla))
             {
                 MessageBox.Show("No se encontró la plantilla en: " + rutaPlantilla, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -118,6 +125,7 @@ namespace Main
             html = html.Replace("@nombrenegocio", nombreNegocio);
             html = html.Replace("@docnegocio", docNegocio);
             html = html.Replace("@direcnegocio", direcNegocio);
+            html = html.Replace("@telnegocio", telNegocio); // teléfono solo la boleta lo usa
             html = html.Replace("@tipodocumento", txtTipodedocumentoo.Text);
             html = html.Replace("@numerodocumento", txtnumerodocumentoo.Text);
             html = html.Replace("@docproveedor", txtdocproveedoorr.Text);
@@ -125,6 +133,7 @@ namespace Main
             html = html.Replace("@fecharegistro", txtFechaa.Text);
             html = html.Replace("@usuarioregistro", txtUsuarioo.Text);
             html = html.Replace("@montototal", txtmontototall.Text);
+            html = html.Replace("@subtotal", txtmontototall.Text); // sin IVA, el subtotal es igual al total
 
             string filas = string.Empty;
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -136,6 +145,39 @@ namespace Main
                 filas += "<td>" + row.Cells["Cantidad"].Value + "</td>";
                 filas += "<td>" + row.Cells["SubTotal"].Value + "</td>";
                 filas += "</tr>";
+            }
+
+            // las filas cambian según el tipo se vuelven a armar a partir del mismo grid
+            filas = string.Empty;
+            int numFila = 0;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.IsNewRow) continue;
+                numFila++;
+
+                if (esFactura)
+                {
+                    // factura, 4 columnas con fila alterna (gris claro en las impares) y números a la derecha
+                    string fondo = (numFila % 2 == 1) ? "background-color:#F1F5F3;" : "";
+                    string est = fondo + "padding:8px;font-size:12px;";
+                    filas += "<tr>";
+                    filas += "<td style=\"" + est + "text-align:left\">" + row.Cells["Producto"].Value + "</td>";
+                    filas += "<td style=\"" + est + "text-align:right\">" + row.Cells["PrecioCompra"].Value + "</td>";
+                    filas += "<td style=\"" + est + "text-align:right\">" + row.Cells["Cantidad"].Value + "</td>";
+                    filas += "<td style=\"" + est + "text-align:right\">" + row.Cells["SubTotal"].Value + "</td>";
+                    filas += "</tr>";
+                }
+                else
+                {
+                    //boleta, cada producto en dos líneas (nombre y total, luego cantidad x precio)
+                    filas += "<tr>";
+                    filas += "<td style=\"text-align:left;font-size:12px;padding-top:6px\">" + row.Cells["Producto"].Value + "</td>";
+                    filas += "<td style=\"text-align:right;font-size:12px;padding-top:6px\">" + row.Cells["SubTotal"].Value + "</td>";
+                    filas += "</tr>";
+                    filas += "<tr>";
+                    filas += "<td colspan=\"2\" style=\"text-align:left;font-size:11px;color:#6B7570\">" + row.Cells["Cantidad"].Value + " x " + row.Cells["PrecioCompra"].Value + "</td>";
+                    filas += "</tr>";
+                }
             }
             html = html.Replace("@filas", filas);
 
@@ -180,6 +222,36 @@ namespace Main
                 e.SuppressKeyPress = true;
                 btnbuscarr.PerformClick();
             }
+        }
+
+        private void txtFechaa_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void uiGroupBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtnombreproveedoorr_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

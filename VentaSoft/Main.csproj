@@ -1,66 +1,82 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net10.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Plantilla\logo.png" />
-    <None Remove="Plantilla\PlantillaCompra.html" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Plantilla\logo.png" />
+		<None Remove="Plantilla\PlantillaBoleta.html" />
+		<None Remove="Plantilla\PlantillaCompra.html" />
+		<None Remove="Plantilla\PlantillaFactura.html" />
+		<None Remove="Plantilla\PlantillaVentaBoleta.html" />
+		<None Remove="Plantilla\PlantillaVentaFactura.html" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Include="Plantilla\logo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Plantilla\PlantillaCompra.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="Plantilla\logo.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Plantilla\PlantillaBoleta.html">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Plantilla\PlantillaCompra.html">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Plantilla\PlantillaFactura.html">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Plantilla\PlantillaVentaBoleta.html">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Plantilla\PlantillaVentaFactura.html">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="ClosedXML" Version="0.105.1" />
-    <PackageReference Include="Gu5.UI" Version="1.0.3.1" />
-    <PackageReference Include="itext.pdfhtml" Version="6.3.4" />
-    <PackageReference Include="Krypton.Toolkit" Version="105.26.7.201" />
-    <PackageReference Include="ReaLTaiizor" Version="3.8.2.1" />
-    <PackageReference Include="SunnyUI" Version="3.9.8" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="ClosedXML" Version="0.105.1" />
+		<PackageReference Include="Gu5.UI" Version="1.0.3.1" />
+		<PackageReference Include="itext.pdfhtml" Version="6.3.4" />
+		<PackageReference Include="Krypton.Toolkit" Version="105.26.7.201" />
+		<PackageReference Include="ReaLTaiizor" Version="3.8.2.1" />
+		<PackageReference Include="SunnyUI" Version="3.9.8" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Entitys\Entitys.csproj" />
-    <ProjectReference Include="..\Store\Store.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Entitys\Entitys.csproj" />
+		<ProjectReference Include="..\Store\Store.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Properties\Settings.Designer.cs">
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
 
 </Project>

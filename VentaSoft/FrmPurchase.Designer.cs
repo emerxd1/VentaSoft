@@ -10,7 +10,6 @@
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,551 +21,815 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPurchase));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            label12 = new Label();
-            groupBox1 = new GroupBox();
-            CbTipodeDocumento = new ComboBox();
-            TxtFecha = new TextBox();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            lblTitulo = new Label();
+            groupBox1 = new Sunny.UI.UIPanel();
+            lblTituloGrupo1 = new Label();
             label2 = new Label();
+            TxtFecha = new Sunny.UI.UITextBox();
             label1 = new Label();
-            groupBox2 = new GroupBox();
-            TxtidProv = new TextBox();
-            BtnsearchPro = new Button();
-            TxtnameProveedor = new TextBox();
-            TxtdocProveedor = new TextBox();
-            label4 = new Label();
+            CbTipodeDocumento = new Sunny.UI.UIComboBox();
+            groupBox2 = new Sunny.UI.UIPanel();
+            lblTituloGrupo2 = new Label();
             label3 = new Label();
-            DgvData = new DataGridView();
+            TxtdocProveedor = new Sunny.UI.UITextBox();
+            BtnsearchPro = new Sunny.UI.UISymbolButton();
+            label4 = new Label();
+            TxtnameProveedor = new Sunny.UI.UITextBox();
+            TxtidProv = new TextBox();
+            groupBox3 = new Sunny.UI.UIPanel();
+            lblTituloGrupo3 = new Label();
+            label5 = new Label();
+            TxtcodProd = new Sunny.UI.UITextBox();
+            BtnBuscarProd = new Sunny.UI.UISymbolButton();
+            TxtidProd = new TextBox();
+            label6 = new Label();
+            TxtNombreProd = new Sunny.UI.UITextBox();
+            label7 = new Label();
+            TxtPrecioCompra = new Sunny.UI.UITextBox();
+            label8 = new Label();
+            TxtPrecioVenta = new Sunny.UI.UITextBox();
+            label9 = new Label();
+            TxtCantidad = new NumericUpDown();
+            uiPanelGrid = new Sunny.UI.UIPanel();
+            DgvData = new ModernControls.ModernGrid();
             idProducto = new DataGridViewTextBoxColumn();
             Producto = new DataGridViewTextBoxColumn();
             PrecioCompra = new DataGridViewTextBoxColumn();
             PrecioVenta = new DataGridViewTextBoxColumn();
             Canti = new DataGridViewTextBoxColumn();
             Subto = new DataGridViewTextBoxColumn();
-            BtnEliminar = new DataGridViewButtonColumn();
-            BtnAgregarProd = new Button();
+            BtnEliminar = new DataGridViewTextBoxColumn();
+            BtnAgregarProd = new Sunny.UI.UISymbolButton();
             label10 = new Label();
-            TxtTotalPago = new TextBox();
-            groupBox3 = new GroupBox();
-            TxtCantidad = new NumericUpDown();
-            TxtPrecioVenta = new TextBox();
-            TxtPrecioCompra = new TextBox();
-            TxtNombreProd = new TextBox();
-            label9 = new Label();
-            label8 = new Label();
-            label7 = new Label();
-            label6 = new Label();
-            BtnBuscarProd = new Button();
-            TxtidProd = new TextBox();
-            label5 = new Label();
-            TxtcodProd = new TextBox();
-            BtnRegistrer = new Button();
-            panelGraDi = new Gradient.PanelGradient();
+            TxtTotalPago = new Sunny.UI.UITextBox();
+            BtnRegistrer = new Sunny.UI.UISymbolButton();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)DgvData).BeginInit();
             groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)TxtCantidad).BeginInit();
-            panelGraDi.SuspendLayout();
+            uiPanelGrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DgvData).BeginInit();
             SuspendLayout();
             // 
-            // label12
+            // lblTitulo
             // 
-            label12.AutoSize = true;
-            label12.BackColor = Color.Transparent;
-            label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(3, 9);
-            label12.Name = "label12";
-            label12.Size = new Size(181, 25);
-            label12.TabIndex = 33;
-            label12.Text = "Registro de Compra";
-            label12.TextAlign = ContentAlignment.MiddleLeft;
+            lblTitulo.BackColor = Color.FromArgb(8, 92, 63);
+            lblTitulo.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitulo.ForeColor = Color.White;
+            lblTitulo.Location = new Point(12, 6);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Padding = new Padding(8, 0, 0, 0);
+            lblTitulo.Size = new Size(976, 39);
+            lblTitulo.TabIndex = 0;
+            lblTitulo.Text = "Registro de Compra";
+            lblTitulo.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // groupBox1
             // 
             groupBox1.BackColor = Color.White;
-            groupBox1.Controls.Add(CbTipodeDocumento);
-            groupBox1.Controls.Add(TxtFecha);
+            groupBox1.Controls.Add(lblTituloGrupo1);
             groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(TxtFecha);
             groupBox1.Controls.Add(label1);
-            groupBox1.Font = new Font("Segoe UI Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox1.ForeColor = Color.Black;
-            groupBox1.Location = new Point(3, 37);
+            groupBox1.Controls.Add(CbTipodeDocumento);
+            groupBox1.FillColor = Color.White;
+            groupBox1.FillColor2 = Color.White;
+            groupBox1.Font = new Font("Microsoft Sans Serif", 12F);
+            groupBox1.Location = new Point(12, 50);
+            groupBox1.Margin = new Padding(4, 5, 4, 5);
+            groupBox1.MinimumSize = new Size(1, 1);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(217, 130);
-            groupBox1.TabIndex = 34;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Informacíon de la Compra";
+            groupBox1.Radius = 12;
+            groupBox1.RectColor = Color.Silver;
+            groupBox1.Size = new Size(348, 96);
+            groupBox1.TabIndex = 1;
+            groupBox1.Text = null;
+            groupBox1.TextAlignment = ContentAlignment.MiddleCenter;
             // 
-            // CbTipodeDocumento
+            // lblTituloGrupo1
             // 
-            CbTipodeDocumento.BackColor = Color.White;
-            CbTipodeDocumento.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            CbTipodeDocumento.FormattingEnabled = true;
-            CbTipodeDocumento.Location = new Point(9, 100);
-            CbTipodeDocumento.Name = "CbTipodeDocumento";
-            CbTipodeDocumento.Size = new Size(187, 25);
-            CbTipodeDocumento.TabIndex = 36;
-            // 
-            // TxtFecha
-            // 
-            TxtFecha.BackColor = Color.White;
-            TxtFecha.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TxtFecha.Location = new Point(9, 38);
-            TxtFecha.Name = "TxtFecha";
-            TxtFecha.Size = new Size(122, 33);
-            TxtFecha.TabIndex = 35;
-            TxtFecha.TextChanged += TxtFecha_TextChanged;
+            lblTituloGrupo1.BackColor = Color.FromArgb(8, 92, 63);
+            lblTituloGrupo1.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloGrupo1.ForeColor = Color.White;
+            lblTituloGrupo1.Location = new Point(3, 1);
+            lblTituloGrupo1.Name = "lblTituloGrupo1";
+            lblTituloGrupo1.Padding = new Padding(8, 0, 0, 0);
+            lblTituloGrupo1.Size = new Size(342, 22);
+            lblTituloGrupo1.TabIndex = 0;
+            lblTituloGrupo1.Text = "Información de la Compra";
+            lblTituloGrupo1.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Black", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(9, 80);
+            label2.BackColor = Color.White;
+            label2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(31, 58, 48);
+            label2.Location = new Point(14, 30);
             label2.Name = "label2";
-            label2.Size = new Size(135, 17);
+            label2.Size = new Size(56, 20);
             label2.TabIndex = 1;
-            label2.Text = "Tipo de Documento:";
+            label2.Text = "Fecha*";
+            // 
+            // TxtFecha
+            // 
+            TxtFecha.Cursor = Cursors.IBeam;
+            TxtFecha.FillReadOnlyColor = Color.White;
+            TxtFecha.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TxtFecha.ForeReadOnlyColor = Color.White;
+            TxtFecha.Location = new Point(14, 52);
+            TxtFecha.Margin = new Padding(3, 2, 3, 2);
+            TxtFecha.MinimumSize = new Size(1, 16);
+            TxtFecha.Name = "TxtFecha";
+            TxtFecha.Padding = new Padding(5);
+            TxtFecha.Radius = 10;
+            TxtFecha.ReadOnly = true;
+            TxtFecha.RectColor = Color.Silver;
+            TxtFecha.RectReadOnlyColor = Color.Gray;
+            TxtFecha.ShowText = false;
+            TxtFecha.Size = new Size(150, 28);
+            TxtFecha.Style = Sunny.UI.UIStyle.Custom;
+            TxtFecha.SymbolColor = Color.FromArgb(57, 79, 71);
+            TxtFecha.TabIndex = 2;
+            TxtFecha.TextAlignment = ContentAlignment.MiddleLeft;
+            TxtFecha.Watermark = "";
+            TxtFecha.TextChanged += TxtFecha_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.Aquamarine;
-            label1.Font = new Font("Segoe UI Black", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(9, 20);
+            label1.BackColor = Color.White;
+            label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(31, 58, 48);
+            label1.Location = new Point(176, 30);
             label1.Name = "label1";
-            label1.Size = new Size(47, 17);
-            label1.TabIndex = 0;
-            label1.Text = "Fecha:";
+            label1.Size = new Size(154, 20);
+            label1.TabIndex = 3;
+            label1.Text = "Tipo de Documento*";
+            // 
+            // CbTipodeDocumento
+            // 
+            CbTipodeDocumento.BackgroundImageLayout = ImageLayout.Center;
+            CbTipodeDocumento.Cursor = Cursors.HSplit;
+            CbTipodeDocumento.DataSource = null;
+            CbTipodeDocumento.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            CbTipodeDocumento.FillColor = Color.White;
+            CbTipodeDocumento.Font = new Font("Microsoft Sans Serif", 12F);
+            CbTipodeDocumento.ItemHoverColor = Color.FromArgb(201, 228, 217);
+            CbTipodeDocumento.ItemRectColor = Color.FromArgb(57, 79, 71);
+            CbTipodeDocumento.ItemSelectBackColor = Color.Silver;
+            CbTipodeDocumento.ItemSelectForeColor = Color.FromArgb(57, 79, 71);
+            CbTipodeDocumento.Location = new Point(176, 51);
+            CbTipodeDocumento.Margin = new Padding(4, 5, 4, 5);
+            CbTipodeDocumento.MinimumSize = new Size(63, 0);
+            CbTipodeDocumento.Name = "CbTipodeDocumento";
+            CbTipodeDocumento.Padding = new Padding(0, 0, 30, 2);
+            CbTipodeDocumento.Radius = 10;
+            CbTipodeDocumento.RectColor = Color.Silver;
+            CbTipodeDocumento.Size = new Size(150, 29);
+            CbTipodeDocumento.Style = Sunny.UI.UIStyle.Custom;
+            CbTipodeDocumento.StyleDropDown = Sunny.UI.UIStyle.Custom;
+            CbTipodeDocumento.SymbolSize = 24;
+            CbTipodeDocumento.TabIndex = 4;
+            CbTipodeDocumento.TextAlignment = ContentAlignment.MiddleLeft;
+            CbTipodeDocumento.Watermark = "";
             // 
             // groupBox2
             // 
             groupBox2.BackColor = Color.White;
-            groupBox2.Controls.Add(TxtidProv);
-            groupBox2.Controls.Add(BtnsearchPro);
-            groupBox2.Controls.Add(TxtnameProveedor);
-            groupBox2.Controls.Add(TxtdocProveedor);
-            groupBox2.Controls.Add(label4);
+            groupBox2.Controls.Add(lblTituloGrupo2);
             groupBox2.Controls.Add(label3);
-            groupBox2.Font = new Font("Segoe UI Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox2.ForeColor = Color.Black;
-            groupBox2.Location = new Point(3, 173);
+            groupBox2.Controls.Add(TxtdocProveedor);
+            groupBox2.Controls.Add(BtnsearchPro);
+            groupBox2.Controls.Add(label4);
+            groupBox2.Controls.Add(TxtnameProveedor);
+            groupBox2.Controls.Add(TxtidProv);
+            groupBox2.FillColor = Color.White;
+            groupBox2.FillColor2 = Color.White;
+            groupBox2.Font = new Font("Microsoft Sans Serif", 12F);
+            groupBox2.Location = new Point(12, 154);
+            groupBox2.Margin = new Padding(4, 5, 4, 5);
+            groupBox2.MinimumSize = new Size(1, 1);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(217, 167);
-            groupBox2.TabIndex = 35;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Información del Proveedor";
+            groupBox2.Radius = 12;
+            groupBox2.RectColor = Color.Silver;
+            groupBox2.Size = new Size(348, 154);
+            groupBox2.TabIndex = 2;
+            groupBox2.Text = null;
+            groupBox2.TextAlignment = ContentAlignment.MiddleCenter;
             // 
-            // TxtidProv
+            // lblTituloGrupo2
             // 
-            TxtidProv.Location = new Point(118, 104);
-            TxtidProv.Name = "TxtidProv";
-            TxtidProv.Size = new Size(27, 28);
-            TxtidProv.TabIndex = 39;
-            TxtidProv.Visible = false;
-            // 
-            // BtnsearchPro
-            // 
-            BtnsearchPro.Anchor = AnchorStyles.Top;
-            BtnsearchPro.BackColor = Color.Transparent;
-            BtnsearchPro.Cursor = Cursors.Hand;
-            BtnsearchPro.FlatAppearance.BorderSize = 0;
-            BtnsearchPro.FlatAppearance.MouseOverBackColor = Color.Silver;
-            BtnsearchPro.FlatStyle = FlatStyle.Flat;
-            BtnsearchPro.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BtnsearchPro.Image = (Image)resources.GetObject("BtnsearchPro.Image");
-            BtnsearchPro.Location = new Point(146, 64);
-            BtnsearchPro.Name = "BtnsearchPro";
-            BtnsearchPro.Size = new Size(32, 29);
-            BtnsearchPro.TabIndex = 38;
-            BtnsearchPro.TextImageRelation = TextImageRelation.ImageBeforeText;
-            BtnsearchPro.UseVisualStyleBackColor = false;
-            BtnsearchPro.Click += BtnsearchPro_Click;
-            // 
-            // TxtnameProveedor
-            // 
-            TxtnameProveedor.BackColor = Color.White;
-            TxtnameProveedor.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TxtnameProveedor.Location = new Point(0, 135);
-            TxtnameProveedor.Multiline = true;
-            TxtnameProveedor.Name = "TxtnameProveedor";
-            TxtnameProveedor.PlaceholderText = "\"AUTOGENERADO\"";
-            TxtnameProveedor.Size = new Size(211, 26);
-            TxtnameProveedor.TabIndex = 37;
-            // 
-            // TxtdocProveedor
-            // 
-            TxtdocProveedor.BackColor = Color.White;
-            TxtdocProveedor.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TxtdocProveedor.Location = new Point(6, 68);
-            TxtdocProveedor.Name = "TxtdocProveedor";
-            TxtdocProveedor.PlaceholderText = "\"AUTOGENERADO\"";
-            TxtdocProveedor.Size = new Size(139, 25);
-            TxtdocProveedor.TabIndex = 36;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Aquamarine;
-            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(6, 48);
-            label4.Name = "label4";
-            label4.Size = new Size(37, 17);
-            label4.TabIndex = 2;
-            label4.Text = "RUC:";
+            lblTituloGrupo2.BackColor = Color.FromArgb(8, 92, 63);
+            lblTituloGrupo2.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloGrupo2.ForeColor = Color.White;
+            lblTituloGrupo2.Location = new Point(3, 0);
+            lblTituloGrupo2.Name = "lblTituloGrupo2";
+            lblTituloGrupo2.Padding = new Padding(8, 0, 0, 0);
+            lblTituloGrupo2.Size = new Size(342, 22);
+            lblTituloGrupo2.TabIndex = 0;
+            lblTituloGrupo2.Text = "Información del Proveedor";
+            lblTituloGrupo2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.BackColor = Color.Aquamarine;
-            label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(6, 109);
+            label3.BackColor = Color.White;
+            label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.FromArgb(31, 58, 48);
+            label3.Location = new Point(14, 26);
             label3.Name = "label3";
-            label3.Size = new Size(89, 17);
+            label3.Size = new Size(46, 20);
             label3.TabIndex = 1;
-            label3.Text = "Razón Social:";
+            label3.Text = "RUC*";
             // 
-            // DgvData
+            // TxtdocProveedor
             // 
-            DgvData.AllowUserToAddRows = false;
-            DgvData.BackgroundColor = Color.White;
-            DgvData.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.LightSeaGreen;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            DgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            DgvData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DgvData.Columns.AddRange(new DataGridViewColumn[] { idProducto, Producto, PrecioCompra, PrecioVenta, Canti, Subto, BtnEliminar });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            DgvData.DefaultCellStyle = dataGridViewCellStyle2;
-            DgvData.EnableHeadersVisualStyles = false;
-            DgvData.GridColor = Color.White;
-            DgvData.Location = new Point(226, 37);
-            DgvData.Name = "DgvData";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            DgvData.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            DgvData.Size = new Size(733, 516);
-            DgvData.TabIndex = 37;
-            DgvData.CellContentClick += DgvData_CellContentClick;
-            DgvData.CellPainting += DgvData_CellPainting;
-            DgvData.RowsAdded += DgvData_RowsAdded;
-            DgvData.RowsRemoved += DgvData_RowsRemoved;
+            TxtdocProveedor.Cursor = Cursors.IBeam;
+            TxtdocProveedor.FillReadOnlyColor = Color.White;
+            TxtdocProveedor.Font = new Font("Microsoft Sans Serif", 12F);
+            TxtdocProveedor.Location = new Point(14, 48);
+            TxtdocProveedor.Margin = new Padding(3, 2, 3, 2);
+            TxtdocProveedor.MinimumSize = new Size(1, 16);
+            TxtdocProveedor.Name = "TxtdocProveedor";
+            TxtdocProveedor.Padding = new Padding(5);
+            TxtdocProveedor.Radius = 10;
+            TxtdocProveedor.ReadOnly = true;
+            TxtdocProveedor.RectColor = Color.Silver;
+            TxtdocProveedor.ShowText = false;
+            TxtdocProveedor.Size = new Size(270, 28);
+            TxtdocProveedor.Style = Sunny.UI.UIStyle.Custom;
+            TxtdocProveedor.SymbolColor = Color.FromArgb(57, 79, 71);
+            TxtdocProveedor.TabIndex = 2;
+            TxtdocProveedor.TextAlignment = ContentAlignment.MiddleLeft;
+            TxtdocProveedor.Watermark = "AUTOGENERADO";
             // 
-            // idProducto
+            // BtnsearchPro
             // 
-            idProducto.HeaderText = "";
-            idProducto.MinimumWidth = 6;
-            idProducto.Name = "idProducto";
-            idProducto.Visible = false;
+            BtnsearchPro.BackColor = Color.Transparent;
+            BtnsearchPro.FillColor = Color.FromArgb(0, 192, 0);
+            BtnsearchPro.FillColor2 = Color.FromArgb(11, 127, 87);
+            BtnsearchPro.FillDisableColor = Color.FromArgb(224, 224, 224);
+            BtnsearchPro.FillHoverColor = Color.FromArgb(8, 92, 63);
+            BtnsearchPro.FillPressColor = Color.Silver;
+            BtnsearchPro.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnsearchPro.Location = new Point(292, 50);
+            BtnsearchPro.MinimumSize = new Size(1, 1);
+            BtnsearchPro.Name = "BtnsearchPro";
+            BtnsearchPro.Radius = 12;
+            BtnsearchPro.RectColor = Color.White;
+            BtnsearchPro.RectDisableColor = Color.White;
+            BtnsearchPro.RectHoverColor = Color.White;
+            BtnsearchPro.RectPressColor = Color.White;
+            BtnsearchPro.RectSelectedColor = Color.White;
+            BtnsearchPro.ShowFocusLine = true;
+            BtnsearchPro.Size = new Size(44, 32);
+            BtnsearchPro.Style = Sunny.UI.UIStyle.Custom;
+            BtnsearchPro.Symbol = 61442;
+            BtnsearchPro.TabIndex = 3;
+            BtnsearchPro.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            BtnsearchPro.Click += BtnsearchPro_Click;
             // 
-            // Producto
+            // label4
             // 
-            Producto.HeaderText = "Producto";
-            Producto.MinimumWidth = 6;
-            Producto.Name = "Producto";
-            Producto.Width = 200;
+            label4.AutoSize = true;
+            label4.BackColor = Color.White;
+            label4.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.FromArgb(31, 58, 48);
+            label4.Location = new Point(14, 82);
+            label4.Name = "label4";
+            label4.Size = new Size(103, 20);
+            label4.TabIndex = 4;
+            label4.Text = "Razón Social*";
             // 
-            // PrecioCompra
+            // TxtnameProveedor
             // 
-            PrecioCompra.HeaderText = "Precio Compra";
-            PrecioCompra.MinimumWidth = 6;
-            PrecioCompra.Name = "PrecioCompra";
-            PrecioCompra.Width = 120;
+            TxtnameProveedor.Cursor = Cursors.IBeam;
+            TxtnameProveedor.FillReadOnlyColor = Color.White;
+            TxtnameProveedor.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TxtnameProveedor.Location = new Point(14, 105);
+            TxtnameProveedor.Margin = new Padding(3, 2, 3, 2);
+            TxtnameProveedor.MinimumSize = new Size(1, 16);
+            TxtnameProveedor.Multiline = true;
+            TxtnameProveedor.Name = "TxtnameProveedor";
+            TxtnameProveedor.Padding = new Padding(5);
+            TxtnameProveedor.Radius = 10;
+            TxtnameProveedor.ReadOnly = true;
+            TxtnameProveedor.RectColor = Color.Silver;
+            TxtnameProveedor.ShowText = false;
+            TxtnameProveedor.Size = new Size(322, 46);
+            TxtnameProveedor.Style = Sunny.UI.UIStyle.Custom;
+            TxtnameProveedor.SymbolColor = Color.FromArgb(57, 79, 71);
+            TxtnameProveedor.TabIndex = 5;
+            TxtnameProveedor.TextAlignment = ContentAlignment.TopLeft;
+            TxtnameProveedor.Watermark = "AUTOGENERADO";
             // 
-            // PrecioVenta
+            // TxtidProv
             // 
-            PrecioVenta.HeaderText = "Precio Venta";
-            PrecioVenta.MinimumWidth = 6;
-            PrecioVenta.Name = "PrecioVenta";
-            PrecioVenta.Width = 120;
-            // 
-            // Canti
-            // 
-            Canti.HeaderText = "Cantidad";
-            Canti.MinimumWidth = 6;
-            Canti.Name = "Canti";
-            // 
-            // Subto
-            // 
-            Subto.HeaderText = "Sub Total";
-            Subto.MinimumWidth = 6;
-            Subto.Name = "Subto";
-            // 
-            // BtnEliminar
-            // 
-            BtnEliminar.HeaderText = "";
-            BtnEliminar.MinimumWidth = 6;
-            BtnEliminar.Name = "BtnEliminar";
-            BtnEliminar.Width = 50;
-            // 
-            // BtnAgregarProd
-            // 
-            BtnAgregarProd.BackColor = Color.White;
-            BtnAgregarProd.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnAgregarProd.ForeColor = Color.FromArgb(0, 64, 64);
-            BtnAgregarProd.Image = Properties.Resources.plus;
-            BtnAgregarProd.ImageAlign = ContentAlignment.TopCenter;
-            BtnAgregarProd.Location = new Point(226, 556);
-            BtnAgregarProd.Name = "BtnAgregarProd";
-            BtnAgregarProd.Size = new Size(80, 57);
-            BtnAgregarProd.TabIndex = 38;
-            BtnAgregarProd.Text = "Agregar";
-            BtnAgregarProd.TextAlign = ContentAlignment.BottomCenter;
-            BtnAgregarProd.UseVisualStyleBackColor = false;
-            BtnAgregarProd.Click += BtnAgregarProd_Click;
-            // 
-            // label10
-            // 
-            label10.BackColor = Color.White;
-            label10.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.ForeColor = Color.Black;
-            label10.Location = new Point(757, 564);
-            label10.Name = "label10";
-            label10.Size = new Size(96, 20);
-            label10.TabIndex = 39;
-            label10.Text = "Total a Pagar:";
-            // 
-            // TxtTotalPago
-            // 
-            TxtTotalPago.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TxtTotalPago.Location = new Point(859, 559);
-            TxtTotalPago.Name = "TxtTotalPago";
-            TxtTotalPago.Size = new Size(100, 25);
-            TxtTotalPago.TabIndex = 40;
-            TxtTotalPago.Text = "0";
-            TxtTotalPago.TextChanged += TxtTotalPago_TextChanged;
+            TxtidProv.Location = new Point(246, 76);
+            TxtidProv.Name = "TxtidProv";
+            TxtidProv.Size = new Size(40, 26);
+            TxtidProv.TabIndex = 6;
+            TxtidProv.Visible = false;
             // 
             // groupBox3
             // 
             groupBox3.BackColor = Color.White;
-            groupBox3.Controls.Add(TxtCantidad);
-            groupBox3.Controls.Add(TxtPrecioVenta);
-            groupBox3.Controls.Add(TxtPrecioCompra);
-            groupBox3.Controls.Add(TxtNombreProd);
-            groupBox3.Controls.Add(label9);
-            groupBox3.Controls.Add(label8);
-            groupBox3.Controls.Add(label7);
-            groupBox3.Controls.Add(label6);
-            groupBox3.Controls.Add(BtnBuscarProd);
-            groupBox3.Controls.Add(TxtidProd);
+            groupBox3.Controls.Add(lblTituloGrupo3);
             groupBox3.Controls.Add(label5);
             groupBox3.Controls.Add(TxtcodProd);
-            groupBox3.Font = new Font("Segoe UI Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox3.ForeColor = Color.Black;
-            groupBox3.Location = new Point(3, 346);
+            groupBox3.Controls.Add(BtnBuscarProd);
+            groupBox3.Controls.Add(TxtidProd);
+            groupBox3.Controls.Add(label6);
+            groupBox3.Controls.Add(TxtNombreProd);
+            groupBox3.Controls.Add(label7);
+            groupBox3.Controls.Add(TxtPrecioCompra);
+            groupBox3.Controls.Add(label8);
+            groupBox3.Controls.Add(TxtPrecioVenta);
+            groupBox3.Controls.Add(label9);
+            groupBox3.Controls.Add(TxtCantidad);
+            groupBox3.FillColor = Color.White;
+            groupBox3.FillColor2 = Color.White;
+            groupBox3.Font = new Font("Microsoft Sans Serif", 12F);
+            groupBox3.Location = new Point(12, 312);
+            groupBox3.Margin = new Padding(4, 5, 4, 5);
+            groupBox3.MinimumSize = new Size(1, 1);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(217, 267);
-            groupBox3.TabIndex = 36;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Información del Producto";
+            groupBox3.Radius = 12;
+            groupBox3.RectColor = Color.Silver;
+            groupBox3.Size = new Size(348, 232);
+            groupBox3.TabIndex = 3;
+            groupBox3.Text = null;
+            groupBox3.TextAlignment = ContentAlignment.MiddleCenter;
             // 
-            // TxtCantidad
+            // lblTituloGrupo3
             // 
-            TxtCantidad.BackColor = Color.White;
-            TxtCantidad.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TxtCantidad.Location = new Point(144, 229);
-            TxtCantidad.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            TxtCantidad.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            TxtCantidad.Name = "TxtCantidad";
-            TxtCantidad.Size = new Size(53, 25);
-            TxtCantidad.TabIndex = 49;
-            TxtCantidad.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            TxtCantidad.KeyDown += TxtCantidad_KeyDown;
-            // 
-            // TxtPrecioVenta
-            // 
-            TxtPrecioVenta.BackColor = Color.White;
-            TxtPrecioVenta.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TxtPrecioVenta.Location = new Point(142, 188);
-            TxtPrecioVenta.Name = "TxtPrecioVenta";
-            TxtPrecioVenta.PlaceholderText = "EJ: 2";
-            TxtPrecioVenta.Size = new Size(51, 25);
-            TxtPrecioVenta.TabIndex = 48;
-            TxtPrecioVenta.KeyDown += TxtPrecioVenta_KeyDown;
-            TxtPrecioVenta.KeyPress += TxtPrecioVenta_KeyPress;
-            // 
-            // TxtPrecioCompra
-            // 
-            TxtPrecioCompra.BackColor = Color.White;
-            TxtPrecioCompra.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TxtPrecioCompra.Location = new Point(143, 156);
-            TxtPrecioCompra.Name = "TxtPrecioCompra";
-            TxtPrecioCompra.PlaceholderText = "Ej: 23";
-            TxtPrecioCompra.Size = new Size(50, 25);
-            TxtPrecioCompra.TabIndex = 47;
-            TxtPrecioCompra.KeyDown += TxtPrecioCompra_KeyDown;
-            TxtPrecioCompra.KeyPress += TxtPrecioCompra_KeyPress;
-            // 
-            // TxtNombreProd
-            // 
-            TxtNombreProd.BackColor = Color.White;
-            TxtNombreProd.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TxtNombreProd.Location = new Point(9, 115);
-            TxtNombreProd.Name = "TxtNombreProd";
-            TxtNombreProd.PlaceholderText = "AUTOGENERADO";
-            TxtNombreProd.Size = new Size(208, 25);
-            TxtNombreProd.TabIndex = 46;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.BackColor = Color.Aquamarine;
-            label9.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(71, 234);
-            label9.Name = "label9";
-            label9.Size = new Size(67, 17);
-            label9.TabIndex = 45;
-            label9.Text = "Cantidad:";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.BackColor = Color.Aquamarine;
-            label8.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(22, 193);
-            label8.Name = "label8";
-            label8.Size = new Size(123, 17);
-            label8.TabIndex = 44;
-            label8.Text = "Precio de la Venta:";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.BackColor = Color.Aquamarine;
-            label7.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(9, 164);
-            label7.Name = "label7";
-            label7.Size = new Size(136, 17);
-            label7.TabIndex = 43;
-            label7.Text = "Precio de la Compra:";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.Aquamarine;
-            label6.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(9, 96);
-            label6.Name = "label6";
-            label6.Size = new Size(68, 17);
-            label6.TabIndex = 42;
-            label6.Text = "Producto:";
-            // 
-            // BtnBuscarProd
-            // 
-            BtnBuscarProd.Anchor = AnchorStyles.Top;
-            BtnBuscarProd.BackColor = Color.Transparent;
-            BtnBuscarProd.Cursor = Cursors.Hand;
-            BtnBuscarProd.FlatAppearance.BorderSize = 0;
-            BtnBuscarProd.FlatAppearance.MouseOverBackColor = Color.Silver;
-            BtnBuscarProd.FlatStyle = FlatStyle.Flat;
-            BtnBuscarProd.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BtnBuscarProd.Image = (Image)resources.GetObject("BtnBuscarProd.Image");
-            BtnBuscarProd.Location = new Point(151, 53);
-            BtnBuscarProd.Name = "BtnBuscarProd";
-            BtnBuscarProd.Size = new Size(32, 29);
-            BtnBuscarProd.TabIndex = 41;
-            BtnBuscarProd.TextImageRelation = TextImageRelation.ImageBeforeText;
-            BtnBuscarProd.UseVisualStyleBackColor = false;
-            BtnBuscarProd.Click += BtnBuscarProd_Click;
-            // 
-            // TxtidProd
-            // 
-            TxtidProd.Location = new Point(137, 20);
-            TxtidProd.Name = "TxtidProd";
-            TxtidProd.Size = new Size(27, 28);
-            TxtidProd.TabIndex = 40;
-            TxtidProd.Visible = false;
+            lblTituloGrupo3.BackColor = Color.FromArgb(8, 92, 63);
+            lblTituloGrupo3.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloGrupo3.ForeColor = Color.White;
+            lblTituloGrupo3.Location = new Point(3, 1);
+            lblTituloGrupo3.Name = "lblTituloGrupo3";
+            lblTituloGrupo3.Padding = new Padding(8, 0, 0, 0);
+            lblTituloGrupo3.Size = new Size(342, 22);
+            lblTituloGrupo3.TabIndex = 0;
+            lblTituloGrupo3.Text = "Información del Producto";
+            lblTituloGrupo3.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.BackColor = Color.Aquamarine;
-            label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(6, 41);
+            label5.BackColor = Color.White;
+            label5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.FromArgb(31, 58, 48);
+            label5.Location = new Point(14, 30);
             label5.Name = "label5";
-            label5.Size = new Size(125, 17);
-            label5.TabIndex = 38;
-            label5.Text = "Cod. Del Producto:";
+            label5.Size = new Size(133, 20);
+            label5.TabIndex = 1;
+            label5.Text = "Cód. del Producto";
             // 
             // TxtcodProd
             // 
-            TxtcodProd.BackColor = Color.White;
-            TxtcodProd.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TxtcodProd.Location = new Point(6, 59);
+            TxtcodProd.Cursor = Cursors.IBeam;
+            TxtcodProd.FillReadOnlyColor = Color.White;
+            TxtcodProd.Font = new Font("Microsoft Sans Serif", 12F);
+            TxtcodProd.Location = new Point(14, 52);
+            TxtcodProd.Margin = new Padding(3, 2, 3, 2);
+            TxtcodProd.MinimumSize = new Size(1, 16);
             TxtcodProd.Name = "TxtcodProd";
-            TxtcodProd.PlaceholderText = "EJ: \"P0001\" O \"AUTO\"";
-            TxtcodProd.Size = new Size(139, 25);
-            TxtcodProd.TabIndex = 37;
+            TxtcodProd.Padding = new Padding(5);
+            TxtcodProd.Radius = 10;
+            TxtcodProd.RectColor = Color.Silver;
+            TxtcodProd.ShowText = false;
+            TxtcodProd.Size = new Size(270, 28);
+            TxtcodProd.Style = Sunny.UI.UIStyle.Custom;
+            TxtcodProd.SymbolColor = Color.FromArgb(57, 79, 71);
+            TxtcodProd.TabIndex = 2;
+            TxtcodProd.TextAlignment = ContentAlignment.MiddleLeft;
+            TxtcodProd.Watermark = "EJ: \"P0001\" ";
             TxtcodProd.KeyDown += TxtcodProd_KeyDown;
+            // 
+            // BtnBuscarProd
+            // 
+            BtnBuscarProd.BackColor = Color.Transparent;
+            BtnBuscarProd.FillColor = Color.FromArgb(0, 192, 0);
+            BtnBuscarProd.FillColor2 = Color.FromArgb(11, 127, 87);
+            BtnBuscarProd.FillDisableColor = Color.FromArgb(224, 224, 224);
+            BtnBuscarProd.FillHoverColor = Color.FromArgb(8, 92, 63);
+            BtnBuscarProd.FillPressColor = Color.Silver;
+            BtnBuscarProd.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnBuscarProd.Location = new Point(292, 50);
+            BtnBuscarProd.MinimumSize = new Size(1, 1);
+            BtnBuscarProd.Name = "BtnBuscarProd";
+            BtnBuscarProd.Radius = 12;
+            BtnBuscarProd.RectColor = Color.White;
+            BtnBuscarProd.RectDisableColor = Color.White;
+            BtnBuscarProd.RectHoverColor = Color.White;
+            BtnBuscarProd.RectPressColor = Color.White;
+            BtnBuscarProd.RectSelectedColor = Color.White;
+            BtnBuscarProd.ShowFocusLine = true;
+            BtnBuscarProd.Size = new Size(44, 32);
+            BtnBuscarProd.Style = Sunny.UI.UIStyle.Custom;
+            BtnBuscarProd.Symbol = 61442;
+            BtnBuscarProd.TabIndex = 3;
+            BtnBuscarProd.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            BtnBuscarProd.Click += BtnBuscarProd_Click;
+            // 
+            // TxtidProd
+            // 
+            TxtidProd.Location = new Point(244, 26);
+            TxtidProd.Name = "TxtidProd";
+            TxtidProd.Size = new Size(40, 26);
+            TxtidProd.TabIndex = 4;
+            TxtidProd.Visible = false;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.White;
+            label6.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            label6.ForeColor = Color.FromArgb(31, 58, 48);
+            label6.Location = new Point(14, 90);
+            label6.Name = "label6";
+            label6.Size = new Size(73, 20);
+            label6.TabIndex = 5;
+            label6.Text = "Producto";
+            // 
+            // TxtNombreProd
+            // 
+            TxtNombreProd.Cursor = Cursors.IBeam;
+            TxtNombreProd.FillReadOnlyColor = Color.White;
+            TxtNombreProd.Font = new Font("Microsoft Sans Serif", 12F);
+            TxtNombreProd.Location = new Point(14, 112);
+            TxtNombreProd.Margin = new Padding(3, 2, 3, 2);
+            TxtNombreProd.MinimumSize = new Size(1, 16);
+            TxtNombreProd.Name = "TxtNombreProd";
+            TxtNombreProd.Padding = new Padding(5);
+            TxtNombreProd.Radius = 10;
+            TxtNombreProd.ReadOnly = true;
+            TxtNombreProd.RectColor = Color.Silver;
+            TxtNombreProd.ShowText = false;
+            TxtNombreProd.Size = new Size(322, 28);
+            TxtNombreProd.Style = Sunny.UI.UIStyle.Custom;
+            TxtNombreProd.SymbolColor = Color.FromArgb(57, 79, 71);
+            TxtNombreProd.TabIndex = 6;
+            TxtNombreProd.TextAlignment = ContentAlignment.MiddleLeft;
+            TxtNombreProd.Watermark = "AUTOGENERADO";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.White;
+            label7.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            label7.ForeColor = Color.FromArgb(31, 58, 48);
+            label7.Location = new Point(14, 152);
+            label7.Name = "label7";
+            label7.Size = new Size(86, 20);
+            label7.TabIndex = 7;
+            label7.Text = "P. Compra*";
+            // 
+            // TxtPrecioCompra
+            // 
+            TxtPrecioCompra.Cursor = Cursors.IBeam;
+            TxtPrecioCompra.FillReadOnlyColor = Color.White;
+            TxtPrecioCompra.Font = new Font("Microsoft Sans Serif", 12F);
+            TxtPrecioCompra.Location = new Point(14, 174);
+            TxtPrecioCompra.Margin = new Padding(3, 2, 3, 2);
+            TxtPrecioCompra.MinimumSize = new Size(1, 16);
+            TxtPrecioCompra.Name = "TxtPrecioCompra";
+            TxtPrecioCompra.Padding = new Padding(5);
+            TxtPrecioCompra.Radius = 10;
+            TxtPrecioCompra.RectColor = Color.Silver;
+            TxtPrecioCompra.ShowText = false;
+            TxtPrecioCompra.Size = new Size(100, 28);
+            TxtPrecioCompra.Style = Sunny.UI.UIStyle.Custom;
+            TxtPrecioCompra.SymbolColor = Color.FromArgb(57, 79, 71);
+            TxtPrecioCompra.TabIndex = 8;
+            TxtPrecioCompra.TextAlignment = ContentAlignment.MiddleLeft;
+            TxtPrecioCompra.Watermark = "Ej: 23";
+            TxtPrecioCompra.KeyDown += TxtPrecioCompra_KeyDown;
+            TxtPrecioCompra.KeyPress += TxtPrecioCompra_KeyPress;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = Color.White;
+            label8.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            label8.ForeColor = Color.FromArgb(31, 58, 48);
+            label8.Location = new Point(124, 152);
+            label8.Name = "label8";
+            label8.Size = new Size(71, 20);
+            label8.TabIndex = 9;
+            label8.Text = "P. Venta*";
+            // 
+            // TxtPrecioVenta
+            // 
+            TxtPrecioVenta.Cursor = Cursors.IBeam;
+            TxtPrecioVenta.FillReadOnlyColor = Color.White;
+            TxtPrecioVenta.Font = new Font("Microsoft Sans Serif", 12F);
+            TxtPrecioVenta.Location = new Point(124, 174);
+            TxtPrecioVenta.Margin = new Padding(3, 2, 3, 2);
+            TxtPrecioVenta.MinimumSize = new Size(1, 16);
+            TxtPrecioVenta.Name = "TxtPrecioVenta";
+            TxtPrecioVenta.Padding = new Padding(5);
+            TxtPrecioVenta.Radius = 10;
+            TxtPrecioVenta.RectColor = Color.Silver;
+            TxtPrecioVenta.ShowText = false;
+            TxtPrecioVenta.Size = new Size(100, 28);
+            TxtPrecioVenta.Style = Sunny.UI.UIStyle.Custom;
+            TxtPrecioVenta.SymbolColor = Color.FromArgb(57, 79, 71);
+            TxtPrecioVenta.TabIndex = 10;
+            TxtPrecioVenta.TextAlignment = ContentAlignment.MiddleLeft;
+            TxtPrecioVenta.Watermark = "Ej: 2";
+            TxtPrecioVenta.KeyDown += TxtPrecioVenta_KeyDown;
+            TxtPrecioVenta.KeyPress += TxtPrecioVenta_KeyPress;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.BackColor = Color.White;
+            label9.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            label9.ForeColor = Color.FromArgb(31, 58, 48);
+            label9.Location = new Point(234, 152);
+            label9.Name = "label9";
+            label9.Size = new Size(78, 20);
+            label9.TabIndex = 11;
+            label9.Text = "Cantidad*";
+            // 
+            // TxtCantidad
+            // 
+            TxtCantidad.BackColor = Color.White;
+            TxtCantidad.BorderStyle = BorderStyle.FixedSingle;
+            TxtCantidad.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TxtCantidad.Location = new Point(234, 175);
+            TxtCantidad.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            TxtCantidad.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            TxtCantidad.Name = "TxtCantidad";
+            TxtCantidad.Size = new Size(100, 27);
+            TxtCantidad.TabIndex = 12;
+            TxtCantidad.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            TxtCantidad.KeyDown += TxtCantidad_KeyDown;
+            // 
+            // uiPanelGrid
+            // 
+            uiPanelGrid.BackColor = Color.White;
+            uiPanelGrid.Controls.Add(DgvData);
+            uiPanelGrid.FillColor = Color.White;
+            uiPanelGrid.FillColor2 = Color.White;
+            uiPanelGrid.Font = new Font("Microsoft Sans Serif", 12F);
+            uiPanelGrid.Location = new Point(372, 50);
+            uiPanelGrid.Margin = new Padding(4, 5, 4, 5);
+            uiPanelGrid.MinimumSize = new Size(1, 1);
+            uiPanelGrid.Name = "uiPanelGrid";
+            uiPanelGrid.Radius = 12;
+            uiPanelGrid.RectColor = Color.Silver;
+            uiPanelGrid.Size = new Size(616, 494);
+            uiPanelGrid.TabIndex = 4;
+            uiPanelGrid.Text = null;
+            uiPanelGrid.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // DgvData
+            // 
+            DgvData.AllowUserToAddRows = false;
+            DgvData.AllowUserToDeleteRows = false;
+            DgvData.AllowUserToResizeColumns = false;
+            DgvData.AllowUserToResizeRows = false;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle5.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle5.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(228, 243, 234);
+            dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            DgvData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            DgvData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DgvData.BackgroundColor = Color.White;
+            DgvData.BorderStyle = BorderStyle.None;
+            DgvData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(8, 92, 63);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI Semibold", 8.5F);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(8, 92, 63);
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            DgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            DgvData.ColumnHeadersHeight = 44;
+            DgvData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            DgvData.Columns.AddRange(new DataGridViewColumn[] { idProducto, Producto, PrecioCompra, PrecioVenta, Canti, Subto, BtnEliminar });
+            DgvData.CornerRadius = 5;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.White;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle7.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle7.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(228, 243, 234);
+            dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            DgvData.DefaultCellStyle = dataGridViewCellStyle7;
+            DgvData.EnableHeadersVisualStyles = false;
+            DgvData.Font = new Font("Segoe UI", 9.5F);
+            DgvData.GridColor = Color.White;
+            DgvData.HeaderBack = Color.FromArgb(8, 92, 63);
+            DgvData.LineColor = Color.FromArgb(200, 208, 204);
+            DgvData.Location = new Point(6, 1);
+            DgvData.MultiSelect = false;
+            DgvData.MutedColor = Color.White;
+            DgvData.Name = "DgvData";
+            DgvData.ReadOnly = true;
+            DgvData.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            DgvData.RowHeadersVisible = false;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.White;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle8.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle8.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(228, 243, 234);
+            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            DgvData.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            DgvData.RowTemplate.Height = 56;
+            DgvData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DgvData.ShowCellToolTips = false;
+            DgvData.ShowColumnDividers = true;
+            DgvData.Size = new Size(604, 482);
+            DgvData.TabIndex = 0;
+            DgvData.CellClick += DgvData_CellClick;
+            DgvData.CellValueChanged += DgvData_CellClick;
+            // 
+            // idProducto
+            // 
+            idProducto.HeaderText = "Id";
+            idProducto.Name = "idProducto";
+            idProducto.ReadOnly = true;
+            idProducto.SortMode = DataGridViewColumnSortMode.NotSortable;
+            idProducto.Visible = false;
+            // 
+            // Producto
+            // 
+            Producto.FillWeight = 92F;
+            Producto.HeaderText = "Producto";
+            Producto.MinimumWidth = 92;
+            Producto.Name = "Producto";
+            Producto.ReadOnly = true;
+            Producto.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // PrecioCompra
+            // 
+            PrecioCompra.FillWeight = 122F;
+            PrecioCompra.HeaderText = "Precio Compra";
+            PrecioCompra.MinimumWidth = 122;
+            PrecioCompra.Name = "PrecioCompra";
+            PrecioCompra.ReadOnly = true;
+            PrecioCompra.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // PrecioVenta
+            // 
+            PrecioVenta.FillWeight = 110F;
+            PrecioVenta.HeaderText = "Precio Venta";
+            PrecioVenta.MinimumWidth = 110;
+            PrecioVenta.Name = "PrecioVenta";
+            PrecioVenta.ReadOnly = true;
+            PrecioVenta.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Canti
+            // 
+            Canti.FillWeight = 89F;
+            Canti.HeaderText = "Cantidad";
+            Canti.MinimumWidth = 89;
+            Canti.Name = "Canti";
+            Canti.ReadOnly = true;
+            Canti.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Subto
+            // 
+            Subto.FillWeight = 90F;
+            Subto.HeaderText = "Sub Total";
+            Subto.MinimumWidth = 90;
+            Subto.Name = "Subto";
+            Subto.ReadOnly = true;
+            Subto.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // BtnEliminar
+            // 
+            BtnEliminar.FillWeight = 60F;
+            BtnEliminar.HeaderText = "";
+            BtnEliminar.MinimumWidth = 60;
+            BtnEliminar.Name = "BtnEliminar";
+            BtnEliminar.ReadOnly = true;
+            BtnEliminar.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // BtnAgregarProd
+            // 
+            BtnAgregarProd.BackColor = Color.Transparent;
+            BtnAgregarProd.FillColor = Color.FromArgb(0, 192, 0);
+            BtnAgregarProd.FillColor2 = Color.FromArgb(11, 127, 87);
+            BtnAgregarProd.FillDisableColor = Color.FromArgb(224, 224, 224);
+            BtnAgregarProd.FillHoverColor = Color.FromArgb(8, 92, 63);
+            BtnAgregarProd.FillPressColor = Color.Silver;
+            BtnAgregarProd.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnAgregarProd.Location = new Point(12, 556);
+            BtnAgregarProd.MinimumSize = new Size(1, 1);
+            BtnAgregarProd.Name = "BtnAgregarProd";
+            BtnAgregarProd.Radius = 15;
+            BtnAgregarProd.RectColor = Color.White;
+            BtnAgregarProd.RectDisableColor = Color.White;
+            BtnAgregarProd.RectHoverColor = Color.White;
+            BtnAgregarProd.RectPressColor = Color.White;
+            BtnAgregarProd.RectSelectedColor = Color.White;
+            BtnAgregarProd.ShowFocusLine = true;
+            BtnAgregarProd.Size = new Size(348, 40);
+            BtnAgregarProd.Style = Sunny.UI.UIStyle.Custom;
+            BtnAgregarProd.Symbol = 61543;
+            BtnAgregarProd.TabIndex = 5;
+            BtnAgregarProd.Text = "Agregar producto";
+            BtnAgregarProd.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            BtnAgregarProd.Click += BtnAgregarProd_Click;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.FromArgb(57, 79, 71);
+            label10.Location = new Point(372, 566);
+            label10.Name = "label10";
+            label10.Size = new Size(114, 21);
+            label10.TabIndex = 6;
+            label10.Text = "Total a Pagar:";
+            label10.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // TxtTotalPago
+            // 
+            TxtTotalPago.BackColor = Color.White;
+            TxtTotalPago.Cursor = Cursors.IBeam;
+            TxtTotalPago.FillReadOnlyColor = Color.White;
+            TxtTotalPago.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TxtTotalPago.Location = new Point(496, 560);
+            TxtTotalPago.Margin = new Padding(3, 2, 3, 2);
+            TxtTotalPago.MinimumSize = new Size(1, 16);
+            TxtTotalPago.Name = "TxtTotalPago";
+            TxtTotalPago.Padding = new Padding(5);
+            TxtTotalPago.Radius = 10;
+            TxtTotalPago.ReadOnly = true;
+            TxtTotalPago.RectColor = Color.Silver;
+            TxtTotalPago.ShowText = false;
+            TxtTotalPago.Size = new Size(170, 32);
+            TxtTotalPago.Style = Sunny.UI.UIStyle.Custom;
+            TxtTotalPago.SymbolColor = Color.FromArgb(57, 79, 71);
+            TxtTotalPago.TabIndex = 7;
+            TxtTotalPago.Text = "0";
+            TxtTotalPago.TextAlignment = ContentAlignment.MiddleLeft;
+            TxtTotalPago.Watermark = "";
+            TxtTotalPago.TextChanged += TxtTotalPago_TextChanged;
             // 
             // BtnRegistrer
             // 
-            BtnRegistrer.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnRegistrer.ForeColor = Color.Black;
-            BtnRegistrer.Image = Properties.Resources.register;
-            BtnRegistrer.ImageAlign = ContentAlignment.TopCenter;
-            BtnRegistrer.Location = new Point(684, 556);
+            BtnRegistrer.BackColor = Color.Transparent;
+            BtnRegistrer.FillColor = Color.FromArgb(0, 192, 0);
+            BtnRegistrer.FillColor2 = Color.FromArgb(11, 127, 87);
+            BtnRegistrer.FillDisableColor = Color.FromArgb(224, 224, 224);
+            BtnRegistrer.FillHoverColor = Color.FromArgb(8, 92, 63);
+            BtnRegistrer.FillPressColor = Color.Silver;
+            BtnRegistrer.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnRegistrer.Location = new Point(788, 556);
+            BtnRegistrer.MinimumSize = new Size(1, 1);
             BtnRegistrer.Name = "BtnRegistrer";
-            BtnRegistrer.Size = new Size(67, 57);
-            BtnRegistrer.TabIndex = 41;
-            BtnRegistrer.Text = "Registrar";
-            BtnRegistrer.TextAlign = ContentAlignment.BottomCenter;
-            BtnRegistrer.UseVisualStyleBackColor = true;
-            BtnRegistrer.Click += button1_Click;
-            // 
-            // panelGraDi
-            // 
-            panelGraDi.BackColor = Color.FromArgb(0, 192, 192);
-            panelGraDi.Controls.Add(BtnRegistrer);
-            panelGraDi.Controls.Add(groupBox3);
-            panelGraDi.Controls.Add(TxtTotalPago);
-            panelGraDi.Controls.Add(label10);
-            panelGraDi.Controls.Add(BtnAgregarProd);
-            panelGraDi.Controls.Add(DgvData);
-            panelGraDi.Controls.Add(groupBox2);
-            panelGraDi.Controls.Add(groupBox1);
-            panelGraDi.Controls.Add(label12);
-            panelGraDi.Dock = DockStyle.Fill;
-            panelGraDi.ForeColor = Color.Black;
-            panelGraDi.GradientBottomColor = Color.FromArgb(192, 255, 255);
-            panelGraDi.GradientTopColor = Color.FromArgb(0, 192, 192);
-            panelGraDi.Location = new Point(0, 0);
-            panelGraDi.Name = "panelGraDi";
-            panelGraDi.Size = new Size(988, 627);
-            panelGraDi.TabIndex = 55;
-            panelGraDi.Paint += panelGraDi_Paint;
+            BtnRegistrer.Radius = 15;
+            BtnRegistrer.RectColor = Color.White;
+            BtnRegistrer.RectDisableColor = Color.White;
+            BtnRegistrer.RectHoverColor = Color.White;
+            BtnRegistrer.RectPressColor = Color.White;
+            BtnRegistrer.RectSelectedColor = Color.White;
+            BtnRegistrer.ShowFocusLine = true;
+            BtnRegistrer.Size = new Size(200, 40);
+            BtnRegistrer.Style = Sunny.UI.UIStyle.Custom;
+            BtnRegistrer.Symbol = 61639;
+            BtnRegistrer.TabIndex = 8;
+            BtnRegistrer.Text = "Registrar compra";
+            BtnRegistrer.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            BtnRegistrer.Click += BtnRegistrer_Click;
             // 
             // FrmPurchase
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(988, 627);
-            Controls.Add(panelGraDi);
+            AutoScaleMode = AutoScaleMode.None;
+            BackColor = Color.White;
+            ClientSize = new Size(1000, 608);
+            Controls.Add(BtnRegistrer);
+            Controls.Add(TxtTotalPago);
+            Controls.Add(label10);
+            Controls.Add(BtnAgregarProd);
+            Controls.Add(uiPanelGrid);
+            Controls.Add(groupBox3);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
+            Controls.Add(lblTitulo);
             Name = "FrmPurchase";
             Text = "FrmPurchase";
             Load += FrmPurchase_Load;
@@ -574,55 +837,58 @@
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)DgvData).EndInit();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)TxtCantidad).EndInit();
-            panelGraDi.ResumeLayout(false);
-            panelGraDi.PerformLayout();
+            uiPanelGrid.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)DgvData).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private Label label12;
-        private GroupBox groupBox1;
-        private ComboBox CbTipodeDocumento;
-        private TextBox TxtFecha;
+        private Label lblTitulo;
+        private Sunny.UI.UIPanel groupBox1;
+        private Label lblTituloGrupo1;
         private Label label2;
+        private Sunny.UI.UITextBox TxtFecha;
         private Label label1;
-        private GroupBox groupBox2;
-        private TextBox TxtidProv;
-        private Button BtnsearchPro;
-        private TextBox TxtnameProveedor;
-        private TextBox TxtdocProveedor;
-        private Label label4;
+        private Sunny.UI.UIComboBox CbTipodeDocumento;
+        private Sunny.UI.UIPanel groupBox2;
+        private Label lblTituloGrupo2;
         private Label label3;
-        private DataGridView DgvData;
-        private Button BtnAgregarProd;
-        private Label label10;
-        private TextBox TxtTotalPago;
-        private GroupBox groupBox3;
-        private NumericUpDown TxtCantidad;
-        private TextBox TxtPrecioVenta;
-        private TextBox TxtPrecioCompra;
-        private TextBox TxtNombreProd;
-        private Label label9;
-        private Label label8;
-        private Label label7;
-        private Label label6;
-        private Button BtnBuscarProd;
-        private TextBox TxtidProd;
+        private Sunny.UI.UITextBox TxtdocProveedor;
+        private Sunny.UI.UISymbolButton BtnsearchPro;
+        private Label label4;
+        private Sunny.UI.UITextBox TxtnameProveedor;
+        private TextBox TxtidProv;
+        private Sunny.UI.UIPanel groupBox3;
+        private Label lblTituloGrupo3;
         private Label label5;
-        private TextBox TxtcodProd;
-        private Button BtnRegistrer;
-        private Gradient.PanelGradient panelGraDi;
+        private Sunny.UI.UITextBox TxtcodProd;
+        private Sunny.UI.UISymbolButton BtnBuscarProd;
+        private TextBox TxtidProd;
+        private Label label6;
+        private Sunny.UI.UITextBox TxtNombreProd;
+        private Label label7;
+        private Sunny.UI.UITextBox TxtPrecioCompra;
+        private Label label8;
+        private Sunny.UI.UITextBox TxtPrecioVenta;
+        private Label label9;
+        private NumericUpDown TxtCantidad;
+        private Sunny.UI.UIPanel uiPanelGrid;
+        private ModernControls.ModernGrid DgvData;
+        private Sunny.UI.UISymbolButton BtnAgregarProd;
+        private Label label10;
+        private Sunny.UI.UITextBox TxtTotalPago;
+        private Sunny.UI.UISymbolButton BtnRegistrer;
         private DataGridViewTextBoxColumn idProducto;
         private DataGridViewTextBoxColumn Producto;
         private DataGridViewTextBoxColumn PrecioCompra;
         private DataGridViewTextBoxColumn PrecioVenta;
         private DataGridViewTextBoxColumn Canti;
         private DataGridViewTextBoxColumn Subto;
-        private DataGridViewButtonColumn BtnEliminar;
+        private DataGridViewTextBoxColumn BtnEliminar;
     }
 }

@@ -19,6 +19,9 @@
     <Compile Update="FrmClientes.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmDetallesVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -31,6 +34,15 @@
     <Compile Update="Frm_DetalleCompra.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmPurchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FrmSales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Frm_DetalleCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Frm_Proveedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -38,6 +50,15 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="LoginM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Modales\MdClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Modales\MdProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Modales\MdProveedor.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Modales\MdProductos.cs">

@@ -63,6 +63,26 @@ namespace Main.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap borrar {
+            get {
+                object obj = ResourceManager.GetObject("borrar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap borrar__1_ {
+            get {
+                object obj = ResourceManager.GetObject("borrar (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Check {
             get {
                 object obj = ResourceManager.GetObject("Check", resourceCulture);
@@ -76,6 +96,36 @@ namespace Main.Properties {
         internal static System.Drawing.Bitmap delate {
             get {
                 object obj = ResourceManager.GetObject("delate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dgvdelate {
+            get {
+                object obj = ResourceManager.GetObject("dgvdelate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap escoba {
+            get {
+                object obj = ResourceManager.GetObject("escoba", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap etiqueta_de_precio {
+            get {
+                object obj = ResourceManager.GetObject("etiqueta-de-precio", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
