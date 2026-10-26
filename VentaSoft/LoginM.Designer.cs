@@ -223,6 +223,8 @@
             textBox_Password.TextAlignment = ContentAlignment.MiddleLeft;
             textBox_Password.Watermark = "Ingrese su contraseña";
             textBox_Password.ButtonClick += textBox_Password_ButtonClick;
+            textBox_Password.TextChanged += textBox_Password_TextChanged;
+            textBox_Password.KeyDown += textBox_Password_KeyDown;
             textBox_Password.Leave += textBox_Password_Leave;
             textBox_Password.Enter += textBox_Password_Enter;
             // 
@@ -258,6 +260,7 @@
             textBox_Email.TabIndex = 20;
             textBox_Email.TextAlignment = ContentAlignment.MiddleLeft;
             textBox_Email.Watermark = "Ingrese su correo o nombre de usuario";
+            textBox_Email.KeyDown += textBox_Email_KeyDown;
             textBox_Email.Leave += textBox_Email_Leave;
             textBox_Email.Enter += uiTextBox1_Enter;
             // 

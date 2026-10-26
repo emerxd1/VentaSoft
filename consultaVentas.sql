@@ -3,6 +3,7 @@ SELECT * FROM Usuario
 SELECT * FROM Permiso
 SELECT * FROM Cliente
 SELECT * FROM Categoria
+SELECT * FROM Producto
 
 insert into Permiso (IdRol,NombreMenu) values 
 (1, 'MenuEmpleados'),
@@ -194,38 +195,43 @@ END
 GO
 
 /* ELIMINAR USUARIO (BORRADO LOGICO) */
-ALTER PROC SP_DELETEUSER
+CREATE OR ALTER PROCEDURE SP_DELETEUSER
 (
     @IdUsuario int,
-    @Error bit output,
-    @Mensaje VARCHAR(500) output
+    @Error bit OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
 )
 AS
 BEGIN
+    SET NOCOUNT ON
     SET @Error = 0
     SET @Mensaje = ''
 
-    -- El usuario debe existir
-    IF NOT EXISTS (SELECT 1 FROM Usuario WHERE IdUsuario = @IdUsuario)
-    BEGIN
-        SET @Mensaje = 'El usuario no existe.'
-        RETURN
-    END
+    BEGIN TRY
+        IF NOT EXISTS (SELECT 1 FROM Usuario WHERE IdUsuario = @IdUsuario)
+        BEGIN
+            SET @Mensaje = 'El usuario no existe.'
+            RETURN
+        END
 
-    -- Si ya esta inactivo no hay nada que hacer
-    IF EXISTS (SELECT 1 FROM Usuario WHERE IdUsuario = @IdUsuario AND Estado = 0)
-    BEGIN
-        SET @Mensaje = 'El usuario ya se encuentra inactivo.'
-        RETURN
-    END
+        IF EXISTS (SELECT 1 FROM Usuario WHERE IdUsuario = @IdUsuario AND Estado = 0)
+        BEGIN
+            SET @Mensaje = 'El usuario ya se encuentra inactivo.'
+            RETURN
+        END
 
-    -- Borrado logico: se inactiva en lugar de eliminar
-    UPDATE Usuario SET Estado = 0 WHERE IdUsuario = @IdUsuario
+        UPDATE Usuario SET Estado = 0 WHERE IdUsuario = @IdUsuario
 
-    SET @Error = 1
-    SET @Mensaje = 'Usuario inactivado correctamente.'
+        SET @Error = 1
+        SET @Mensaje = 'Usuario inactivado correctamente.'
+    END TRY
+    BEGIN CATCH
+        SET @Error = 0
+        SET @Mensaje = ERROR_MESSAGE()
+    END CATCH
 END
 GO
+
 
 
 /*------------------------------------------------------------------------------------
@@ -309,7 +315,7 @@ END
 GO
 
 /* ELIMINAR CATEGORIA (BORRADO LOGICO) */
-ALTER PROCEDURE SP_DeleteCategory
+CREATE OR ALTER PROCEDURE SP_DeleteCategory
 (
     @IdCategoria INT,
     @Resultado INT OUTPUT,
@@ -317,28 +323,32 @@ ALTER PROCEDURE SP_DeleteCategory
 )
 AS
 BEGIN
-    SET @Resultado = 0;
-    SET @Mensaje = '';
+    SET NOCOUNT ON
+    SET @Resultado = 0
+    SET @Mensaje = ''
 
-    -- La categoria debe existir
-    IF NOT EXISTS (SELECT 1 FROM Categoria WHERE IdCategoria = @IdCategoria)
-    BEGIN
-        SET @Mensaje = 'La categoría no existe.';
-        RETURN
-    END
+    BEGIN TRY
+        IF NOT EXISTS (SELECT 1 FROM Categoria WHERE IdCategoria = @IdCategoria)
+        BEGIN
+            SET @Mensaje = 'La categoría no existe.'
+            RETURN
+        END
 
-    -- Si ya esta inactiva no hay nada que hacer
-    IF EXISTS (SELECT 1 FROM Categoria WHERE IdCategoria = @IdCategoria AND Estado = 0)
-    BEGIN
-        SET @Mensaje = 'La categoría ya se encuentra inactiva.';
-        RETURN
-    END
+        IF EXISTS (SELECT 1 FROM Categoria WHERE IdCategoria = @IdCategoria AND Estado = 0)
+        BEGIN
+            SET @Mensaje = 'La categoría ya se encuentra inactiva.'
+            RETURN
+        END
 
-    -- Borrado logico: se inactiva en lugar de eliminar
-    UPDATE Categoria SET Estado = 0 WHERE IdCategoria = @IdCategoria;
+        UPDATE Categoria SET Estado = 0 WHERE IdCategoria = @IdCategoria
 
-    SET @Resultado = 1;
-    SET @Mensaje = 'Categoría inactivada correctamente.';
+        SET @Resultado = 1
+        SET @Mensaje = 'Categoría inactivada correctamente.'
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0
+        SET @Mensaje = ERROR_MESSAGE()
+    END CATCH
 END
 GO
 
@@ -438,7 +448,7 @@ END
 GO
 
 /* ELIMINAR PRODUCTO (BORRADO LOGICO) */
-ALTER PROCEDURE SP_DELETEPRODUCT
+CREATE OR ALTER PROCEDURE SP_DELETEPRODUCT
 (
     @IdProducto INT,
     @Respuesta BIT OUTPUT,
@@ -446,28 +456,32 @@ ALTER PROCEDURE SP_DELETEPRODUCT
 )
 AS
 BEGIN
+    SET NOCOUNT ON
     SET @Respuesta = 0
     SET @Mensaje = ''
 
-    -- El producto debe existir
-    IF NOT EXISTS (SELECT * FROM Producto WHERE IdProducto = @IdProducto)
-    BEGIN
-        SET @Mensaje = 'El producto no existe'
-        RETURN
-    END
+    BEGIN TRY
+        IF NOT EXISTS (SELECT 1 FROM Producto WHERE IdProducto = @IdProducto)
+        BEGIN
+            SET @Mensaje = 'El producto no existe'
+            RETURN
+        END
 
-    -- Si ya esta inactivo no hay nada que hacer
-    IF EXISTS (SELECT * FROM Producto WHERE IdProducto = @IdProducto AND Estado = 0)
-    BEGIN
-        SET @Mensaje = 'El producto ya se encuentra inactivo'
-        RETURN
-    END
+        IF EXISTS (SELECT 1 FROM Producto WHERE IdProducto = @IdProducto AND Estado = 0)
+        BEGIN
+            SET @Mensaje = 'El producto ya se encuentra inactivo'
+            RETURN
+        END
 
-    -- Borrado logico: se inactiva en lugar de eliminar
-    UPDATE Producto SET Estado = 0 WHERE IdProducto = @IdProducto
+        UPDATE Producto SET Estado = 0 WHERE IdProducto = @IdProducto
 
-    SET @Respuesta = 1
-    SET @Mensaje = 'Producto inactivado correctamente'
+        SET @Respuesta = 1
+        SET @Mensaje = 'Producto inactivado correctamente'
+    END TRY
+    BEGIN CATCH
+        SET @Respuesta = 0
+        SET @Mensaje = ERROR_MESSAGE()
+    END CATCH
 END
 GO
 
@@ -577,35 +591,40 @@ END
 GO
 
 /* ELIMINAR CLIENTE (BORRADO LOGICO) */
-ALTER PROC sp_EliminarCliente(
+CREATE OR ALTER PROCEDURE sp_EliminarCliente
+(
     @IdCliente int,
-    @Resultado int output,
-    @Mensaje varchar(500) output
+    @Resultado int OUTPUT,
+    @Mensaje varchar(500) OUTPUT
 )
 AS
 BEGIN
+    SET NOCOUNT ON
     SET @Resultado = 0
     SET @Mensaje = ''
 
-    -- 1. Validar que el cliente exista
-    IF NOT EXISTS (SELECT 1 FROM Cliente WHERE IdCliente = @IdCliente)
-    BEGIN
-        SET @Mensaje = 'El cliente no existe'
-        RETURN
-    END
+    BEGIN TRY
+        IF NOT EXISTS (SELECT 1 FROM Cliente WHERE IdCliente = @IdCliente)
+        BEGIN
+            SET @Mensaje = 'El cliente no existe'
+            RETURN
+        END
 
-    -- 2. Si ya esta inactivo no hay nada que hacer
-    IF EXISTS (SELECT 1 FROM Cliente WHERE IdCliente = @IdCliente AND Estado = 0)
-    BEGIN
-        SET @Mensaje = 'El cliente ya se encuentra inactivo'
-        RETURN
-    END
+        IF EXISTS (SELECT 1 FROM Cliente WHERE IdCliente = @IdCliente AND Estado = 0)
+        BEGIN
+            SET @Mensaje = 'El cliente ya se encuentra inactivo'
+            RETURN
+        END
 
-    -- 3. Borrado logico: se inactiva en lugar de eliminar
-    UPDATE Cliente SET Estado = 0 WHERE IdCliente = @IdCliente
+        UPDATE Cliente SET Estado = 0 WHERE IdCliente = @IdCliente
 
-    SET @Resultado = 1
-    SET @Mensaje = 'Cliente inactivado correctamente'
+        SET @Resultado = 1
+        SET @Mensaje = 'Cliente inactivado correctamente'
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0
+        SET @Mensaje = ERROR_MESSAGE()
+    END CATCH
 END
 GO
 
@@ -736,34 +755,40 @@ END
 GO
 
 /* ELIMINAR PROVEEDOR (BORRADO LOGICO) */
-ALTER PROC sp_EliminarProveedores(
+CREATE OR ALTER PROCEDURE sp_EliminarProveedores
+(
     @IdProveedor int,
-    @Resultado bit output,
-    @Mensaje varchar(500) output
+    @Resultado bit OUTPUT,
+    @Mensaje varchar(500) OUTPUT
 )
 AS
 BEGIN
+    SET NOCOUNT ON
     SET @Resultado = 0
     SET @Mensaje = ''
 
-    IF NOT EXISTS (SELECT 1 FROM Proveedor WHERE IdProveedor = @IdProveedor)
-    BEGIN
-        SET @Mensaje = 'El proveedor no existe'
-        RETURN
-    END
+    BEGIN TRY
+        IF NOT EXISTS (SELECT 1 FROM Proveedor WHERE IdProveedor = @IdProveedor)
+        BEGIN
+            SET @Mensaje = 'El proveedor no existe'
+            RETURN
+        END
 
-    -- Si ya esta inactivo no hay nada que hacer
-    IF EXISTS (SELECT 1 FROM Proveedor WHERE IdProveedor = @IdProveedor AND Estado = 0)
-    BEGIN
-        SET @Mensaje = 'El proveedor ya se encuentra inactivo'
-        RETURN
-    END
+        IF EXISTS (SELECT 1 FROM Proveedor WHERE IdProveedor = @IdProveedor AND Estado = 0)
+        BEGIN
+            SET @Mensaje = 'El proveedor ya se encuentra inactivo'
+            RETURN
+        END
 
-    -- Borrado logico: se inactiva en lugar de eliminar
-    UPDATE Proveedor SET Estado = 0 WHERE IdProveedor = @IdProveedor
+        UPDATE Proveedor SET Estado = 0 WHERE IdProveedor = @IdProveedor
 
-    SET @Resultado = 1
-    SET @Mensaje = 'Proveedor inactivado correctamente'
+        SET @Resultado = 1
+        SET @Mensaje = 'Proveedor inactivado correctamente'
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0
+        SET @Mensaje = ERROR_MESSAGE()
+    END CATCH
 END
 GO
 
@@ -997,3 +1022,26 @@ WHERE NumeroDocumento IS NOT NULL AND NumeroDocumento NOT LIKE 'C%';
 
 UPDATE Venta SET NumeroFactura = 'V' + RIGHT(NumeroFactura, 4)
 WHERE NumeroFactura IS NOT NULL AND NumeroFactura NOT LIKE 'V%';
+
+
+
+
+
+-- Columnas
+SELECT t.name AS Tabla, c.name AS Columna, ty.name AS Tipo, c.max_length, c.is_nullable
+FROM sys.tables t
+JOIN sys.columns c ON c.object_id = t.object_id
+JOIN sys.types ty ON ty.user_type_id = c.user_type_id
+ORDER BY t.name, c.column_id;
+
+-- Claves foráneas y su acción al borrar
+SELECT fk.name, OBJECT_NAME(fk.parent_object_id) AS Tabla,
+       OBJECT_NAME(fk.referenced_object_id) AS Referencia, fk.delete_referential_action_desc
+FROM sys.foreign_keys fk;
+
+-- Triggers
+SELECT name, OBJECT_NAME(parent_id) AS Tabla FROM sys.triggers;
+
+-- Procedimientos desplegados que contienen DELETE
+SELECT OBJECT_NAME(object_id) AS Nombre, definition
+FROM sys.sql_modules WHERE definition LIKE '%DELETE%';

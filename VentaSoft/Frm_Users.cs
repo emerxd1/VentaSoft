@@ -1,28 +1,51 @@
 ﻿using Main.Utilities;
 using ModuloEntidades;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using Store;
+using System.Data;
+using System.Text;
 
 namespace Main
 {
     public partial class Frm_Users : Form
     {
+        private readonly S_Users _servicio = new S_Users();
+        private bool passwordVisible = false;
+
+
         public Frm_Users()
         {
             InitializeComponent();
+            ApplyPasswordState1(); // estado inicial coherente
+            ApplyPasswordState2(); // estado inicial coherente
+
+        }
+        private void ApplyPasswordState1()
+        {
+            txtPassword.PasswordChar = passwordVisible ? '\0' : '●';
+            txtPassword.ButtonSymbol = passwordVisible
+
+                ? 61550  // ojo abierto (contraseña visible)
+                : 61552; // ojo cerrado (contraseña oculta)
+        }
+        private void ApplyPasswordState2()
+        {
+            // '\0' = sin máscara (se ve el texto); '●' = oculto
+            txtCheckPassword.PasswordChar = passwordVisible ? '\0' : '●';
+            txtCheckPassword.ButtonSymbol = passwordVisible
+                ? 61550  // ojo abierto (contraseña visible)
+                : 61552; // ojo cerrado (contraseña oculta)
+        }
+
+        // Devuelve el Id numérico mostrado en txtId ("ID#5" -> 5). Devuelve 0 si no hay ninguno.
+        private int ObtenerIdSeleccionado()
+        {
+            return int.TryParse(txtId.Text.Replace("ID#", "").Trim(), out int id) ? id : 0;
         }
 
         private void Frm_Users_Load(object sender, EventArgs e)
         {
             // Cargar combo de Estado
             cbEstado.Items.Add(new OptionsComboBox() { valor = 1, texto = "Activo" });
-
             cbEstado.Items.Add(new OptionsComboBox() { valor = 0, texto = "No Activo" });
             cbEstado.ValueMember = "valor";
             cbEstado.DisplayMember = "texto";
@@ -41,11 +64,10 @@ namespace Main
                 cbRol.SelectedIndex = 0;
             }
 
-
             // Cargar combo de búsqueda (según columnas visibles del grid)
             foreach (DataGridViewColumn Columna in dgvUsers.Columns)
             {
-                if (Columna.Visible == true && Columna.Name != "btnSeleccion")
+                if (Columna.Visible && Columna.Name != "btnSeleccion")
                 {
                     cbSearch.Items.Add(new OptionsComboBox() { valor = Columna.Name, texto = Columna.HeaderText });
                 }
@@ -57,178 +79,272 @@ namespace Main
                 cbSearch.SelectedIndex = 0;
             }
 
-
             if (dgvUsers.Columns.Contains("Id_Rol"))
             {
                 dgvUsers.Columns["Id_Rol"].Visible = false;
             }
 
-            // Cargar usuarios en el DataGridView (asignación por NOMBRE de columna, no por posición)
-            List<Entidad_Usuario> listUsuario = new S_Users().Lister();
+            CargarUsuarios();
+        }
+
+        // Carga (o recarga) el grid desde la base de datos.
+        private void CargarUsuarios()
+        {
+            dgvUsers.CurrentCell = null;
+            dgvUsers.Rows.Clear();
+
+            List<Entidad_Usuario> listUsuario = _servicio.Lister()
+                .OrderBy(u => u.Nombre1)
+                .ThenBy(u => u.Apellido1)
+                .ToList();
 
             foreach (Entidad_Usuario item in listUsuario)
             {
-                int fila = dgvUsers.Rows.Add(); // agrega una fila vacía y devuelve su índice
+                int fila = dgvUsers.Rows.Add();
                 DataGridViewRow row = dgvUsers.Rows[fila];
+
+                // Se guarda el usuario completo en la fila: al seleccionarla se leen de aquí
+                // los datos que el grid no muestra (nombres, apellidos, clave).
+                row.Tag = item;
 
                 row.Cells["IdUsuario"].Value = item.IdUsuario;
                 row.Cells["DNI"].Value = item.DNI;
+
+                // Nombre y primer apellido en una sola columna
+                row.Cells["Cliente"].Value = string.Join(" ",
+                    new[] { item.Nombre1, item.Apellido1 }
+                        .Where(texto => !string.IsNullOrWhiteSpace(texto)));
+
                 row.Cells["Name1"].Value = item.Nombre1;
                 row.Cells["Name2"].Value = item.Nombre2;
                 row.Cells["LastName1"].Value = item.Apellido1;
                 row.Cells["LastName2"].Value = item.Apellido2;
                 row.Cells["Email"].Value = item.Correo;
                 row.Cells["Password"].Value = item.Clave;
-                row.Cells["Id_Rol"].Value = item.oRol.IdRol; // oculta, para comparaciones internas
-                row.Cells["Rol"].Value = item.oRol.Descripcion; // visible, se muestra al usuario
+                row.Cells["Id_Rol"].Value = item.oRol?.IdRol ?? 0; // oculta, para comparaciones internas
+                row.Cells["Rol"].Value = item.oRol?.Descripcion ?? ""; // visible
                 row.Cells["EstadoValor"].Value = item.Estado ? 1 : 0;
                 row.Cells["Estado"].Value = item.Estado ? "Activo" : "No Activo";
-
-
             }
+
+            // Si hay texto en la búsqueda, se vuelve a aplicar sobre los datos recargados.
+            AplicarFiltro();
         }
 
-        //METODO PARA LIMPIAR LOS CAMPOS DEL FORMULARIO
+        // METODO PARA LIMPIAR LOS CAMPOS DEL FORMULARIO
         private void Limpiar()
         {
             txtIndice.Text = "-1";
-            txtDni.Text = "";
+            txtId.Text = "ID#";
+            txtDni.Clear();
             txtName1.Clear();
             txtName2.Clear();
             txtLastName1.Clear();
             txtLastName2.Clear();
             txtEmail.Clear();
+            txtTelefono.Clear();
             txtPassword.Clear();
             txtCheckPassword.Clear();
+
+            cbRol.SelectedIndex = -1;
             cbRol.Text = "Seleccione un rol";
             cbRol.ForeColor = Color.Gray;
+
+            cbEstado.SelectedIndex = -1;
             cbEstado.Text = "Seleccione un estado";
             cbEstado.ForeColor = Color.Gray;
-            txtId.Clear();
         }
 
-
-        //btn de busqueda por filtro
-        private void btnSearch_Click(object sender, EventArgs e)
+        // Aplica el filtro de búsqueda sobre el grid según la columna elegida.
+        // Con el texto vacío, todas las filas vuelven a mostrarse.
+        private void AplicarFiltro()
         {
-            string columnFiltro = Convert.ToString(((OptionsComboBox)cbSearch.SelectedItem).valor);
-
-            if (dgvUsers.Rows.Count > 0)
+            var columnaSeleccionada = cbSearch.SelectedItem as OptionsComboBox;
+            if (columnaSeleccionada == null)
             {
-                foreach (DataGridViewRow row in dgvUsers.Rows)
-                {
-                    if (row.Cells[columnFiltro].Value.ToString().Trim().ToUpper().Contains(txtSearch.Text.Trim().ToUpper()))
-                    {
-                        row.Visible = true;
-                    }
-
-                    else
-                    {
-                        row.Visible = false;
-                    }
-
-                }
-
+                return;
             }
-        }
 
-        /*Btn para borrar el filtro de búsqueda*/
-        private void btnClearSearch_Click(object sender, EventArgs e)
-        {
-            txtSearch.Clear();
+            string columnFiltro = Convert.ToString(columnaSeleccionada.valor);
+            string texto = txtSearch.Text.Trim().ToUpper();
+
+            // Una fila con la celda actual seleccionada no se puede ocultar (lanza InvalidOperationException).
+            dgvUsers.CurrentCell = null;
 
             foreach (DataGridViewRow row in dgvUsers.Rows)
             {
-                row.Visible = true;
+                if (row.IsNewRow)
+                {
+                    continue;
+                }
+
+                // Value puede ser null (por ejemplo Name2 / LastName2 vacíos).
+                string valor = row.Cells[columnFiltro].Value?.ToString() ?? "";
+                row.Visible = valor.Trim().ToUpper().Contains(texto);
             }
         }
 
-
-        private void btnUpdatee_Click(object sender, EventArgs e)
+        // Lee el formulario, lo valida (servicio + rol, estado y confirmación de clave)
+        // y devuelve la entidad lista para enviar. Si hay errores los muestra y devuelve false.
+        // idUsuario = 0 al registrar (lo genera la base de datos).
+        private bool TryLeerFormulario(int idUsuario, out Entidad_Usuario oUsuario)
         {
+            // as devuelve null (en vez de lanzar error) si no hay nada seleccionado
+            var estadoSeleccionado = cbEstado.SelectedItem as OptionsComboBox;
+            var rolSeleccionado = cbRol.SelectedItem as OptionsComboBox;
 
-            DialogResult dr = MessageBox.Show("Esta seguro que desea actualizar el usuario?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.No)
-                return;
-            else
+            // Nota: Telefono (txtTelefono) no se envía porque Entidad_Usuario / D_Users / los SP
+            // de usuario no lo contemplan todavía.
+            oUsuario = new Entidad_Usuario()
             {
-                if (txtIndice.Text == "-1")
+                IdUsuario = idUsuario,
+                DNI = txtDni.Text.Trim(),
+                Nombre1 = txtName1.Text.Trim(),
+                Nombre2 = txtName2.Text.Trim(),
+                Apellido1 = txtLastName1.Text.Trim(),
+                Apellido2 = txtLastName2.Text.Trim(),
+                Correo = txtEmail.Text.Trim(),
+                Clave = txtPassword.Text,
+                oRol = new Entidad_Rol()
                 {
-                    MessageBox.Show("Debe seleccionar un usuario para actualizar.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    IdRol = rolSeleccionado != null ? Convert.ToInt32(rolSeleccionado.valor) : 0
+                },
+                Estado = estadoSeleccionado != null && Convert.ToInt32(estadoSeleccionado.valor) == 1
+            };
+
+            bool valido = _servicio.Validar(oUsuario, out string errores);
+
+            var extras = new StringBuilder();
+            if (rolSeleccionado == null)
+                extras.Append("Debe seleccionar un rol.\n");
+            if (estadoSeleccionado == null)
+                extras.Append("Debe seleccionar un estado.\n");
+            if (txtPassword.Text != txtCheckPassword.Text)
+                extras.Append("La Clave y su confirmación no coinciden.\n");
+
+            if (extras.Length > 0)
+            {
+                if (valido)
+                    errores = "Se encontraron los siguientes errores:\n";
+
+                errores += extras.ToString();
+                valido = false;
+            }
+
+            if (!valido)
+            {
+                MessageBox.Show(errores, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            return true;
+        }
+
+        /* BOTON PARA REGISTRAR UN USUARIO */
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!TryLeerFormulario(0, out Entidad_Usuario oUsuario))
+                    return;
+
+                int idUserGenerated = _servicio.Register(oUsuario, out string Message);
+
+                // Id distinto de 0 = registro exitoso.
+                if (idUserGenerated != 0)
+                {
+                    // Se recarga el grid desde la BD en lugar de duplicar el llenado de celdas.
+                    CargarUsuarios();
+
+                    MessageBox.Show("Usuario registrado correctamente.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+                Limpiar();
+            }
+            catch (Exception ex)
+            {
+                // Cualquier error inesperado (conexión, SP, etc.) se muestra sin tumbar el formulario.
+                MessageBox.Show("Ocurrió un error al registrar el usuario: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Limpiar();
+            }
+        }
+
+        /* BOTON PARA ACTUALIZAR UN USUARIO */
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int idUsuario = ObtenerIdSeleccionado();
+
+                if (txtIndice.Text == "-1" || idUsuario == 0)
+                {
+                    MessageBox.Show("Debe seleccionar un usuario para actualizar.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
+
+                if (!TryLeerFormulario(idUsuario, out Entidad_Usuario oUsuario))
+                    return;
+
+                bool isUpdated = _servicio.Edit(oUsuario, out string Message);
+
+                if (isUpdated)
+                {
+                    CargarUsuarios();
+
+                    MessageBox.Show("Usuario actualizado correctamente.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+                Limpiar();
             }
-            Entidad_Usuario oUsuario = new Entidad_Usuario() // instancia de la entidad usuario, para enviar a la capa de negocio
+            catch (Exception ex)
             {
-                IdUsuario = Convert.ToInt32(txtId.Text),
-                DNI = txtDni.Text,
-                Nombre1 = txtName1.Text,
-                Nombre2 = txtName2.Text,
-                Apellido1 = txtLastName1.Text,
-                Apellido2 = txtLastName2.Text,
-                Correo = txtEmail.Text,
-                Clave = txtPassword.Text,
-                oRol = new Entidad_Rol() { IdRol = Convert.ToInt32(((OptionsComboBox)cbRol.SelectedItem).valor) },
-                Estado = Convert.ToInt32(((OptionsComboBox)cbEstado.SelectedItem).valor) == 1 ? true : false
-            };
-            MessageBox.Show($"IdUsuario: '{oUsuario.IdUsuario}' - DNI: '{oUsuario.DNI}'");
-            bool result = new S_Users().Edit(oUsuario, out string Message);
-
-            // Si la actualizacion fue exitosa, se refleja el cambio en el DataGridView
-            if (result)
-            {
-                var rolSeleccionado = (OptionsComboBox)cbRol.SelectedItem;
-                var estadoSeleccionado = (OptionsComboBox)cbEstado.SelectedItem;
-
-                DataGridViewRow row = dgvUsers.Rows[Convert.ToInt32(txtIndice.Text)];
-
-                row.Cells["IdUsuario"].Value = oUsuario.IdUsuario;
-                row.Cells["DNI"].Value = txtDni.Text;
-                row.Cells["Name1"].Value = txtName1.Text;
-                row.Cells["Name2"].Value = txtName2.Text;
-                row.Cells["LastName1"].Value = txtLastName1.Text;
-                row.Cells["LastName2"].Value = txtLastName2.Text;
-                row.Cells["Email"].Value = txtEmail.Text;
-                row.Cells["Password"].Value = txtPassword.Text;
-                row.Cells["Id_Rol"].Value = rolSeleccionado.valor; // se guarda el valor real, no el .ToString()
-                row.Cells["Rol"].Value = rolSeleccionado.texto;
-                row.Cells["EstadoValor"].Value = estadoSeleccionado.valor; // se guarda el valor real, no el .ToString()
-                row.Cells["Estado"].Value = estadoSeleccionado.texto;
-
-                MessageBox.Show("Usuario actualizado correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Ocurrió un error al actualizar el usuario: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Limpiar();
             }
-            else
-            {
-                MessageBox.Show(Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-
-            Limpiar();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        /* BOTON PARA ELIMINAR UN USUARIO */
+        private void btnDelete_Click_1(object sender, EventArgs e)
         {
-            // Validación segura: evita la excepción de Convert.ToInt32("") cuando no hay selección
-            if (string.IsNullOrWhiteSpace(txtId.Text) || !int.TryParse(txtId.Text, out int idUsuario) || idUsuario == 0)
+            try
             {
-                MessageBox.Show("Seleccione un usuario de la lista para eliminar.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+                int idUsuario = ObtenerIdSeleccionado();
 
-            DialogResult dr = MessageBox.Show("¿Está seguro que desea eliminar el usuario?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (dr == DialogResult.Yes)
-            {
-                Entidad_Usuario oUsuario = new Entidad_Usuario() // instancia de la entidad usuario, para enviar a la capa de negocio
+                if (idUsuario == 0)
                 {
-                    IdUsuario = idUsuario
-                };
+                    MessageBox.Show("Seleccione un Usuario de la lista para eliminar.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
-                bool result = new S_Users().Delete(oUsuario, out string Message);
+                DialogResult dr = MessageBox.Show("¿Está seguro que desea eliminar este Usuario?",
+                    "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dr != DialogResult.Yes)
+                    return;
+
+                bool result = _servicio.Delete(new Entidad_Usuario() { IdUsuario = idUsuario }, out string Message);
 
                 if (result)
                 {
-                    dgvUsers.Rows.RemoveAt(Convert.ToInt32(txtIndice.Text));
-                    MessageBox.Show("Usuario eliminado correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarUsuarios();
+
+                    MessageBox.Show("Usuario eliminado correctamente.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     Limpiar();
                 }
                 else
@@ -236,169 +352,88 @@ namespace Main
                     MessageBox.Show(Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
-            // si dr == DialogResult.No, simplemente no se hace nada (el usuario canceló)
-        }
-
-
-        private void dgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            // Valida si y solo si se selecciona el btn seleccionar, muestra los datos con respecto al índice
-            if (dgvUsers.Columns[e.ColumnIndex].Name != "btnSeleccion") return;
-
-            int indice = e.RowIndex;
-            if (indice < 0) return;
+            catch (Exception ex)
             {
-                txtIndice.Text = indice.ToString();
-
-                // Mostrar textos en los textbox
-                txtId.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["IdUsuario"].Value);
-                txtDni.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["DNI"].Value);
-                txtName1.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["Name1"].Value);
-                txtName2.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["Name2"].Value);
-                txtLastName1.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["LastName1"].Value);
-                txtLastName2.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["LastName2"].Value);
-                txtEmail.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["Email"].Value);
-                txtPassword.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["Password"].Value);
-                txtCheckPassword.Text = Convert.ToString(dgvUsers.Rows[indice].Cells["Password"].Value);
-            }
-            // Mostrar dato de Rol en el combobox
-            // Protección contra DBNull: si la celda no tiene valor, se usa 0 en vez de intentar convertir DBNull
-            object valorIdRol = dgvUsers.Rows[indice].Cells["Id_Rol"].Value;
-            int idRolFila = (valorIdRol == null || valorIdRol == DBNull.Value) ? 0 : Convert.ToInt32(valorIdRol);
-
-            foreach (OptionsComboBox oc in cbRol.Items)
-            {
-                if (Convert.ToInt32(oc.valor) == idRolFila)
-                {
-                    cbRol.SelectedIndex = cbRol.Items.IndexOf(oc);
-                    break;
-                }
-            }
-
-            // Mostrar dato de Estado en el combobox
-            // Protección contra DBNull: si la celda no tiene valor, se usa 0 en vez de intentar convertir DBNull
-            object valorEstado = dgvUsers.Rows[indice].Cells["EstadoValor"].Value;
-            int idEstadoFila = (valorEstado == null || valorEstado == DBNull.Value) ? 0 : Convert.ToInt32(valorEstado);
-
-            foreach (OptionsComboBox oc1 in cbEstado.Items)
-            {
-                if (Convert.ToInt32(oc1.valor) == idEstadoFila)
-                {
-                    cbEstado.SelectedIndex = cbEstado.Items.IndexOf(oc1);
-                    break;
-                }
-
-            }
-
-        }
-
-        private void dgvUsers_CellPainting_1(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.RowIndex < 0) return; // para ignorar el header
-
-            if (e.ColumnIndex == 0)
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-
-                var w = Properties.Resources.Check.Width;
-                var h = Properties.Resources.Check.Height;
-                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
-                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
-
-                e.Graphics.DrawImage(Properties.Resources.Check, new Rectangle(x, y, w, h));
-                e.Handled = true;
+                MessageBox.Show("Ocurrió un error al eliminar el usuario: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-
-        //CAMBIA COLOR DEPENDE DEL ESTADO DEL USUARIO
-        private void dgvUsers_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (this.dgvUsers.Columns[e.ColumnIndex].Name == "Estado")
-            {
-                e.CellStyle.BackColor = e.Value.ToString() == "Activo" ? Color.LightGreen : Color.Salmon;
-            }
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void txtLastName1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            Entidad_Usuario oUsuario = new Entidad_Usuario() // instancia de la entidad usuario, para enviar a la capa de negocio
-            {
-                IdUsuario = Convert.ToInt32(txtId.Text),
-                DNI = txtDni.Text,
-                Nombre1 = txtName1.Text,
-                Nombre2 = txtName2.Text,
-                Apellido1 = txtLastName1.Text,
-                Apellido2 = txtLastName2.Text,
-                Correo = txtEmail.Text,
-                Clave = txtPassword.Text,
-                oRol = new Entidad_Rol() { IdRol = Convert.ToInt32(((OptionsComboBox)cbRol.SelectedItem).valor) },
-                Estado = Convert.ToInt32(((OptionsComboBox)cbEstado.SelectedItem).valor) == 1 ? true : false
-            };
-
-
-            int idUserGenerated = new S_Users().Register(oUsuario, out string Message);
-
-            // Si el id generado es distinto de 0, significa que se registró correctamente, entonces se agrega al DataGridView
-            if (idUserGenerated != 0)
-            {
-
-                var rolSeleccionado = (OptionsComboBox)cbRol.SelectedItem;
-                var estadoSeleccionado = (OptionsComboBox)cbEstado.SelectedItem;
-
-                // Se agrega la fila vacía y se asignan los valores por NOMBRE de columna
-                // (evita el desfase que ocurría con Rows.Add(object[]) por posición)
-                int fila = dgvUsers.Rows.Add();
-                DataGridViewRow row = dgvUsers.Rows[fila];
-
-                row.Cells["IdUsuario"].Value = idUserGenerated;
-                row.Cells["DNI"].Value = txtDni.Text;
-                row.Cells["Name1"].Value = txtName1.Text;
-                row.Cells["Name2"].Value = txtName2.Text;
-                row.Cells["LastName1"].Value = txtLastName1.Text;
-                row.Cells["LastName2"].Value = txtLastName2.Text;
-                row.Cells["Email"].Value = txtEmail.Text;
-                row.Cells["Password"].Value = txtPassword.Text;
-                row.Cells["Id_Rol"].Value = rolSeleccionado.valor;
-                row.Cells["Rol"].Value = rolSeleccionado.texto;
-                row.Cells["EstadoValor"].Value = estadoSeleccionado.valor;
-                row.Cells["Estado"].Value = estadoSeleccionado.texto;
-
-                MessageBox.Show("Usuario registrado correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show(Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-
-            Limpiar();
-
-        }
-
+        /* BOTON PARA LIMPIAR EL FORMULARIO */
         private void btnClear_Click(object sender, EventArgs e)
         {
             Limpiar();
+        }
+
+        // Búsqueda en vivo: se filtra mientras se escribe.
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            AplicarFiltro();
+        }
+
+        // Al hacer clic en una fila se cargan sus datos en el formulario.
+        private void dgvUsers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            if (dgvUsers.Rows[e.RowIndex].IsNewRow) return;
+
+            DataGridViewRow row = dgvUsers.Rows[e.RowIndex];
+
+            // El usuario completo se guardó en Tag al cargar el grid
+            if (!(row.Tag is Entidad_Usuario usuario)) return;
+
+            txtIndice.Text = e.RowIndex.ToString();
+            txtId.Text = "ID#" + usuario.IdUsuario;
+
+            txtDni.Text = usuario.DNI;
+            txtName1.Text = usuario.Nombre1;
+            txtName2.Text = usuario.Nombre2;
+            txtLastName1.Text = usuario.Apellido1;
+            txtLastName2.Text = usuario.Apellido2;
+            txtEmail.Text = usuario.Correo;
+            txtPassword.Text = usuario.Clave;
+            txtCheckPassword.Text = usuario.Clave;
+
+            // Rol
+            cbRol.SelectedIndex = -1;
+            int idRol = usuario.oRol?.IdRol ?? 0;
+            foreach (OptionsComboBox oc in cbRol.Items)
+            {
+                if (Convert.ToInt32(oc.valor) == idRol)
+                {
+                    cbRol.SelectedItem = oc;
+                    break;
+                }
+            }
+
+            // Estado
+            cbEstado.SelectedIndex = -1;
+            int valorEstado = usuario.Estado ? 1 : 0;
+            foreach (OptionsComboBox oc in cbEstado.Items)
+            {
+                if (Convert.ToInt32(oc.valor) == valorEstado)
+                {
+                    cbEstado.SelectedItem = oc;
+                    break;
+                }
+            }
+
+            // Limpiar() deja los combos en gris; aquí se restaura el color normal
+            cbRol.ForeColor = Color.Black;
+            cbEstado.ForeColor = Color.Black;
+        }
+
+        private void txtCheckPassword_ButtonClick(object sender, EventArgs e)
+        {
+            passwordVisible = !passwordVisible;
+            ApplyPasswordState2();
+
+        }
+
+        private void txtPassword_ButtonClick(object sender, EventArgs e)
+        {
+            passwordVisible = !passwordVisible;
+            ApplyPasswordState1();
         }
     }
 }

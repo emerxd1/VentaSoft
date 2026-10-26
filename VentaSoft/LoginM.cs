@@ -20,11 +20,16 @@ namespace Main
         {
             InitializeComponent();
             ApplyPasswordState(); // estado inicial coherente
+
+            // Se desuscribe antes de suscribir: así el evento queda enlazado UNA sola vez,
+            // aunque el Designer ya lo tenga conectado (evita iniciar sesión dos veces).
+            textBox_Email.KeyDown -= textBox_Email_KeyDown;
+            textBox_Email.KeyDown += textBox_Email_KeyDown;
+            textBox_Password.KeyDown -= textBox_Password_KeyDown;
+            textBox_Password.KeyDown += textBox_Password_KeyDown;
         }
 
-        /*==========================================================================*/
         // Mostrar / ocultar contraseña
-        /*==========================================================================*/
 
         private void ApplyPasswordState()
         {
@@ -41,9 +46,7 @@ namespace Main
             ApplyPasswordState();
         }
 
-        /*==========================================================================*/
         // Color del borde al enfocar / salir
-        /*==========================================================================*/
 
         private void uiTextBox1_Enter(object sender, EventArgs e)
         {
@@ -65,9 +68,29 @@ namespace Main
             textBox_Password.RectColor = Color.Silver; // unificado con el email
         }
 
-        /*==========================================================================*/
+        // Tecla Enter
+
+        // En el correo, Enter pasa a la contraseña.
+        private void textBox_Email_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // evita el pitido de Windows
+                textBox_Password.Focus();
+            }
+        }
+
+        // En la contraseña, Enter inicia sesión.
+        private void textBox_Password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btnLogin_Click(sender, EventArgs.Empty);
+            }
+        }
+
         // Login
-        /*==========================================================================*/
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -99,7 +122,7 @@ namespace Main
 
                 Hide(); // ocultar login
 
-              FrmMain mtr = new FrmMain(O_user);
+                FrmMain mtr = new FrmMain(O_user);
                 mtr.FormClosed += (s, args) =>
                 {
                     textBox_Email.Clear();
@@ -117,13 +140,14 @@ namespace Main
             }
         }
 
-        /*==========================================================================*/
         // Botones de ventana
-        /*==========================================================================*/
 
         private void uiSymbolButton5_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            if (MessageBox.Show("¿Desea salir de la aplicación?", "Confirmación",
+                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+
+                Application.Exit();
         }
 
         private void btnMin_Click(object sender, EventArgs e)
@@ -132,6 +156,11 @@ namespace Main
         }
 
         private void panel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_Password_TextChanged(object sender, EventArgs e)
         {
 
         }
