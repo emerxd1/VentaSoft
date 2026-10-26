@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Data;
-using System.Text.RegularExpressions;
-using Microsoft.Data.SqlClient;
-using Store;
+﻿using Data;
 using ModuloEntidades;
-using Data;
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Store
 {
@@ -15,10 +11,11 @@ namespace Store
         private D_Users d_Users = new D_Users();
 
         // Solo letras (incluye tildes y ñ) y espacios
-        private static readonly Regex RegexSoloLetras = new Regex(@"^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+$");
+        private static readonly Regex RegexSoloLetras = new Regex(@"^[\p{L} ]+$");
 
-        // Letras, números y guiones (para DNI)
-        private static readonly Regex RegexDni = new Regex(@"^[a-zA-Z0-9\-]+$");
+        // Cédula nicaragüense: 3 dígitos - 6 dígitos - 4 dígitos + 1 letra (igual que S_Clients)
+        // Ej: 008-021194-5592M
+        private static readonly Regex RegexDni = new Regex(@"^\d{3}-\d{6}-\d{4}[A-Za-z]$");
 
         // Formato de correo básico
         private static readonly Regex RegexCorreo = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
@@ -33,31 +30,45 @@ namespace Store
             if (!Validar(oUsuario, out Message))
                 return 0;
 
+            Normalizar(oUsuario);
             return d_Users.RegisterUser(oUsuario, out Message);
         }
 
         public bool Edit(Entidad_Usuario oUsuario, out string Message)
         {
+            if (oUsuario == null || oUsuario.IdUsuario <= 0)
+            {
+                Message = "Debe seleccionar un usuario válido para actualizar.";
+                return false;
+            }
+
             if (!Validar(oUsuario, out Message))
                 return false;
 
+            Normalizar(oUsuario);
             return d_Users.UpdateUser(oUsuario, out Message);
         }
 
-
         public bool Delete(Entidad_Usuario oUsuario, out string Message)
         {
+            if (oUsuario == null || oUsuario.IdUsuario <= 0)
+            {
+                Message = "Debe seleccionar un usuario válido para eliminar.";
+                return false;
+            }
+
             return d_Users.DeleteUser(oUsuario, out Message);
         }
 
-        private bool Validar(Entidad_Usuario oUsuario, out string Message)
+        // Público para que el formulario pueda validar ANTES de registrar o actualizar
+        public bool Validar(Entidad_Usuario oUsuario, out string Message)
         {
             Message = string.Empty;
             string errores = string.Empty;
 
             if (oUsuario == null)
             {
-                Message = "No se recibio información del usuario.";
+                Message = "No se recibió información del usuario.";
                 return false;
             }
 
@@ -65,7 +76,7 @@ namespace Store
             if (string.IsNullOrWhiteSpace(oUsuario.DNI))
                 errores += "El DNI es obligatorio.\n";
             else if (!RegexDni.IsMatch(oUsuario.DNI.Trim()))
-                errores += "El campo DNI solo debe contener letras, numeros y guiones.\n";
+                errores += "El DNI debe tener el formato 000-000000-0000L (ej: 008-021194-5592M).\n";
 
             // ---- Nombre1 (obligatorio) ----
             if (string.IsNullOrWhiteSpace(oUsuario.Nombre1))
@@ -89,13 +100,17 @@ namespace Store
 
             // ---- Correo ----
             if (string.IsNullOrWhiteSpace(oUsuario.Correo))
-                errores += "El  Correo es obligatorio.\n";
+                errores += "El Correo es obligatorio.\n";
             else if (!RegexCorreo.IsMatch(oUsuario.Correo.Trim()))
-                errores += "El Correo no tiene un formato valido.\n";
+                errores += "El Correo no tiene un formato válido.\n";
 
             // ---- Clave ----
             if (string.IsNullOrWhiteSpace(oUsuario.Clave))
-                errores += "La Clave es obligatorio.\n";
+                errores += "La Clave es obligatoria.\n";
+
+            // ---- Rol ----
+            if (oUsuario.oRol == null || oUsuario.oRol.IdRol <= 0)
+                errores += "El Rol es obligatorio.\n";
 
             if (!string.IsNullOrEmpty(errores))
             {
@@ -104,6 +119,18 @@ namespace Store
             }
 
             return true;
+        }
+
+        // Limpia espacios y unifica mayúsculas/minúsculas antes de guardar.
+        // Solo se llama después de que Validar haya pasado. La Clave no se modifica.
+        private void Normalizar(Entidad_Usuario u)
+        {
+            u.DNI = u.DNI.Trim().ToUpper();
+            u.Nombre1 = u.Nombre1.Trim();
+            u.Nombre2 = u.Nombre2?.Trim() ?? string.Empty;
+            u.Apellido1 = u.Apellido1.Trim();
+            u.Apellido2 = u.Apellido2?.Trim() ?? string.Empty;
+            u.Correo = u.Correo.Trim().ToLower();
         }
     }
 }
