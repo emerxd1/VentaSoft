@@ -137,24 +137,17 @@ namespace Main
         {
             try
             {
+                // CAMBIO: Se obtiene el valor del estado sin retornar anticipadamente.
+                // Si no hay selección, se pasa -1 para que Validar() lo reporte junto
+                // con los demás errores.
                 var estadoSeleccionado = cbEstado.SelectedItem as OptionsComboBox;
+                int valorEstado = -1;
 
-                if (estadoSeleccionado == null)
+                if (estadoSeleccionado != null)
                 {
-                    MessageBox.Show("Debe seleccionar un estado.", "Mensaje",
-                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
+                    int.TryParse(estadoSeleccionado.valor.ToString(), out valorEstado);
                 }
 
-                int valorEstado = 0;
-                if (!int.TryParse(estadoSeleccionado.valor.ToString(), out valorEstado))
-                {
-                    MessageBox.Show("El valor del estado no es válido.", "Mensaje",
-                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                // NO se valida txtId porque la BD genera el ID
                 Entidad_Categoria oCategoria = new Entidad_Categoria()
                 {
                     Nombre = txtName.Text,
@@ -164,7 +157,8 @@ namespace Main
 
                 var servicio = new S_Category();
 
-                bool valido = servicio.Validar(oCategoria, out string errores);
+                // CAMBIO: Se pasa valorEstado para que Validar() también verifique el estado.
+                bool valido = servicio.Validar(oCategoria, out string errores, valorEstado);
 
                 if (!valido)
                 {
@@ -173,7 +167,7 @@ namespace Main
                     return;
                 }
 
-                int idCategoryGenerated = servicio.Register(oCategoria, out string Mensaje);
+                int idCategoryGenerated = servicio.Register(oCategoria, out string Mensaje, valorEstado);
 
                 if (idCategoryGenerated > 0)
                 {
@@ -239,13 +233,13 @@ namespace Main
                 return;
             }
 
+            // CAMBIO: Misma lógica que en btnAdd_Click para consistencia.
             var estadoSeleccionado = cbEstado.SelectedItem as OptionsComboBox;
+            int valorEstado = -1;
 
-            if (estadoSeleccionado == null)
+            if (estadoSeleccionado != null)
             {
-                MessageBox.Show("Debe seleccionar un estado.", "Mensaje",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                int.TryParse(estadoSeleccionado.valor.ToString(), out valorEstado);
             }
 
             Entidad_Categoria oCategoria = new Entidad_Categoria()
@@ -253,10 +247,11 @@ namespace Main
                 IdCategoria = idCategoria,
                 Nombre = txtName.Text,
                 Descripcion = txtDescripcion.Text,
-                Estado = Convert.ToInt32(estadoSeleccionado.valor) == 1
+                Estado = valorEstado == 1
             };
 
-            bool result = new S_Category().Edit(oCategoria, out string Mensaje);
+            // CAMBIO: Se usa la sobrecarga con valorEstado.
+            bool result = new S_Category().Edit(oCategoria, out string Mensaje, valorEstado);
 
             if (result)
             {
@@ -271,7 +266,7 @@ namespace Main
                     row.Cells["IdCategory"].Value = oCategoria.IdCategoria;
                     row.Cells["NameCategory"].Value = oCategoria.Nombre;
                     row.Cells["DescripcionCategory"].Value = oCategoria.Descripcion;
-                    row.Cells["EstadoValor"].Value = Convert.ToInt32(estadoSeleccionado.valor);
+                    row.Cells["EstadoValor"].Value = valorEstado;
                     row.Cells["Estado"].Value = estadoSeleccionado.texto;
                 }
 
