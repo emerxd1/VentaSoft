@@ -49,7 +49,7 @@ namespace Main
             cbEstado.Items.Add(new OptionsComboBox() { valor = 0, texto = "No Activo" });
             cbEstado.ValueMember = "valor";
             cbEstado.DisplayMember = "texto";
-            cbEstado.SelectedIndex = 0;
+          //  cbEstado.SelectedIndex = 0;
 
             // Cargar combo de Rol
             List<Entidad_Rol> listRol = new S_Rol().Lister();
@@ -61,7 +61,7 @@ namespace Main
             cbRol.DisplayMember = "texto";
             if (cbRol.Items.Count > 0)
             {
-                cbRol.SelectedIndex = 0;
+               // cbRol.SelectedIndex = 0;
             }
 
             // Cargar combo de búsqueda (según columnas visibles del grid)
@@ -206,10 +206,7 @@ namespace Main
                 Correo = txtEmail.Text.Trim(),
                 Clave = txtPassword.Text,
                 oRol = new Entidad_Rol()
-                {
-                    IdRol = rolSeleccionado != null ? Convert.ToInt32(rolSeleccionado.valor) : 0
-                },
-                Estado = estadoSeleccionado != null && Convert.ToInt32(estadoSeleccionado.valor) == 1
+             
             };
 
             bool valido = _servicio.Validar(oUsuario, out string errores);
