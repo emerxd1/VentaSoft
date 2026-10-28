@@ -231,9 +231,9 @@ namespace Main
                 // as devuelve null (en vez de lanzar error) si no hay nada seleccionado
                 var estadoSeleccionado = cbEstado.SelectedItem as OptionsComboBox;
 
-                // Al agregar no se lee el Id del formulario: lo genera la base de datos.
                 Entidad_Cliente oCliente = new Entidad_Cliente()
                 {
+                    IdCliente = ObtenerIdSeleccionado(),
                     DNI = txtDni.Text.Trim(),
                     Nombre1 = txtName1.Text.Trim(),
                     Nombre2 = txtName2.Text.Trim(),
@@ -275,8 +275,6 @@ namespace Main
                     return;
                 }
 
-                // OJO: esto sigue llamando a Register (igual que agregar). Cuando exista el método
-                // de edición en S_Clients, úsalo aquí con el Id de ObtenerIdSeleccionado().
                 bool isUpdated = servicio.Edit(oCliente, out string Mensaje);
 
                 // Id distinto de 0 = registro exitoso.
