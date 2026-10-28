@@ -627,7 +627,7 @@
             TxtNombreProd.Cursor = Cursors.IBeam;
             TxtNombreProd.FillReadOnlyColor = Color.White;
             TxtNombreProd.Font = new Font("Microsoft Sans Serif", 12F);
-            TxtNombreProd.Location = new Point(-1, 104);
+            TxtNombreProd.Location = new Point(6, 104);
             TxtNombreProd.Margin = new Padding(3, 2, 3, 2);
             TxtNombreProd.MinimumSize = new Size(1, 16);
             TxtNombreProd.Name = "TxtNombreProd";
