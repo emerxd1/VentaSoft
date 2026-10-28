@@ -7,15 +7,13 @@ using System.Text.RegularExpressions;
 
 namespace Store
 {
-    public  class S_Category
+    public class S_Category
     {
-
         private D_Category d_Category = new D_Category();
 
         // Solo letras (incluye tildes y ñ) y espacios
         private static readonly Regex RegexSoloLetras = new Regex(@"^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+$");
 
-       //  (para Descripción)
         // Permite letras, números, espacios y la mayoría de signos de puntuación comunes
         private static readonly Regex RegexDescripcion = new Regex(@"^[\p{L}\p{N}\p{P}\p{Zs}]+$");
 
@@ -24,41 +22,45 @@ namespace Store
             return d_Category.Lister();
         }
 
-        public int Register(Entidad_Categoria oCategoria, out string Mensaje)
+        public int Register(Entidad_Categoria oCategoria, out string Mensaje, int valorEstado)
         {
-            if (!Validar(oCategoria, out Mensaje))
+            if (!Validar(oCategoria, out Mensaje, valorEstado))
                 return 0;
 
             return d_Category.RegisterCategory(oCategoria, out Mensaje);
         }
 
-        public bool Edit(Entidad_Categoria oCategoria, out string Mensaje)
+
+        public bool Edit(Entidad_Categoria oCategoria, out string Mensaje, int valorEstado)
         {
-            if (!Validar(oCategoria, out Mensaje))
+            if (!Validar(oCategoria, out Mensaje, valorEstado))
                 return false;
 
             return d_Category.UpdateCategory(oCategoria, out Mensaje);
         }
-
-
 
         public bool Delete(Entidad_Categoria oCategoria, out string Mensaje)
         {
             return d_Category.DeleteCategory(oCategoria, out Mensaje);
         }
 
-      public bool Validar(Entidad_Categoria oCategoria, out string Mensaje)
+  
+
+        //   null  -> no se valida el estado (comportamiento original)
+        //   -1    -> el usuario no seleccionó estado -> se acumula el error
+        //   0 o 1 -> valor válido, no se genera error
+        public bool Validar(Entidad_Categoria oCategoria, out string Mensaje, int? valorEstado)
         {
             Mensaje = string.Empty;
             string errores = string.Empty;
 
             if (oCategoria == null)
             {
-                Mensaje = "No se recibio información de la categoría.";
+                Mensaje = "No se recibió información de la categoría.";
                 return false;
             }
 
-            // ---- DNI ----
+            // ---- Nombre ----
             if (string.IsNullOrWhiteSpace(oCategoria.Nombre))
                 errores += "El Nombre es obligatorio.\n";
             else if (!RegexSoloLetras.IsMatch(oCategoria.Nombre.Trim()))
@@ -70,6 +72,10 @@ namespace Store
             else if (!RegexDescripcion.IsMatch(oCategoria.Descripcion.Trim()))
                 errores += "La Descripción solo debe contener letras, números y espacios.\n";
 
+            // ---- Estado (solo si se proporcionó valorEstado) ----
+            if (valorEstado.HasValue && valorEstado.Value == -1)
+                errores += "Debe seleccionar un estado.\n";
+
             if (!string.IsNullOrEmpty(errores))
             {
                 Mensaje = "Se encontraron los siguientes errores:\n" + errores;
@@ -78,7 +84,5 @@ namespace Store
 
             return true;
         }
-
-
     }
 }
