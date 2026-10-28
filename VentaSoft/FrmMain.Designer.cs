@@ -39,13 +39,6 @@
             btnMenu = new Sunny.UI.UISymbolButton();
             nightControlBox1 = new ReaLTaiizor.Controls.NightControlBox();
             PanelContenedor = new Panel();
-            SubmenuVentas = new FlowLayoutPanel();
-            panel7 = new Panel();
-            btnVentas = new Sunny.UI.UISymbolButton();
-            panel6 = new Panel();
-            btnDetallesVentas = new Sunny.UI.UISymbolButton();
-            panel15 = new Panel();
-            BtnAboutme = new Sunny.UI.UISymbolButton();
             SubMenuReports = new FlowLayoutPanel();
             panel1 = new Panel();
             btnReportes = new Sunny.UI.UISymbolButton();
@@ -53,6 +46,13 @@
             btnReporteVentas = new Sunny.UI.UISymbolButton();
             panel13 = new Panel();
             BtnReporteCompra = new Sunny.UI.UISymbolButton();
+            SubmenuVentas = new FlowLayoutPanel();
+            panel7 = new Panel();
+            btnVentas = new Sunny.UI.UISymbolButton();
+            panel6 = new Panel();
+            btnDetallesVentas = new Sunny.UI.UISymbolButton();
+            panel15 = new Panel();
+            BtnAboutme = new Sunny.UI.UISymbolButton();
             submenuCompras = new FlowLayoutPanel();
             panel10 = new Panel();
             btnCompras = new Sunny.UI.UISymbolButton();
@@ -78,14 +78,14 @@
             panel14 = new Panel();
             btnAjustes = new Sunny.UI.UISymbolButton();
             Header.SuspendLayout();
-            SubmenuVentas.SuspendLayout();
-            panel7.SuspendLayout();
-            panel6.SuspendLayout();
-            panel15.SuspendLayout();
             SubMenuReports.SuspendLayout();
             panel1.SuspendLayout();
             panel12.SuspendLayout();
             panel13.SuspendLayout();
+            SubmenuVentas.SuspendLayout();
+            panel7.SuspendLayout();
+            panel6.SuspendLayout();
+            panel15.SuspendLayout();
             submenuCompras.SuspendLayout();
             panel10.SuspendLayout();
             panel11.SuspendLayout();
@@ -215,123 +215,6 @@
             PanelContenedor.Size = new Size(1176, 744);
             PanelContenedor.TabIndex = 34;
             // 
-            // SubmenuVentas
-            // 
-            SubmenuVentas.Controls.Add(panel7);
-            SubmenuVentas.Controls.Add(panel6);
-            SubmenuVentas.Location = new Point(3, 371);
-            SubmenuVentas.Name = "SubmenuVentas";
-            SubmenuVentas.Size = new Size(190, 40);
-            SubmenuVentas.TabIndex = 29;
-            // 
-            // panel7
-            // 
-            panel7.Controls.Add(btnVentas);
-            panel7.Location = new Point(3, 3);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(200, 40);
-            panel7.TabIndex = 30;
-            // 
-            // btnVentas
-            // 
-            btnVentas.FillColor = Color.FromArgb(11, 46, 34);
-            btnVentas.FillDisableColor = Color.FromArgb(224, 224, 224);
-            btnVentas.FillHoverColor = Color.FromArgb(8, 92, 63);
-            btnVentas.FillPressColor = Color.Silver;
-            btnVentas.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnVentas.ImageAlign = ContentAlignment.MiddleLeft;
-            btnVentas.Location = new Point(-6, -21);
-            btnVentas.MinimumSize = new Size(1, 1);
-            btnVentas.Name = "btnVentas";
-            btnVentas.Radius = 10;
-            btnVentas.RectColor = Color.White;
-            btnVentas.RectDisableColor = Color.White;
-            btnVentas.RectHoverColor = Color.White;
-            btnVentas.RectPressColor = Color.White;
-            btnVentas.RectSelectedColor = Color.White;
-            btnVentas.ShowFocusLine = true;
-            btnVentas.Size = new Size(216, 78);
-            btnVentas.Style = Sunny.UI.UIStyle.Custom;
-            btnVentas.Symbol = 61562;
-            btnVentas.SymbolOffset = new Point(5, 0);
-            btnVentas.SymbolSize = 30;
-            btnVentas.TabIndex = 25;
-            btnVentas.Text = "Ventas";
-            btnVentas.TipsFont = new Font("Microsoft Sans Serif", 9F);
-            btnVentas.Click += FrmSales_Click;
-            // 
-            // panel6
-            // 
-            panel6.Controls.Add(btnDetallesVentas);
-            panel6.Location = new Point(3, 49);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(200, 32);
-            panel6.TabIndex = 29;
-            // 
-            // btnDetallesVentas
-            // 
-            btnDetallesVentas.FillColor = Color.FromArgb(11, 46, 34);
-            btnDetallesVentas.FillDisableColor = Color.FromArgb(224, 224, 224);
-            btnDetallesVentas.FillHoverColor = Color.FromArgb(8, 92, 63);
-            btnDetallesVentas.FillPressColor = Color.Silver;
-            btnDetallesVentas.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDetallesVentas.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDetallesVentas.Location = new Point(-8, -21);
-            btnDetallesVentas.MinimumSize = new Size(1, 1);
-            btnDetallesVentas.Name = "btnDetallesVentas";
-            btnDetallesVentas.Padding = new Padding(10, 0, 0, 0);
-            btnDetallesVentas.Radius = 10;
-            btnDetallesVentas.RectColor = Color.White;
-            btnDetallesVentas.RectDisableColor = Color.White;
-            btnDetallesVentas.RectHoverColor = Color.White;
-            btnDetallesVentas.RectPressColor = Color.White;
-            btnDetallesVentas.RectSelectedColor = Color.White;
-            btnDetallesVentas.ShowFocusLine = true;
-            btnDetallesVentas.Size = new Size(216, 78);
-            btnDetallesVentas.Style = Sunny.UI.UIStyle.Custom;
-            btnDetallesVentas.Symbol = 0;
-            btnDetallesVentas.SymbolOffset = new Point(5, 0);
-            btnDetallesVentas.SymbolSize = 30;
-            btnDetallesVentas.TabIndex = 25;
-            btnDetallesVentas.Text = "Detalles de Ventas";
-            btnDetallesVentas.TipsFont = new Font("Microsoft Sans Serif", 9F);
-            btnDetallesVentas.Click += btnDetallesVentas_Click;
-            // 
-            // panel15
-            // 
-            panel15.Anchor = AnchorStyles.Bottom;
-            panel15.Controls.Add(BtnAboutme);
-            panel15.Location = new Point(3, 223);
-            panel15.Name = "panel15";
-            panel15.Size = new Size(190, 40);
-            panel15.TabIndex = 30;
-            // 
-            // BtnAboutme
-            // 
-            BtnAboutme.FillColor = Color.FromArgb(11, 46, 34);
-            BtnAboutme.FillDisableColor = Color.FromArgb(224, 224, 224);
-            BtnAboutme.FillHoverColor = Color.FromArgb(8, 92, 63);
-            BtnAboutme.FillPressColor = Color.Silver;
-            BtnAboutme.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnAboutme.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnAboutme.Location = new Point(-4, -20);
-            BtnAboutme.MinimumSize = new Size(1, 1);
-            BtnAboutme.Name = "BtnAboutme";
-            BtnAboutme.Radius = 10;
-            BtnAboutme.RectColor = Color.White;
-            BtnAboutme.RectDisableColor = Color.White;
-            BtnAboutme.RectHoverColor = Color.White;
-            BtnAboutme.RectPressColor = Color.White;
-            BtnAboutme.RectSelectedColor = Color.White;
-            BtnAboutme.ShowFocusLine = true;
-            BtnAboutme.Size = new Size(213, 78);
-            BtnAboutme.Style = Sunny.UI.UIStyle.Custom;
-            BtnAboutme.Symbol = 361530;
-            BtnAboutme.SymbolSize = 30;
-            BtnAboutme.TabIndex = 25;
-            BtnAboutme.Text = "Sobre Nosotros";
-            BtnAboutme.TipsFont = new Font("Microsoft Sans Serif", 9F);
-            // 
             // SubMenuReports
             // 
             SubMenuReports.Controls.Add(panel1);
@@ -340,7 +223,7 @@
             SubMenuReports.FlowDirection = FlowDirection.RightToLeft;
             SubMenuReports.Location = new Point(3, 417);
             SubMenuReports.Name = "SubMenuReports";
-            SubMenuReports.Size = new Size(190, 40);
+            SubMenuReports.Size = new Size(190, 32);
             SubMenuReports.TabIndex = 35;
             // 
             // panel1
@@ -447,6 +330,124 @@
             BtnReporteCompra.TabIndex = 25;
             BtnReporteCompra.Text = "Reporte de compras";
             BtnReporteCompra.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            BtnReporteCompra.Click += BtnReporteCompra_Click_1;
+            // 
+            // SubmenuVentas
+            // 
+            SubmenuVentas.Controls.Add(panel7);
+            SubmenuVentas.Controls.Add(panel6);
+            SubmenuVentas.Location = new Point(3, 371);
+            SubmenuVentas.Name = "SubmenuVentas";
+            SubmenuVentas.Size = new Size(190, 40);
+            SubmenuVentas.TabIndex = 29;
+            // 
+            // panel7
+            // 
+            panel7.Controls.Add(btnVentas);
+            panel7.Location = new Point(3, 3);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(200, 40);
+            panel7.TabIndex = 30;
+            // 
+            // btnVentas
+            // 
+            btnVentas.FillColor = Color.FromArgb(11, 46, 34);
+            btnVentas.FillDisableColor = Color.FromArgb(224, 224, 224);
+            btnVentas.FillHoverColor = Color.FromArgb(8, 92, 63);
+            btnVentas.FillPressColor = Color.Silver;
+            btnVentas.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnVentas.ImageAlign = ContentAlignment.MiddleLeft;
+            btnVentas.Location = new Point(-6, -21);
+            btnVentas.MinimumSize = new Size(1, 1);
+            btnVentas.Name = "btnVentas";
+            btnVentas.Radius = 10;
+            btnVentas.RectColor = Color.White;
+            btnVentas.RectDisableColor = Color.White;
+            btnVentas.RectHoverColor = Color.White;
+            btnVentas.RectPressColor = Color.White;
+            btnVentas.RectSelectedColor = Color.White;
+            btnVentas.ShowFocusLine = true;
+            btnVentas.Size = new Size(216, 78);
+            btnVentas.Style = Sunny.UI.UIStyle.Custom;
+            btnVentas.Symbol = 61562;
+            btnVentas.SymbolOffset = new Point(5, 0);
+            btnVentas.SymbolSize = 30;
+            btnVentas.TabIndex = 25;
+            btnVentas.Text = "Ventas";
+            btnVentas.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            btnVentas.Click += FrmSales_Click;
+            // 
+            // panel6
+            // 
+            panel6.Controls.Add(btnDetallesVentas);
+            panel6.Location = new Point(3, 49);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(200, 32);
+            panel6.TabIndex = 29;
+            // 
+            // btnDetallesVentas
+            // 
+            btnDetallesVentas.FillColor = Color.FromArgb(11, 46, 34);
+            btnDetallesVentas.FillDisableColor = Color.FromArgb(224, 224, 224);
+            btnDetallesVentas.FillHoverColor = Color.FromArgb(8, 92, 63);
+            btnDetallesVentas.FillPressColor = Color.Silver;
+            btnDetallesVentas.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDetallesVentas.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDetallesVentas.Location = new Point(-8, -21);
+            btnDetallesVentas.MinimumSize = new Size(1, 1);
+            btnDetallesVentas.Name = "btnDetallesVentas";
+            btnDetallesVentas.Padding = new Padding(10, 0, 0, 0);
+            btnDetallesVentas.Radius = 10;
+            btnDetallesVentas.RectColor = Color.White;
+            btnDetallesVentas.RectDisableColor = Color.White;
+            btnDetallesVentas.RectHoverColor = Color.White;
+            btnDetallesVentas.RectPressColor = Color.White;
+            btnDetallesVentas.RectSelectedColor = Color.White;
+            btnDetallesVentas.ShowFocusLine = true;
+            btnDetallesVentas.Size = new Size(216, 78);
+            btnDetallesVentas.Style = Sunny.UI.UIStyle.Custom;
+            btnDetallesVentas.Symbol = 0;
+            btnDetallesVentas.SymbolOffset = new Point(5, 0);
+            btnDetallesVentas.SymbolSize = 30;
+            btnDetallesVentas.TabIndex = 25;
+            btnDetallesVentas.Text = "Detalles de Ventas";
+            btnDetallesVentas.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            btnDetallesVentas.Click += btnDetallesVentas_Click;
+            // 
+            // panel15
+            // 
+            panel15.Anchor = AnchorStyles.Bottom;
+            panel15.Controls.Add(BtnAboutme);
+            panel15.Location = new Point(3, 224);
+            panel15.Name = "panel15";
+            panel15.Size = new Size(190, 40);
+            panel15.TabIndex = 30;
+            // 
+            // BtnAboutme
+            // 
+            BtnAboutme.FillColor = Color.FromArgb(11, 46, 34);
+            BtnAboutme.FillDisableColor = Color.FromArgb(224, 224, 224);
+            BtnAboutme.FillHoverColor = Color.FromArgb(8, 92, 63);
+            BtnAboutme.FillPressColor = Color.Silver;
+            BtnAboutme.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnAboutme.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnAboutme.Location = new Point(-4, -20);
+            BtnAboutme.MinimumSize = new Size(1, 1);
+            BtnAboutme.Name = "BtnAboutme";
+            BtnAboutme.Radius = 10;
+            BtnAboutme.RectColor = Color.White;
+            BtnAboutme.RectDisableColor = Color.White;
+            BtnAboutme.RectHoverColor = Color.White;
+            BtnAboutme.RectPressColor = Color.White;
+            BtnAboutme.RectSelectedColor = Color.White;
+            BtnAboutme.ShowFocusLine = true;
+            BtnAboutme.Size = new Size(213, 78);
+            BtnAboutme.Style = Sunny.UI.UIStyle.Custom;
+            BtnAboutme.Symbol = 361530;
+            BtnAboutme.SymbolSize = 30;
+            BtnAboutme.TabIndex = 25;
+            BtnAboutme.Text = "Sobre Nosotros";
+            BtnAboutme.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
             // submenuCompras
             // 
@@ -806,9 +807,9 @@
             flowLayoutPanel1.Controls.Add(panel14);
             PanelMenu.SetFlowBreak(flowLayoutPanel1, true);
             flowLayoutPanel1.FlowDirection = FlowDirection.BottomUp;
-            flowLayoutPanel1.Location = new Point(3, 463);
+            flowLayoutPanel1.Location = new Point(3, 455);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(187, 266);
+            flowLayoutPanel1.Size = new Size(187, 267);
             flowLayoutPanel1.TabIndex = 31;
             flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
@@ -816,7 +817,7 @@
             // 
             panel14.Anchor = AnchorStyles.Bottom;
             panel14.Controls.Add(btnAjustes);
-            panel14.Location = new Point(3, 177);
+            panel14.Location = new Point(3, 178);
             panel14.Name = "panel14";
             panel14.Size = new Size(190, 40);
             panel14.TabIndex = 29;
@@ -861,14 +862,14 @@
             Text = "FrmMain";
             Header.ResumeLayout(false);
             Header.PerformLayout();
-            SubmenuVentas.ResumeLayout(false);
-            panel7.ResumeLayout(false);
-            panel6.ResumeLayout(false);
-            panel15.ResumeLayout(false);
             SubMenuReports.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel12.ResumeLayout(false);
             panel13.ResumeLayout(false);
+            SubmenuVentas.ResumeLayout(false);
+            panel7.ResumeLayout(false);
+            panel6.ResumeLayout(false);
+            panel15.ResumeLayout(false);
             submenuCompras.ResumeLayout(false);
             panel10.ResumeLayout(false);
             panel11.ResumeLayout(false);
