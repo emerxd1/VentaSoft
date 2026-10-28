@@ -36,11 +36,6 @@ insert into Permiso (IdRol,NombreMenu) values
 
 
 
-
-
-
-
-
 Delete from Rol where IdRol =2;
 
 SELECT * FROM Rol
@@ -1045,3 +1040,165 @@ SELECT name, OBJECT_NAME(parent_id) AS Tabla FROM sys.triggers;
 -- Procedimientos desplegados que contienen DELETE
 SELECT OBJECT_NAME(object_id) AS Nombre, definition
 FROM sys.sql_modules WHERE definition LIKE '%DELETE%';
+
+
+select
+CONVERT(char(10), c.FechaRegistro, 103) [FechaRegistro], 
+c.TipoDocumento, 
+c.NumeroDocumento, 
+c.MontoTotal,
+u.Nombre1 + u.Apellido1 [UsuarioRegistro], -- Puedes concatenar con apellido si deseas: u.Nombre1 + ' ' + u.Apellido1
+pr.RUC [DocumentoProveedor], 
+pr.RazonSocial,
+p.IdProducto [CodigoProducto], 
+p.Nombre [NombreProducto], 
+ca.Descripcion [Categoria], 
+dc.PrecioCompra, 
+dc.PrecioVenta, 
+dc.Cantidad, 
+dc.Total [SubTotal]
+
+from Compra c
+inner join Usuario u on u.IdUsuario = c.IdUsuario
+inner join Proveedor pr on pr.IdProveedor = c.IdProveedor
+inner join DetalleCompra dc on dc.IdCompra = c.IdCompra
+inner join Producto p on p.IdProducto = dc.IdProducto
+inner join Categoria ca on ca.IdCategoria = p.IdCategoria
+
+
+/*procedimiento almacenado para reporte de compras*/
+
+
+CREATE OR ALTER PROC sp_ReporteCompras(
+    @fechainicio DATE,         -- Cambio de VARCHAR a DATE para Tipado Correcto
+    @fechafin DATE,           -- Cambio de VARCHAR a DATE para Tipado Correcto
+    @idproveedor INT
+)
+AS
+BEGIN
+    -- Rendimiento: Evita mensajes de "filas afectadas" y permite lecturas sucias en reportes
+    SET NOCOUNT ON;
+    SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+
+    SELECT
+        CONVERT(CHAR(10), c.FechaRegistro, 103) AS [FechaRegistro],
+        c.TipoDocumento,
+        c.NumeroDocumento,
+        c.MontoTotal,
+        u.Nombre1 AS [UsuarioRegistro],
+        pr.RUC AS [DocumentoProveedor],
+        pr.RazonSocial,
+        p.IdProducto AS [CodigoProducto],
+        p.Nombre AS [NombreProducto],
+        ca.Descripcion AS [Categoria],
+        dc.PrecioCompra,
+        dc.PrecioVenta,
+        dc.Cantidad,
+        dc.Total AS [SubTotal]
+    FROM Compra c WITH (NOLOCK)
+    INNER JOIN Usuario u WITH (NOLOCK) ON u.IdUsuario = c.IdUsuario
+    INNER JOIN Proveedor pr WITH (NOLOCK) ON pr.IdProveedor = c.IdProveedor
+    INNER JOIN DetalleCompra dc WITH (NOLOCK) ON dc.IdCompra = c.IdCompra
+    INNER JOIN Producto p WITH (NOLOCK) ON p.IdProducto = dc.IdProducto
+    INNER JOIN Categoria ca WITH (NOLOCK) ON ca.IdCategoria = p.IdCategoria
+    WHERE
+        -- SARGability: Comparamos directamente la columna sin funciones (CONVERT/CAST)
+        c.FechaRegistro >= @fechainicio
+        AND c.FechaRegistro < DATEADD(DAY, 1, @fechafin)
+        -- Filtros Dinámicos: Optimizado para evitar planes de ejecución ineficientes
+        AND (@idproveedor = 0 OR pr.IdProveedor = @idproveedor)
+    OPTION (RECOMPILE);
+END
+
+/*procedimiento almacenado para reporte de VENTAS*/
+
+CREATE OR ALTER PROC sp_Reporte_Ventas(
+    @fechainicio DATE,
+    @fechafin DATE
+)
+AS
+BEGIN
+    -- Rendimiento: Evita mensajes innecesarios y permite lecturas sin bloqueos
+    SET NOCOUNT ON;
+    SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+
+    SELECT
+        -- Formateo de fecha para consistencia en reportes (DD/MM/YYYY)
+        CONVERT(CHAR(10), v.FechaRegistro, 103) AS [FechaRegistro],
+        v.NumeroFactura AS [TipoDocumento],
+        v.NumeroFactura,
+        v.MontoTotal,
+        -- Concatenación limpia (CONCAT maneja NULLs automáticamente como strings vacíos)
+        TRIM(CONCAT(u.Nombre1, ' ', u.Nombre2, ' ', u.Apellido1, ' ', u.Apellido2)) AS [UsuarioRegistro],
+        v.IdCliente AS [DocumentoCliente],
+        v.Nombre1 AS [NombreCliente],
+        p.IdProducto AS [CodigoProducto],
+        p.Nombre AS [NombreProducto],
+        ca.Descripcion AS [Categoria],
+        dv.PrecioVenta,
+        dv.Cantidad,
+        dv.SubTotal
+    FROM Venta v WITH (NOLOCK)
+    INNER JOIN Usuario u WITH (NOLOCK) ON u.IdUsuario = v.IdUsuario
+    INNER JOIN DetalleVenta dv WITH (NOLOCK) ON dv.IdVenta = v.IdVenta
+    INNER JOIN Producto p WITH (NOLOCK) ON p.IdProducto = dv.IdProducto
+    INNER JOIN Categoria ca WITH (NOLOCK) ON ca.IdCategoria = p.IdCategoria
+    WHERE
+        -- SARGability: Rango de fechas optimizado para Index Seek
+        v.FechaRegistro >= @fechainicio
+        AND v.FechaRegistro < DATEADD(DAY, 1, @fechafin)
+    OPTION (RECOMPILE);
+END;
+
+
+EXEC sp_ReporteCompras
+    @fechainicio = '2026-01-01',
+    @fechafin    = '2026-12-31',
+    @idproveedor = 0;
+
+    EXEC sp_Reporte_Ventas
+    @fechainicio = '2026-01-01',
+    @fechafin    = '2026-12-31';
+
+
+    /*CORRECION DEL PROCEDIMIENTO ALMACENADO SP_REGISTRARVENTAS*/
+
+GO
+
+/*--------------------------------------------------------------------
+     las ventas ahora guardan codigos como V0001 y ese numero no
+     existe en la tabla Factura entonces  hacia que  SQL rechazaba la venta
+     el nombre de la llavr cambia en cada base por eso se busca solo
+     por eso no borra datos solo quitamos la regla
+--------------------------------------------------------------------*/
+DECLARE @fk nvarchar(200);
+
+SELECT @fk = fk.name
+FROM sys.foreign_keys fk
+INNER JOIN sys.foreign_key_columns fkc ON fkc.constraint_object_id = fk.object_id
+WHERE fk.parent_object_id = OBJECT_ID('Venta')
+  AND COL_NAME(fkc.parent_object_id, fkc.parent_column_id) = 'NumeroFactura';
+
+-- si la llave existe se elimina y si ya no esta no hace nada
+IF @fk IS NOT NULL EXEC('ALTER TABLE Venta DROP CONSTRAINT [' + @fk + ']');
+GO
+
+/*--------------------------------------------------------------------
+     agregamos columna TipoDocumento a Venta boleta o factura por que con esta columna nos daba error
+     en detalle de venta y en el registro de ventas no nos permitia descargar el pdf
+--------------------------------------------------------------------*/
+IF COL_LENGTH('Venta', 'TipoDocumento') IS NULL
+    ALTER TABLE Venta ADD TipoDocumento VARCHAR(50) NULL;
+GO
+
+/*--------------------------------------------------------------------
+-- Nombre1 y Apellido1 ya no la usamos en ventas el cliente lo mostramos por IdCliente solo las dejamos opcionales para que no falle el insert
+--------------------------------------------------------------------*/
+IF COL_LENGTH('Venta', 'Nombre1') IS NOT NULL
+    ALTER TABLE Venta ALTER COLUMN Nombre1 VARCHAR(50) NULL;
+
+IF COL_LENGTH('Venta', 'Apellido1') IS NOT NULL
+    ALTER TABLE Venta ALTER COLUMN Apellido1 VARCHAR(50) NULL;
+GO 
+
+    
