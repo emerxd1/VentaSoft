@@ -10,7 +10,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Plantilla\logo.png" />
 		<None Remove="Plantilla\PlantillaBoleta.html" />
 		<None Remove="Plantilla\PlantillaCompra.html" />
 		<None Remove="Plantilla\PlantillaFactura.html" />
@@ -19,9 +18,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="Plantilla\logo.png">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
 		<Content Include="Plantilla\PlantillaBoleta.html">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -75,6 +71,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Update="Plantilla\logo.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 		<None Update="Properties\Settings.settings">
 			<Generator>SettingsSingleFileGenerator</Generator>
 			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
