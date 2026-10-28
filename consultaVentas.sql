@@ -1201,4 +1201,6 @@ IF COL_LENGTH('Venta', 'Apellido1') IS NOT NULL
     ALTER TABLE Venta ALTER COLUMN Apellido1 VARCHAR(50) NULL;
 GO 
 
-    
+    SELECT name, create_date, modify_date
+FROM sys.procedures
+ORDER BY create_date DESC;
