@@ -1,4 +1,5 @@
 ﻿using iText.Html2pdf;//cargamos para poder ejecutar el pdf
+using Main.Utilities;
 using ModuloEntidades;
 using Store;
 using System;
@@ -13,6 +14,7 @@ namespace Main
         public FrmDetallesVentas()
         {
             InitializeComponent();
+            new EscaladoProporcional(this);
 
             // enlaza los eventos por el codigo y evita que queden duplicados si luego los conectas con diseñador
             btnbuscarr.Click -= btnbuscarr_Click;

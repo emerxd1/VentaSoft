@@ -51,6 +51,12 @@
             label8 = new Label();
             uiPanel1 = new Sunny.UI.UIPanel();
             dgvCategory = new ModernControls.ModernGrid();
+            btnSeleccionar = new DataGridViewButtonColumn();
+            IdCategory = new DataGridViewTextBoxColumn();
+            NameCategory = new DataGridViewTextBoxColumn();
+            DescripcionCategory = new DataGridViewTextBoxColumn();
+            EstadoValor = new DataGridViewTextBoxColumn();
+            Estado = new DataGridViewTextBoxColumn();
             txtSearch = new Sunny.UI.UITextBox();
             uiSymbolButton1 = new Sunny.UI.UISymbolButton();
             uiSymbolButton2 = new Sunny.UI.UISymbolButton();
@@ -62,12 +68,6 @@
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             elipseControl1 = new ElipseControlLib.ElipseControl();
             elipseControl2 = new ElipseControlLib.ElipseControl();
-            btnSeleccionar = new DataGridViewButtonColumn();
-            IdCategory = new DataGridViewTextBoxColumn();
-            NameCategory = new DataGridViewTextBoxColumn();
-            DescripcionCategory = new DataGridViewTextBoxColumn();
-            EstadoValor = new DataGridViewTextBoxColumn();
-            Estado = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             PnlDetails.SuspendLayout();
             uiPanel1.SuspendLayout();
@@ -138,6 +138,7 @@
             txtIndice.ForeColor = Color.FromArgb(97, 157, 135);
             txtIndice.ForeDisableColor = Color.FromArgb(97, 157, 135);
             txtIndice.ForeReadOnlyColor = Color.FromArgb(97, 157, 135);
+            txtIndice.ImeMode = ImeMode.Disable;
             txtIndice.Location = new Point(290, 18);
             txtIndice.Margin = new Padding(4, 5, 4, 5);
             txtIndice.MinimumSize = new Size(1, 16);
@@ -316,6 +317,7 @@
             txtId.ForeColor = Color.FromArgb(97, 157, 135);
             txtId.ForeDisableColor = Color.FromArgb(97, 157, 135);
             txtId.ForeReadOnlyColor = Color.FromArgb(97, 157, 135);
+            txtId.ImeMode = ImeMode.Disable;
             txtId.Location = new Point(350, 18);
             txtId.Margin = new Padding(4, 5, 4, 5);
             txtId.MinimumSize = new Size(1, 16);
@@ -453,6 +455,61 @@
             dgvCategory.Size = new Size(799, 448);
             dgvCategory.TabIndex = 83;
             dgvCategory.CellClick += dgvCategory_CellClick;
+            // 
+            // btnSeleccionar
+            // 
+            btnSeleccionar.DefaultCellStyle = dataGridViewCellStyle3;
+            btnSeleccionar.FillWeight = 117F;
+            btnSeleccionar.HeaderText = "Cargar Datos";
+            btnSeleccionar.MinimumWidth = 117;
+            btnSeleccionar.Name = "btnSeleccionar";
+            btnSeleccionar.ReadOnly = true;
+            btnSeleccionar.Resizable = DataGridViewTriState.True;
+            btnSeleccionar.Visible = false;
+            // 
+            // IdCategory
+            // 
+            IdCategory.HeaderText = "IdCategoria";
+            IdCategory.Name = "IdCategory";
+            IdCategory.ReadOnly = true;
+            IdCategory.SortMode = DataGridViewColumnSortMode.NotSortable;
+            IdCategory.Visible = false;
+            // 
+            // NameCategory
+            // 
+            NameCategory.FillWeight = 79F;
+            NameCategory.HeaderText = "Nombre";
+            NameCategory.MinimumWidth = 79;
+            NameCategory.Name = "NameCategory";
+            NameCategory.ReadOnly = true;
+            NameCategory.Resizable = DataGridViewTriState.False;
+            NameCategory.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // DescripcionCategory
+            // 
+            DescripcionCategory.FillWeight = 104F;
+            DescripcionCategory.HeaderText = "Descripcion";
+            DescripcionCategory.MinimumWidth = 104;
+            DescripcionCategory.Name = "DescripcionCategory";
+            DescripcionCategory.ReadOnly = true;
+            DescripcionCategory.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // EstadoValor
+            // 
+            EstadoValor.HeaderText = "EstadoValor";
+            EstadoValor.Name = "EstadoValor";
+            EstadoValor.ReadOnly = true;
+            EstadoValor.SortMode = DataGridViewColumnSortMode.NotSortable;
+            EstadoValor.Visible = false;
+            // 
+            // Estado
+            // 
+            Estado.FillWeight = 74F;
+            Estado.HeaderText = "Estado";
+            Estado.MinimumWidth = 74;
+            Estado.Name = "Estado";
+            Estado.ReadOnly = true;
+            Estado.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // txtSearch
             // 
@@ -605,6 +662,7 @@
             bigLabel1.Size = new Size(122, 30);
             bigLabel1.TabIndex = 61;
             bigLabel1.Text = "Categorias ";
+            bigLabel1.Click += bigLabel1_Click;
             // 
             // elipseControl1
             // 
@@ -615,61 +673,6 @@
             // 
             elipseControl2.CornerRadius = 5;
             elipseControl2.TargetControl = null;
-            // 
-            // btnSeleccionar
-            // 
-            btnSeleccionar.DefaultCellStyle = dataGridViewCellStyle3;
-            btnSeleccionar.FillWeight = 117F;
-            btnSeleccionar.HeaderText = "Cargar Datos";
-            btnSeleccionar.MinimumWidth = 117;
-            btnSeleccionar.Name = "btnSeleccionar";
-            btnSeleccionar.ReadOnly = true;
-            btnSeleccionar.Resizable = DataGridViewTriState.True;
-            btnSeleccionar.Visible = false;
-            // 
-            // IdCategory
-            // 
-            IdCategory.HeaderText = "IdCategoria";
-            IdCategory.Name = "IdCategory";
-            IdCategory.ReadOnly = true;
-            IdCategory.SortMode = DataGridViewColumnSortMode.NotSortable;
-            IdCategory.Visible = false;
-            // 
-            // NameCategory
-            // 
-            NameCategory.FillWeight = 79F;
-            NameCategory.HeaderText = "Nombre";
-            NameCategory.MinimumWidth = 79;
-            NameCategory.Name = "NameCategory";
-            NameCategory.ReadOnly = true;
-            NameCategory.Resizable = DataGridViewTriState.False;
-            NameCategory.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // DescripcionCategory
-            // 
-            DescripcionCategory.FillWeight = 104F;
-            DescripcionCategory.HeaderText = "Descripcion";
-            DescripcionCategory.MinimumWidth = 104;
-            DescripcionCategory.Name = "DescripcionCategory";
-            DescripcionCategory.ReadOnly = true;
-            DescripcionCategory.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // EstadoValor
-            // 
-            EstadoValor.HeaderText = "EstadoValor";
-            EstadoValor.Name = "EstadoValor";
-            EstadoValor.ReadOnly = true;
-            EstadoValor.SortMode = DataGridViewColumnSortMode.NotSortable;
-            EstadoValor.Visible = false;
-            // 
-            // Estado
-            // 
-            Estado.FillWeight = 74F;
-            Estado.HeaderText = "Estado";
-            Estado.MinimumWidth = 74;
-            Estado.Name = "Estado";
-            Estado.ReadOnly = true;
-            Estado.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // FrmCategory
             // 

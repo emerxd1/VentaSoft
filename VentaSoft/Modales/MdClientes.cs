@@ -20,6 +20,7 @@ namespace Main.Modales
         public MdClientes()
         {
             InitializeComponent();
+            new EscaladoProporcional(this); // mandamos a llamar escalado proporcional para el auto escalado en auto para cualquier pantalla
         }
 
         private void MdClientes_Load(object sender, EventArgs e)

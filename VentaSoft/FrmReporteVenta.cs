@@ -20,6 +20,7 @@ namespace Main
         public FrmReporteVenta()
         {
             InitializeComponent();
+            new EscaladoProporcional(this);
             // Columnas para el filtro de texto
             foreach (DataGridViewColumn columna in dgvReportVenta.Columns)
             {
@@ -201,6 +202,11 @@ namespace Main
                     MessageBox.Show("Error al generar reporte: " + ex.Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
+
+        }
+
+        private void FrmReporteVenta_Load(object sender, EventArgs e)
+        {
 
         }
     }

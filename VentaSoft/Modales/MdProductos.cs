@@ -19,6 +19,7 @@ namespace Main.Modales
         public MdProductos()
         {
             InitializeComponent();
+            new EscaladoProporcional(this);
         }
 
         private void MdProductos_Load(object sender, EventArgs e)

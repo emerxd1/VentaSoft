@@ -43,12 +43,13 @@
             IdCliente = new DataGridViewTextBoxColumn();
             DNI = new DataGridViewTextBoxColumn();
             Cliente = new DataGridViewTextBoxColumn();
+            lblSubtitulo = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvClients).BeginInit();
             SuspendLayout();
             // 
             // bigLabel1
             // 
-            bigLabel1.BackColor = Color.FromArgb(8, 92, 63);
+            bigLabel1.BackColor = Color.FromArgb(15, 118, 110);
             bigLabel1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             bigLabel1.ForeColor = Color.White;
             bigLabel1.Location = new Point(-2, -1);
@@ -59,13 +60,14 @@
             // 
             // btnClearSearch
             // 
-            btnClearSearch.BackColor = Color.Transparent;
+            btnClearSearch.BackColor = Color.FromArgb(15, 118, 110);
             btnClearSearch.Cursor = Cursors.Hand;
             btnClearSearch.FlatAppearance.BorderSize = 0;
-            btnClearSearch.FlatAppearance.MouseOverBackColor = Color.SeaGreen;
+            btnClearSearch.FlatAppearance.MouseDownBackColor = Color.Teal;
+            btnClearSearch.FlatAppearance.MouseOverBackColor = Color.Teal;
             btnClearSearch.FlatStyle = FlatStyle.Flat;
             btnClearSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnClearSearch.ForeColor = SystemColors.ControlText;
+            btnClearSearch.ForeColor = Color.FromArgb(15, 118, 110);
             btnClearSearch.Image = Properties.Resources.recargar;
             btnClearSearch.Location = new Point(182, 60);
             btnClearSearch.Name = "btnClearSearch";
@@ -77,14 +79,15 @@
             // 
             // btnSearch
             // 
-            btnSearch.BackColor = Color.Transparent;
+            btnSearch.BackColor = Color.FromArgb(15, 118, 110);
             btnSearch.BackgroundImageLayout = ImageLayout.Center;
             btnSearch.Cursor = Cursors.Hand;
             btnSearch.FlatAppearance.BorderSize = 0;
-            btnSearch.FlatAppearance.MouseOverBackColor = Color.SeaGreen;
+            btnSearch.FlatAppearance.MouseDownBackColor = Color.Teal;
+            btnSearch.FlatAppearance.MouseOverBackColor = Color.Teal;
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSearch.ForeColor = Color.Transparent;
+            btnSearch.ForeColor = Color.FromArgb(15, 118, 110);
             btnSearch.Image = Properties.Resources.lupa;
             btnSearch.Location = new Point(130, 60);
             btnSearch.Name = "btnSearch";
@@ -96,6 +99,7 @@
             // 
             // txtSearch
             // 
+            txtSearch.BackColor = Color.White;
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Cursor = Cursors.IBeam;
             txtSearch.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -109,6 +113,7 @@
             // 
             // cbSearchClientes
             // 
+            cbSearchClientes.BackColor = SystemColors.Menu;
             cbSearchClientes.Cursor = Cursors.Hand;
             cbSearchClientes.DropDownStyle = ComboBoxStyle.DropDownList;
             cbSearchClientes.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -124,7 +129,7 @@
             label13.AutoSize = true;
             label13.BackColor = Color.Transparent;
             label13.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label13.ForeColor = Color.Black;
+            label13.ForeColor = Color.White;
             label13.Location = new Point(-2, 41);
             label13.Name = "label13";
             label13.Size = new Size(102, 21);
@@ -135,18 +140,19 @@
             // 
             dgvClients.AllowUserToAddRows = false;
             dataGridViewCellStyle1.BackColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.MediumSpringGreen;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(223, 243, 239);
             dataGridViewCellStyle1.SelectionForeColor = Color.Black;
             dgvClients.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvClients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClients.BackgroundColor = Color.White;
             dgvClients.BorderStyle = BorderStyle.None;
             dgvClients.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(8, 92, 63);
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(246, 248, 248);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(8, 92, 63);
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(70, 86, 79);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(246, 248, 248);
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(70, 86, 79);
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dgvClients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -154,9 +160,9 @@
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = Color.MediumSpringGreen;
-            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(223, 243, 239);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(16, 30, 24);
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvClients.DefaultCellStyle = dataGridViewCellStyle3;
             dgvClients.EnableHeadersVisualStyles = false;
@@ -167,15 +173,15 @@
             dataGridViewCellStyle4.BackColor = Color.White;
             dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle4.ForeColor = Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = Color.MediumSpringGreen;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(223, 243, 239);
             dataGridViewCellStyle4.SelectionForeColor = Color.Black;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
             dgvClients.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvClients.RowHeadersVisible = false;
-            dataGridViewCellStyle5.SelectionBackColor = Color.MediumSpringGreen;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(223, 243, 239);
             dataGridViewCellStyle5.SelectionForeColor = Color.Black;
             dgvClients.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            dgvClients.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.MediumSpringGreen;
+            dgvClients.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.FromArgb(223, 243, 239);
             dgvClients.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgvClients.RowTemplate.Height = 36;
             dgvClients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -195,21 +201,32 @@
             DNI.HeaderText = "DNI";
             DNI.MinimumWidth = 10;
             DNI.Name = "DNI";
-            DNI.Width = 250;
             // 
             // Cliente
             // 
             Cliente.HeaderText = "Cliente";
             Cliente.MinimumWidth = 10;
             Cliente.Name = "Cliente";
-            Cliente.Width = 320;
+            // 
+            // lblSubtitulo
+            // 
+            lblSubtitulo.BackColor = Color.Transparent;
+            lblSubtitulo.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSubtitulo.ForeColor = Color.White;
+            lblSubtitulo.Location = new Point(-2, 426);
+            lblSubtitulo.Name = "lblSubtitulo";
+            lblSubtitulo.Size = new Size(569, 20);
+            lblSubtitulo.TabIndex = 77;
+            lblSubtitulo.Text = "Has doble click sobre el DNI o CLIENTE";
+            lblSubtitulo.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // MdClientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.SeaGreen;
-            ClientSize = new Size(569, 426);
+            BackColor = Color.FromArgb(15, 118, 110);
+            ClientSize = new Size(569, 461);
+            Controls.Add(lblSubtitulo);
             Controls.Add(dgvClients);
             Controls.Add(btnClearSearch);
             Controls.Add(btnSearch);
@@ -219,7 +236,6 @@
             Controls.Add(bigLabel1);
             Name = "MdClientes";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "MdClientes";
             Load += MdClientes_Load;
             ((System.ComponentModel.ISupportInitialize)dgvClients).EndInit();
             ResumeLayout(false);
@@ -238,5 +254,6 @@
         private DataGridViewTextBoxColumn IdCliente;
         private DataGridViewTextBoxColumn DNI;
         private DataGridViewTextBoxColumn Cliente;
+        private Label lblSubtitulo;
     }
 }

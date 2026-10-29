@@ -19,6 +19,7 @@ namespace Main
         public Frm_Proveedor()
         {
             InitializeComponent();
+            new EscaladoProporcional(this);
         }
 
         private void Frm_Proveedor_Load(object sender, EventArgs e)

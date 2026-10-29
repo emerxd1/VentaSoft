@@ -44,6 +44,7 @@
             RUC = new DataGridViewTextBoxColumn();
             RazonSocial = new DataGridViewTextBoxColumn();
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
+            lblSubtitulo = new Label();
             ((System.ComponentModel.ISupportInitialize)DvgMduser).BeginInit();
             SuspendLayout();
             // 
@@ -66,7 +67,7 @@
             // 
             cbSearchProve.BackColor = Color.White;
             cbSearchProve.Cursor = Cursors.Hand;
-            cbSearchProve.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbSearchProve.FlatStyle = FlatStyle.Flat;
             cbSearchProve.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbSearchProve.ForeColor = Color.Black;
             cbSearchProve.FormattingEnabled = true;
@@ -75,14 +76,14 @@
             cbSearchProve.Name = "cbSearchProve";
             cbSearchProve.Size = new Size(125, 28);
             cbSearchProve.TabIndex = 63;
-            cbSearchProve.SelectedIndexChanged += cbSearchProve_TabIndexChanged;
+            cbSearchProve.TextChanged += cbSearchProve_TabIndexChanged;
             // 
             // label13
             // 
             label13.AutoSize = true;
             label13.BackColor = Color.Transparent;
             label13.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label13.ForeColor = Color.Black;
+            label13.ForeColor = Color.White;
             label13.Location = new Point(12, 37);
             label13.Name = "label13";
             label13.Size = new Size(102, 21);
@@ -93,7 +94,8 @@
             // 
             btnbuscar.BackColor = Color.Transparent;
             btnbuscar.FlatAppearance.BorderSize = 0;
-            btnbuscar.FlatAppearance.MouseOverBackColor = Color.SeaGreen;
+            btnbuscar.FlatAppearance.MouseDownBackColor = Color.Teal;
+            btnbuscar.FlatAppearance.MouseOverBackColor = Color.Teal;
             btnbuscar.FlatStyle = FlatStyle.Flat;
             btnbuscar.ForeColor = Color.Transparent;
             btnbuscar.Image = (Image)resources.GetObject("btnbuscar.Image");
@@ -108,7 +110,8 @@
             // 
             btneliminar.BackColor = Color.Transparent;
             btneliminar.FlatAppearance.BorderSize = 0;
-            btneliminar.FlatAppearance.MouseOverBackColor = Color.SeaGreen;
+            btneliminar.FlatAppearance.MouseDownBackColor = Color.Teal;
+            btneliminar.FlatAppearance.MouseOverBackColor = Color.Teal;
             btneliminar.FlatStyle = FlatStyle.Flat;
             btneliminar.Image = Properties.Resources.recargar;
             btneliminar.Location = new Point(176, 50);
@@ -123,19 +126,20 @@
             DvgMduser.AllowUserToAddRows = false;
             DvgMduser.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = Color.White;
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = Color.MediumSpringGreen;
+            dataGridViewCellStyle1.ForeColor = Color.Transparent;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(223, 243, 239);
             dataGridViewCellStyle1.SelectionForeColor = Color.Black;
             DvgMduser.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            DvgMduser.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DvgMduser.BackgroundColor = Color.White;
             DvgMduser.BorderStyle = BorderStyle.None;
             DvgMduser.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(8, 92, 63);
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(246, 248, 248);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(8, 92, 63);
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(70, 86, 79);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(246, 248, 248);
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(70, 86, 79);
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             DvgMduser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             DvgMduser.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -144,8 +148,8 @@
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle3.ForeColor = Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = Color.MediumSpringGreen;
-            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(223, 243, 239);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(16, 30, 24);
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             DvgMduser.DefaultCellStyle = dataGridViewCellStyle3;
             DvgMduser.EnableHeadersVisualStyles = false;
@@ -156,19 +160,19 @@
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.White;
             dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.MediumSpringGreen;
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(223, 243, 239);
             dataGridViewCellStyle4.SelectionForeColor = Color.Black;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
             DvgMduser.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             DvgMduser.RowHeadersVisible = false;
             dataGridViewCellStyle5.BackColor = Color.White;
             dataGridViewCellStyle5.ForeColor = Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = Color.MediumSpringGreen;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(223, 243, 239);
             dataGridViewCellStyle5.SelectionForeColor = Color.Black;
             DvgMduser.RowsDefaultCellStyle = dataGridViewCellStyle5;
             DvgMduser.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
-            DvgMduser.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.MediumSpringGreen;
+            DvgMduser.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.FromArgb(223, 243, 239);
             DvgMduser.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
             DvgMduser.RowTemplate.Height = 36;
             DvgMduser.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -188,18 +192,16 @@
             RUC.HeaderText = "RUC";
             RUC.Name = "RUC";
             RUC.ReadOnly = true;
-            RUC.Width = 160;
             // 
             // RazonSocial
             // 
             RazonSocial.HeaderText = "Razon Social";
             RazonSocial.Name = "RazonSocial";
             RazonSocial.ReadOnly = true;
-            RazonSocial.Width = 400;
             // 
             // bigLabel1
             // 
-            bigLabel1.BackColor = Color.FromArgb(8, 92, 63);
+            bigLabel1.BackColor = Color.FromArgb(15, 118, 110);
             bigLabel1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             bigLabel1.ForeColor = Color.White;
             bigLabel1.Location = new Point(1, 1);
@@ -208,12 +210,25 @@
             bigLabel1.TabIndex = 71;
             bigLabel1.Text = "Lista de Proveedores*";
             // 
+            // lblSubtitulo
+            // 
+            lblSubtitulo.BackColor = Color.Transparent;
+            lblSubtitulo.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSubtitulo.ForeColor = Color.White;
+            lblSubtitulo.Location = new Point(0, 434);
+            lblSubtitulo.Name = "lblSubtitulo";
+            lblSubtitulo.Size = new Size(569, 20);
+            lblSubtitulo.TabIndex = 79;
+            lblSubtitulo.Text = "Has doble click sobre el RUC o Razon Social";
+            lblSubtitulo.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // MdProveedor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.SeaGreen;
-            ClientSize = new Size(564, 430);
+            BackColor = Color.FromArgb(15, 118, 110);
+            ClientSize = new Size(564, 461);
+            Controls.Add(lblSubtitulo);
             Controls.Add(bigLabel1);
             Controls.Add(DvgMduser);
             Controls.Add(btneliminar);
@@ -242,5 +257,6 @@
         private DataGridViewTextBoxColumn RUC;
         private DataGridViewTextBoxColumn RazonSocial;
         private ReaLTaiizor.Controls.BigLabel bigLabel1;
+        private Label lblSubtitulo;
     }
 }

@@ -25,6 +25,7 @@ namespace Main
         {
             _usuario = ousuario;
             InitializeComponent();
+            new EscaladoProporcional(this);
         }
 
         private void panelGraDi_Paint(object sender, PaintEventArgs e)
@@ -107,7 +108,7 @@ namespace Main
         //Inicia el menu desplegable del tipo de documento para las opciones Boleta y Factura
         private void FrmPurchase_Load(object sender, EventArgs e)
         {
-            DgvData.Columns["BtnEliminar"].Tag = ColorearIcono(Properties.Resources.borrar__1_, Color.Red); //icono de eliminar
+            DgvData.Columns["BtnEliminar"].Tag = ColorearIcono(Properties.Resources.basura, Color.Red); //icono de eliminar
             CbTipodeDocumento.Items.Add(new OptionsComboBox() { valor = "Boleta", texto = "Boleta" });
 
             CbTipodeDocumento.Items.Add(new OptionsComboBox() { valor = "Factura", texto = "Factura" });
@@ -398,7 +399,7 @@ namespace Main
 
         private void DgvData_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         //  repinta un icono de un solo color conservando su forma y transparencia
@@ -421,6 +422,11 @@ namespace Main
                             0, 0, origen.Width, origen.Height, GraphicsUnit.Pixel, ia);
             }
             return bmp;
+        }
+
+        private void lblTitulo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,14 +1,15 @@
-﻿using ModuloEntidades;
+﻿using iText.Html2pdf;
+using Main.Utilities;
+using ModuloEntidades;
 using Store;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using iText.Html2pdf;
-using System.IO;
 
 namespace Main
 {
@@ -17,6 +18,7 @@ namespace Main
         public Frm_DetalleCompra()
         {
             InitializeComponent();
+            new EscaladoProporcional(this);
         }
 
         private void btnbuscarr_Click(object sender, EventArgs e)
@@ -56,11 +58,6 @@ namespace Main
 
         private void Frm_DetalleCompra_Load(object sender, EventArgs e)
         {
-
-            dataGridView1.HeaderBack = Color.FromArgb(11, 127, 87);   // fondo donde están los nombres
-            dataGridView1.MutedColor = Color.White;    // texto de los nombres
-            dataGridView1.LineColor = Color.FromArgb(200, 208, 204);    // color de las líneas
-            dataGridView1.ShowColumnDividers = true;                    // líneas verticales
             dataGridView1.Invalidate();
         }
 
@@ -250,6 +247,11 @@ namespace Main
         }
 
         private void txtnombreproveedoorr_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellValueChanged_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }

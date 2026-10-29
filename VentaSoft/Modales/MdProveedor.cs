@@ -21,6 +21,7 @@ namespace Main.Modales
         public MdProveedor()
         {
             InitializeComponent();
+            new EscaladoProporcional(this); // mandamos a llamar escalado proporcional para el auto escalado en auto para cualquier pantalla
         }
 
         // Busqueda y oculta las filas que no coinciden  y muestra las que si tienen texto

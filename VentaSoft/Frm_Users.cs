@@ -17,6 +17,7 @@ namespace Main
             InitializeComponent();
             ApplyPasswordState1(); // estado inicial coherente
             ApplyPasswordState2(); // estado inicial coherente
+            new EscaladoProporcional(this);
 
         }
         private void ApplyPasswordState1()
