@@ -4,6 +4,8 @@ SELECT * FROM Permiso
 SELECT * FROM Cliente
 SELECT * FROM Categoria
 SELECT * FROM Producto
+SELECT * FROM Compra
+SELECT * FROM Venta
 
 insert into Permiso (IdRol,NombreMenu) values 
 (1, 'MenuEmpleados'),
@@ -1066,105 +1068,94 @@ inner join Producto p on p.IdProducto = dc.IdProducto
 inner join Categoria ca on ca.IdCategoria = p.IdCategoria
 
 
-/*procedimiento almacenado para reporte de compras*/
 
 
+/* =====================================================================
+   REPORTES DE COMPRAS Y VENTAS
+   - Los alias de columnas NO llevan espacios y coinciden con las
+     propiedades de ReporteCompra / ReporteVentas y con el C# (D_Reports).
+   - Cada CREATE va separado por GO (CREATE OR ALTER PROC debe ser la
+     primera instruccion de su lote).
+   ===================================================================== */
+
+-- Elimina el nombre viejo (el C# llama a sp_ReporteVentas)
+DROP PROCEDURE IF EXISTS sp_Reporte_Ventas;
+GO
+
+/* ---------------------------- COMPRAS ---------------------------- */
 CREATE OR ALTER PROC sp_ReporteCompras(
-    @fechainicio DATE,         -- Cambio de VARCHAR a DATE para Tipado Correcto
-    @fechafin DATE,           -- Cambio de VARCHAR a DATE para Tipado Correcto
-    @idproveedor INT
+    @fechainicio DATE,
+    @fechafin    DATE,
+    @idproveedor INT          -- 0 = todos los proveedores
 )
 AS
 BEGIN
-    -- Rendimiento: Evita mensajes de "filas afectadas" y permite lecturas sucias en reportes
     SET NOCOUNT ON;
-    SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 
     SELECT
-        CONVERT(CHAR(10), c.FechaRegistro, 103) AS [FechaRegistro],
-        c.TipoDocumento,
+        CONVERT(CHAR(10), c.FechaRegistro, 103)            AS FechaRegistro,
+        c.TipoDocumento,                                   
         c.NumeroDocumento,
-        c.MontoTotal,
-        u.Nombre1 AS [UsuarioRegistro],
-        pr.RUC AS [DocumentoProveedor],
+        TRIM(CONCAT(u.Nombre1, ' ', u.Apellido1))          AS UsuarioRegistro,
+        pr.RUC                                             AS RUCProveedor,
         pr.RazonSocial,
-        p.IdProducto AS [CodigoProducto],
-        p.Nombre AS [NombreProducto],
-        ca.Descripcion AS [Categoria],
+        p.Codigo                                           AS CodigoProducto,
+        p.Nombre                                           AS NombreProducto,
+        ca.Nombre                                          AS Categoria,
         dc.PrecioCompra,
         dc.PrecioVenta,
         dc.Cantidad,
-        dc.Total AS [SubTotal]
-    FROM Compra c WITH (NOLOCK)
-    INNER JOIN Usuario u WITH (NOLOCK) ON u.IdUsuario = c.IdUsuario
-    INNER JOIN Proveedor pr WITH (NOLOCK) ON pr.IdProveedor = c.IdProveedor
-    INNER JOIN DetalleCompra dc WITH (NOLOCK) ON dc.IdCompra = c.IdCompra
-    INNER JOIN Producto p WITH (NOLOCK) ON p.IdProducto = dc.IdProducto
-    INNER JOIN Categoria ca WITH (NOLOCK) ON ca.IdCategoria = p.IdCategoria
-    WHERE
-        -- SARGability: Comparamos directamente la columna sin funciones (CONVERT/CAST)
-        c.FechaRegistro >= @fechainicio
-        AND c.FechaRegistro < DATEADD(DAY, 1, @fechafin)
-        -- Filtros Dinámicos: Optimizado para evitar planes de ejecución ineficientes
-        AND (@idproveedor = 0 OR pr.IdProveedor = @idproveedor)
+        dc.Total                                           AS SubTotal
+    FROM Compra c
+    INNER JOIN Usuario       u  ON u.IdUsuario    = c.IdUsuario
+    INNER JOIN Proveedor     pr ON pr.IdProveedor = c.IdProveedor
+    INNER JOIN DetalleCompra dc ON dc.IdCompra    = c.IdCompra
+    INNER JOIN Producto      p  ON p.IdProducto   = dc.IdProducto
+    INNER JOIN Categoria     ca ON ca.IdCategoria = p.IdCategoria
+    WHERE c.FechaRegistro >= @fechainicio
+      AND c.FechaRegistro <  DATEADD(DAY, 1, @fechafin)
+      AND (@idproveedor = 0 OR c.IdProveedor = @idproveedor)
+    ORDER BY c.FechaRegistro DESC, c.NumeroDocumento
     OPTION (RECOMPILE);
 END
+GO
 
-/*procedimiento almacenado para reporte de VENTAS*/
-
-CREATE OR ALTER PROC sp_Reporte_Ventas(
+/* ----------------------------- VENTAS ----------------------------- */
+CREATE OR ALTER PROC sp_ReporteVentas(
     @fechainicio DATE,
-    @fechafin DATE
+    @fechafin    DATE
 )
 AS
 BEGIN
-    -- Rendimiento: Evita mensajes innecesarios y permite lecturas sin bloqueos
     SET NOCOUNT ON;
-    SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 
     SELECT
-        -- Formateo de fecha para consistencia en reportes (DD/MM/YYYY)
-        CONVERT(CHAR(10), v.FechaRegistro, 103) AS [FechaRegistro],
-        v.NumeroFactura AS [TipoDocumento],
-        v.NumeroFactura,
-        v.MontoTotal,
-        -- Concatenación limpia (CONCAT maneja NULLs automáticamente como strings vacíos)
-        TRIM(CONCAT(u.Nombre1, ' ', u.Nombre2, ' ', u.Apellido1, ' ', u.Apellido2)) AS [UsuarioRegistro],
-        v.IdCliente AS [DocumentoCliente],
-        v.Nombre1 AS [NombreCliente],
-        p.IdProducto AS [CodigoProducto],
-        p.Nombre AS [NombreProducto],
-        ca.Descripcion AS [Categoria],
+        CONVERT(CHAR(10), v.FechaRegistro, 103)            AS FechaRegistro,
+        v.TipoDocumento                                    AS TipoDocumento,   -- NUEVO
+        v.NumeroFactura                                    AS NumeroDocumento,
+        TRIM(CONCAT(u.Nombre1, ' ', u.Apellido1))          AS UsuarioRegistro,
+        TRIM(CONCAT(v.Nombre1, ' ', v.Apellido1))          AS NombreCliente,
+        p.Codigo                                           AS CodigoProducto,
+        p.Nombre                                           AS NombreProducto,
+        ca.Nombre                                          AS Categoria,
         dv.PrecioVenta,
         dv.Cantidad,
-        dv.SubTotal
-    FROM Venta v WITH (NOLOCK)
-    INNER JOIN Usuario u WITH (NOLOCK) ON u.IdUsuario = v.IdUsuario
-    INNER JOIN DetalleVenta dv WITH (NOLOCK) ON dv.IdVenta = v.IdVenta
-    INNER JOIN Producto p WITH (NOLOCK) ON p.IdProducto = dv.IdProducto
-    INNER JOIN Categoria ca WITH (NOLOCK) ON ca.IdCategoria = p.IdCategoria
-    WHERE
-        -- SARGability: Rango de fechas optimizado para Index Seek
-        v.FechaRegistro >= @fechainicio
-        AND v.FechaRegistro < DATEADD(DAY, 1, @fechafin)
+        dv.SubTotal                                        AS MontoTotal
+    FROM Venta v
+    INNER JOIN Usuario      u  ON u.IdUsuario    = v.IdUsuario
+    INNER JOIN DetalleVenta dv ON dv.IdVenta     = v.IdVenta
+    INNER JOIN Producto     p  ON p.IdProducto   = dv.IdProducto
+    INNER JOIN Categoria    ca ON ca.IdCategoria = p.IdCategoria
+    WHERE v.FechaRegistro >= @fechainicio
+      AND v.FechaRegistro <  DATEADD(DAY, 1, @fechafin)
+    ORDER BY v.FechaRegistro DESC, v.NumeroFactura
     OPTION (RECOMPILE);
-END;
-
-
-EXEC sp_ReporteCompras
-    @fechainicio = '2026-01-01',
-    @fechafin    = '2026-12-31',
-    @idproveedor = 0;
-
-    EXEC sp_Reporte_Ventas
-    @fechainicio = '2026-01-01',
-    @fechafin    = '2026-12-31';
-
-
-    /*CORRECION DEL PROCEDIMIENTO ALMACENADO SP_REGISTRARVENTAS*/
-
+END
 GO
-
+------------------------- PRUEBAS (manuales) -------------------------
+EXEC sp_ReporteCompras @fechainicio = '2026-01-01', @fechafin = '2026-12-31', @idproveedor = 0;
+EXEC sp_ReporteVentas  @fechainicio = '2026-01-01', @fechafin = '2026-12-31';
+----------------------------------------------------------------------- 
 /*--------------------------------------------------------------------
      las ventas ahora guardan codigos como V0001 y ese numero no
      existe en la tabla Factura entonces  hacia que  SQL rechazaba la venta
