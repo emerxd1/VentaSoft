@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            AntdUI.HyperlinkLabel.LinkAppearance linkAppearance1 = new AntdUI.HyperlinkLabel.LinkAppearance();
-            AntdUI.HyperlinkLabel.LinkAppearance linkAppearance2 = new AntdUI.HyperlinkLabel.LinkAppearance();
+            AntdUI.HyperlinkLabel.LinkAppearance linkAppearance3 = new AntdUI.HyperlinkLabel.LinkAppearance();
+            AntdUI.HyperlinkLabel.LinkAppearance linkAppearance4 = new AntdUI.HyperlinkLabel.LinkAppearance();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             Header = new Panel();
             label2 = new Label();
@@ -295,6 +295,7 @@
             btnReporteVentas.TabIndex = 25;
             btnReporteVentas.Text = "Reporte de Ventas";
             btnReporteVentas.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            btnReporteVentas.Click += btnReporteVentas_Click;
             // 
             // panel13
             // 
@@ -782,11 +783,11 @@
             // 
             lblVentasoft.Font = new Font("Segoe UI Symbol", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblVentasoft.ForeColor = Color.White;
-            lblVentasoft.HoverStyle = linkAppearance1;
+            lblVentasoft.HoverStyle = linkAppearance3;
             lblVentasoft.Location = new Point(58, 9);
             lblVentasoft.Name = "lblVentasoft";
-            linkAppearance2.LinkStyle = FontStyle.Bold;
-            lblVentasoft.NormalStyle = linkAppearance2;
+            linkAppearance4.LinkStyle = FontStyle.Bold;
+            lblVentasoft.NormalStyle = linkAppearance4;
             lblVentasoft.Size = new Size(96, 23);
             lblVentasoft.TabIndex = 26;
             lblVentasoft.Text = "VentaSoft";

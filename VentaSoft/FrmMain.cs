@@ -172,6 +172,11 @@ namespace Main
             MostrarFormularios(new FrmReporteCompra());
 
         }
+
+        private void btnReporteVentas_Click(object sender, EventArgs e)
+        {
+            MostrarFormularios(new FrmReporteVenta());
+        }
     }
 
 }

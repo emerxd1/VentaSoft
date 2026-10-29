@@ -28,37 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle25 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle26 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle27 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle28 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             uiPanel1 = new Sunny.UI.UIPanel();
             btnBuscar = new Sunny.UI.UISymbolButton();
-            uiComboBox1 = new Sunny.UI.UIComboBox();
+            cbProveedores = new Sunny.UI.UIComboBox();
             bigLabel5 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
             dpFin = new AntdUI.DatePicker();
             bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
             dpInicio = new AntdUI.DatePicker();
             uiPanel2 = new Sunny.UI.UIPanel();
-            bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
+            btnExportar = new Sunny.UI.UISymbolButton();
+            cbFiltro = new Sunny.UI.UIComboBox();
+            bigLabel7 = new ReaLTaiizor.Controls.BigLabel();
+            txtSearch = new Sunny.UI.UITextBox();
             dgvReportCompra = new ModernControls.ModernGrid();
             FechaRegistro = new DataGridViewTextBoxColumn();
             TipoDocumento = new DataGridViewTextBoxColumn();
             NumDocumento = new DataGridViewTextBoxColumn();
-            Montototal = new DataGridViewTextBoxColumn();
             User_registro = new DataGridViewTextBoxColumn();
             Ruc = new DataGridViewTextBoxColumn();
             RazonSocial = new DataGridViewTextBoxColumn();
             CodigoProduct = new DataGridViewTextBoxColumn();
             NameProduct = new DataGridViewTextBoxColumn();
             Category = new DataGridViewTextBoxColumn();
-            txtSearch = new Sunny.UI.UITextBox();
-            bigLabel7 = new ReaLTaiizor.Controls.BigLabel();
-            cbFiltro = new Sunny.UI.UIComboBox();
-            uiSymbolButton1 = new Sunny.UI.UISymbolButton();
+            PrecioCompra = new DataGridViewTextBoxColumn();
+            PrecioVenta = new DataGridViewTextBoxColumn();
+            Cantidad = new DataGridViewTextBoxColumn();
+            SubTotal = new DataGridViewTextBoxColumn();
+            bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
             uiPanel1.SuspendLayout();
             uiPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvReportCompra).BeginInit();
@@ -91,7 +94,7 @@
             // uiPanel1
             // 
             uiPanel1.Controls.Add(btnBuscar);
-            uiPanel1.Controls.Add(uiComboBox1);
+            uiPanel1.Controls.Add(cbProveedores);
             uiPanel1.Controls.Add(bigLabel5);
             uiPanel1.Controls.Add(bigLabel4);
             uiPanel1.Controls.Add(dpFin);
@@ -130,30 +133,31 @@
             btnBuscar.TabIndex = 79;
             btnBuscar.Text = "Buscar";
             btnBuscar.TipsFont = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBuscar.Click += btnBuscar_Click;
             // 
-            // uiComboBox1
+            // cbProveedores
             // 
-            uiComboBox1.BackColor = Color.White;
-            uiComboBox1.DataSource = null;
-            uiComboBox1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            uiComboBox1.FillColor = Color.White;
-            uiComboBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            uiComboBox1.ItemHoverColor = Color.FromArgb(223, 243, 239);
-            uiComboBox1.ItemRectColor = Color.FromArgb(15, 118, 110);
-            uiComboBox1.ItemSelectBackColor = Color.FromArgb(95, 163, 158);
-            uiComboBox1.ItemSelectForeColor = Color.FromArgb(64, 64, 64);
-            uiComboBox1.Location = new Point(534, 40);
-            uiComboBox1.Margin = new Padding(4, 5, 4, 5);
-            uiComboBox1.MinimumSize = new Size(63, 0);
-            uiComboBox1.Name = "uiComboBox1";
-            uiComboBox1.Padding = new Padding(0, 0, 30, 2);
-            uiComboBox1.Radius = 15;
-            uiComboBox1.RectColor = Color.FromArgb(224, 224, 224);
-            uiComboBox1.Size = new Size(240, 38);
-            uiComboBox1.SymbolSize = 24;
-            uiComboBox1.TabIndex = 77;
-            uiComboBox1.TextAlignment = ContentAlignment.MiddleLeft;
-            uiComboBox1.Watermark = "Seleccione un proveedor";
+            cbProveedores.BackColor = Color.White;
+            cbProveedores.DataSource = null;
+            cbProveedores.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            cbProveedores.FillColor = Color.White;
+            cbProveedores.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbProveedores.ItemHoverColor = Color.FromArgb(223, 243, 239);
+            cbProveedores.ItemRectColor = Color.FromArgb(15, 118, 110);
+            cbProveedores.ItemSelectBackColor = Color.FromArgb(95, 163, 158);
+            cbProveedores.ItemSelectForeColor = Color.FromArgb(64, 64, 64);
+            cbProveedores.Location = new Point(534, 40);
+            cbProveedores.Margin = new Padding(4, 5, 4, 5);
+            cbProveedores.MinimumSize = new Size(63, 0);
+            cbProveedores.Name = "cbProveedores";
+            cbProveedores.Padding = new Padding(0, 0, 30, 2);
+            cbProveedores.Radius = 15;
+            cbProveedores.RectColor = Color.FromArgb(224, 224, 224);
+            cbProveedores.Size = new Size(240, 38);
+            cbProveedores.SymbolSize = 24;
+            cbProveedores.TabIndex = 77;
+            cbProveedores.TextAlignment = ContentAlignment.MiddleLeft;
+            cbProveedores.Watermark = "Seleccione un proveedor";
             // 
             // bigLabel5
             // 
@@ -217,7 +221,7 @@
             // 
             // uiPanel2
             // 
-            uiPanel2.Controls.Add(uiSymbolButton1);
+            uiPanel2.Controls.Add(btnExportar);
             uiPanel2.Controls.Add(cbFiltro);
             uiPanel2.Controls.Add(bigLabel7);
             uiPanel2.Controls.Add(txtSearch);
@@ -235,17 +239,98 @@
             uiPanel2.Text = null;
             uiPanel2.TextAlignment = ContentAlignment.MiddleCenter;
             // 
-            // bigLabel6
+            // btnExportar
             // 
-            bigLabel6.AutoSize = true;
-            bigLabel6.BackColor = Color.Transparent;
-            bigLabel6.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            bigLabel6.ForeColor = Color.FromArgb(20, 32, 30);
-            bigLabel6.Location = new Point(820, 21);
-            bigLabel6.Name = "bigLabel6";
-            bigLabel6.Size = new Size(93, 17);
-            bigLabel6.TabIndex = 76;
-            bigLabel6.Text = "Texto a buscar";
+            btnExportar.FillColor = Color.White;
+            btnExportar.FillHoverColor = Color.FromArgb(91, 137, 133);
+            btnExportar.FillPressColor = Color.Gray;
+            btnExportar.FillSelectedColor = Color.FromArgb(91, 137, 133);
+            btnExportar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnExportar.ForeColor = Color.FromArgb(10, 78, 73);
+            btnExportar.ForeDisableColor = Color.FromArgb(10, 78, 73);
+            btnExportar.Location = new Point(31, 43);
+            btnExportar.MinimumSize = new Size(1, 1);
+            btnExportar.Name = "btnExportar";
+            btnExportar.Radius = 10;
+            btnExportar.RectColor = Color.FromArgb(10, 78, 73);
+            btnExportar.RectDisableColor = Color.White;
+            btnExportar.RectHoverColor = Color.White;
+            btnExportar.RectPressColor = Color.White;
+            btnExportar.RectSelectedColor = Color.White;
+            btnExportar.Size = new Size(152, 35);
+            btnExportar.Symbol = 61891;
+            btnExportar.SymbolColor = Color.FromArgb(15, 118, 110);
+            btnExportar.TabIndex = 82;
+            btnExportar.Text = "Descargar excel";
+            btnExportar.TipsFont = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExportar.Click += uiSymbolButton1_Click;
+            // 
+            // cbFiltro
+            // 
+            cbFiltro.BackColor = Color.White;
+            cbFiltro.DataSource = null;
+            cbFiltro.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            cbFiltro.FillColor = Color.White;
+            cbFiltro.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbFiltro.ItemHoverColor = Color.FromArgb(223, 243, 239);
+            cbFiltro.ItemRectColor = Color.FromArgb(15, 118, 110);
+            cbFiltro.ItemSelectBackColor = Color.FromArgb(95, 163, 158);
+            cbFiltro.ItemSelectForeColor = Color.FromArgb(64, 64, 64);
+            cbFiltro.Location = new Point(472, 43);
+            cbFiltro.Margin = new Padding(4, 5, 4, 5);
+            cbFiltro.MinimumSize = new Size(63, 0);
+            cbFiltro.Name = "cbFiltro";
+            cbFiltro.Padding = new Padding(0, 0, 30, 2);
+            cbFiltro.Radius = 15;
+            cbFiltro.RectColor = Color.FromArgb(224, 224, 224);
+            cbFiltro.Size = new Size(340, 32);
+            cbFiltro.SymbolSize = 24;
+            cbFiltro.TabIndex = 81;
+            cbFiltro.TextAlignment = ContentAlignment.MiddleLeft;
+            cbFiltro.Watermark = "Seleccione categoria a filtrar";
+            cbFiltro.SelectedIndexChanged += cbFiltro_SelectedIndexChanged;
+            // 
+            // bigLabel7
+            // 
+            bigLabel7.AutoSize = true;
+            bigLabel7.BackColor = Color.Transparent;
+            bigLabel7.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bigLabel7.ForeColor = Color.FromArgb(20, 32, 30);
+            bigLabel7.Location = new Point(472, 21);
+            bigLabel7.Name = "bigLabel7";
+            bigLabel7.Size = new Size(66, 17);
+            bigLabel7.TabIndex = 80;
+            bigLabel7.Text = "Filtrar por";
+            // 
+            // txtSearch
+            // 
+            txtSearch.ButtonFillColor = Color.White;
+            txtSearch.ButtonFillHoverColor = Color.White;
+            txtSearch.ButtonFillPressColor = Color.White;
+            txtSearch.ButtonForeColor = Color.FromArgb(57, 79, 71);
+            txtSearch.ButtonRectColor = Color.White;
+            txtSearch.ButtonRectHoverColor = Color.White;
+            txtSearch.ButtonRectPressColor = Color.White;
+            txtSearch.ButtonStyleInherited = false;
+            txtSearch.ButtonSymbol = 0;
+            txtSearch.Font = new Font("Microsoft Sans Serif", 12F);
+            txtSearch.IconSize = 20;
+            txtSearch.Location = new Point(820, 43);
+            txtSearch.Margin = new Padding(4, 5, 4, 5);
+            txtSearch.MinimumSize = new Size(1, 16);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Padding = new Padding(5);
+            txtSearch.Radius = 10;
+            txtSearch.RectColor = Color.Silver;
+            txtSearch.ShowText = false;
+            txtSearch.Size = new Size(409, 32);
+            txtSearch.Style = Sunny.UI.UIStyle.Custom;
+            txtSearch.Symbol = 61442;
+            txtSearch.SymbolColor = Color.FromArgb(57, 79, 71);
+            txtSearch.TabIndex = 79;
+            txtSearch.TextAlignment = ContentAlignment.MiddleLeft;
+            txtSearch.Watermark = "Escriba para buscar...";
+            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // dgvReportCompra
             // 
@@ -253,39 +338,40 @@
             dgvReportCompra.AllowUserToDeleteRows = false;
             dgvReportCompra.AllowUserToResizeColumns = false;
             dgvReportCompra.AllowUserToResizeRows = false;
-            dataGridViewCellStyle25.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle25.BackColor = Color.White;
-            dataGridViewCellStyle25.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle25.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle25.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle25.SelectionBackColor = Color.FromArgb(228, 243, 234);
-            dataGridViewCellStyle25.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle25.WrapMode = DataGridViewTriState.False;
-            dgvReportCompra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle5.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle5.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(228, 243, 234);
+            dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dgvReportCompra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvReportCompra.AutoFitColumns = false;
+            dgvReportCompra.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvReportCompra.BackgroundColor = Color.White;
             dgvReportCompra.BorderStyle = BorderStyle.None;
             dgvReportCompra.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle26.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle26.BackColor = Color.FromArgb(241, 245, 243);
-            dataGridViewCellStyle26.Font = new Font("Segoe UI Semibold", 8.5F);
-            dataGridViewCellStyle26.ForeColor = Color.FromArgb(100, 116, 146);
-            dataGridViewCellStyle26.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle26.SelectionBackColor = Color.FromArgb(241, 245, 243);
-            dataGridViewCellStyle26.SelectionForeColor = Color.FromArgb(100, 116, 146);
-            dgvReportCompra.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(241, 245, 243);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI Semibold", 8.5F);
+            dataGridViewCellStyle6.ForeColor = Color.FromArgb(100, 116, 146);
+            dataGridViewCellStyle6.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(241, 245, 243);
+            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(100, 116, 146);
+            dgvReportCompra.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvReportCompra.ColumnHeadersHeight = 44;
             dgvReportCompra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvReportCompra.Columns.AddRange(new DataGridViewColumn[] { FechaRegistro, TipoDocumento, NumDocumento, Montototal, User_registro, Ruc, RazonSocial, CodigoProduct, NameProduct, Category });
-            dataGridViewCellStyle27.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle27.BackColor = Color.White;
-            dataGridViewCellStyle27.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle27.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle27.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle27.SelectionBackColor = Color.FromArgb(228, 243, 234);
-            dataGridViewCellStyle27.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle27.WrapMode = DataGridViewTriState.False;
-            dgvReportCompra.DefaultCellStyle = dataGridViewCellStyle27;
+            dgvReportCompra.Columns.AddRange(new DataGridViewColumn[] { FechaRegistro, TipoDocumento, NumDocumento, User_registro, Ruc, RazonSocial, CodigoProduct, NameProduct, Category, PrecioCompra, PrecioVenta, Cantidad, SubTotal });
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.White;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle7.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle7.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(228, 243, 234);
+            dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            dgvReportCompra.DefaultCellStyle = dataGridViewCellStyle7;
             dgvReportCompra.EnableHeadersVisualStyles = false;
             dgvReportCompra.Font = new Font("Segoe UI", 9.5F);
             dgvReportCompra.GridColor = Color.White;
@@ -295,15 +381,15 @@
             dgvReportCompra.ReadOnly = true;
             dgvReportCompra.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dgvReportCompra.RowHeadersVisible = false;
-            dataGridViewCellStyle28.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle28.BackColor = Color.White;
-            dataGridViewCellStyle28.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle28.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle28.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle28.SelectionBackColor = Color.FromArgb(228, 243, 234);
-            dataGridViewCellStyle28.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle28.WrapMode = DataGridViewTriState.False;
-            dgvReportCompra.RowsDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.White;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle8.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle8.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(228, 243, 234);
+            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dgvReportCompra.RowsDefaultCellStyle = dataGridViewCellStyle8;
             dgvReportCompra.RowTemplate.Height = 56;
             dgvReportCompra.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvReportCompra.ShowCellToolTips = false;
@@ -340,18 +426,7 @@
             NumDocumento.Name = "NumDocumento";
             NumDocumento.ReadOnly = true;
             NumDocumento.SortMode = DataGridViewColumnSortMode.NotSortable;
-            NumDocumento.Width = 120;
-            // 
-            // Montototal
-            // 
-            Montototal.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            Montototal.FillWeight = 113F;
-            Montototal.HeaderText = "Monto total";
-            Montototal.MinimumWidth = 113;
-            Montototal.Name = "Montototal";
-            Montototal.ReadOnly = true;
-            Montototal.SortMode = DataGridViewColumnSortMode.NotSortable;
-            Montototal.Width = 113;
+            NumDocumento.Visible = false;
             // 
             // User_registro
             // 
@@ -372,17 +447,16 @@
             Ruc.Name = "Ruc";
             Ruc.ReadOnly = true;
             Ruc.SortMode = DataGridViewColumnSortMode.NotSortable;
-            Ruc.Width = 123;
+            Ruc.Visible = false;
             // 
             // RazonSocial
             // 
             RazonSocial.FillWeight = 113F;
-            RazonSocial.HeaderText = "Razon Social";
+            RazonSocial.HeaderText = "Proveedor";
             RazonSocial.MinimumWidth = 113;
             RazonSocial.Name = "RazonSocial";
             RazonSocial.ReadOnly = true;
             RazonSocial.SortMode = DataGridViewColumnSortMode.NotSortable;
-            RazonSocial.Width = 113;
             // 
             // CodigoProduct
             // 
@@ -414,97 +488,46 @@
             Category.Name = "Category";
             Category.ReadOnly = true;
             Category.SortMode = DataGridViewColumnSortMode.NotSortable;
-            Category.Width = 93;
             // 
-            // txtSearch
+            // PrecioCompra
             // 
-            txtSearch.ButtonFillColor = Color.White;
-            txtSearch.ButtonFillHoverColor = Color.White;
-            txtSearch.ButtonFillPressColor = Color.White;
-            txtSearch.ButtonForeColor = Color.FromArgb(57, 79, 71);
-            txtSearch.ButtonRectColor = Color.White;
-            txtSearch.ButtonRectHoverColor = Color.White;
-            txtSearch.ButtonRectPressColor = Color.White;
-            txtSearch.ButtonStyleInherited = false;
-            txtSearch.ButtonSymbol = 0;
-            txtSearch.Font = new Font("Microsoft Sans Serif", 12F);
-            txtSearch.IconSize = 20;
-            txtSearch.Location = new Point(820, 43);
-            txtSearch.Margin = new Padding(4, 5, 4, 5);
-            txtSearch.MinimumSize = new Size(1, 16);
-            txtSearch.Name = "txtSearch";
-            txtSearch.Padding = new Padding(5);
-            txtSearch.Radius = 10;
-            txtSearch.RectColor = Color.Silver;
-            txtSearch.ShowText = false;
-            txtSearch.Size = new Size(409, 32);
-            txtSearch.Style = Sunny.UI.UIStyle.Custom;
-            txtSearch.Symbol = 61442;
-            txtSearch.SymbolColor = Color.FromArgb(57, 79, 71);
-            txtSearch.TabIndex = 79;
-            txtSearch.TextAlignment = ContentAlignment.MiddleLeft;
-            txtSearch.Watermark = "Escriba para buscar...";
+            PrecioCompra.HeaderText = "Precio Compra";
+            PrecioCompra.Name = "PrecioCompra";
+            PrecioCompra.ReadOnly = true;
+            PrecioCompra.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
-            // bigLabel7
+            // PrecioVenta
             // 
-            bigLabel7.AutoSize = true;
-            bigLabel7.BackColor = Color.Transparent;
-            bigLabel7.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            bigLabel7.ForeColor = Color.FromArgb(20, 32, 30);
-            bigLabel7.Location = new Point(472, 21);
-            bigLabel7.Name = "bigLabel7";
-            bigLabel7.Size = new Size(71, 17);
-            bigLabel7.TabIndex = 80;
-            bigLabel7.Text = "Buscar por";
+            PrecioVenta.HeaderText = "Precio Venta";
+            PrecioVenta.Name = "PrecioVenta";
+            PrecioVenta.ReadOnly = true;
+            PrecioVenta.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
-            // cbFiltro
+            // Cantidad
             // 
-            cbFiltro.BackColor = Color.White;
-            cbFiltro.DataSource = null;
-            cbFiltro.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            cbFiltro.FillColor = Color.White;
-            cbFiltro.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbFiltro.ItemHoverColor = Color.FromArgb(223, 243, 239);
-            cbFiltro.ItemRectColor = Color.FromArgb(15, 118, 110);
-            cbFiltro.ItemSelectBackColor = Color.FromArgb(95, 163, 158);
-            cbFiltro.ItemSelectForeColor = Color.FromArgb(64, 64, 64);
-            cbFiltro.Location = new Point(472, 43);
-            cbFiltro.Margin = new Padding(4, 5, 4, 5);
-            cbFiltro.MinimumSize = new Size(63, 0);
-            cbFiltro.Name = "cbFiltro";
-            cbFiltro.Padding = new Padding(0, 0, 30, 2);
-            cbFiltro.Radius = 15;
-            cbFiltro.RectColor = Color.FromArgb(224, 224, 224);
-            cbFiltro.Size = new Size(340, 32);
-            cbFiltro.SymbolSize = 24;
-            cbFiltro.TabIndex = 81;
-            cbFiltro.TextAlignment = ContentAlignment.MiddleLeft;
-            cbFiltro.Watermark = "";
+            Cantidad.HeaderText = "Cantidad";
+            Cantidad.Name = "Cantidad";
+            Cantidad.ReadOnly = true;
+            Cantidad.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
-            // uiSymbolButton1
+            // SubTotal
             // 
-            uiSymbolButton1.FillColor = Color.White;
-            uiSymbolButton1.FillHoverColor = Color.FromArgb(91, 137, 133);
-            uiSymbolButton1.FillPressColor = Color.Gray;
-            uiSymbolButton1.FillSelectedColor = Color.FromArgb(91, 137, 133);
-            uiSymbolButton1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            uiSymbolButton1.ForeColor = Color.FromArgb(10, 78, 73);
-            uiSymbolButton1.ForeDisableColor = Color.FromArgb(10, 78, 73);
-            uiSymbolButton1.Location = new Point(31, 43);
-            uiSymbolButton1.MinimumSize = new Size(1, 1);
-            uiSymbolButton1.Name = "uiSymbolButton1";
-            uiSymbolButton1.Radius = 10;
-            uiSymbolButton1.RectColor = Color.FromArgb(10, 78, 73);
-            uiSymbolButton1.RectDisableColor = Color.White;
-            uiSymbolButton1.RectHoverColor = Color.White;
-            uiSymbolButton1.RectPressColor = Color.White;
-            uiSymbolButton1.RectSelectedColor = Color.White;
-            uiSymbolButton1.Size = new Size(152, 35);
-            uiSymbolButton1.Symbol = 61891;
-            uiSymbolButton1.SymbolColor = Color.FromArgb(15, 118, 110);
-            uiSymbolButton1.TabIndex = 82;
-            uiSymbolButton1.Text = "Descargar excel";
-            uiSymbolButton1.TipsFont = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            SubTotal.HeaderText = "Total";
+            SubTotal.Name = "SubTotal";
+            SubTotal.ReadOnly = true;
+            SubTotal.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // bigLabel6
+            // 
+            bigLabel6.AutoSize = true;
+            bigLabel6.BackColor = Color.Transparent;
+            bigLabel6.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bigLabel6.ForeColor = Color.FromArgb(20, 32, 30);
+            bigLabel6.Location = new Point(820, 21);
+            bigLabel6.Name = "bigLabel6";
+            bigLabel6.Size = new Size(65, 17);
+            bigLabel6.TabIndex = 76;
+            bigLabel6.Text = "Busqueda";
             // 
             // FrmReporteCompra
             // 
@@ -518,6 +541,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmReporteCompra";
             Text = "FrmReporteCompra";
+            Load += FrmReporteCompra_Load;
             uiPanel1.ResumeLayout(false);
             uiPanel1.PerformLayout();
             uiPanel2.ResumeLayout(false);
@@ -537,24 +561,27 @@
         private ReaLTaiizor.Controls.BigLabel bigLabel4;
         private AntdUI.DatePicker dpFin;
         private ReaLTaiizor.Controls.BigLabel bigLabel5;
-        private Sunny.UI.UIComboBox uiComboBox1;
+        private Sunny.UI.UIComboBox cbProveedores;
         private Sunny.UI.UISymbolButton btnBuscar;
         private Sunny.UI.UIPanel uiPanel2;
         private ModernControls.ModernGrid dgvReportCompra;
         private ReaLTaiizor.Controls.BigLabel bigLabel6;
+        private Sunny.UI.UITextBox txtSearch;
+        private Sunny.UI.UIComboBox cbFiltro;
+        private ReaLTaiizor.Controls.BigLabel bigLabel7;
+        private Sunny.UI.UISymbolButton btnExportar;
         private DataGridViewTextBoxColumn FechaRegistro;
         private DataGridViewTextBoxColumn TipoDocumento;
         private DataGridViewTextBoxColumn NumDocumento;
-        private DataGridViewTextBoxColumn Montototal;
         private DataGridViewTextBoxColumn User_registro;
         private DataGridViewTextBoxColumn Ruc;
         private DataGridViewTextBoxColumn RazonSocial;
         private DataGridViewTextBoxColumn CodigoProduct;
         private DataGridViewTextBoxColumn NameProduct;
         private DataGridViewTextBoxColumn Category;
-        private Sunny.UI.UITextBox txtSearch;
-        private Sunny.UI.UIComboBox cbFiltro;
-        private ReaLTaiizor.Controls.BigLabel bigLabel7;
-        private Sunny.UI.UISymbolButton uiSymbolButton1;
+        private DataGridViewTextBoxColumn PrecioCompra;
+        private DataGridViewTextBoxColumn PrecioVenta;
+        private DataGridViewTextBoxColumn Cantidad;
+        private DataGridViewTextBoxColumn SubTotal;
     }
 }
