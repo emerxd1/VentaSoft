@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MdProveedor));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
@@ -37,7 +36,6 @@
             txtSearchProve = new TextBox();
             cbSearchProve = new ComboBox();
             label13 = new Label();
-            btnbuscar = new Button();
             btneliminar = new Button();
             DvgMduser = new DataGridView();
             IdProveedor = new DataGridViewTextBoxColumn();
@@ -57,11 +55,10 @@
             txtSearchProve.Location = new Point(1, 93);
             txtSearchProve.Margin = new Padding(3, 2, 3, 2);
             txtSearchProve.Name = "txtSearchProve";
-            txtSearchProve.PlaceholderText = "EJ: 008-092008-0989Z";
+            txtSearchProve.PlaceholderText = "Ecribe para Buscar";
             txtSearchProve.Size = new Size(205, 29);
             txtSearchProve.TabIndex = 61;
-            txtSearchProve.TextChanged += cbSearchProve_TabIndexChanged;
-            txtSearchProve.KeyDown += txtSearchProve_KeyDown;
+            txtSearchProve.TextChanged += txtSearchProve_TextChanged;
             // 
             // cbSearchProve
             // 
@@ -74,9 +71,10 @@
             cbSearchProve.Location = new Point(1, 62);
             cbSearchProve.Margin = new Padding(3, 2, 3, 2);
             cbSearchProve.Name = "cbSearchProve";
-            cbSearchProve.Size = new Size(125, 28);
+            cbSearchProve.Size = new Size(158, 28);
             cbSearchProve.TabIndex = 63;
-            cbSearchProve.TextChanged += cbSearchProve_TabIndexChanged;
+            cbSearchProve.SelectedIndexChanged += cbSearchProve_TabIndexChanged;
+            cbSearchProve.TabIndexChanged += cbSearchProve_TabIndexChanged;
             // 
             // label13
             // 
@@ -90,22 +88,6 @@
             label13.TabIndex = 62;
             label13.Text = "Buscar por*";
             // 
-            // btnbuscar
-            // 
-            btnbuscar.BackColor = Color.Transparent;
-            btnbuscar.FlatAppearance.BorderSize = 0;
-            btnbuscar.FlatAppearance.MouseDownBackColor = Color.Teal;
-            btnbuscar.FlatAppearance.MouseOverBackColor = Color.Teal;
-            btnbuscar.FlatStyle = FlatStyle.Flat;
-            btnbuscar.ForeColor = Color.Transparent;
-            btnbuscar.Image = (Image)resources.GetObject("btnbuscar.Image");
-            btnbuscar.Location = new Point(130, 50);
-            btnbuscar.Name = "btnbuscar";
-            btnbuscar.Size = new Size(45, 41);
-            btnbuscar.TabIndex = 64;
-            btnbuscar.UseVisualStyleBackColor = false;
-            btnbuscar.Click += btnbuscar_Click;
-            // 
             // btneliminar
             // 
             btneliminar.BackColor = Color.Transparent;
@@ -113,11 +95,16 @@
             btneliminar.FlatAppearance.MouseDownBackColor = Color.Teal;
             btneliminar.FlatAppearance.MouseOverBackColor = Color.Teal;
             btneliminar.FlatStyle = FlatStyle.Flat;
+            btneliminar.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btneliminar.ForeColor = Color.White;
             btneliminar.Image = Properties.Resources.recargar;
-            btneliminar.Location = new Point(176, 50);
+            btneliminar.ImageAlign = ContentAlignment.MiddleLeft;
+            btneliminar.Location = new Point(165, 62);
             btneliminar.Name = "btneliminar";
-            btneliminar.Size = new Size(45, 41);
+            btneliminar.Size = new Size(92, 28);
             btneliminar.TabIndex = 65;
+            btneliminar.Text = "Limpiar";
+            btneliminar.TextAlign = ContentAlignment.MiddleRight;
             btneliminar.UseVisualStyleBackColor = false;
             btneliminar.Click += btneliminar_Click;
             // 
@@ -232,7 +219,6 @@
             Controls.Add(bigLabel1);
             Controls.Add(DvgMduser);
             Controls.Add(btneliminar);
-            Controls.Add(btnbuscar);
             Controls.Add(txtSearchProve);
             Controls.Add(cbSearchProve);
             Controls.Add(label13);
@@ -250,7 +236,6 @@
         private TextBox txtSearchProve;
         private ComboBox cbSearchProve;
         private Label label13;
-        private Button btnbuscar;
         private Button btneliminar;
         private DataGridView DvgMduser;
         private DataGridViewTextBoxColumn IdProveedor;

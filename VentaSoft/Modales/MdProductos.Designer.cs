@@ -35,7 +35,6 @@
             cbSearchPr = new ComboBox();
             label13 = new Label();
             btnClearSearch = new Button();
-            btnSearch = new Button();
             txtSearchPr = new TextBox();
             dgvProducto = new DataGridView();
             Id = new DataGridViewTextBoxColumn();
@@ -83,35 +82,19 @@
             btnClearSearch.FlatAppearance.MouseDownBackColor = Color.Teal;
             btnClearSearch.FlatAppearance.MouseOverBackColor = Color.Teal;
             btnClearSearch.FlatStyle = FlatStyle.Flat;
-            btnClearSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnClearSearch.ForeColor = SystemColors.ControlText;
+            btnClearSearch.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnClearSearch.ForeColor = Color.White;
             btnClearSearch.Image = Properties.Resources.recargar;
-            btnClearSearch.Location = new Point(212, 56);
+            btnClearSearch.ImageAlign = ContentAlignment.MiddleRight;
+            btnClearSearch.Location = new Point(154, 64);
             btnClearSearch.Name = "btnClearSearch";
-            btnClearSearch.Size = new Size(43, 40);
+            btnClearSearch.Size = new Size(94, 32);
             btnClearSearch.TabIndex = 58;
+            btnClearSearch.Text = "Limpiar";
+            btnClearSearch.TextAlign = ContentAlignment.MiddleLeft;
             btnClearSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnClearSearch.UseVisualStyleBackColor = false;
             btnClearSearch.Click += btnClearSearch_Click;
-            // 
-            // btnSearch
-            // 
-            btnSearch.BackColor = Color.Transparent;
-            btnSearch.BackgroundImageLayout = ImageLayout.Center;
-            btnSearch.Cursor = Cursors.Hand;
-            btnSearch.FlatAppearance.BorderSize = 0;
-            btnSearch.FlatAppearance.MouseDownBackColor = Color.Teal;
-            btnSearch.FlatAppearance.MouseOverBackColor = Color.Teal;
-            btnSearch.FlatStyle = FlatStyle.Flat;
-            btnSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSearch.Image = Properties.Resources.lupa;
-            btnSearch.Location = new Point(163, 56);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(43, 40);
-            btnSearch.TabIndex = 57;
-            btnSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnSearch.UseVisualStyleBackColor = false;
-            btnSearch.Click += btnSearch_Click;
             // 
             // txtSearchPr
             // 
@@ -120,10 +103,11 @@
             txtSearchPr.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSearchPr.Location = new Point(0, 98);
             txtSearchPr.Name = "txtSearchPr";
+            txtSearchPr.PlaceholderText = "Ecribe para Buscar";
             txtSearchPr.Size = new Size(255, 29);
             txtSearchPr.TabIndex = 56;
             txtSearchPr.Tag = "";
-            txtSearchPr.KeyDown += txtSearchPr_KeyDown;
+            txtSearchPr.TextChanged += txtSearchPr_TextChanged;
             // 
             // dgvProducto
             // 
@@ -236,7 +220,7 @@
             lblSubtitulo.Name = "lblSubtitulo";
             lblSubtitulo.Size = new Size(569, 20);
             lblSubtitulo.TabIndex = 78;
-            lblSubtitulo.Text = "Has doble click sobre el DNI o CLIENTE";
+            lblSubtitulo.Text = "Has doble click en cualquier espacio seleccionado";
             lblSubtitulo.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // MdProductos
@@ -249,7 +233,6 @@
             Controls.Add(bigLabel1);
             Controls.Add(dgvProducto);
             Controls.Add(btnClearSearch);
-            Controls.Add(btnSearch);
             Controls.Add(txtSearchPr);
             Controls.Add(cbSearchPr);
             Controls.Add(label13);
@@ -266,7 +249,6 @@
         private ComboBox cbSearchPr;
         private Label label13;
         private Button btnClearSearch;
-        private Button btnSearch;
         private TextBox txtSearchPr;
         private DataGridView dgvProducto;
         private DataGridViewTextBoxColumn Id;

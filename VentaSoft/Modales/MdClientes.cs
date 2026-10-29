@@ -1,4 +1,5 @@
-﻿using Main.Utilities;
+﻿using Data;
+using Main.Utilities;
 using ModuloEntidades;
 using Store;
 using System;
@@ -20,7 +21,10 @@ namespace Main.Modales
         public MdClientes()
         {
             InitializeComponent();
+
             new EscaladoProporcional(this); // mandamos a llamar escalado proporcional para el auto escalado en auto para cualquier pantalla
+
+            txtSearch.TextChanged += txtSearch_TextChanged;
         }
 
         private void MdClientes_Load(object sender, EventArgs e)
@@ -77,22 +81,6 @@ namespace Main.Modales
             }
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            if (cbSearchClientes.SelectedItem == null) return;
-
-            string columnFiltro = Convert.ToString(((OptionsComboBox)cbSearchClientes.SelectedItem).valor);
-            string texto = txtSearch.Text.Trim().ToUpper();
-
-            foreach (DataGridViewRow row in dgvClients.Rows)
-            {
-                if (row.IsNewRow) continue;
-
-                string valor = row.Cells[columnFiltro].Value?.ToString() ?? "";
-                row.Visible = valor.Trim().ToUpper().Contains(texto);
-            }
-        }
-
         private void btnClearSearch_Click(object sender, EventArgs e)
         {
             txtSearch.Clear();
@@ -100,16 +88,6 @@ namespace Main.Modales
             foreach (DataGridViewRow row in dgvClients.Rows)
             {
                 row.Visible = true;
-            }
-        }
-
-        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true; // evitamos el sonido de wind
-                btnSearch.PerformClick();     // con enter busca como el btn
-                txtSearch.Focus();
             }
         }
 
@@ -131,6 +109,32 @@ namespace Main.Modales
             {
                 txtSearch.PlaceholderText = "Buscar...";
             }
+        }
+
+        // la misma logica del botn buscar, pero en un método que se puede reutilizar
+        private void AplicarFiltro()
+        {
+            if (cbSearchClientes.SelectedItem == null) return;
+
+            string columnFiltro = Convert.ToString(((OptionsComboBox)cbSearchClientes.SelectedItem).valor);
+            string texto = txtSearch.Text.Trim().ToUpper();
+
+            dgvClients.CurrentCell = null; //evita el error al ocultar la fila actual
+
+            foreach (DataGridViewRow row in dgvClients.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string valor = row.Cells[columnFiltro].Value?.ToString() ?? "";
+                row.Visible = valor.Trim().ToUpper().Contains(texto);
+            }
+        }
+
+        //el evento que filtra mientras se escribe
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            AplicarFiltro();
         }
     }
 }

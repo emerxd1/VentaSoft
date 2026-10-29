@@ -23,10 +23,10 @@
 
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             lblTitulo = new Label();
             lblSubtitulo = new Label();
             cardBusqueda = new Sunny.UI.UIPanel();
@@ -58,18 +58,18 @@
             uiPanel1 = new Sunny.UI.UIPanel();
             lblGridTitulo = new Label();
             DgvData = new ModernControls.ModernGrid();
-            Producto = new DataGridViewTextBoxColumn();
-            Precio = new DataGridViewTextBoxColumn();
-            Cantidad = new DataGridViewTextBoxColumn();
-            SubTotal = new DataGridViewTextBoxColumn();
             linePie = new Label();
             btndescargarpdff = new Sunny.UI.UISymbolButton();
             label8 = new Label();
+            TxtMontoTotal = new Sunny.UI.UITextBox();
             label9 = new Label();
             TxtMontoPago = new Sunny.UI.UITextBox();
             label12 = new Label();
             TxtMontoCambio = new Sunny.UI.UITextBox();
-            TxtMontoTotal = new Sunny.UI.UITextBox();
+            SubTotal = new DataGridViewTextBoxColumn();
+            Cantidad = new DataGridViewTextBoxColumn();
+            Precio = new DataGridViewTextBoxColumn();
+            Producto = new DataGridViewTextBoxColumn();
             cardBusqueda.SuspendLayout();
             groupBox1.SuspendLayout();
             uiGroupBox2.SuspendLayout();
@@ -641,40 +641,40 @@
             DgvData.AllowUserToDeleteRows = false;
             DgvData.AllowUserToResizeColumns = false;
             DgvData.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = Color.White;
-            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle9.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle9.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(223, 243, 239);
-            dataGridViewCellStyle9.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
-            DgvData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle1.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(223, 243, 239);
+            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            DgvData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             DgvData.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DgvData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DgvData.BackgroundColor = Color.White;
             DgvData.BorderStyle = BorderStyle.None;
             DgvData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = Color.FromArgb(246, 248, 248);
-            dataGridViewCellStyle10.Font = new Font("Segoe UI Semibold", 8.5F);
-            dataGridViewCellStyle10.ForeColor = Color.FromArgb(70, 86, 79);
-            dataGridViewCellStyle10.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(246, 248, 248);
-            dataGridViewCellStyle10.SelectionForeColor = Color.FromArgb(70, 86, 79);
-            DgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(246, 248, 248);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 8.5F);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(70, 86, 79);
+            dataGridViewCellStyle2.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(246, 248, 248);
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(70, 86, 79);
+            DgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             DgvData.ColumnHeadersHeight = 44;
             DgvData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             DgvData.Columns.AddRange(new DataGridViewColumn[] { Producto, Precio, Cantidad, SubTotal });
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = Color.White;
-            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle11.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle11.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(223, 243, 239);
-            dataGridViewCellStyle11.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
-            DgvData.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle3.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(223, 243, 239);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            DgvData.DefaultCellStyle = dataGridViewCellStyle3;
             DgvData.EnableHeadersVisualStyles = false;
             DgvData.Font = new Font("Segoe UI", 9.5F);
             DgvData.GridColor = Color.White;
@@ -688,57 +688,21 @@
             DgvData.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             DgvData.RowHeadersVisible = false;
             DgvData.RowRadius = 6;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = Color.White;
-            dataGridViewCellStyle12.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle12.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle12.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(223, 243, 239);
-            dataGridViewCellStyle12.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
-            DgvData.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle4.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle4.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(223, 243, 239);
+            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            DgvData.RowsDefaultCellStyle = dataGridViewCellStyle4;
             DgvData.RowTemplate.Height = 56;
             DgvData.SelectionColor = Color.FromArgb(223, 243, 239);
             DgvData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             DgvData.ShowCellToolTips = false;
-            DgvData.Size = new Size(828, 428);
+            DgvData.Size = new Size(833, 428);
             DgvData.TabIndex = 31;
-            // 
-            // Producto
-            // 
-            Producto.FillWeight = 92F;
-            Producto.HeaderText = "Producto";
-            Producto.MinimumWidth = 92;
-            Producto.Name = "Producto";
-            Producto.ReadOnly = true;
-            Producto.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Precio
-            // 
-            Precio.FillWeight = 70F;
-            Precio.HeaderText = "Precio";
-            Precio.MinimumWidth = 70;
-            Precio.Name = "Precio";
-            Precio.ReadOnly = true;
-            Precio.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Cantidad
-            // 
-            Cantidad.FillWeight = 89F;
-            Cantidad.HeaderText = "Cantidad";
-            Cantidad.MinimumWidth = 89;
-            Cantidad.Name = "Cantidad";
-            Cantidad.ReadOnly = true;
-            Cantidad.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // SubTotal
-            // 
-            SubTotal.FillWeight = 90F;
-            SubTotal.HeaderText = "Sub total";
-            SubTotal.MinimumWidth = 90;
-            SubTotal.Name = "SubTotal";
-            SubTotal.ReadOnly = true;
-            SubTotal.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // linePie
             // 
@@ -795,6 +759,33 @@
             label8.TabIndex = 34;
             label8.Text = "Monto total";
             label8.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // TxtMontoTotal
+            // 
+            TxtMontoTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            TxtMontoTotal.BackColor = Color.White;
+            TxtMontoTotal.Cursor = Cursors.IBeam;
+            TxtMontoTotal.FillReadOnlyColor = Color.White;
+            TxtMontoTotal.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TxtMontoTotal.ForeColor = Color.FromArgb(20, 32, 30);
+            TxtMontoTotal.ForeReadOnlyColor = Color.FromArgb(11, 94, 88);
+            TxtMontoTotal.ImeMode = ImeMode.Disable;
+            TxtMontoTotal.Location = new Point(240, 508);
+            TxtMontoTotal.Margin = new Padding(3, 2, 3, 2);
+            TxtMontoTotal.MinimumSize = new Size(1, 16);
+            TxtMontoTotal.Name = "TxtMontoTotal";
+            TxtMontoTotal.Padding = new Padding(5);
+            TxtMontoTotal.Radius = 6;
+            TxtMontoTotal.ReadOnly = true;
+            TxtMontoTotal.RectColor = Color.FromArgb(201, 211, 209);
+            TxtMontoTotal.RectDisableColor = Color.White;
+            TxtMontoTotal.RectReadOnlyColor = Color.White;
+            TxtMontoTotal.ShowText = false;
+            TxtMontoTotal.Size = new Size(180, 40);
+            TxtMontoTotal.Style = Sunny.UI.UIStyle.Custom;
+            TxtMontoTotal.TabIndex = 35;
+            TxtMontoTotal.TextAlignment = ContentAlignment.MiddleLeft;
+            TxtMontoTotal.Watermark = "";
             // 
             // label9
             // 
@@ -874,32 +865,41 @@
             TxtMontoCambio.TextAlignment = ContentAlignment.MiddleLeft;
             TxtMontoCambio.Watermark = "";
             // 
-            // TxtMontoTotal
+            // SubTotal
             // 
-            TxtMontoTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            TxtMontoTotal.BackColor = Color.White;
-            TxtMontoTotal.Cursor = Cursors.IBeam;
-            TxtMontoTotal.FillReadOnlyColor = Color.White;
-            TxtMontoTotal.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            TxtMontoTotal.ForeColor = Color.FromArgb(20, 32, 30);
-            TxtMontoTotal.ForeReadOnlyColor = Color.FromArgb(11, 94, 88);
-            TxtMontoTotal.ImeMode = ImeMode.Disable;
-            TxtMontoTotal.Location = new Point(240, 508);
-            TxtMontoTotal.Margin = new Padding(3, 2, 3, 2);
-            TxtMontoTotal.MinimumSize = new Size(1, 16);
-            TxtMontoTotal.Name = "TxtMontoTotal";
-            TxtMontoTotal.Padding = new Padding(5);
-            TxtMontoTotal.Radius = 6;
-            TxtMontoTotal.ReadOnly = true;
-            TxtMontoTotal.RectColor = Color.FromArgb(201, 211, 209);
-            TxtMontoTotal.RectDisableColor = Color.White;
-            TxtMontoTotal.RectReadOnlyColor = Color.White;
-            TxtMontoTotal.ShowText = false;
-            TxtMontoTotal.Size = new Size(180, 40);
-            TxtMontoTotal.Style = Sunny.UI.UIStyle.Custom;
-            TxtMontoTotal.TabIndex = 35;
-            TxtMontoTotal.TextAlignment = ContentAlignment.MiddleLeft;
-            TxtMontoTotal.Watermark = "";
+            SubTotal.FillWeight = 90F;
+            SubTotal.HeaderText = "Sub total";
+            SubTotal.MinimumWidth = 90;
+            SubTotal.Name = "SubTotal";
+            SubTotal.ReadOnly = true;
+            SubTotal.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Cantidad
+            // 
+            Cantidad.FillWeight = 89F;
+            Cantidad.HeaderText = "Cantidad";
+            Cantidad.MinimumWidth = 89;
+            Cantidad.Name = "Cantidad";
+            Cantidad.ReadOnly = true;
+            Cantidad.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Precio
+            // 
+            Precio.FillWeight = 70F;
+            Precio.HeaderText = "Precio";
+            Precio.MinimumWidth = 70;
+            Precio.Name = "Precio";
+            Precio.ReadOnly = true;
+            Precio.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Producto
+            // 
+            Producto.FillWeight = 92F;
+            Producto.HeaderText = "Producto";
+            Producto.MinimumWidth = 92;
+            Producto.Name = "Producto";
+            Producto.ReadOnly = true;
+            Producto.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // FrmDetallesVentas
             // 
@@ -967,10 +967,10 @@
         private Sunny.UI.UITextBox TxtMontoPago;
         private Label label12;
         private Sunny.UI.UITextBox TxtMontoCambio;
+        private Sunny.UI.UITextBox TxtMontoTotal;
         private DataGridViewTextBoxColumn Producto;
         private DataGridViewTextBoxColumn Precio;
         private DataGridViewTextBoxColumn Cantidad;
         private DataGridViewTextBoxColumn SubTotal;
-        private Sunny.UI.UITextBox TxtMontoTotal;
     }
 }
