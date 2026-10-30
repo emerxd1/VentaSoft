@@ -6,6 +6,7 @@ SELECT * FROM Categoria
 SELECT * FROM Producto
 SELECT * FROM Compra
 SELECT * FROM Venta
+SELECT * FROM Proveedor;
 
 insert into Permiso (IdRol,NombreMenu) values 
 (1, 'MenuEmpleados'),
@@ -38,7 +39,7 @@ insert into Permiso (IdRol,NombreMenu) values
 
 
 
-Delete from Rol where IdRol =2;
+/*Delete from Rol where IdRol =2;*/
 
 SELECT * FROM Rol
 
@@ -1195,3 +1196,52 @@ GO
     SELECT name, create_date, modify_date
 FROM sys.procedures
 ORDER BY create_date DESC;
+
+
+/*LIMPIEZA DE BASE DATOS*/
+
+
+
+Truncate table Proveedores;
+
+DELETE FROM Proveedor;
+DBCC CHECKIDENT ('Proveedor', RESEED, 0);
+DBCC CHECKIDENT ('dbo.Proveedor', RESEED, 0);
+
+-- Quién referencia a Proveedores
+SELECT OBJECT_NAME(parent_object_id) AS TablaHija, name AS FK
+FROM sys.foreign_keys
+WHERE referenced_object_id = OBJECT_ID('Proveedores');
+
+-- Quién referencia a Compra (probablemente el detalle)
+SELECT OBJECT_NAME(parent_object_id) AS TablaHija, name AS FK
+FROM sys.foreign_keys
+WHERE referenced_object_id = OBJECT_ID('Compra');
+
+BEGIN TRAN;
+
+DELETE FROM DetalleCompra;
+DELETE FROM Compra;
+DELETE FROM Proveedor;
+
+DBCC CHECKIDENT ('DetalleCompra', RESEED, 0);
+DBCC CHECKIDENT ('Compra', RESEED, 0);
+DBCC CHECKIDENT ('Proveedores', RESEED, 0);
+
+COMMIT;
+
+SELECT @@TRANCOUNT;   -- debe dar 0
+
+SELECT s.name AS Esquema, o.name AS Objeto, o.type_desc
+FROM sys.objects o
+JOIN sys.schemas s ON s.schema_id = o.schema_id
+WHERE o.name LIKE 'Proveedor%';
+
+
+ALTER TABLE Proveedor DROP CONSTRAINT UQ_CorreoProveedor;
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX UQ_CorreoProveedor
+ON Proveedor (Correo)
+WHERE Correo IS NOT NULL;
+GO

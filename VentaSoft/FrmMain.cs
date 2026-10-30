@@ -1,4 +1,5 @@
 ﻿using ModuloEntidades;
+using Sunny.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Store;
 
 namespace Main
 {
@@ -13,10 +15,13 @@ namespace Main
     {
         private static Entidad_Usuario UserActual;
         private static Entidad_Usuario Rol;
+
+        private static UISymbolButton Usuario = null;
         public FrmMain(Entidad_Usuario O_user)
         {
             UserActual = O_user;
             Rol = O_user;
+
             InitializeComponent();
         }
 
@@ -60,13 +65,13 @@ namespace Main
 
         private void btnCompras_Click(object sender, EventArgs e)
         {
-            if (submenuCompras.Height == 40)
+            if (submenuCompras.Height == 50)
             {
-                submenuCompras.Height = 80;
+                submenuCompras.Height = 100;
             }
             else
             {
-                submenuCompras.Height = 40;
+                submenuCompras.Height = 50;
             }
             MostrarFormularios(new FrmPurchase(UserActual)); //se le pasa el usuario que está comprando
         }
@@ -76,13 +81,13 @@ namespace Main
         {
 
 
-            if (SubmenuVentas.Height == 40)
+            if (SubmenuVentas.Height == 50)
             {
-                SubmenuVentas.Height = 80;
+                SubmenuVentas.Height = 100;
             }
             else
             {
-                SubmenuVentas.Height = 40;
+                SubmenuVentas.Height = 50;
             }
 
             MostrarFormularios(new FrmSales(UserActual));
@@ -177,6 +182,33 @@ namespace Main
         {
             MostrarFormularios(new FrmReporteVenta());
         }
-    }
 
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            List<Entidad_Permiso> Permisos = new S_Permises().Lister(UserActual.IdUsuario);
+
+            AplicarPermisos(Permisos);
+        }
+        private void AplicarPermisos(List<Entidad_Permiso> permisos)
+        {
+            var mapa = new Dictionary<string, Control>
+    {
+        { "MenuClientes",    panel5 },
+        { "MenuCategory",    panel3 },
+        { "MenuProducto",    panel4 },
+        { "MenuEmpleados",   panel8 },
+        { "MenuProveedores", panel9 },
+        { "MenuCompras",     submenuCompras },
+        { "MenuVentas",      SubmenuVentas },
+        { "MenuReportes",    SubMenuReports },
+        { "MenuAbout",       panel15 },
+    };
+
+            foreach (var item in mapa)
+            {
+                item.Value.Visible = permisos.Any(p =>
+                    string.Equals(p.NombreMenu, item.Key, StringComparison.OrdinalIgnoreCase));
+            }
+        }
+    }
 }
