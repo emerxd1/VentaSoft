@@ -11,6 +11,7 @@ namespace Main
         public FrmClientes()
         {
             InitializeComponent();
+            new EscaladoProporcional(this);
         }
 
         // Handlers vacíos: se conservan porque el diseñador puede referenciarlos.

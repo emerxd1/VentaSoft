@@ -38,15 +38,6 @@
             bigLabel7 = new ReaLTaiizor.Controls.BigLabel();
             txtSearch = new Sunny.UI.UITextBox();
             dgvReportVenta = new ModernControls.ModernGrid();
-            bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
-            uiPanel1 = new Sunny.UI.UIPanel();
-            btnBuscar = new Sunny.UI.UISymbolButton();
-            bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
-            dpFin = new AntdUI.DatePicker();
-            bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
-            dpInicio = new AntdUI.DatePicker();
-            bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
-            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             FechaRegistro = new DataGridViewTextBoxColumn();
             TipoDocumento = new DataGridViewTextBoxColumn();
             NumDocumento = new DataGridViewTextBoxColumn();
@@ -58,6 +49,15 @@
             PrecioVenta = new DataGridViewTextBoxColumn();
             Cantidad = new DataGridViewTextBoxColumn();
             Total = new DataGridViewTextBoxColumn();
+            bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
+            uiPanel1 = new Sunny.UI.UIPanel();
+            btnBuscar = new Sunny.UI.UISymbolButton();
+            bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
+            dpFin = new AntdUI.DatePicker();
+            bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
+            dpInicio = new AntdUI.DatePicker();
+            bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             uiPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvReportVenta).BeginInit();
             uiPanel1.SuspendLayout();
@@ -240,6 +240,108 @@
             dgvReportVenta.Size = new Size(1217, 383);
             dgvReportVenta.TabIndex = 78;
             // 
+            // FechaRegistro
+            // 
+            FechaRegistro.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            FechaRegistro.FillWeight = 123F;
+            FechaRegistro.HeaderText = "Fecha Registro";
+            FechaRegistro.MinimumWidth = 123;
+            FechaRegistro.Name = "FechaRegistro";
+            FechaRegistro.ReadOnly = true;
+            FechaRegistro.SortMode = DataGridViewColumnSortMode.NotSortable;
+            FechaRegistro.Width = 123;
+            // 
+            // TipoDocumento
+            // 
+            TipoDocumento.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            TipoDocumento.FillWeight = 150F;
+            TipoDocumento.HeaderText = "Tipo de documento";
+            TipoDocumento.MinimumWidth = 120;
+            TipoDocumento.Name = "TipoDocumento";
+            TipoDocumento.ReadOnly = true;
+            TipoDocumento.SortMode = DataGridViewColumnSortMode.NotSortable;
+            TipoDocumento.Width = 120;
+            // 
+            // NumDocumento
+            // 
+            NumDocumento.FillWeight = 175F;
+            NumDocumento.HeaderText = "# de documento";
+            NumDocumento.MinimumWidth = 120;
+            NumDocumento.Name = "NumDocumento";
+            NumDocumento.ReadOnly = true;
+            NumDocumento.SortMode = DataGridViewColumnSortMode.NotSortable;
+            NumDocumento.Visible = false;
+            // 
+            // User_registro
+            // 
+            User_registro.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            User_registro.FillWeight = 137F;
+            User_registro.HeaderText = "Usuario registro";
+            User_registro.MinimumWidth = 137;
+            User_registro.Name = "User_registro";
+            User_registro.ReadOnly = true;
+            User_registro.SortMode = DataGridViewColumnSortMode.NotSortable;
+            User_registro.Width = 137;
+            // 
+            // NombreCliente
+            // 
+            NombreCliente.HeaderText = "Cliente";
+            NombreCliente.Name = "NombreCliente";
+            NombreCliente.ReadOnly = true;
+            NombreCliente.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CodigoProduct
+            // 
+            CodigoProduct.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            CodigoProduct.FillWeight = 140F;
+            CodigoProduct.HeaderText = "Codigo producto";
+            CodigoProduct.MinimumWidth = 140;
+            CodigoProduct.Name = "CodigoProduct";
+            CodigoProduct.ReadOnly = true;
+            CodigoProduct.SortMode = DataGridViewColumnSortMode.NotSortable;
+            CodigoProduct.Width = 140;
+            // 
+            // NameProduct
+            // 
+            NameProduct.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            NameProduct.FillWeight = 144F;
+            NameProduct.HeaderText = "Nombre Producto";
+            NameProduct.MinimumWidth = 144;
+            NameProduct.Name = "NameProduct";
+            NameProduct.ReadOnly = true;
+            NameProduct.SortMode = DataGridViewColumnSortMode.NotSortable;
+            NameProduct.Width = 144;
+            // 
+            // Category
+            // 
+            Category.FillWeight = 93F;
+            Category.HeaderText = "Categoria";
+            Category.MinimumWidth = 93;
+            Category.Name = "Category";
+            Category.ReadOnly = true;
+            Category.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // PrecioVenta
+            // 
+            PrecioVenta.HeaderText = "Precio Venta";
+            PrecioVenta.Name = "PrecioVenta";
+            PrecioVenta.ReadOnly = true;
+            PrecioVenta.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Cantidad
+            // 
+            Cantidad.HeaderText = "Cantidad";
+            Cantidad.Name = "Cantidad";
+            Cantidad.ReadOnly = true;
+            Cantidad.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Total
+            // 
+            Total.HeaderText = "Total";
+            Total.Name = "Total";
+            Total.ReadOnly = true;
+            Total.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
             // bigLabel6
             // 
             bigLabel6.AutoSize = true;
@@ -366,108 +468,6 @@
             bigLabel1.TabIndex = 68;
             bigLabel1.Text = "Reporte de Ventas";
             // 
-            // FechaRegistro
-            // 
-            FechaRegistro.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            FechaRegistro.FillWeight = 123F;
-            FechaRegistro.HeaderText = "Fecha Registro";
-            FechaRegistro.MinimumWidth = 123;
-            FechaRegistro.Name = "FechaRegistro";
-            FechaRegistro.ReadOnly = true;
-            FechaRegistro.SortMode = DataGridViewColumnSortMode.NotSortable;
-            FechaRegistro.Width = 123;
-            // 
-            // TipoDocumento
-            // 
-            TipoDocumento.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            TipoDocumento.FillWeight = 150F;
-            TipoDocumento.HeaderText = "Tipo de documento";
-            TipoDocumento.MinimumWidth = 120;
-            TipoDocumento.Name = "TipoDocumento";
-            TipoDocumento.ReadOnly = true;
-            TipoDocumento.SortMode = DataGridViewColumnSortMode.NotSortable;
-            TipoDocumento.Width = 120;
-            // 
-            // NumDocumento
-            // 
-            NumDocumento.FillWeight = 175F;
-            NumDocumento.HeaderText = "# de documento";
-            NumDocumento.MinimumWidth = 120;
-            NumDocumento.Name = "NumDocumento";
-            NumDocumento.ReadOnly = true;
-            NumDocumento.SortMode = DataGridViewColumnSortMode.NotSortable;
-            NumDocumento.Visible = false;
-            // 
-            // User_registro
-            // 
-            User_registro.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            User_registro.FillWeight = 137F;
-            User_registro.HeaderText = "Usuario registro";
-            User_registro.MinimumWidth = 137;
-            User_registro.Name = "User_registro";
-            User_registro.ReadOnly = true;
-            User_registro.SortMode = DataGridViewColumnSortMode.NotSortable;
-            User_registro.Width = 137;
-            // 
-            // NombreCliente
-            // 
-            NombreCliente.HeaderText = "Cliente";
-            NombreCliente.Name = "NombreCliente";
-            NombreCliente.ReadOnly = true;
-            NombreCliente.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // CodigoProduct
-            // 
-            CodigoProduct.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            CodigoProduct.FillWeight = 140F;
-            CodigoProduct.HeaderText = "Codigo producto";
-            CodigoProduct.MinimumWidth = 140;
-            CodigoProduct.Name = "CodigoProduct";
-            CodigoProduct.ReadOnly = true;
-            CodigoProduct.SortMode = DataGridViewColumnSortMode.NotSortable;
-            CodigoProduct.Width = 140;
-            // 
-            // NameProduct
-            // 
-            NameProduct.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            NameProduct.FillWeight = 144F;
-            NameProduct.HeaderText = "Nombre Producto";
-            NameProduct.MinimumWidth = 144;
-            NameProduct.Name = "NameProduct";
-            NameProduct.ReadOnly = true;
-            NameProduct.SortMode = DataGridViewColumnSortMode.NotSortable;
-            NameProduct.Width = 144;
-            // 
-            // Category
-            // 
-            Category.FillWeight = 93F;
-            Category.HeaderText = "Categoria";
-            Category.MinimumWidth = 93;
-            Category.Name = "Category";
-            Category.ReadOnly = true;
-            Category.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PrecioVenta
-            // 
-            PrecioVenta.HeaderText = "Precio Venta";
-            PrecioVenta.Name = "PrecioVenta";
-            PrecioVenta.ReadOnly = true;
-            PrecioVenta.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Cantidad
-            // 
-            Cantidad.HeaderText = "Cantidad";
-            Cantidad.Name = "Cantidad";
-            Cantidad.ReadOnly = true;
-            Cantidad.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Total
-            // 
-            Total.HeaderText = "Total";
-            Total.Name = "Total";
-            Total.ReadOnly = true;
-            Total.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
             // FrmReporteVenta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -479,7 +479,8 @@
             Controls.Add(bigLabel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmReporteVenta";
-            Text = "FrmReporteVenta";
+            Text = "  ";
+            Load += FrmReporteVenta_Load;
             uiPanel2.ResumeLayout(false);
             uiPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvReportVenta).EndInit();

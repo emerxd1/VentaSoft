@@ -19,6 +19,8 @@ namespace Main.Modales
         public MdProductos()
         {
             InitializeComponent();
+            new EscaladoProporcional(this);
+            txtSearchPr.TextChanged += txtSearchPr_TextChanged;
         }
 
         private void MdProductos_Load(object sender, EventArgs e)
@@ -79,22 +81,6 @@ namespace Main.Modales
             Close();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            if (cbSearchPr.SelectedItem == null) return;
-
-            string columnFiltro = Convert.ToString(((OptionsComboBox)cbSearchPr.SelectedItem).valor);
-            string texto = txtSearchPr.Text.Trim().ToUpper();
-
-            foreach (DataGridViewRow row in dgvProducto.Rows)
-            {
-                if (row.IsNewRow) continue; // filtrador de cuando muestra y cuando oculta
-
-                string valor = row.Cells[columnFiltro].Value?.ToString() ?? "";
-                row.Visible = valor.Trim().ToUpper().Contains(texto);
-            }
-        }
-
         private void btnClearSearch_Click(object sender, EventArgs e)
         {
             txtSearchPr.Clear();
@@ -132,14 +118,26 @@ namespace Main.Modales
             }
         }
 
-        private void txtSearchPr_KeyDown(object sender, KeyEventArgs e)
+        private void AplicarFiltro()
         {
-            if(e.KeyCode == Keys.Enter)
+            if (cbSearchPr.SelectedItem == null) return;
+
+            string columnFiltro = Convert.ToString(((OptionsComboBox)cbSearchPr.SelectedItem).valor);
+            string texto = txtSearchPr.Text.Trim().ToUpper();
+
+            dgvProducto.CurrentCell = null;
+
+            foreach (DataGridViewRow row in dgvProducto.Rows)
             {
-                e.SuppressKeyPress = true;
-                btnSearch.PerformClick();
-                txtSearchPr.Focus();
+                if (row.IsNewRow) continue;
+
+                string valor = row.Cells[columnFiltro].Value?.ToString() ?? "";
+                row.Visible = valor.Trim().ToUpper().Contains(texto);
             }
+        }
+        private void txtSearchPr_TextChanged(object sender, EventArgs e)
+        {
+            AplicarFiltro();
         }
     }
 }

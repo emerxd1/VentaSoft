@@ -21,24 +21,8 @@ namespace Main.Modales
         public MdProveedor()
         {
             InitializeComponent();
-        }
-
-        // Busqueda y oculta las filas que no coinciden  y muestra las que si tienen texto
-        private void btnbuscar_Click(object sender, EventArgs e)
-        {
-
-            if (cbSearchProve.SelectedItem == null) return;
-
-            string columnFiltro = Convert.ToString(((OptionsComboBox)cbSearchProve.SelectedItem).valor);
-            string texto = txtSearchProve.Text.Trim().ToUpper();
-
-            foreach (DataGridViewRow row in DvgMduser.Rows)
-            {
-                if (row.IsNewRow) continue; // filtrador de cuando muestra y cuando oculta
-
-                string valor = row.Cells[columnFiltro].Value?.ToString() ?? "";
-                row.Visible = valor.Trim().ToUpper().Contains(texto);
-            }
+            new EscaladoProporcional(this); // mandamos a llamar escalado proporcional para el auto escalado en auto para cualquier pantalla
+            txtSearchProve.TextChanged += txtSearchProve_TextChanged;
         }
 
         private void MdProveedor_Load(object sender, EventArgs e)
@@ -98,33 +82,51 @@ namespace Main.Modales
             }
         }
 
-        private void cbSearchProve_TabIndexChanged(object sender, EventArgs e)
+
+        //la misma lógica del botón buscar, pero en un método que se puede reutilizar
+        private void AplicarFiltro()
         {
+            if (cbSearchProve.SelectedItem == null) return;
 
-            OptionsComboBox temporal = (OptionsComboBox)cbSearchProve.SelectedItem;
-            string textppl = temporal.texto;
+            string columnFiltro = Convert.ToString(((OptionsComboBox)cbSearchProve.SelectedItem).valor);
+            string texto = txtSearchProve.Text.Trim().ToUpper();
 
-            if (textppl == "RUC")
+            DvgMduser.CurrentCell = null; // evita el error al ocultar la fila actual
+
+            foreach (DataGridViewRow row in DvgMduser.Rows)
             {
-                txtSearchProve.PlaceholderText = "EJ: 008-092008-0989Z";
-            }
-            else if (textppl == "Razon Social")
-            {
-                txtSearchProve.PlaceholderText = "EJ: test";
-            }
-            else
-            {
-                txtSearchProve.PlaceholderText = "Buscar...";
+                if (row.IsNewRow) continue;
+
+                string valor = row.Cells[columnFiltro].Value?.ToString() ?? "";
+                row.Visible = valor.Trim().ToUpper().Contains(texto);
             }
         }
 
-        private void txtSearchProve_KeyDown(object sender, KeyEventArgs e)
+        //el evento que filtra mientras se escribe
+        private void txtSearchProve_TextChanged(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            AplicarFiltro();
+        }
+
+        private void cbSearchProve_TabIndexChanged(object sender, EventArgs e)
+        {
+            OptionsComboBox variabletemporal = (OptionsComboBox)cbSearchProve.SelectedItem;//convertimos el obj seleccionado al tipo de nuestra clse otioncomboBox
+            string nombcbbox = variabletemporal.texto;
+
+            //pasamos los textos de la opcion elegida a Codigo etc para evaluar y cambiar el placeholdertext y enlazamos con el diseñador
+
+            if (nombcbbox == "RUC")
             {
-                e.SuppressKeyPress = true;
-                btnbuscar.PerformClick();
-                txtSearchProve.Focus();
+                txtSearchProve.PlaceholderText = "EJ: 001-09112001-2345X";
+            }
+            else if (nombcbbox == "Razon Social")
+            {
+                txtSearchProve.PlaceholderText = "EJ: Café Sirena, S.R.L. de C.V.";
+
+            }
+            else
+            {
+                txtSearchProve.PlaceholderText = "Escribe para Buscar..";
             }
         }
     }

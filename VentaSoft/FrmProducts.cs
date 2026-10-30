@@ -18,6 +18,7 @@ namespace Main
         public FrmProducts()
         {
             InitializeComponent();
+            new EscaladoProporcional(this);
         }
 
         /*==========================CARGAR PRODUCTOS EN EVENTO LOAD==========================*/

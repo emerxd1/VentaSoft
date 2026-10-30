@@ -17,6 +17,7 @@ namespace Main
         public FrmCategory()
         {
             InitializeComponent();
+            new EscaladoProporcional(this);
 
             // Asegura que el evento esté conectado aunque no esté en el diseñador
             dgvCategory.CellClick += dgvCategory_CellClick;
@@ -357,6 +358,11 @@ namespace Main
             }
 
             cbEstado.ForeColor = Color.Black;
+        }
+
+        private void bigLabel1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

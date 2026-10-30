@@ -23,6 +23,7 @@ namespace Main
         public FrmReporteCompra()
         {
             InitializeComponent();
+            new EscaladoProporcional(this);
         }
 
         private void FrmReporteCompra_Load(object sender, EventArgs e)
@@ -235,6 +236,11 @@ namespace Main
                     MessageBox.Show("Error al generar reporte: " + ex.Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
+        }
+
+        private void bigLabel1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

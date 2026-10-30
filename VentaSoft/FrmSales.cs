@@ -24,6 +24,7 @@ namespace Main
         {
             _usuario = ousuario;
             InitializeComponent();
+            new EscaladoProporcional(this); // mandamos a llamar escalado proporcional para el auto escalado en auto para cualquier pantalla
 
             // enlazamos los eventos por código para evitar que esten duplicadas si ya estan el el diseñador
             DgvData.CellClick -= DgvData_CellClick;
@@ -481,6 +482,11 @@ namespace Main
         }
 
         private void uiGroupBox4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTitulo_Click(object sender, EventArgs e)
         {
 
         }
