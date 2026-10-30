@@ -342,7 +342,7 @@ namespace Main
             }
 
             txtIndice.Text = e.RowIndex.ToString();
-            txtId.Text = "ID#" + categoria.IdCategoria;
+            txtId.Text = "ID# " + categoria.IdCategoria;
             txtName.Text = categoria.Nombre;
             txtDescripcion.Text = categoria.Descripcion;
 

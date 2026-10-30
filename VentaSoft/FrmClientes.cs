@@ -326,7 +326,7 @@ namespace Main
             txtIndice.Text = e.RowIndex.ToString();
 
             // ID con prefijo: ID#5
-            txtId.Text = "ID#" + cliente.IdCliente;
+            txtId.Text = "ID# " + cliente.IdCliente;
 
             // Mostrar textos en los textbox
             txtDni.Text = cliente.DNI;

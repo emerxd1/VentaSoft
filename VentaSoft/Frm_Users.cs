@@ -381,7 +381,7 @@ namespace Main
             if (!(row.Tag is Entidad_Usuario usuario)) return;
 
             txtIndice.Text = e.RowIndex.ToString();
-            txtId.Text = "ID#" + usuario.IdUsuario;
+            txtId.Text = "ID# " + usuario.IdUsuario;
 
             txtDni.Text = usuario.DNI;
             txtName1.Text = usuario.Nombre1;

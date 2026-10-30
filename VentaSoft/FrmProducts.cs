@@ -15,13 +15,15 @@ namespace Main
 {
     public partial class FrmProducts : Form
     {
+        private readonly S_Product _servicio = new S_Product();
+
         public FrmProducts()
         {
             InitializeComponent();
             new EscaladoProporcional(this);
         }
 
-        /*==========================CARGAR PRODUCTOS EN EVENTO LOAD==========================*/
+        /*==========================CARGAR DATOS EN EVENTO LOAD==========================*/
         private void FrmProducts_Load(object sender, EventArgs e)
         {
             // Cargar combo de Estado
@@ -29,7 +31,6 @@ namespace Main
             cbEstado.Items.Add(new OptionsComboBox() { valor = 0, texto = "No Activo" });
             cbEstado.ValueMember = "valor";
             cbEstado.DisplayMember = "texto";
-            cbEstado.SelectedIndex = 0;
 
             // Cargar combo de Categoria
             List<Entidad_Categoria> listCategory = new S_Category().Lister();
@@ -39,15 +40,10 @@ namespace Main
             }
             cbCategoria.ValueMember = "valor";
             cbCategoria.DisplayMember = "texto";
-            if (cbCategoria.Items.Count > 0)
-            {
-                cbCategoria.SelectedIndex = 0;
-            }
 
-            // Cargar combo de búsqueda (según columnas visibles del grid)
             foreach (DataGridViewColumn Columna in dgvProducto.Columns)
             {
-                if (Columna.Visible == true && Columna.Name != "btnSeleccion")
+                if (Columna.Visible)
                 {
                     cbSearch.Items.Add(new OptionsComboBox() { valor = Columna.Name, texto = Columna.HeaderText });
                 }
@@ -59,21 +55,28 @@ namespace Main
                 cbSearch.SelectedIndex = 0;
             }
 
-            // Carga inicial de productos
             RecargarGrid();
+
+            // Deja el formulario en su estado inicial (combos con texto guía en gris)
+            Limpiar();
         }
 
         /*===========RECARGA EL GRID DESDE LA BASE DE DATOS (incluye columnas calculadas como Codigo)===========*/
         private void RecargarGrid()
         {
+            dgvProducto.CurrentCell = null;
             dgvProducto.Rows.Clear();
 
-            List<Entidad_Producto> listProduct = new S_Product().Lister();
+            List<Entidad_Producto> listProduct = _servicio.Lister();
 
             foreach (Entidad_Producto item in listProduct)
             {
-                int fila = dgvProducto.Rows.Add(); // agrega una fila vacía y devuelve su índice
+                int fila = dgvProducto.Rows.Add();
                 DataGridViewRow row = dgvProducto.Rows[fila];
+
+                // Se guarda el producto completo en la fila: al seleccionarla se leen de aquí los datos.
+                row.Tag = item;
+
                 row.Cells["IdProducto"].Value = item.IdProducto;
                 row.Cells["Codigo"].Value = item.Codigo;
                 row.Cells["NombreProducto"].Value = item.Nombre;
@@ -81,45 +84,21 @@ namespace Main
                 row.Cells["PrecioVenta"].Value = item.PrecioVenta;
                 row.Cells["PrecioCompra"].Value = item.PrecioCompra;
                 row.Cells["Stock"].Value = item.Stock;
-                row.Cells["IdCategoria"].Value = item.oCategoria.IdCategoria; // oculta, para comparaciones internas
-                row.Cells["NameCategoria"].Value = item.oCategoria.Nombre; // visible, se muestra al usuario
+                row.Cells["IdCategoria"].Value = item.oCategoria?.IdCategoria ?? 0; // oculta, para comparaciones internas
+                row.Cells["NameCategoria"].Value = item.oCategoria?.Nombre ?? "";   // visible
                 row.Cells["EstadoValor"].Value = item.Estado ? 1 : 0;
                 row.Cells["Estado"].Value = item.Estado ? "Activo" : "No Activo";
             }
+
+            // Si hay texto en la búsqueda, se vuelve a aplicar sobre los datos recargados.
+            AplicarFiltro();
         }
 
-        /*=====MÉTODO PARA VALIDAR Y OBTENER LOS DATOS NUMÉRICOS DEL FORMULARIO=====*/
-        // Convierte los TextBox de texto a los tipos correctos (decimal/int) de forma segura.
-        // Si algún campo no es válido, muestra un aviso, enfoca el campo y devuelve false
-        // para que el método que lo llama pueda cancelar la operación (return) sin crashear.
-        private bool TryObtenerDatosFormulario(out decimal precioCompra, out decimal precioVenta, out int stock)
+        // Devuelve el Id del producto seleccionado. Devuelve 0 si no hay ninguno.
+        private int ObtenerIdSeleccionado()
         {
-            precioCompra = 0;
-            precioVenta = 0;
-            stock = 0;
-
-            if (!decimal.TryParse(txtPrecioC.Text, out precioCompra))
-            {
-                MessageBox.Show("El Precio de Compra debe ser un número válido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtPrecioC.Focus();
-                return false;
-            }
-
-            if (!decimal.TryParse(txtPrecioV.Text, out precioVenta))
-            {
-                MessageBox.Show("El Precio de Venta debe ser un número válido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtPrecioV.Focus();
-                return false;
-            }
-
-            if (!int.TryParse(txtStock.Text, out stock))
-            {
-                MessageBox.Show("El Stock debe ser un número entero válido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtStock.Focus();
-                return false;
-            }
-
-            return true;
+            return int.TryParse(txtIdProducto.Text.Replace("ID#", "").Trim(), out int id) ? id : 0;
+            return 0;
         }
 
         //METODO PARA LIMPIAR LOS CAMPOS DEL FORMULARIO
@@ -128,221 +107,130 @@ namespace Main
             txtIndice.Text = "-1";
             txtIdProducto.Clear();
             txtCodigo.Clear();
+            txtNameProducto.Clear();
             txtDescripcion.Clear();
             txtPrecioC.Clear();
             txtPrecioV.Clear();
             txtStock.Clear();
-            txtNameProducto.Clear();
-            cbCategoria.SelectedIndex = 0;
-            cbEstado.SelectedIndex = 0;
+
+            cbCategoria.SelectedIndex = -1;
+            cbCategoria.Text = "Seleccione una categoría";
+            cbCategoria.ForeColor = Color.Gray;
+
+            cbEstado.SelectedIndex = -1;
+            cbEstado.Text = "Seleccione un estado";
+            cbEstado.ForeColor = Color.Gray;
         }
 
-
-        /*boton para hcer busqueda por filtros*/
-        private void btnSearch_Click_1(object sender, EventArgs e)
+        // Aplica el filtro de búsqueda sobre el grid según la columna elegida.
+        // Con el texto vacío, todas las filas vuelven a mostrarse.
+        private void AplicarFiltro()
         {
-            string columnFiltro = Convert.ToString(((OptionsComboBox)cbSearch.SelectedItem).valor);
-
-            if (dgvProducto.Rows.Count > 0)
+            var columnaSeleccionada = cbSearch.SelectedItem as OptionsComboBox;
+            if (columnaSeleccionada == null)
             {
-                foreach (DataGridViewRow row in dgvProducto.Rows)
-                {
-                    if (row.Cells[columnFiltro].Value.ToString().Trim().ToUpper().Contains(txtSearch.Text.Trim().ToUpper()))
-                    {
-                        row.Visible = true;
-                    }
-
-                    else
-                    {
-                        row.Visible = false;
-                    }
-
-                }
-
-            }
-        }
-
-        /*BOTON PARA ACTUALIZAR UN PRODUCTO*/
-        private void btnUpdate_Click_1(object sender, EventArgs e)
-        {
-            if (txtIndice.Text == "-1")
-            {
-                MessageBox.Show("Debe seleccionar un usuario para actualizar.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            if (!TryObtenerDatosFormulario(out decimal precioCompra, out decimal precioVenta, out int stock))
-                return;
+            string columnFiltro = Convert.ToString(columnaSeleccionada.valor);
+            string texto = txtSearch.Text.Trim().ToUpper();
 
-            if (!int.TryParse(txtIdProducto.Text, out int idProducto))
-            {
-                MessageBox.Show("No se pudo determinar el Id del producto a actualizar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            Entidad_Producto oProduct = new Entidad_Producto() // instancia de la entidad producto, para enviar a la capa de negocio
-            {
-                IdProducto = idProducto,
-                Nombre = txtNameProducto.Text,
-                PrecioCompra = precioCompra,
-                PrecioVenta = precioVenta,
-                Stock = stock,
-                Descripcion = txtDescripcion.Text,
-                oCategoria = new Entidad_Categoria() { IdCategoria = Convert.ToInt32(((OptionsComboBox)cbCategoria.SelectedItem).valor) },
-                Estado = Convert.ToInt32(((OptionsComboBox)cbEstado.SelectedItem).valor) == 1
-            };
-            bool result = new S_Product().Edit(oProduct, out string Mensaje);
-
-            // Si la actualizacion fue exitosa, se refleja el cambio en el DataGridView
-            if (result)
-            {
-                DialogResult dr = MessageBox.Show("Esta seguro que desea actualizar el Producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dr == DialogResult.No)
-                    return;
-
-                RecargarGrid();
-
-                MessageBox.Show("Usuario actualizado correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show(Mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-
-            Limpiar();
-
-        }
-
-        /*ROJO SI ES ESTADO ESTA INACTIVO O VERDE EN CASO CONTRARIO Y TAMBIEN
-         SI EL ESTOCK ES MENOR A 5 PINTA DE ROJO*/
-        private void dgvProducto_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (this.dgvProducto.Columns[e.ColumnIndex].Name == "Estado")
-            {
-                e.CellStyle.BackColor = e.Value.ToString() == "Activo" ? Color.LightGreen : Color.Salmon;
-            }
-
-            if (this.dgvProducto.Columns[e.ColumnIndex].Name == "Stock")
-            {
-                if (e.Value != null && int.TryParse(e.Value.ToString(), out int stock))
-                {
-                    e.CellStyle.BackColor = stock > 5 ? Color.LightGreen : Color.Salmon;
-                }
-            }
-        }
-
-        private void dgvProducto_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.RowIndex < 0) return; // para ignorar el header
-
-            if (e.ColumnIndex == 0)
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-
-                var w = Properties.Resources.Check.Width;
-                var h = Properties.Resources.Check.Height;
-                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
-                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
-
-                e.Graphics.DrawImage(Properties.Resources.Check, new Rectangle(x, y, w, h));
-                e.Handled = true;
-            }
-        }
-
-        private void dgvProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Valida si y solo si se selecciona el btn seleccionar, muestra los datos con respecto al índice
-            if (dgvProducto.Columns[e.ColumnIndex].Name != "btnSeleccion") return;
-
-            int indice = e.RowIndex;
-            if (indice < 0) return;
-            {
-                txtIndice.Text = indice.ToString();
-
-                // Mostrar textos en los textbox
-                txtIdProducto.Text = Convert.ToString(dgvProducto.Rows[indice].Cells["IdProducto"].Value);
-                txtCodigo.Text = Convert.ToString(dgvProducto.Rows[indice].Cells["Codigo"].Value);
-                txtNameProducto.Text = Convert.ToString(dgvProducto.Rows[indice].Cells["NombreProducto"].Value);
-                txtDescripcion.Text = Convert.ToString(dgvProducto.Rows[indice].Cells["Descripcion"].Value);
-                txtPrecioV.Text = Convert.ToString(dgvProducto.Rows[indice].Cells["PrecioVenta"].Value);
-                txtPrecioC.Text = Convert.ToString(dgvProducto.Rows[indice].Cells["PrecioCompra"].Value);
-                txtStock.Text = Convert.ToString(dgvProducto.Rows[indice].Cells["Stock"].Value);
-            }
-
-            // Protección contra DBNull: si la celda no tiene valor, se usa 0 en vez de intentar convertir DBNull
-            object valorIdCategoria = dgvProducto.Rows[indice].Cells["IdCategoria"].Value;
-            int idRolFila = (valorIdCategoria == null || valorIdCategoria == DBNull.Value) ? 0 : Convert.ToInt32(valorIdCategoria);
-
-            foreach (OptionsComboBox oc in cbCategoria.Items)
-            {
-                if (Convert.ToInt32(oc.valor) == idRolFila)
-                {
-                    cbCategoria.SelectedIndex = cbCategoria.Items.IndexOf(oc);
-                    break;
-                }
-            }
-
-            // Mostrar dato de Estado en el combobox
-            // Protección contra DBNull: si la celda no tiene valor, se usa 0 en vez de intentar convertir DBNull
-            object valorEstado = dgvProducto.Rows[indice].Cells["EstadoValor"].Value;
-            int idEstadoFila = (valorEstado == null || valorEstado == DBNull.Value) ? 0 : Convert.ToInt32(valorEstado);
-
-            foreach (OptionsComboBox oc1 in cbEstado.Items)
-            {
-                if (Convert.ToInt32(oc1.valor) == idEstadoFila)
-                {
-                    cbEstado.SelectedIndex = cbEstado.Items.IndexOf(oc1);
-                    break;
-                }
-
-            }
-        }
-        /*BOTON PARA LIMPIAR BUSQUEDA Y RESTAURAR DATAGRIDVIEW*/
-        private void btnClearSearch_Click(object sender, EventArgs e)
-        {
-            txtSearch.Clear();
+            // Una fila con la celda actual seleccionada no se puede ocultar (lanza InvalidOperationException).
+            dgvProducto.CurrentCell = null;
 
             foreach (DataGridViewRow row in dgvProducto.Rows)
             {
-                row.Visible = true;
+                if (row.IsNewRow)
+                {
+                    continue;
+                }
+
+                string valor = row.Cells[columnFiltro].Value?.ToString() ?? "";
+                row.Visible = valor.Trim().ToUpper().Contains(texto);
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        // Lee el formulario, lo valida (servicio: nombre, descripción, categoría, precios, stock y estado)
+        // y devuelve la entidad lista para enviar. Si hay errores los muestra y devuelve false.
+        // idProducto = 0 al registrar (lo genera la base de datos).
+        private bool TryLeerFormulario(int idProducto, out Entidad_Producto oProducto, out int valorEstado)
         {
-            // Validación segura: evita la excepción de Convert.ToInt32("") cuando no hay selección
-            if (string.IsNullOrWhiteSpace(txtIdProducto.Text) || !int.TryParse(txtIdProducto.Text, out int idProducto) || idProducto == 0)
+            oProducto = null;
+
+            var estadoSeleccionado = cbEstado.SelectedItem as OptionsComboBox;
+            var categoriaSeleccionada = cbCategoria.SelectedItem as OptionsComboBox;
+            valorEstado = estadoSeleccionado == null ? -1 : Convert.ToInt32(estadoSeleccionado.valor);
+
+            // Intentamos convertir, si falla (como en campos vacíos), asignamos 0.
+            // Esto permite que el flujo continúe hacia el servicio.
+            decimal.TryParse(txtPrecioC.Text, out decimal precioCompra);
+            decimal.TryParse(txtPrecioV.Text, out decimal precioVenta);
+            int.TryParse(txtStock.Text, out int stock);
+
+            oProducto = new Entidad_Producto()
             {
-                MessageBox.Show("Seleccione un producto de la lista para eliminar.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                IdProducto = idProducto,
+                Nombre = txtNameProducto.Text.Trim(),
+                Descripcion = txtDescripcion.Text.Trim(),
+                PrecioCompra = precioCompra,
+                PrecioVenta = precioVenta,
+                Stock = stock,
+                oCategoria = new Entidad_Categoria()
+                {
+                    IdCategoria = categoriaSeleccionada == null ? 0 : Convert.ToInt32(categoriaSeleccionada.valor)
+                },
+                Estado = valorEstado == 1
+            };
+
+            // AHORA SÍ: Todo se valida aquí y salen tus mensajes de S_Product
+            if (!_servicio.Validar(oProducto, out string errores, valorEstado))
+            {
+                MessageBox.Show(errores, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
             }
 
-            DialogResult dr = MessageBox.Show("¿Está seguro que desea eliminar el producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return true;
+        }
 
-            if (dr == DialogResult.Yes)
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            try
             {
-                Entidad_Producto oProducto = new Entidad_Producto() // instancia de la entidad producto, para enviar a la capa de negocio
-                {
-                    IdProducto = idProducto
-                };
+                if (!TryLeerFormulario(0, out Entidad_Producto oProducto, out int valorEstado))
+                    return;
 
-                bool result = new S_Product().Delete(oProducto, out string Mensaje);
+                int idGenerated = _servicio.Register(oProducto, out string Mensaje, valorEstado);
 
-                if (result)
+                // Si el id generado es distinto de 0, significa que se registró correctamente
+                if (idGenerated != 0)
                 {
-                    dgvProducto.Rows.RemoveAt(Convert.ToInt32(txtIndice.Text));
-                    MessageBox.Show("Producto eliminado correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Limpiar();
+                    // Se recarga el grid desde la BD para reflejar el Codigo real generado por la columna calculada.
+                    RecargarGrid();
+
+                    MessageBox.Show("Producto registrado correctamente.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     MessageBox.Show(Mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
+
+                Limpiar();
             }
-            // si dr == DialogResult.No, simplemente no se hace nada (el usuario canceló)
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al registrar el producto: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Limpiar();
+            }
         }
 
-        private void btbExcel_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
         {
             if (dgvProducto.Rows.Count < 1)
             {
@@ -400,56 +288,156 @@ namespace Main
                     MessageBox.Show("Error al generar reporte: " + ex.Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
+
         }
 
-        /*BOTON PARA AGREGAR UN NUEVO PRODUCTO*/
-        private void button8_Click(object sender, EventArgs e)
+        private void uiSymbolButton2_Click(object sender, EventArgs e)
         {
-            if (!TryObtenerDatosFormulario(out decimal precioCompra, out decimal precioVenta, out int stock))
-                return;
-
-            // NOTA: no se asigna Codigo aquí porque es una columna calculada en la base de datos;
-            // la genera SQL Server automáticamente al insertar, no el usuario.
-            Entidad_Producto oProducto = new Entidad_Producto()
+            try
             {
-                Nombre = txtNameProducto.Text,
-                PrecioCompra = precioCompra,
-                PrecioVenta = precioVenta,
-                Stock = stock,
-                Descripcion = txtDescripcion.Text,
-                oCategoria = new Entidad_Categoria() { IdCategoria = Convert.ToInt32(((OptionsComboBox)cbCategoria.SelectedItem).valor) },
-                Estado = Convert.ToInt32(((OptionsComboBox)cbEstado.SelectedItem).valor) == 1
-            };
+                int idProducto = ObtenerIdSeleccionado();
 
-            int idGenerated = new S_Product().Register(oProducto, out string Mensaje);
+                if (txtIndice.Text == "-1" || idProducto == 0)
+                {
+                    MessageBox.Show("Debe seleccionar un producto para actualizar.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
-            // Si el id generado es distinto de 0, significa que se registró correctamente
-            if (idGenerated != 0)
-            {
-                MessageBox.Show("Producto registrado correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (!TryLeerFormulario(idProducto, out Entidad_Producto oProducto, out int valorEstado))
+                    return;
 
-                // Se recarga el grid desde la base de datos en vez de armar la fila a mano,
-                // así se refleja el Codigo real generado por la columna calculada.
-                RecargarGrid();
+                DialogResult dr = MessageBox.Show("¿Está seguro que desea actualizar el producto?",
+                    "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dr != DialogResult.Yes)
+                    return;
+
+                bool isUpdated = _servicio.Edit(oProducto, out string Mensaje, valorEstado);
+
+                if (isUpdated)
+                {
+                    RecargarGrid();
+
+                    MessageBox.Show("Producto actualizado correctamente.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(Mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+                Limpiar();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(Mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ocurrió un error al actualizar el producto: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Limpiar();
             }
 
-            Limpiar();
         }
-        /*=================METODO PARA LIMPIAR TEXTBOX============================*/
 
-        private void button9_Click(object sender, EventArgs e)
+        private void btnDelete_Click_1(object sender, EventArgs e)
         {
-            Limpiar();
+            try
+            {
+                int idProducto = ObtenerIdSeleccionado();
+
+                if (idProducto == 0)
+                {
+                    MessageBox.Show("Seleccione un producto de la lista para eliminar.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                DialogResult dr = MessageBox.Show("¿Está seguro que desea eliminar el producto?",
+                    "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dr != DialogResult.Yes)
+                    return;
+
+                bool result = _servicio.Delete(new Entidad_Producto() { IdProducto = idProducto }, out string Mensaje);
+
+                if (result)
+                {
+                    RecargarGrid();
+
+                    MessageBox.Show("Producto eliminado correctamente.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(Mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al eliminar el producto: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void txtSearch_TextChanged_1(object sender, EventArgs e)
+        {
+            AplicarFiltro();
+        }
+
+        private void cbSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AplicarFiltro();
+        }
+
+        private void dgvProducto_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            if (dgvProducto.Rows[e.RowIndex].IsNewRow) return;
+
+            DataGridViewRow row = dgvProducto.Rows[e.RowIndex];
+
+            // El producto completo se guardó en Tag al cargar el grid
+            if (!(row.Tag is Entidad_Producto producto)) return;
+
+            txtIndice.Text = e.RowIndex.ToString();
+            txtIdProducto.Text = "ID# " + producto.IdProducto;
+            txtCodigo.Text = producto.Codigo;
+            txtNameProducto.Text = producto.Nombre;
+            txtDescripcion.Text = producto.Descripcion;
+            txtPrecioV.Text = producto.PrecioVenta.ToString();
+            txtPrecioC.Text = producto.PrecioCompra.ToString();
+            txtStock.Text = producto.Stock.ToString();
+
+            // Categoría
+            cbCategoria.SelectedIndex = -1;
+            int idCategoria = producto.oCategoria?.IdCategoria ?? 0;
+            foreach (OptionsComboBox oc in cbCategoria.Items)
+            {
+                if (Convert.ToInt32(oc.valor) == idCategoria)
+                {
+                    cbCategoria.SelectedItem = oc;
+                    break;
+                }
+            }
+
+            // Estado
+            cbEstado.SelectedIndex = -1;
+            int valorEstado = producto.Estado ? 1 : 0;
+            foreach (OptionsComboBox oc in cbEstado.Items)
+            {
+                if (Convert.ToInt32(oc.valor) == valorEstado)
+                {
+                    cbEstado.SelectedItem = oc;
+                    break;
+                }
+            }
+
+            // Limpiar() deja los combos en gris; aquí se restaura el color normal
+            cbCategoria.ForeColor = Color.Black;
+            cbEstado.ForeColor = Color.Black;
+
         }
     }
 }
-    
-
-
-
-
-
