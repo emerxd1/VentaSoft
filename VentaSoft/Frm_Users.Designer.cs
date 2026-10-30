@@ -33,7 +33,6 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            dgvUsers = new ModernControls.ModernGrid();
             IdUsuario = new DataGridViewTextBoxColumn();
             DNI = new DataGridViewTextBoxColumn();
             Cliente = new DataGridViewTextBoxColumn();
@@ -85,6 +84,7 @@
             bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             uiPanel1 = new Sunny.UI.UIPanel();
+            dgvUsers = new ModernControls.ModernGrid();
             txtSearch = new Sunny.UI.UITextBox();
             btnDelete = new Sunny.UI.UISymbolButton();
             btnUpdate = new Sunny.UI.UISymbolButton();
@@ -92,84 +92,10 @@
             label13 = new Label();
             cbSearch = new ReaLTaiizor.Controls.AloneComboBox();
             label12 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
             PnlDetails.SuspendLayout();
             uiPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
             SuspendLayout();
-            // 
-            // dgvUsers
-            // 
-            dgvUsers.AllowUserToAddRows = false;
-            dgvUsers.AllowUserToDeleteRows = false;
-            dgvUsers.AllowUserToResizeColumns = false;
-            dgvUsers.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.White;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle1.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle1.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(228, 243, 234);
-            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dgvUsers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvUsers.BackgroundColor = Color.White;
-            dgvUsers.BorderStyle = BorderStyle.None;
-            dgvUsers.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(241, 245, 243);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 8.5F);
-            dataGridViewCellStyle2.ForeColor = Color.FromArgb(100, 116, 146);
-            dataGridViewCellStyle2.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(241, 245, 243);
-            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(100, 116, 146);
-            dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvUsers.ColumnHeadersHeight = 44;
-            dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvUsers.Columns.AddRange(new DataGridViewColumn[] { IdUsuario, DNI, Cliente, Name1, Name2, LastName1, LastName2, Email, Password, Id_Rol, Rol, EstadoValor, Estado });
-            dgvUsers.CornerRadius = 10;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle3.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(228, 243, 234);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvUsers.DefaultCellStyle = dataGridViewCellStyle3;
-            dgvUsers.EnableHeadersVisualStyles = false;
-            dgvUsers.Font = new Font("Segoe UI", 9.5F);
-            dgvUsers.GridColor = Color.White;
-            dgvUsers.Location = new Point(11, 87);
-            dgvUsers.MultiSelect = false;
-            dgvUsers.Name = "dgvUsers";
-            dgvUsers.ReadOnly = true;
-            dgvUsers.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.Silver;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dgvUsers.RowHeadersVisible = false;
-            dgvUsers.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle5.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle5.Padding = new Padding(14, 0, 0, 0);
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(228, 243, 234);
-            dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvUsers.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            dgvUsers.RowTemplate.Height = 56;
-            dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvUsers.ShowCellToolTips = false;
-            dgvUsers.Size = new Size(799, 490);
-            dgvUsers.TabIndex = 83;
-            dgvUsers.CellClick += dgvUsers_CellClick;
             // 
             // IdUsuario
             // 
@@ -346,6 +272,7 @@
             txtCheckPassword.ButtonStyleInherited = false;
             txtCheckPassword.ButtonSymbol = 61550;
             txtCheckPassword.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCheckPassword.ImeMode = ImeMode.Disable;
             txtCheckPassword.Location = new Point(224, 360);
             txtCheckPassword.Margin = new Padding(4, 5, 4, 5);
             txtCheckPassword.MinimumSize = new Size(1, 16);
@@ -381,6 +308,7 @@
             txtPassword.ButtonStyleInherited = false;
             txtPassword.ButtonSymbol = 61550;
             txtPassword.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPassword.ImeMode = ImeMode.Disable;
             txtPassword.Location = new Point(20, 360);
             txtPassword.Margin = new Padding(4, 5, 4, 5);
             txtPassword.MinimumSize = new Size(1, 16);
@@ -563,6 +491,7 @@
             txtIndice.ForeColor = Color.FromArgb(97, 157, 135);
             txtIndice.ForeDisableColor = Color.FromArgb(97, 157, 135);
             txtIndice.ForeReadOnlyColor = Color.FromArgb(97, 157, 135);
+            txtIndice.ImeMode = ImeMode.Disable;
             txtIndice.Location = new Point(290, 18);
             txtIndice.Margin = new Padding(4, 5, 4, 5);
             txtIndice.MinimumSize = new Size(1, 16);
@@ -857,6 +786,7 @@
             txtId.ForeColor = Color.FromArgb(97, 157, 135);
             txtId.ForeDisableColor = Color.FromArgb(97, 157, 135);
             txtId.ForeReadOnlyColor = Color.FromArgb(97, 157, 135);
+            txtId.ImeMode = ImeMode.Disable;
             txtId.Location = new Point(350, 18);
             txtId.Margin = new Padding(4, 5, 4, 5);
             txtId.MinimumSize = new Size(1, 16);
@@ -945,6 +875,80 @@
             uiPanel1.TabIndex = 61;
             uiPanel1.Text = null;
             uiPanel1.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // dgvUsers
+            // 
+            dgvUsers.AllowUserToAddRows = false;
+            dgvUsers.AllowUserToDeleteRows = false;
+            dgvUsers.AllowUserToResizeColumns = false;
+            dgvUsers.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle1.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(228, 243, 234);
+            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dgvUsers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvUsers.BackgroundColor = Color.White;
+            dgvUsers.BorderStyle = BorderStyle.None;
+            dgvUsers.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(241, 245, 243);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 8.5F);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(100, 116, 146);
+            dataGridViewCellStyle2.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(241, 245, 243);
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(100, 116, 146);
+            dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvUsers.ColumnHeadersHeight = 44;
+            dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvUsers.Columns.AddRange(new DataGridViewColumn[] { IdUsuario, DNI, Cliente, Name1, Name2, LastName1, LastName2, Email, Password, Id_Rol, Rol, EstadoValor, Estado });
+            dgvUsers.CornerRadius = 10;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle3.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(228, 243, 234);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvUsers.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvUsers.EnableHeadersVisualStyles = false;
+            dgvUsers.Font = new Font("Segoe UI", 9.5F);
+            dgvUsers.GridColor = Color.White;
+            dgvUsers.Location = new Point(11, 87);
+            dgvUsers.MultiSelect = false;
+            dgvUsers.Name = "dgvUsers";
+            dgvUsers.ReadOnly = true;
+            dgvUsers.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.Silver;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dgvUsers.RowHeadersVisible = false;
+            dgvUsers.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle5.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle5.Padding = new Padding(14, 0, 0, 0);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(228, 243, 234);
+            dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dgvUsers.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dgvUsers.RowTemplate.Height = 56;
+            dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvUsers.ShowCellToolTips = false;
+            dgvUsers.Size = new Size(799, 496);
+            dgvUsers.TabIndex = 83;
+            dgvUsers.CellClick += dgvUsers_CellClick;
             // 
             // txtSearch
             // 
@@ -1099,11 +1103,11 @@
             Name = "Frm_Users";
             Text = "Frm_Category";
             Load += Frm_Users_Load;
-            ((System.ComponentModel.ISupportInitialize)dgvUsers).EndInit();
             PnlDetails.ResumeLayout(false);
             PnlDetails.PerformLayout();
             uiPanel1.ResumeLayout(false);
             uiPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvUsers).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

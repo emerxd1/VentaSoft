@@ -38,18 +38,6 @@
             label12 = new Label();
             uiPanel1 = new Sunny.UI.UIPanel();
             dgvClients = new ModernControls.ModernGrid();
-            btnSeleccion = new DataGridViewImageColumn();
-            IdCliente = new DataGridViewTextBoxColumn();
-            DNI = new DataGridViewTextBoxColumn();
-            Cliente = new DataGridViewTextBoxColumn();
-            Name1 = new DataGridViewTextBoxColumn();
-            Name2 = new DataGridViewTextBoxColumn();
-            LastName1 = new DataGridViewTextBoxColumn();
-            LastName2 = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
-            NumTelefono = new DataGridViewTextBoxColumn();
-            EstadoValor = new DataGridViewTextBoxColumn();
-            Estado = new DataGridViewTextBoxColumn();
             txtSearch = new Sunny.UI.UITextBox();
             btnDelete = new Sunny.UI.UISymbolButton();
             btnUpdate = new Sunny.UI.UISymbolButton();
@@ -81,6 +69,18 @@
             label8 = new Label();
             bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
+            Estado = new DataGridViewTextBoxColumn();
+            EstadoValor = new DataGridViewTextBoxColumn();
+            NumTelefono = new DataGridViewTextBoxColumn();
+            Email = new DataGridViewTextBoxColumn();
+            LastName2 = new DataGridViewTextBoxColumn();
+            LastName1 = new DataGridViewTextBoxColumn();
+            Name2 = new DataGridViewTextBoxColumn();
+            Name1 = new DataGridViewTextBoxColumn();
+            Cliente = new DataGridViewTextBoxColumn();
+            DNI = new DataGridViewTextBoxColumn();
+            IdCliente = new DataGridViewTextBoxColumn();
+            btnSeleccion = new DataGridViewImageColumn();
             uiPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClients).BeginInit();
             PnlDetails.SuspendLayout();
@@ -208,114 +208,6 @@
             dgvClients.Size = new Size(799, 448);
             dgvClients.TabIndex = 83;
             dgvClients.CellClick += dgvClients_CellClick;
-            // 
-            // btnSeleccion
-            // 
-            btnSeleccion.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            btnSeleccion.DefaultCellStyle = dataGridViewCellStyle3;
-            btnSeleccion.FillWeight = 117F;
-            btnSeleccion.HeaderText = "Cargar Datos";
-            btnSeleccion.Image = Properties.Resources.Check;
-            btnSeleccion.MinimumWidth = 117;
-            btnSeleccion.Name = "btnSeleccion";
-            btnSeleccion.ReadOnly = true;
-            btnSeleccion.Resizable = DataGridViewTriState.False;
-            btnSeleccion.Visible = false;
-            btnSeleccion.Width = 117;
-            // 
-            // IdCliente
-            // 
-            IdCliente.HeaderText = "IdCliente";
-            IdCliente.Name = "IdCliente";
-            IdCliente.ReadOnly = true;
-            IdCliente.SortMode = DataGridViewColumnSortMode.NotSortable;
-            IdCliente.Visible = false;
-            // 
-            // DNI
-            // 
-            DNI.FillWeight = 60F;
-            DNI.HeaderText = "DNI";
-            DNI.MinimumWidth = 60;
-            DNI.Name = "DNI";
-            DNI.ReadOnly = true;
-            DNI.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Cliente
-            // 
-            Cliente.FillWeight = 74F;
-            Cliente.HeaderText = "Cliente";
-            Cliente.MinimumWidth = 74;
-            Cliente.Name = "Cliente";
-            Cliente.ReadOnly = true;
-            Cliente.Resizable = DataGridViewTriState.False;
-            Cliente.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Name1
-            // 
-            Name1.HeaderText = "Primer Nombre";
-            Name1.Name = "Name1";
-            Name1.ReadOnly = true;
-            Name1.SortMode = DataGridViewColumnSortMode.NotSortable;
-            Name1.Visible = false;
-            // 
-            // Name2
-            // 
-            Name2.HeaderText = "Segundo Nombre";
-            Name2.Name = "Name2";
-            Name2.ReadOnly = true;
-            Name2.SortMode = DataGridViewColumnSortMode.NotSortable;
-            Name2.Visible = false;
-            // 
-            // LastName1
-            // 
-            LastName1.HeaderText = "Primer Apellido";
-            LastName1.Name = "LastName1";
-            LastName1.ReadOnly = true;
-            LastName1.SortMode = DataGridViewColumnSortMode.NotSortable;
-            LastName1.Visible = false;
-            // 
-            // LastName2
-            // 
-            LastName2.HeaderText = "Segundo Apellido";
-            LastName2.Name = "LastName2";
-            LastName2.ReadOnly = true;
-            LastName2.SortMode = DataGridViewColumnSortMode.NotSortable;
-            LastName2.Visible = false;
-            // 
-            // Email
-            // 
-            Email.FillWeight = 76F;
-            Email.HeaderText = "Correo";
-            Email.MinimumWidth = 76;
-            Email.Name = "Email";
-            Email.ReadOnly = true;
-            Email.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // NumTelefono
-            // 
-            NumTelefono.FillWeight = 87F;
-            NumTelefono.HeaderText = "Telefono";
-            NumTelefono.MinimumWidth = 87;
-            NumTelefono.Name = "NumTelefono";
-            NumTelefono.ReadOnly = true;
-            NumTelefono.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // EstadoValor
-            // 
-            EstadoValor.HeaderText = "EstadoValor";
-            EstadoValor.Name = "EstadoValor";
-            EstadoValor.ReadOnly = true;
-            EstadoValor.SortMode = DataGridViewColumnSortMode.NotSortable;
-            EstadoValor.Visible = false;
-            // 
-            // Estado
-            // 
-            Estado.FillWeight = 74F;
-            Estado.HeaderText = "Estado";
-            Estado.MinimumWidth = 74;
-            Estado.Name = "Estado";
-            Estado.ReadOnly = true;
-            Estado.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // txtSearch
             // 
@@ -492,6 +384,7 @@
             txtIndice.ForeColor = Color.FromArgb(97, 157, 135);
             txtIndice.ForeDisableColor = Color.FromArgb(97, 157, 135);
             txtIndice.ForeReadOnlyColor = Color.FromArgb(97, 157, 135);
+            txtIndice.ImeMode = ImeMode.Disable;
             txtIndice.Location = new Point(290, 18);
             txtIndice.Margin = new Padding(4, 5, 4, 5);
             txtIndice.MinimumSize = new Size(1, 16);
@@ -816,6 +709,7 @@
             txtId.ForeColor = Color.FromArgb(97, 157, 135);
             txtId.ForeDisableColor = Color.FromArgb(97, 157, 135);
             txtId.ForeReadOnlyColor = Color.FromArgb(97, 157, 135);
+            txtId.ImeMode = ImeMode.Disable;
             txtId.Location = new Point(350, 18);
             txtId.Margin = new Padding(4, 5, 4, 5);
             txtId.MinimumSize = new Size(1, 16);
@@ -879,6 +773,114 @@
             bigLabel1.Size = new Size(90, 30);
             bigLabel1.TabIndex = 59;
             bigLabel1.Text = "Clientes";
+            // 
+            // Estado
+            // 
+            Estado.FillWeight = 74F;
+            Estado.HeaderText = "Estado";
+            Estado.MinimumWidth = 74;
+            Estado.Name = "Estado";
+            Estado.ReadOnly = true;
+            Estado.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // EstadoValor
+            // 
+            EstadoValor.HeaderText = "EstadoValor";
+            EstadoValor.Name = "EstadoValor";
+            EstadoValor.ReadOnly = true;
+            EstadoValor.SortMode = DataGridViewColumnSortMode.NotSortable;
+            EstadoValor.Visible = false;
+            // 
+            // NumTelefono
+            // 
+            NumTelefono.FillWeight = 87F;
+            NumTelefono.HeaderText = "Telefono";
+            NumTelefono.MinimumWidth = 87;
+            NumTelefono.Name = "NumTelefono";
+            NumTelefono.ReadOnly = true;
+            NumTelefono.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Email
+            // 
+            Email.FillWeight = 76F;
+            Email.HeaderText = "Correo";
+            Email.MinimumWidth = 76;
+            Email.Name = "Email";
+            Email.ReadOnly = true;
+            Email.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // LastName2
+            // 
+            LastName2.HeaderText = "Segundo Apellido";
+            LastName2.Name = "LastName2";
+            LastName2.ReadOnly = true;
+            LastName2.SortMode = DataGridViewColumnSortMode.NotSortable;
+            LastName2.Visible = false;
+            // 
+            // LastName1
+            // 
+            LastName1.HeaderText = "Primer Apellido";
+            LastName1.Name = "LastName1";
+            LastName1.ReadOnly = true;
+            LastName1.SortMode = DataGridViewColumnSortMode.NotSortable;
+            LastName1.Visible = false;
+            // 
+            // Name2
+            // 
+            Name2.HeaderText = "Segundo Nombre";
+            Name2.Name = "Name2";
+            Name2.ReadOnly = true;
+            Name2.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Name2.Visible = false;
+            // 
+            // Name1
+            // 
+            Name1.HeaderText = "Primer Nombre";
+            Name1.Name = "Name1";
+            Name1.ReadOnly = true;
+            Name1.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Name1.Visible = false;
+            // 
+            // Cliente
+            // 
+            Cliente.FillWeight = 74F;
+            Cliente.HeaderText = "Cliente";
+            Cliente.MinimumWidth = 74;
+            Cliente.Name = "Cliente";
+            Cliente.ReadOnly = true;
+            Cliente.Resizable = DataGridViewTriState.False;
+            Cliente.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // DNI
+            // 
+            DNI.FillWeight = 60F;
+            DNI.HeaderText = "DNI";
+            DNI.MinimumWidth = 60;
+            DNI.Name = "DNI";
+            DNI.ReadOnly = true;
+            DNI.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // IdCliente
+            // 
+            IdCliente.HeaderText = "IdCliente";
+            IdCliente.Name = "IdCliente";
+            IdCliente.ReadOnly = true;
+            IdCliente.SortMode = DataGridViewColumnSortMode.NotSortable;
+            IdCliente.Visible = false;
+            // 
+            // btnSeleccion
+            // 
+            btnSeleccion.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            btnSeleccion.DefaultCellStyle = dataGridViewCellStyle3;
+            btnSeleccion.FillWeight = 117F;
+            btnSeleccion.HeaderText = "Cargar Datos";
+            btnSeleccion.Image = Properties.Resources.Check;
+            btnSeleccion.MinimumWidth = 117;
+            btnSeleccion.Name = "btnSeleccion";
+            btnSeleccion.ReadOnly = true;
+            btnSeleccion.Resizable = DataGridViewTriState.False;
+            btnSeleccion.Visible = false;
+            btnSeleccion.Width = 117;
             // 
             // FrmClientes
             // 

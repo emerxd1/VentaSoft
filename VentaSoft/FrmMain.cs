@@ -159,7 +159,7 @@ namespace Main
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-
+            MostrarFormularios(new Dashboard());
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
