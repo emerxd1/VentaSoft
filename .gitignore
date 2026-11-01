@@ -9,9 +9,6 @@ obj/
 *.user
 *.suo
 
-# Archivos de configuración con datos sensibles (cadenas de conexión, etc.)
-App.config
-
 
 # Logs y archivos temporales
 *.log
