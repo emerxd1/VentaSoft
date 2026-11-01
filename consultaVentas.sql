@@ -1,6 +1,6 @@
 SELECT * FROM Rol
 SELECT * FROM Usuario
-SELECT * FROM Permiso
+SELECT * FROM Permiso WHERE IdRol=2;
 SELECT * FROM Cliente
 SELECT * FROM Categoria
 SELECT * FROM Producto
@@ -18,6 +18,8 @@ insert into Permiso (IdRol,NombreMenu) values
 (1, 'MenuProducto'),
 (1, 'MenuReportes'),
 (1, 'MenuAbout')
+insert into Permiso (IdRol,NombreMenu) values 
+(1,'MenuInicio')
 
 insert into Rol (Descripcion)values ('Empleado')
 
@@ -28,6 +30,8 @@ insert into Permiso (IdRol,NombreMenu) values
 (2, 'MenuProveedores'),
 (2, 'MenuClientes'),
 (2, 'MenuAbout')
+insert into Permiso (IdRol,NombreMenu) values 
+(2,'MenuInicio')
 
 /*AGRENGANDO UN NUEVO SUBMENU CATEGORIA PARA GESTIONAR CATEGORIAS DE PRODUCTOS*/
 insert into Permiso (IdRol,NombreMenu) values 
@@ -67,7 +71,10 @@ where u.IdUsuario = 2
 
 
 insert into Usuario (DNI,Nombre1,Nombre2,Apellido1,Apellido2,Correo,Clave,IdRol,Estado)
-VALUES ('002-894566-8922O','Empleado','Prueba','Numero','1', 'empleadoex@gmail.com','user',2,1)
+VALUES ('001-120202','Emer','Andres','Granados','Castellon', 'emercastellon26@gmail.com','empleado1',2,1)
+
+insert into Usuario (DNI,Nombre1,Nombre2,Apellido1,Apellido2,Correo,Clave,IdRol,Estado)
+VALUES ('001-120202-0010L','Alexander','Josue','Guerrero','Alfaro', 'guerreroalfaroalexnderjosue@gmail.com','empleado2',2,1)
 
 select u.IdUsuario,u.DNI,u.Nombre1,u.Nombre2,u.Apellido1,u.Apellido2,u.Correo,u.Clave,u.Estado, r.IdRol,r.Descripcion from Usuario u
 inner join Rol r on r.IdRol = u.IdRol 
