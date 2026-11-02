@@ -71,17 +71,6 @@ namespace Main.Modales
             Close();
         }
 
-        // Borra lo que el usuario escribío
-        private void btneliminar_Click(object sender, EventArgs e)
-        {
-            txtSearchProve.Clear();
-
-            foreach (DataGridViewRow row in DvgMduser.Rows)
-            {
-                row.Visible = true;
-            }
-        }
-
 
         //la misma lógica del botón buscar, pero en un método que se puede reutilizar
         private void AplicarFiltro()
@@ -128,6 +117,11 @@ namespace Main.Modales
             {
                 txtSearchProve.PlaceholderText = "Escribe para Buscar..";
             }
+        }
+
+        private void DvgMduser_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 
