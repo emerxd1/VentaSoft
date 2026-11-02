@@ -65,13 +65,13 @@ namespace Main
 
         private void btnCompras_Click(object sender, EventArgs e)
         {
-            if (submenuCompras.Height == 50)
+            if (submenuCompras.Height == 40)
             {
                 submenuCompras.Height = 100;
             }
             else
             {
-                submenuCompras.Height = 50;
+                submenuCompras.Height = 40;
             }
             MostrarFormularios(new FrmPurchase(UserActual)); //se le pasa el usuario que está comprando
         }
@@ -81,13 +81,13 @@ namespace Main
         {
 
 
-            if (SubmenuVentas.Height == 50)
+            if (SubmenuVentas.Height == 40)
             {
                 SubmenuVentas.Height = 100;
             }
             else
             {
-                SubmenuVentas.Height = 50;
+                SubmenuVentas.Height = 40;
             }
 
             MostrarFormularios(new FrmSales(UserActual));

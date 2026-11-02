@@ -66,8 +66,6 @@
             label12 = new Label();
             bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
-            elipseControl1 = new ElipseControlLib.ElipseControl();
-            elipseControl2 = new ElipseControlLib.ElipseControl();
             uiTextBox3 = new Sunny.UI.UITextBox();
             lblTituloGrupo1 = new Label();
             panel1.SuspendLayout();
@@ -668,16 +666,6 @@
             bigLabel1.Text = "Categorias ";
             bigLabel1.Click += bigLabel1_Click;
             // 
-            // elipseControl1
-            // 
-            elipseControl1.CornerRadius = 30;
-            elipseControl1.TargetControl = null;
-            // 
-            // elipseControl2
-            // 
-            elipseControl2.CornerRadius = 5;
-            elipseControl2.TargetControl = null;
-            // 
             // uiTextBox3
             // 
             uiTextBox3.Enabled = false;
@@ -746,8 +734,6 @@
 
         #endregion
         private Panel panel1;
-        private ElipseControlLib.ElipseControl elipseControl1;
-        private ElipseControlLib.ElipseControl elipseControl2;
         private ReaLTaiizor.Controls.BigLabel bigLabel2;
         private ReaLTaiizor.Controls.BigLabel bigLabel1;
         private Sunny.UI.UIPanel uiPanel1;
