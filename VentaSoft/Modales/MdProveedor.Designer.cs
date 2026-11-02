@@ -36,7 +36,6 @@
             txtSearchProve = new TextBox();
             cbSearchProve = new ComboBox();
             label13 = new Label();
-            btneliminar = new Button();
             DvgMduser = new DataGridView();
             IdProveedor = new DataGridViewTextBoxColumn();
             RUC = new DataGridViewTextBoxColumn();
@@ -56,7 +55,7 @@
             txtSearchProve.Margin = new Padding(3, 2, 3, 2);
             txtSearchProve.Name = "txtSearchProve";
             txtSearchProve.PlaceholderText = "Ecribe para Buscar";
-            txtSearchProve.Size = new Size(205, 29);
+            txtSearchProve.Size = new Size(287, 29);
             txtSearchProve.TabIndex = 61;
             txtSearchProve.TextChanged += txtSearchProve_TextChanged;
             // 
@@ -71,7 +70,7 @@
             cbSearchProve.Location = new Point(1, 62);
             cbSearchProve.Margin = new Padding(3, 2, 3, 2);
             cbSearchProve.Name = "cbSearchProve";
-            cbSearchProve.Size = new Size(158, 28);
+            cbSearchProve.Size = new Size(148, 28);
             cbSearchProve.TabIndex = 63;
             cbSearchProve.SelectedIndexChanged += cbSearchProve_TabIndexChanged;
             cbSearchProve.TabIndexChanged += cbSearchProve_TabIndexChanged;
@@ -87,26 +86,6 @@
             label13.Size = new Size(102, 21);
             label13.TabIndex = 62;
             label13.Text = "Buscar por*";
-            // 
-            // btneliminar
-            // 
-            btneliminar.BackColor = Color.Transparent;
-            btneliminar.FlatAppearance.BorderSize = 0;
-            btneliminar.FlatAppearance.MouseDownBackColor = Color.Teal;
-            btneliminar.FlatAppearance.MouseOverBackColor = Color.Teal;
-            btneliminar.FlatStyle = FlatStyle.Flat;
-            btneliminar.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btneliminar.ForeColor = Color.White;
-            btneliminar.Image = Properties.Resources.recargar;
-            btneliminar.ImageAlign = ContentAlignment.MiddleLeft;
-            btneliminar.Location = new Point(165, 62);
-            btneliminar.Name = "btneliminar";
-            btneliminar.Size = new Size(92, 28);
-            btneliminar.TabIndex = 65;
-            btneliminar.Text = "Limpiar";
-            btneliminar.TextAlign = ContentAlignment.MiddleRight;
-            btneliminar.UseVisualStyleBackColor = false;
-            btneliminar.Click += btneliminar_Click;
             // 
             // DvgMduser
             // 
@@ -163,8 +142,9 @@
             DvgMduser.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
             DvgMduser.RowTemplate.Height = 36;
             DvgMduser.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DvgMduser.Size = new Size(562, 306);
+            DvgMduser.Size = new Size(571, 306);
             DvgMduser.TabIndex = 66;
+            DvgMduser.CellContentClick += DvgMduser_CellContentClick;
             DvgMduser.CellDoubleClick += DvgMduser_CellDoubleClick;
             // 
             // IdProveedor
@@ -214,11 +194,10 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(15, 118, 110);
-            ClientSize = new Size(564, 461);
+            ClientSize = new Size(573, 461);
             Controls.Add(lblSubtitulo);
             Controls.Add(bigLabel1);
             Controls.Add(DvgMduser);
-            Controls.Add(btneliminar);
             Controls.Add(txtSearchProve);
             Controls.Add(cbSearchProve);
             Controls.Add(label13);
@@ -236,7 +215,6 @@
         private TextBox txtSearchProve;
         private ComboBox cbSearchProve;
         private Label label13;
-        private Button btneliminar;
         private DataGridView DvgMduser;
         private DataGridViewTextBoxColumn IdProveedor;
         private DataGridViewTextBoxColumn RUC;

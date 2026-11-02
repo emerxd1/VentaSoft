@@ -38,11 +38,10 @@
             cbSearchClientes = new ComboBox();
             label13 = new Label();
             dgvClients = new DataGridView();
+            lblSubtitulo = new Label();
             IdCliente = new DataGridViewTextBoxColumn();
             DNI = new DataGridViewTextBoxColumn();
             Cliente = new DataGridViewTextBoxColumn();
-            lblSubtitulo = new Label();
-            btnClearSearch = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvClients).BeginInit();
             SuspendLayout();
             // 
@@ -66,7 +65,7 @@
             txtSearch.Location = new Point(-2, 99);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Ecribe para Buscar";
-            txtSearch.Size = new Size(246, 29);
+            txtSearch.Size = new Size(287, 29);
             txtSearch.TabIndex = 73;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
@@ -79,7 +78,7 @@
             cbSearchClientes.FormattingEnabled = true;
             cbSearchClientes.Location = new Point(0, 68);
             cbSearchClientes.Name = "cbSearchClientes";
-            cbSearchClientes.Size = new Size(124, 28);
+            cbSearchClientes.Size = new Size(148, 28);
             cbSearchClientes.TabIndex = 72;
             cbSearchClientes.SelectedIndexChanged += cbSearch_SelectedIndexChanged;
             // 
@@ -144,9 +143,22 @@
             dgvClients.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgvClients.RowTemplate.Height = 36;
             dgvClients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvClients.Size = new Size(571, 294);
+            dgvClients.Size = new Size(569, 294);
             dgvClients.TabIndex = 76;
+            dgvClients.CellContentClick += dgvClients_CellContentClick;
             dgvClients.CellDoubleClick += dgvClients_CellDoubleClick;
+            // 
+            // lblSubtitulo
+            // 
+            lblSubtitulo.BackColor = Color.Transparent;
+            lblSubtitulo.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSubtitulo.ForeColor = Color.White;
+            lblSubtitulo.Location = new Point(-2, 426);
+            lblSubtitulo.Name = "lblSubtitulo";
+            lblSubtitulo.Size = new Size(569, 20);
+            lblSubtitulo.TabIndex = 77;
+            lblSubtitulo.Text = "Has doble click sobre el DNI o CLIENTE";
+            lblSubtitulo.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // IdCliente
             // 
@@ -167,45 +179,12 @@
             Cliente.MinimumWidth = 10;
             Cliente.Name = "Cliente";
             // 
-            // lblSubtitulo
-            // 
-            lblSubtitulo.BackColor = Color.Transparent;
-            lblSubtitulo.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSubtitulo.ForeColor = Color.White;
-            lblSubtitulo.Location = new Point(-2, 426);
-            lblSubtitulo.Name = "lblSubtitulo";
-            lblSubtitulo.Size = new Size(569, 20);
-            lblSubtitulo.TabIndex = 77;
-            lblSubtitulo.Text = "Has doble click sobre el DNI o CLIENTE";
-            lblSubtitulo.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // btnClearSearch
-            // 
-            btnClearSearch.BackColor = Color.Transparent;
-            btnClearSearch.FlatAppearance.BorderSize = 0;
-            btnClearSearch.FlatAppearance.MouseDownBackColor = Color.Teal;
-            btnClearSearch.FlatAppearance.MouseOverBackColor = Color.Teal;
-            btnClearSearch.FlatStyle = FlatStyle.Flat;
-            btnClearSearch.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnClearSearch.ForeColor = Color.White;
-            btnClearSearch.Image = Properties.Resources.recargar;
-            btnClearSearch.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClearSearch.Location = new Point(139, 68);
-            btnClearSearch.Name = "btnClearSearch";
-            btnClearSearch.Size = new Size(92, 28);
-            btnClearSearch.TabIndex = 78;
-            btnClearSearch.Text = "Limpiar";
-            btnClearSearch.TextAlign = ContentAlignment.MiddleRight;
-            btnClearSearch.UseVisualStyleBackColor = false;
-            btnClearSearch.Click += btnClearSearch_Click;
-            // 
             // MdClientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(15, 118, 110);
-            ClientSize = new Size(569, 461);
-            Controls.Add(btnClearSearch);
+            ClientSize = new Size(570, 451);
             Controls.Add(lblSubtitulo);
             Controls.Add(dgvClients);
             Controls.Add(txtSearch);
@@ -227,10 +206,9 @@
         private ComboBox cbSearchClientes;
         private Label label13;
         private DataGridView dgvClients;
+        private Label lblSubtitulo;
         private DataGridViewTextBoxColumn IdCliente;
         private DataGridViewTextBoxColumn DNI;
         private DataGridViewTextBoxColumn Cliente;
-        private Label lblSubtitulo;
-        private Button btnClearSearch;
     }
 }
