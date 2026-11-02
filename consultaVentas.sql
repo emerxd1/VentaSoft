@@ -8,6 +8,7 @@ SELECT * FROM Compra
 SELECT * FROM Venta
 SELECT * FROM Proveedor;
 
+Truncate table Proveedor
 
 ALTER TABLE Producto
 ADD StockMinimo INT DEFAULT 5;
@@ -1272,3 +1273,110 @@ ON Venta (FechaRegistro) INCLUDE (MontoTotal);
 
 CREATE INDEX IX_DetalleVenta_IdVenta
 ON DetalleVenta (IdVenta) INCLUDE (IdProducto, SubTotal);
+
+
+
+
+INSERT INTO Proveedor ( RazonSocial, Correo, Telefono, Estado, RUC)
+VALUES 
+( 'Bimbo de Nicaragua S.A', 'ileana.suarez@grupobimbo.com', '2268-7783', 1, 'J0310000004080'),
+( 'DIANA S.A', 'atencioncalconsumidorman@dismana.com.ni', '2266-1936', 1, 'J0310000004145'),
+( 'TIGO Nicaragua', 'atencion@tigobusiness.com.ni', '8880-9999', 1, 'J0310000001740'),
+( 'COMPANIA DISTRIBUIDORA DE NICARAGUA S A', NULL, '2255-7700', 1, 'J0310000193169'),
+( 'Coca Cola FEMSA', NULL, '2248-6600', 1, 'J0310000004811'),
+( 'OCAL S.A', 'ocalsa@ocalsa.com.ni', '2276-9400', 1, 'J0310000004153'),
+( 'Tropigas de Nicaragua S.A', 'info@tropigas-sa.com.ni', '2255-8615', 1, 'J0310000001308'),
+( 'DINANT S.A', NULL, '2251-4070', 1, 'J0310000003289'),
+( 'CARGIL de Nicaragua S.A', 'nicaragua_consultas@cargill.com', '2279-9245', 1, 'J0310000003203'),
+( 'DIINSA de Nicaragua S.A', 'servcliente@diinsa.com.ni', '2311-0851', 1, 'J0310000001251'),
+( 'EDT Nicaragua S.A', NULL, '7517-6100', 1, 'J0310000124906'),
+( 'INDUSTRIAS DELMOR, S.A.', 'ventas@delmor.com.n', '2265-1378', 1, 'J0310000003718'),
+( 'AJE Nicaragua S.A', 'ajedelivery.ni@ajegroup.com', '8769-9500', 1, 'J0310000021619'),
+( 'LOS PAISAS, S.A.', 'info@lospaisas.com.ni', '2264-8590', 1, 'J0310000106312'),
+( 'BCAR COMERCIAL , CIA LTDA', NULL, '8824-1000', 1, 'J0910000412399'),
+( 'GONPER LIBRERIA S.A', NULL, '2226-3610', 1, 'J0310000001499'),
+( 'LALA Nicaragua S.A', 'lala800@grupolala.com', '8120-8100', 1, 'J0310000177678');
+
+
+SELECT fk.name AS FK, OBJECT_NAME(fk.parent_object_id) AS TablaHija
+FROM sys.foreign_keys fk
+WHERE fk.referenced_object_id = OBJECT_ID('Proveedor');
+
+SELECT 
+    fk.name AS NombreFK,
+    OBJECT_SCHEMA_NAME(fk.parent_object_id) AS EsquemaHija,
+    OBJECT_NAME(fk.parent_object_id) AS TablaHija,
+    COL_NAME(fkc.parent_object_id, fkc.parent_column_id) AS ColumnaHija,
+    COL_NAME(fkc.referenced_object_id, fkc.referenced_column_id) AS ColumnaPadre
+FROM sys.foreign_keys fk
+JOIN sys.foreign_key_columns fkc ON fk.object_id = fkc.constraint_object_id
+WHERE fk.referenced_object_id = OBJECT_ID('Proveedor');
+
+
+ALTER TABLE dbo.Compra DROP CONSTRAINT FK_Compra_Proveedor;
+
+TRUNCATE TABLE dbo.Proveedor;
+
+ALTER TABLE dbo.Compra ADD CONSTRAINT FK_Compra_Proveedor
+    FOREIGN KEY (IdProveedor) REFERENCES dbo.Proveedor(IdProveedor);
+
+    -- 1. Quitar la FK
+ALTER TABLE dbo.Compra DROP CONSTRAINT FK_Compra_IdProveedeor;
+
+-- 2. Vaciar las tablas (Compra primero si querés limpiar también los datos hijos)
+TRUNCATE TABLE dbo.Proveedor;
+
+-- 3. Volver a crear la FK
+ALTER TABLE dbo.Compra ADD CONSTRAINT FK_Compra_IdProveedeor
+    FOREIGN KEY (IdProveedor) REFERENCES dbo.Proveedor(IdProveedor);
+
+
+    DECLARE @fk sysname, @sql nvarchar(max);
+
+-- Obtener el nombre real de la FK
+SELECT @fk = name
+FROM sys.foreign_keys
+WHERE parent_object_id = OBJECT_ID('dbo.Compra')
+  AND referenced_object_id = OBJECT_ID('dbo.Proveedor');
+
+-- 1. Quitar la FK
+SET @sql = 'ALTER TABLE dbo.Compra DROP CONSTRAINT ' + QUOTENAME(@fk);
+EXEC(@sql);
+
+-- 2. Vaciar las tablas (borrá esta línea si Compra no tiene datos o querés conservarlos)
+DELETE FROM dbo.Compra;
+TRUNCATE TABLE dbo.Proveedor;
+
+-- 3. Recrear la FK con el mismo nombre
+SET @sql = 'ALTER TABLE dbo.Compra ADD CONSTRAINT ' + QUOTENAME(@fk) +
+           ' FOREIGN KEY (IdProveedor) REFERENCES dbo.Proveedor(IdProveedor)';
+EXEC(@sql);
+
+
+SELECT 
+    fk.name AS NombreFK,
+    OBJECT_SCHEMA_NAME(fk.parent_object_id) + '.' + OBJECT_NAME(fk.parent_object_id) AS TablaHija,
+    OBJECT_SCHEMA_NAME(fk.referenced_object_id) + '.' + OBJECT_NAME(fk.referenced_object_id) AS TablaReferenciada
+FROM sys.foreign_keys fk
+WHERE OBJECT_NAME(fk.referenced_object_id) = 'Proveedor';
+
+
+DELETE FROM dbo.Compra;
+DELETE FROM dbo.Proveedor;
+
+DBCC CHECKIDENT ('dbo.Compra', RESEED, 0);
+DBCC CHECKIDENT ('dbo.Proveedor', RESEED, 0);
+
+
+SELECT COUNT(*) AS Proveedores FROM dbo.Proveedor;
+SELECT COUNT(*) AS Compras FROM dbo.Compra;
+
+-- La FK sigue en su lugar
+SELECT name FROM sys.foreign_keys WHERE parent_object_id = OBJECT_ID('dbo.Compra');
+
+
+ALTER TABLE dbo.Proveedor DROP CONSTRAINT UQ_CorreoProveedor;
+
+CREATE UNIQUE INDEX UQ_CorreoProveedor
+ON dbo.Proveedor (Correo)
+WHERE Correo IS NOT NULL;
