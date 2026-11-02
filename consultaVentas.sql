@@ -8,6 +8,17 @@ SELECT * FROM Compra
 SELECT * FROM Venta
 SELECT * FROM Proveedor;
 
+
+ALTER TABLE Producto
+ADD StockMinimo INT DEFAULT 5;
+
+
+ALTER TABLE Usuario
+ADD Telefono VARCHAR(20) NULL;
+
+
+SELECT Estado, COUNT(*) FROM Cliente GROUP BY Estado
+
 insert into Permiso (IdRol,NombreMenu) values 
 (1, 'MenuEmpleados'),
 (1, 'MenuVentas'),
@@ -76,6 +87,13 @@ VALUES ('001-120202','Emer','Andres','Granados','Castellon', 'emercastellon26@gm
 insert into Usuario (DNI,Nombre1,Nombre2,Apellido1,Apellido2,Correo,Clave,IdRol,Estado)
 VALUES ('001-120202-0010L','Alexander','Josue','Guerrero','Alfaro', 'guerreroalfaroalexnderjosue@gmail.com','empleado2',2,1)
 
+insert into Usuario (DNI,Nombre1,Nombre2,Apellido1,Apellido2,Correo,Clave,IdRol,Estado)
+VALUES ('001-120204-0010M','Rigoberto','Jose','Centeno','Gallo', 'rigobertocenteno189@gmail.com','admin',2,1)
+
+UPDATE Usuario
+SET  IdRol  = 1
+WHERE DNI = '001-120204-0010M';
+
 select u.IdUsuario,u.DNI,u.Nombre1,u.Nombre2,u.Apellido1,u.Apellido2,u.Correo,u.Clave,u.Estado, r.IdRol,r.Descripcion from Usuario u
 inner join Rol r on r.IdRol = u.IdRol 
 /*consulta para mostrar datos en datagridview usuarios o empleados */
@@ -96,7 +114,8 @@ WHERE IdPermiso IN (1003,1004,1005,1006,1007,1008);*/
   USUARIOS (EMPLEADOS)
 ------------------------------------------------------------------------------------*/
 
-/* REGISTRAR USUARIO */
+
+/* 2) REGISTRAR USUARIO */
 ALTER PROCEDURE SP_REGISTERUSER
 (
     @DNI VARCHAR(30),
@@ -108,6 +127,7 @@ ALTER PROCEDURE SP_REGISTERUSER
     @Clave VARCHAR(20),
     @IdRol int,
     @Estado bit,
+    @Telefono VARCHAR(20) = NULL,   -- nuevo (con valor por defecto: el código viejo sigue funcionando)
     @IdUsuarioResultado int output,
     @Mensaje VARCHAR(500) output
 )
@@ -119,9 +139,9 @@ BEGIN
     IF NOT EXISTS (SELECT * FROM Usuario WHERE DNI = @DNI)
     BEGIN
         INSERT INTO Usuario(DNI, Nombre1, Nombre2, Apellido1, Apellido2,
-                            Correo, Clave, IdRol, Estado)
+                            Correo, Clave, IdRol, Estado, Telefono)
         VALUES (@DNI, @Nombre1, @Nombre2, @Apellido1, @Apellido2,
-                @Correo, @Clave, @IdRol, @Estado)
+                @Correo, @Clave, @IdRol, @Estado, @Telefono)
 
         SET @IdUsuarioResultado = SCOPE_IDENTITY()
         SET @Mensaje = ''
@@ -131,7 +151,7 @@ BEGIN
 END
 GO
 
-/* EDITAR USUARIO */
+/* 3) EDITAR USUARIO */
 ALTER PROC SP_EDITUSER
 (
     @IdUsuario int,
@@ -144,6 +164,7 @@ ALTER PROC SP_EDITUSER
     @Clave VARCHAR(20),
     @IdRol int,
     @Estado bit,
+    @Telefono VARCHAR(20) = NULL,   -- nuevo
     @Error bit OUTPUT,
     @Mensaje VARCHAR(500) OUTPUT
 )
@@ -168,7 +189,8 @@ BEGIN
                    Correo <> @Correo OR
                    Clave <> @Clave OR
                    IdRol <> @IdRol OR
-                   Estado <> @Estado
+                   Estado <> @Estado OR
+                   ISNULL(Telefono, '') <> ISNULL(@Telefono, '')   -- nuevo (seguro con NULL)
               )
         )
         BEGIN
@@ -181,7 +203,8 @@ BEGIN
                 Correo = @Correo,
                 Clave = @Clave,
                 IdRol = @IdRol,
-                Estado = @Estado
+                Estado = @Estado,
+                Telefono = @Telefono                              
             WHERE IdUsuario = @IdUsuario;
 
             SET @Error = 1
@@ -199,45 +222,8 @@ BEGIN
 END
 GO
 
-/* ELIMINAR USUARIO (BORRADO LOGICO) */
-CREATE OR ALTER PROCEDURE SP_DELETEUSER
-(
-    @IdUsuario int,
-    @Error bit OUTPUT,
-    @Mensaje VARCHAR(500) OUTPUT
-)
-AS
-BEGIN
-    SET NOCOUNT ON
-    SET @Error = 0
-    SET @Mensaje = ''
 
-    BEGIN TRY
-        IF NOT EXISTS (SELECT 1 FROM Usuario WHERE IdUsuario = @IdUsuario)
-        BEGIN
-            SET @Mensaje = 'El usuario no existe.'
-            RETURN
-        END
-
-        IF EXISTS (SELECT 1 FROM Usuario WHERE IdUsuario = @IdUsuario AND Estado = 0)
-        BEGIN
-            SET @Mensaje = 'El usuario ya se encuentra inactivo.'
-            RETURN
-        END
-
-        UPDATE Usuario SET Estado = 0 WHERE IdUsuario = @IdUsuario
-
-        SET @Error = 1
-        SET @Mensaje = 'Usuario inactivado correctamente.'
-    END TRY
-    BEGIN CATCH
-        SET @Error = 0
-        SET @Mensaje = ERROR_MESSAGE()
-    END CATCH
-END
-GO
-
-
+/* 4) PENDIENTE: el SP que LISTA usuarios (no lo enviaste) debe incluir Telefono en su SELECT. */
 
 /*------------------------------------------------------------------------------------
   CATEGORIAS
@@ -577,6 +563,7 @@ BEGIN
         SET @Mensaje = 'No se realizaron cambios: los datos son iguales a los actuales'
         RETURN
     END
+    END
 
     -- 4. Actualizar
     UPDATE Cliente SET
@@ -592,7 +579,6 @@ BEGIN
 
     SET @Resultado = 1
     SET @Mensaje = 'Cliente actualizado correctamente'
-END
 GO
 
 /* ELIMINAR CLIENTE (BORRADO LOGICO) */
@@ -717,21 +703,39 @@ BEGIN
         RETURN
     END
 
-    -- Validación 2: el RUC no debe pertenecer a OTRO proveedor
+    -- Validación 2: debe haber al menos un cambio respecto a lo guardado.
+    -- Se compara con collation sensible a mayúsculas/acentos para que cambiar
+    -- solo una mayúscula cuente como cambio. El correo NULL se trata como ''.
+    IF EXISTS (
+        SELECT 1
+        FROM Proveedor
+        WHERE IdProveedor = @IdProveedor
+          AND RUC         COLLATE Latin1_General_CS_AS = @RUC         COLLATE Latin1_General_CS_AS
+          AND RazonSocial COLLATE Latin1_General_CS_AS = @RazonSocial COLLATE Latin1_General_CS_AS
+          AND ISNULL(Correo, '') COLLATE Latin1_General_CS_AS = ISNULL(@Correo, '') COLLATE Latin1_General_CS_AS
+          AND Telefono    COLLATE Latin1_General_CS_AS = @Telefono    COLLATE Latin1_General_CS_AS
+          AND Estado = @Estado
+    )
+    BEGIN
+        SET @Mensaje = 'No se registraron cambios'
+        RETURN
+    END
+
+    -- Validación 3: el RUC no debe pertenecer a OTRO proveedor
     IF EXISTS (SELECT 1 FROM Proveedor WHERE RUC = @RUC AND IdProveedor <> @IdProveedor)
     BEGIN
         SET @Mensaje = 'El N° de RUC ya existe'
         RETURN
     END
 
-    -- Validación 3: la Razón Social no debe pertenecer a OTRO proveedor
+    -- Validación 4: la Razón Social no debe pertenecer a OTRO proveedor
     IF EXISTS (SELECT 1 FROM Proveedor WHERE RazonSocial = @RazonSocial AND IdProveedor <> @IdProveedor)
     BEGIN
         SET @Mensaje = 'Ya existe un proveedor con esa Razón Social'
         RETURN
     END
 
-    -- Validación 4: lo mismo para el correo (UNIQUE)
+    -- Validación 5: lo mismo para el correo (UNIQUE)
     IF ISNULL(@Correo, '') <> ''
        AND EXISTS (SELECT 1 FROM Proveedor WHERE Correo = @Correo AND IdProveedor <> @IdProveedor)
     BEGIN
@@ -739,7 +743,7 @@ BEGIN
         RETURN
     END
 
-    -- Validación 5: el teléfono no debe pertenecer a OTRO proveedor
+    -- Validación 6: el teléfono no debe pertenecer a OTRO proveedor
     IF EXISTS (SELECT 1 FROM Proveedor WHERE Telefono = @Telefono AND IdProveedor <> @IdProveedor)
     BEGIN
         SET @Mensaje = 'El teléfono ya está asignado a otro proveedor'
@@ -758,7 +762,6 @@ BEGIN
     SET @Mensaje = 'Proveedor actualizado correctamente'
 END
 GO
-
 /* ELIMINAR PROVEEDOR (BORRADO LOGICO) */
 CREATE OR ALTER PROCEDURE sp_EliminarProveedores
 (
@@ -1252,3 +1255,20 @@ CREATE UNIQUE NONCLUSTERED INDEX UQ_CorreoProveedor
 ON Proveedor (Correo)
 WHERE Correo IS NOT NULL;
 GO
+
+
+SELECT TABLE_NAME, COLUMN_NAME, DATA_TYPE
+FROM INFORMATION_SCHEMA.COLUMNS
+ORDER BY TABLE_NAME, ORDINAL_POSITION;
+
+
+
+
+/*CONSULTAS PARA EL DASHBOARD*/
+
+
+CREATE INDEX IX_Venta_FechaRegistro
+ON Venta (FechaRegistro) INCLUDE (MontoTotal);
+
+CREATE INDEX IX_DetalleVenta_IdVenta
+ON DetalleVenta (IdVenta) INCLUDE (IdProducto, SubTotal);

@@ -1035,7 +1035,6 @@
         private Panel panel2;
         private Button btnClearSearch;
         private Button btnSearch;
-        private Gradient.PanelGradient panelGradient1;
         private Sunny.UI.UIPanel PnlDetails;
         private Label label7;
         private Sunny.UI.UITextBox txtIndice;

@@ -33,20 +33,10 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            IdUsuario = new DataGridViewTextBoxColumn();
-            DNI = new DataGridViewTextBoxColumn();
-            Cliente = new DataGridViewTextBoxColumn();
-            Name1 = new DataGridViewTextBoxColumn();
-            Name2 = new DataGridViewTextBoxColumn();
-            LastName1 = new DataGridViewTextBoxColumn();
-            LastName2 = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
-            Password = new DataGridViewTextBoxColumn();
-            Id_Rol = new DataGridViewTextBoxColumn();
-            Rol = new DataGridViewTextBoxColumn();
-            EstadoValor = new DataGridViewTextBoxColumn();
-            Estado = new DataGridViewTextBoxColumn();
             PnlDetails = new Sunny.UI.UIPanel();
+            uiPanel3 = new Sunny.UI.UIPanel();
+            uiPanel2 = new Sunny.UI.UIPanel();
+            chip1 = new Sunny.UI.UIPanel();
             txtCheckPassword = new Sunny.UI.UITextBox();
             txtPassword = new Sunny.UI.UITextBox();
             cbRol = new Sunny.UI.UIComboBox();
@@ -92,125 +82,32 @@
             label13 = new Label();
             cbSearch = new ReaLTaiizor.Controls.AloneComboBox();
             label12 = new Label();
+            IdUsuario = new DataGridViewTextBoxColumn();
+            DNI = new DataGridViewTextBoxColumn();
+            Cliente = new DataGridViewTextBoxColumn();
+            Name1 = new DataGridViewTextBoxColumn();
+            Name2 = new DataGridViewTextBoxColumn();
+            LastName1 = new DataGridViewTextBoxColumn();
+            LastName2 = new DataGridViewTextBoxColumn();
+            Email = new DataGridViewTextBoxColumn();
+            Telefono = new DataGridViewTextBoxColumn();
+            Password = new DataGridViewTextBoxColumn();
+            Id_Rol = new DataGridViewTextBoxColumn();
+            Rol = new DataGridViewTextBoxColumn();
+            EstadoValor = new DataGridViewTextBoxColumn();
+            Estado = new DataGridViewTextBoxColumn();
             PnlDetails.SuspendLayout();
             uiPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
             SuspendLayout();
             // 
-            // IdUsuario
-            // 
-            IdUsuario.HeaderText = "IdUsuario";
-            IdUsuario.Name = "IdUsuario";
-            IdUsuario.ReadOnly = true;
-            IdUsuario.SortMode = DataGridViewColumnSortMode.NotSortable;
-            IdUsuario.Visible = false;
-            // 
-            // DNI
-            // 
-            DNI.FillWeight = 60F;
-            DNI.HeaderText = "DNI";
-            DNI.MinimumWidth = 60;
-            DNI.Name = "DNI";
-            DNI.ReadOnly = true;
-            DNI.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Cliente
-            // 
-            Cliente.FillWeight = 79F;
-            Cliente.HeaderText = "Nombre";
-            Cliente.MinimumWidth = 79;
-            Cliente.Name = "Cliente";
-            Cliente.ReadOnly = true;
-            Cliente.Resizable = DataGridViewTriState.False;
-            Cliente.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Name1
-            // 
-            Name1.HeaderText = "Primer Nombre";
-            Name1.Name = "Name1";
-            Name1.ReadOnly = true;
-            Name1.SortMode = DataGridViewColumnSortMode.NotSortable;
-            Name1.Visible = false;
-            // 
-            // Name2
-            // 
-            Name2.HeaderText = "Segundo Nombre";
-            Name2.Name = "Name2";
-            Name2.ReadOnly = true;
-            Name2.SortMode = DataGridViewColumnSortMode.NotSortable;
-            Name2.Visible = false;
-            // 
-            // LastName1
-            // 
-            LastName1.HeaderText = "Primer Apellido";
-            LastName1.Name = "LastName1";
-            LastName1.ReadOnly = true;
-            LastName1.SortMode = DataGridViewColumnSortMode.NotSortable;
-            LastName1.Visible = false;
-            // 
-            // LastName2
-            // 
-            LastName2.HeaderText = "Segundo Apellido";
-            LastName2.Name = "LastName2";
-            LastName2.ReadOnly = true;
-            LastName2.SortMode = DataGridViewColumnSortMode.NotSortable;
-            LastName2.Visible = false;
-            // 
-            // Email
-            // 
-            Email.FillWeight = 76F;
-            Email.HeaderText = "Correo";
-            Email.MinimumWidth = 76;
-            Email.Name = "Email";
-            Email.ReadOnly = true;
-            Email.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Password
-            // 
-            Password.HeaderText = "Password";
-            Password.Name = "Password";
-            Password.ReadOnly = true;
-            Password.SortMode = DataGridViewColumnSortMode.NotSortable;
-            Password.Visible = false;
-            // 
-            // Id_Rol
-            // 
-            Id_Rol.HeaderText = "Id_Rol";
-            Id_Rol.Name = "Id_Rol";
-            Id_Rol.ReadOnly = true;
-            Id_Rol.SortMode = DataGridViewColumnSortMode.NotSortable;
-            Id_Rol.Visible = false;
-            // 
-            // Rol
-            // 
-            Rol.FillWeight = 60F;
-            Rol.HeaderText = "Rol";
-            Rol.MinimumWidth = 60;
-            Rol.Name = "Rol";
-            Rol.ReadOnly = true;
-            Rol.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // EstadoValor
-            // 
-            EstadoValor.HeaderText = "EstadoValor";
-            EstadoValor.Name = "EstadoValor";
-            EstadoValor.ReadOnly = true;
-            EstadoValor.SortMode = DataGridViewColumnSortMode.NotSortable;
-            EstadoValor.Visible = false;
-            // 
-            // Estado
-            // 
-            Estado.FillWeight = 74F;
-            Estado.HeaderText = "Estado";
-            Estado.MinimumWidth = 74;
-            Estado.Name = "Estado";
-            Estado.ReadOnly = true;
-            Estado.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
             // PnlDetails
             // 
             PnlDetails.Anchor = AnchorStyles.Top;
             PnlDetails.BackColor = Color.White;
+            PnlDetails.Controls.Add(uiPanel3);
+            PnlDetails.Controls.Add(uiPanel2);
+            PnlDetails.Controls.Add(chip1);
             PnlDetails.Controls.Add(txtCheckPassword);
             PnlDetails.Controls.Add(txtPassword);
             PnlDetails.Controls.Add(cbRol);
@@ -257,6 +154,63 @@
             PnlDetails.TabIndex = 59;
             PnlDetails.Text = null;
             PnlDetails.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // uiPanel3
+            // 
+            uiPanel3.BackColor = Color.White;
+            uiPanel3.FillColor = Color.FromArgb(223, 243, 239);
+            uiPanel3.FillColor2 = Color.FromArgb(223, 243, 239);
+            uiPanel3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            uiPanel3.ForeColor = Color.FromArgb(11, 94, 88);
+            uiPanel3.Location = new Point(20, 472);
+            uiPanel3.Margin = new Padding(0);
+            uiPanel3.MinimumSize = new Size(1, 1);
+            uiPanel3.Name = "uiPanel3";
+            uiPanel3.Radius = 12;
+            uiPanel3.RectColor = Color.FromArgb(223, 243, 239);
+            uiPanel3.Size = new Size(24, 24);
+            uiPanel3.Style = Sunny.UI.UIStyle.Custom;
+            uiPanel3.TabIndex = 102;
+            uiPanel3.Text = "3";
+            uiPanel3.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // uiPanel2
+            // 
+            uiPanel2.BackColor = Color.White;
+            uiPanel2.FillColor = Color.FromArgb(223, 243, 239);
+            uiPanel2.FillColor2 = Color.FromArgb(223, 243, 239);
+            uiPanel2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            uiPanel2.ForeColor = Color.FromArgb(11, 94, 88);
+            uiPanel2.Location = new Point(20, 308);
+            uiPanel2.Margin = new Padding(0);
+            uiPanel2.MinimumSize = new Size(1, 1);
+            uiPanel2.Name = "uiPanel2";
+            uiPanel2.Radius = 12;
+            uiPanel2.RectColor = Color.FromArgb(223, 243, 239);
+            uiPanel2.Size = new Size(24, 24);
+            uiPanel2.Style = Sunny.UI.UIStyle.Custom;
+            uiPanel2.TabIndex = 101;
+            uiPanel2.Text = "2";
+            uiPanel2.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // chip1
+            // 
+            chip1.BackColor = Color.White;
+            chip1.FillColor = Color.FromArgb(223, 243, 239);
+            chip1.FillColor2 = Color.FromArgb(223, 243, 239);
+            chip1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chip1.ForeColor = Color.FromArgb(11, 94, 88);
+            chip1.Location = new Point(26, 75);
+            chip1.Margin = new Padding(0);
+            chip1.MinimumSize = new Size(1, 1);
+            chip1.Name = "chip1";
+            chip1.Radius = 12;
+            chip1.RectColor = Color.FromArgb(223, 243, 239);
+            chip1.Size = new Size(24, 24);
+            chip1.Style = Sunny.UI.UIStyle.Custom;
+            chip1.TabIndex = 100;
+            chip1.Text = "1";
+            chip1.TextAlignment = ContentAlignment.MiddleCenter;
             // 
             // txtCheckPassword
             // 
@@ -401,7 +355,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI Variable Display Semib", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.Gray;
-            label11.Location = new Point(20, 77);
+            label11.Location = new Point(53, 78);
             label11.Name = "label11";
             label11.Size = new Size(122, 16);
             label11.TabIndex = 96;
@@ -412,7 +366,7 @@
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI Variable Display Semib", 9F, FontStyle.Bold);
             label10.ForeColor = Color.Gray;
-            label10.Location = new Point(20, 475);
+            label10.Location = new Point(45, 475);
             label10.Name = "label10";
             label10.Size = new Size(59, 16);
             label10.TabIndex = 95;
@@ -423,7 +377,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI Variable Display Semib", 9F, FontStyle.Bold);
             label7.ForeColor = Color.Gray;
-            label7.Location = new Point(21, 308);
+            label7.Location = new Point(45, 311);
             label7.Name = "label7";
             label7.Size = new Size(150, 16);
             label7.TabIndex = 94;
@@ -905,7 +859,7 @@
             dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvUsers.ColumnHeadersHeight = 44;
             dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvUsers.Columns.AddRange(new DataGridViewColumn[] { IdUsuario, DNI, Cliente, Name1, Name2, LastName1, LastName2, Email, Password, Id_Rol, Rol, EstadoValor, Estado });
+            dgvUsers.Columns.AddRange(new DataGridViewColumn[] { IdUsuario, DNI, Cliente, Name1, Name2, LastName1, LastName2, Email, Telefono, Password, Id_Rol, Rol, EstadoValor, Estado });
             dgvUsers.CornerRadius = 10;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
@@ -1088,6 +1042,125 @@
             label12.Size = new Size(0, 25);
             label12.TabIndex = 43;
             // 
+            // IdUsuario
+            // 
+            IdUsuario.HeaderText = "IdUsuario";
+            IdUsuario.Name = "IdUsuario";
+            IdUsuario.ReadOnly = true;
+            IdUsuario.SortMode = DataGridViewColumnSortMode.NotSortable;
+            IdUsuario.Visible = false;
+            // 
+            // DNI
+            // 
+            DNI.FillWeight = 60F;
+            DNI.HeaderText = "DNI";
+            DNI.MinimumWidth = 60;
+            DNI.Name = "DNI";
+            DNI.ReadOnly = true;
+            DNI.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Cliente
+            // 
+            Cliente.FillWeight = 79F;
+            Cliente.HeaderText = "Nombre";
+            Cliente.MinimumWidth = 79;
+            Cliente.Name = "Cliente";
+            Cliente.ReadOnly = true;
+            Cliente.Resizable = DataGridViewTriState.False;
+            Cliente.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Name1
+            // 
+            Name1.HeaderText = "Primer Nombre";
+            Name1.Name = "Name1";
+            Name1.ReadOnly = true;
+            Name1.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Name1.Visible = false;
+            // 
+            // Name2
+            // 
+            Name2.HeaderText = "Segundo Nombre";
+            Name2.Name = "Name2";
+            Name2.ReadOnly = true;
+            Name2.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Name2.Visible = false;
+            // 
+            // LastName1
+            // 
+            LastName1.HeaderText = "Primer Apellido";
+            LastName1.Name = "LastName1";
+            LastName1.ReadOnly = true;
+            LastName1.SortMode = DataGridViewColumnSortMode.NotSortable;
+            LastName1.Visible = false;
+            // 
+            // LastName2
+            // 
+            LastName2.HeaderText = "Segundo Apellido";
+            LastName2.Name = "LastName2";
+            LastName2.ReadOnly = true;
+            LastName2.SortMode = DataGridViewColumnSortMode.NotSortable;
+            LastName2.Visible = false;
+            // 
+            // Email
+            // 
+            Email.FillWeight = 76F;
+            Email.HeaderText = "Correo";
+            Email.MinimumWidth = 76;
+            Email.Name = "Email";
+            Email.ReadOnly = true;
+            Email.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Telefono
+            // 
+            Telefono.FillWeight = 87F;
+            Telefono.HeaderText = "Telefono";
+            Telefono.MinimumWidth = 87;
+            Telefono.Name = "Telefono";
+            Telefono.ReadOnly = true;
+            Telefono.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Password
+            // 
+            Password.HeaderText = "Password";
+            Password.Name = "Password";
+            Password.ReadOnly = true;
+            Password.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Password.Visible = false;
+            // 
+            // Id_Rol
+            // 
+            Id_Rol.HeaderText = "Id_Rol";
+            Id_Rol.Name = "Id_Rol";
+            Id_Rol.ReadOnly = true;
+            Id_Rol.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Id_Rol.Visible = false;
+            // 
+            // Rol
+            // 
+            Rol.FillWeight = 60F;
+            Rol.HeaderText = "Rol";
+            Rol.MinimumWidth = 60;
+            Rol.Name = "Rol";
+            Rol.ReadOnly = true;
+            Rol.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // EstadoValor
+            // 
+            EstadoValor.HeaderText = "EstadoValor";
+            EstadoValor.Name = "EstadoValor";
+            EstadoValor.ReadOnly = true;
+            EstadoValor.SortMode = DataGridViewColumnSortMode.NotSortable;
+            EstadoValor.Visible = false;
+            // 
+            // Estado
+            // 
+            Estado.FillWeight = 74F;
+            Estado.HeaderText = "Estado";
+            Estado.MinimumWidth = 74;
+            Estado.Name = "Estado";
+            Estado.ReadOnly = true;
+            Estado.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
             // Frm_Users
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -1157,6 +1230,11 @@
         private Label label13;
         private ReaLTaiizor.Controls.AloneComboBox cbSearch;
         private Label label12;
+        private Sunny.UI.UITextBox txtPassword;
+        private Sunny.UI.UITextBox txtCheckPassword;
+        private Sunny.UI.UIPanel uiPanel3;
+        private Sunny.UI.UIPanel uiPanel2;
+        private Sunny.UI.UIPanel chip1;
         private DataGridViewTextBoxColumn IdUsuario;
         private DataGridViewTextBoxColumn DNI;
         private DataGridViewTextBoxColumn Cliente;
@@ -1165,12 +1243,11 @@
         private DataGridViewTextBoxColumn LastName1;
         private DataGridViewTextBoxColumn LastName2;
         private DataGridViewTextBoxColumn Email;
+        private DataGridViewTextBoxColumn Telefono;
         private DataGridViewTextBoxColumn Password;
         private DataGridViewTextBoxColumn Id_Rol;
         private DataGridViewTextBoxColumn Rol;
         private DataGridViewTextBoxColumn EstadoValor;
         private DataGridViewTextBoxColumn Estado;
-        private Sunny.UI.UITextBox txtPassword;
-        private Sunny.UI.UITextBox txtCheckPassword;
     }
 }
