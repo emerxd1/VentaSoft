@@ -1,14 +1,7 @@
-﻿using Data;
-using Main.Utilities;
+﻿using Main.Utilities;
 using ModuloEntidades;
 using Store;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 
 namespace Main
 {
@@ -70,7 +63,10 @@ namespace Main
             }
 
             // Cargar categorías desde la BD
-            List<Entidad_Categoria> listCategoria = new S_Category().Lister();
+            List<Entidad_Categoria> listCategoria = new S_Category()
+                .Lister()
+                .OrderBy(c => c.Nombre, StringComparer.CurrentCultureIgnoreCase)//ordena de manera ascendente por nombre, ignorando mayúsculas y minúsculas
+                .ToList();
 
             foreach (Entidad_Categoria item in listCategoria)
             {

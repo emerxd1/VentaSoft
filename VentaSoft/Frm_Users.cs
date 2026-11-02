@@ -50,7 +50,7 @@ namespace Main
             cbEstado.Items.Add(new OptionsComboBox() { valor = 0, texto = "No Activo" });
             cbEstado.ValueMember = "valor";
             cbEstado.DisplayMember = "texto";
-          //  cbEstado.SelectedIndex = 0;
+            //  cbEstado.SelectedIndex = 0;
 
             // Cargar combo de Rol
             List<Entidad_Rol> listRol = new S_Rol().Lister();
@@ -62,13 +62,13 @@ namespace Main
             cbRol.DisplayMember = "texto";
             if (cbRol.Items.Count > 0)
             {
-               // cbRol.SelectedIndex = 0;
+                // cbRol.SelectedIndex = 0;
             }
 
             // Cargar combo de búsqueda (según columnas visibles del grid)
             foreach (DataGridViewColumn Columna in dgvUsers.Columns)
             {
-                if (Columna.Visible && Columna.Name != "btnSeleccion")
+                if (Columna.Visible )
                 {
                     cbSearch.Items.Add(new OptionsComboBox() { valor = Columna.Name, texto = Columna.HeaderText });
                 }
@@ -121,6 +121,7 @@ namespace Main
                 row.Cells["LastName1"].Value = item.Apellido1;
                 row.Cells["LastName2"].Value = item.Apellido2;
                 row.Cells["Email"].Value = item.Correo;
+                row.Cells["Telefono"].Value = item.Telefono;
                 row.Cells["Password"].Value = item.Clave;
                 row.Cells["Id_Rol"].Value = item.oRol?.IdRol ?? 0; // oculta, para comparaciones internas
                 row.Cells["Rol"].Value = item.oRol?.Descripcion ?? ""; // visible
@@ -185,7 +186,7 @@ namespace Main
             }
         }
 
-        // Lee el formulario, lo valida (servicio + rol, estado y confirmación de clave)
+        // Lee el formulario, lo valida (servicio + estado y confirmación de clave)
         // y devuelve la entidad lista para enviar. Si hay errores los muestra y devuelve false.
         // idUsuario = 0 al registrar (lo genera la base de datos).
         private bool TryLeerFormulario(int idUsuario, out Entidad_Usuario oUsuario)
@@ -194,8 +195,6 @@ namespace Main
             var estadoSeleccionado = cbEstado.SelectedItem as OptionsComboBox;
             var rolSeleccionado = cbRol.SelectedItem as OptionsComboBox;
 
-            // Nota: Telefono (txtTelefono) no se envía porque Entidad_Usuario / D_Users / los SP
-            // de usuario no lo contemplan todavía.
             oUsuario = new Entidad_Usuario()
             {
                 IdUsuario = idUsuario,
@@ -206,15 +205,21 @@ namespace Main
                 Apellido2 = txtLastName2.Text.Trim(),
                 Correo = txtEmail.Text.Trim(),
                 Clave = txtPassword.Text,
+                Telefono = txtTelefono.Text.Trim(),
+
+                // CORREGIDO: el rol y el estado elegidos en los combos ahora viajan con la entidad
+                // (antes oRol se creaba vacío y Estado quedaba siempre en false).
                 oRol = new Entidad_Rol()
-             
+                {
+                    IdRol = rolSeleccionado != null ? Convert.ToInt32(rolSeleccionado.valor) : 0
+                },
+                Estado = estadoSeleccionado != null && Convert.ToInt32(estadoSeleccionado.valor) == 1
             };
 
+            // El rol lo valida S_Users.Validar; aquí solo se revisa lo propio del formulario.
             bool valido = _servicio.Validar(oUsuario, out string errores);
 
             var extras = new StringBuilder();
-            if (rolSeleccionado == null)
-                extras.Append("Debe seleccionar un rol.\n");
             if (estadoSeleccionado == null)
                 extras.Append("Debe seleccionar un estado.\n");
             if (txtPassword.Text != txtCheckPassword.Text)
@@ -389,6 +394,7 @@ namespace Main
             txtLastName1.Text = usuario.Apellido1;
             txtLastName2.Text = usuario.Apellido2;
             txtEmail.Text = usuario.Correo;
+            txtTelefono.Text = usuario.Telefono;
             txtPassword.Text = usuario.Clave;
             txtCheckPassword.Text = usuario.Clave;
 

@@ -41,7 +41,7 @@ namespace Main
             // Cargar combo de búsqueda (según columnas visibles del grid)
             foreach (DataGridViewColumn Columna in dgvClients.Columns)
             {
-                if (Columna.Visible && Columna.Name != "btnSeleccion")
+                if (Columna.Visible)
                 {
                     cbSearch.Items.Add(new OptionsComboBox() { valor = Columna.Name, texto = Columna.HeaderText });
                 }
@@ -103,7 +103,7 @@ namespace Main
             txtTelefono.Clear();
             cbEstado.Text = "Seleccione un estado";
             cbEstado.ForeColor = Color.Gray;
-            txtId.Text = "ID#";
+            txtId.Text = "ID# ";
             txtDni.Clear();
         }
 
@@ -111,7 +111,7 @@ namespace Main
         // Úsalo al actualizar o eliminar.
         private int ObtenerIdSeleccionado()
         {
-            return int.TryParse(txtId.Text.Replace("ID#", "").Trim(), out int id) ? id : 0;
+            return int.TryParse(txtId.Text.Replace("ID# ", "").Trim(), out int id) ? id : 0;
         }
 
         // Aplica el filtro de búsqueda sobre el grid según la columna elegida.

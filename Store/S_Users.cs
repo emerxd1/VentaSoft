@@ -20,6 +20,10 @@ namespace Store
         // Formato de correo básico
         private static readonly Regex RegexCorreo = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
 
+        // Teléfono nicaragüense: 8 dígitos, con guion o espacio opcional, y prefijo +505 opcional
+        // Ej: 8888-8888 | 88888888 | 8888 8888 | +505 8888-8888
+        private static readonly Regex RegexTelefono = new Regex(@"^(\+?505[ -]?)?\d{4}[- ]?\d{4}$");
+
         public List<Entidad_Usuario> Lister()
         {
             return d_Users.Lister();
@@ -104,6 +108,10 @@ namespace Store
             else if (!RegexCorreo.IsMatch(oUsuario.Correo.Trim()))
                 errores += "El Correo no tiene un formato válido.\n";
 
+            // ---- Teléfono (opcional, pero si viene, se valida formato) ----
+            if (!string.IsNullOrWhiteSpace(oUsuario.Telefono) && !RegexTelefono.IsMatch(oUsuario.Telefono.Trim()))
+                errores += "El Teléfono debe tener 8 dígitos (ej: 8888-8888).\n";
+
             // ---- Clave ----
             if (string.IsNullOrWhiteSpace(oUsuario.Clave))
                 errores += "La Clave es obligatoria.\n";
@@ -131,6 +139,7 @@ namespace Store
             u.Apellido1 = u.Apellido1.Trim();
             u.Apellido2 = u.Apellido2?.Trim() ?? string.Empty;
             u.Correo = u.Correo.Trim().ToLower();
+            u.Telefono = u.Telefono?.Trim() ?? string.Empty;
         }
     }
 }
