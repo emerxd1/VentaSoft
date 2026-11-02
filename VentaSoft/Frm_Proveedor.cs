@@ -1,20 +1,13 @@
-﻿using Data;
-using DocumentFormat.OpenXml.Drawing.Wordprocessing;
-using Main.Utilities;
+﻿using Main.Utilities;
 using ModuloEntidades;
 using Store;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Text;
-using System.Windows.Forms;
 
 namespace Main
 {
     public partial class Frm_Proveedor : Form
     {
+        private readonly S_Proveedor _servicio = new S_Proveedor();
 
         public Frm_Proveedor()
         {
@@ -22,240 +15,318 @@ namespace Main
             new EscaladoProporcional(this);
         }
 
+        // Devuelve el Id numérico mostrado en txtId ("ID# 5" -> 5). Devuelve 0 si no hay ninguno.
+        private int ObtenerIdSeleccionado()
+        {
+            return int.TryParse(txtId.Text.Replace("ID#", "").Trim(), out int id) ? id : 0;
+        }
+
         private void Frm_Proveedor_Load(object sender, EventArgs e)
         {
+            // Cargar combo de Estado
             cbEstado.Items.Add(new OptionsComboBox() { valor = 1, texto = "Activo" });
             cbEstado.Items.Add(new OptionsComboBox() { valor = 0, texto = "No Activo" });
-            cbEstado.DisplayMember = "texto";
             cbEstado.ValueMember = "valor";
-            cbEstado.SelectedIndex = 0;
+            cbEstado.DisplayMember = "texto";
 
-            foreach (DataGridViewColumn columna in dgvUsers.Columns)
+            // Cargar combo de búsqueda (según columnas visibles del grid)
+            foreach (DataGridViewColumn Columna in dgvProveedor.Columns)
             {
-                if (columna.Visible == true && columna.Name != "btnSeleccion")
+                if (Columna.Visible)
                 {
-                    cbSearch.Items.Add(new OptionsComboBox() { valor = columna.Name, texto = columna.HeaderText });
+                    cbSearch.Items.Add(new OptionsComboBox() { valor = Columna.Name, texto = Columna.HeaderText });
                 }
             }
-            cbSearch.DisplayMember = "texto";
             cbSearch.ValueMember = "valor";
-            cbSearch.SelectedIndex = 0;
+            cbSearch.DisplayMember = "texto";
+            if (cbSearch.Items.Count > 0)
+            {
+                cbSearch.SelectedIndex = 0;
+            }
 
-            //MOSTRAR TODOS LOS PROVEEDORES
-            List<Entidad_Proveedor> lista = new S_Proveedor().Lister();
+            CargarProveedores();
+        }
+
+        // Carga (o recarga) el grid desde la base de datos.
+        private void CargarProveedores()
+        {
+            dgvProveedor.CurrentCell = null;
+            dgvProveedor.Rows.Clear();
+
+            List<Entidad_Proveedor> lista = _servicio.Lister()
+                .OrderBy(p => p.RazonSocial)
+                .ToList();
 
             foreach (Entidad_Proveedor item in lista)
             {
-                dgvUsers.Rows.Add(new object[] {"",item.IdProveedor,item.RUC,item.RazonSocial,item.Correo,item.Telefono,
-                   item.Estado == true ? 1 : 0 ,
-                   item.Estado == true ? "Activo" : "No Activo"
-                });
+                int fila = dgvProveedor.Rows.Add();
+                DataGridViewRow row = dgvProveedor.Rows[fila];
+
+                // Se guarda el proveedor completo en la fila: al seleccionarla se leen de aquí los datos.
+                row.Tag = item;
+
+                row.Cells["IdProveedor"].Value = item.IdProveedor;
+                row.Cells["ruc"].Value = item.RUC;
+                row.Cells["Name1"].Value = item.RazonSocial;
+                row.Cells["Email"].Value = item.Correo;
+                row.Cells["NumTelefono"].Value = item.Telefono;
+                row.Cells["EstadoValor"].Value = item.Estado ? 1 : 0;
+                row.Cells["Estado"].Value = item.Estado ? "Activo" : "No Activo";
             }
+
+            // Si hay texto en la búsqueda, se vuelve a aplicar sobre los datos recargados.
+            AplicarFiltro();
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnRegister_Click(object sender, EventArgs e)
-        {
-            string mensaje = string.Empty;
-
-            Entidad_Proveedor obj = new Entidad_Proveedor()
-            {
-                IdProveedor = Convert.ToInt32(txtId.Text),
-                RUC = txtRUC.Text,
-                RazonSocial = txtName1.Text,
-                Correo = txtEmail.Text,
-                Telefono = textBox1.Text,
-                Estado = Convert.ToInt32(((OptionsComboBox)cbEstado.SelectedItem).valor) == 1 ? true : false
-            };
-
-            if (obj.IdProveedor == 0)
-            {
-                int idgenerado = new S_Proveedor().Register(obj, out mensaje);
-
-                if (idgenerado != 0)
-                {
-                    dgvUsers.Rows.Add(new object[] {"",idgenerado,txtRUC.Text,txtName1.Text,txtEmail.Text,textBox1.Text,
-                        ((OptionsComboBox)cbEstado.SelectedItem).valor.ToString(),
-                        ((OptionsComboBox)cbEstado.SelectedItem).texto.ToString()
-                    });
-
-                    Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show(mensaje);
-                }
-            }
-            else
-            {
-                bool resultado = new S_Proveedor().Edit(obj, out mensaje);
-
-                if (resultado)
-                {
-                    DataGridViewRow row = dgvUsers.Rows[Convert.ToInt32(txtIndice.Text)];
-                    row.Cells["IdProveedor"].Value = Convert.ToInt32(txtId.Text);
-                    row.Cells["RUC"].Value = txtRUC.Text;
-                    row.Cells["Name1"].Value = txtName1.Text;
-                    row.Cells["Email"].Value = txtEmail.Text;
-                    row.Cells["NumTelefono"].Value = textBox1.Text;
-                    row.Cells["Estadovalor"].Value = ((OptionsComboBox)cbEstado.SelectedItem).valor.ToString();
-                    row.Cells["Estado"].Value = ((OptionsComboBox)cbEstado.SelectedItem).texto.ToString();
-                    Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show(mensaje);
-                }
-            }
-        }
-
+        // METODO PARA LIMPIAR LOS CAMPOS DEL FORMULARIO
         private void Limpiar()
         {
             txtIndice.Text = "-1";
-            txtId.Text = "0";
-            txtRUC.Text = "";
-            txtName1.Text = "";
-            txtEmail.Text = "";
-            textBox1.Text = "";
-            cbEstado.SelectedIndex = 0;
-            txtRUC.Select();
+            txtId.Text = "ID#";
+            txtRUC.Clear();
+            txtName1.Clear();
+            txtEmail.Clear();
+            txtTelefono.Clear();
+
+            cbEstado.SelectedIndex = -1;
+            cbEstado.Text = "Seleccione un estado";
+            cbEstado.ForeColor = Color.Gray;
+
+            txtRUC.Focus();
         }
 
-        private void dgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        // Aplica el filtro de búsqueda sobre el grid según la columna elegida.
+        // Con el texto vacío, todas las filas vuelven a mostrarse.
+        private void AplicarFiltro()
         {
-            if (e.RowIndex < 0) return;
-
-            if (dgvUsers.Columns[e.ColumnIndex].Name == "btnSeleccion")
+            var columnaSeleccionada = cbSearch.SelectedItem as OptionsComboBox;
+            if (columnaSeleccionada == null)
             {
-                int indice = e.RowIndex;
-
-                txtIndice.Text = indice.ToString();
-                txtId.Text = dgvUsers.Rows[indice].Cells["IdProveedor"].Value?.ToString() ?? "0";
-                txtRUC.Text = dgvUsers.Rows[indice].Cells["RUC"].Value?.ToString() ?? "";
-                txtName1.Text = dgvUsers.Rows[indice].Cells["Name1"].Value?.ToString() ?? "";
-                txtEmail.Text = dgvUsers.Rows[indice].Cells["Email"].Value?.ToString() ?? "";
-                textBox1.Text = dgvUsers.Rows[indice].Cells["NumTelefono"].Value?.ToString() ?? "";
-
-                foreach (OptionsComboBox oc in cbEstado.Items)
-                {
-                    if (Convert.ToInt32(oc.valor) == Convert.ToInt32(dgvUsers.Rows[indice].Cells["Estadovalor"].Value))
-                    {
-                        int indice_combo = cbEstado.Items.IndexOf(oc);
-                        cbEstado.SelectedIndex = indice_combo;
-                        break;
-                    }
-                }
-            }
-        }
-
-        private void dgvUsers_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.RowIndex < 0)
-                return;
-
-            if (e.ColumnIndex == 0)
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-
-                var w = Properties.Resources.Check.Width;
-                var h = Properties.Resources.Check.Height;
-                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
-                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
-
-                e.Graphics.DrawImage(Properties.Resources.Check, new Rectangle(x, y, w, h));
-                e.Handled = true;
-            }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (!int.TryParse(txtId.Text.Trim(), out int idProveedor) || idProveedor <= 0)
-            {
-                MessageBox.Show("Debe seleccionar un proveedor para eliminar.", "Mensaje",
-                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            if (MessageBox.Show("¿Desea eliminar el proveedor?", "Mensaje",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            string columnFiltro = Convert.ToString(columnaSeleccionada.valor);
+            string texto = txtSearch.Text.Trim().ToUpper();
+
+            // Una fila con la celda actual seleccionada no se puede ocultar (lanza InvalidOperationException).
+            dgvProveedor.CurrentCell = null;
+
+            foreach (DataGridViewRow row in dgvProveedor.Rows)
             {
-                bool respuesta = new S_Proveedor().Delete(
-                    new Entidad_Proveedor() { IdProveedor = idProveedor }, out string mensaje);
-
-                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK,
-                                respuesta ? MessageBoxIcon.Information : MessageBoxIcon.Exclamation);
-
-                if (respuesta)
+                if (row.IsNewRow)
                 {
-                    Limpiar();
+                    continue;
                 }
+
+                string valor = row.Cells[columnFiltro].Value?.ToString() ?? "";
+                row.Visible = valor.Trim().ToUpper().Contains(texto);
             }
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        // Lee el formulario, lo valida y devuelve la entidad lista para enviar.
+        // Si hay errores los muestra y devuelve false.
+        // idProveedor = 0 al registrar (lo genera la base de datos).
+        private bool TryLeerFormulario(int idProveedor, out Entidad_Proveedor oProveedor)
         {
-            string columnaFiltro = ((OptionsComboBox)cbSearch.SelectedItem).valor.ToString();
+            // as devuelve null (en vez de lanzar error) si no hay nada seleccionado
+            var estadoSeleccionado = cbEstado.SelectedItem as OptionsComboBox;
 
-            if (dgvUsers.Rows.Count > 0)
+            oProveedor = new Entidad_Proveedor()
             {
-                foreach (DataGridViewRow row in dgvUsers.Rows)
+                IdProveedor = idProveedor,
+                RUC = txtRUC.Text.Trim(),
+                RazonSocial = txtName1.Text.Trim(),
+                Correo = txtEmail.Text.Trim(),
+                Telefono = txtTelefono.Text.Trim(),
+                Estado = estadoSeleccionado != null && Convert.ToInt32(estadoSeleccionado.valor) == 1
+            };
+
+            bool valido = _servicio.Validar(oProveedor, out string errores);
+
+            var extras = new StringBuilder();
+            if (estadoSeleccionado == null)
+                extras.Append("Debe seleccionar un estado.\n");
+
+            if (extras.Length > 0)
+            {
+                if (valido)
+                    errores = "Se encontraron los siguientes errores:\n";
+
+                errores += extras.ToString();
+                valido = false;
+            }
+
+            if (!valido)
+            {
+                MessageBox.Show(errores, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            return true;
+        }
+
+        /* BOTON PARA REGISTRAR UN PROVEEDOR */
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!TryLeerFormulario(0, out Entidad_Proveedor oProveedor))
+                    return;
+
+                int idGenerado = _servicio.Register(oProveedor, out string Message);
+
+                // Id distinto de 0 = registro exitoso.
+                if (idGenerado != 0)
                 {
-                    row.Visible = row.Cells[columnaFiltro].Value?.ToString()
-                        .Trim().ToUpper().Contains(txtSearch.Text.Trim().ToUpper()) ?? false;
+                    CargarProveedores();
+
+                    MessageBox.Show("Proveedor registrado correctamente.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            }
-        }
+                else
+                {
+                    MessageBox.Show(Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
 
-        private void btnClearSearch_Click(object sender, EventArgs e)
-        {
-            txtSearch.Text = "";
-            foreach (DataGridViewRow row in dgvUsers.Rows)
+                Limpiar();
+            }
+            catch (Exception ex)
             {
-                row.Visible = true;
+                MessageBox.Show("Ocurrió un error al registrar el proveedor: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Limpiar();
             }
         }
 
-        private void btnLimpiarTxt_Click(object sender, EventArgs e)
+        /* BOTON PARA ACTUALIZAR UN PROVEEDOR */
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int idProveedor = ObtenerIdSeleccionado();
+
+                if (txtIndice.Text == "-1" || idProveedor == 0)
+                {
+                    MessageBox.Show("Debe seleccionar un proveedor para actualizar.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                if (!TryLeerFormulario(idProveedor, out Entidad_Proveedor oProveedor))
+                    return;
+
+                bool isUpdated = _servicio.Edit(oProveedor, out string Message);
+
+                if (isUpdated)
+                {
+                    CargarProveedores();
+
+                    MessageBox.Show("Proveedor actualizado correctamente.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+                Limpiar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al actualizar el proveedor: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Limpiar();
+            }
+        }
+
+
+        /* BOTON PARA LIMPIAR EL FORMULARIO */
+        private void btnClear_Click(object sender, EventArgs e)
         {
             Limpiar();
         }
 
-        private void txtRUC_TextChanged(object sender, EventArgs e)
+        // Búsqueda en vivo: se filtra mientras se escribe.
+        private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-
+            AplicarFiltro();
         }
 
-        private void txtName1_TextChanged(object sender, EventArgs e)
+        // Al hacer clic en una fila se cargan sus datos en el formulario.
+        private void dgvProveedor_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
+            if (dgvProveedor.Rows[e.RowIndex].IsNewRow) return;
 
+            DataGridViewRow row = dgvProveedor.Rows[e.RowIndex];
+
+            // El proveedor completo se guardó en Tag al cargar el grid
+            if (!(row.Tag is Entidad_Proveedor proveedor)) return;
+
+            txtIndice.Text = e.RowIndex.ToString();
+            txtId.Text = "ID# " + proveedor.IdProveedor;
+
+            txtRUC.Text = proveedor.RUC;
+            txtName1.Text = proveedor.RazonSocial;
+            txtEmail.Text = proveedor.Correo;
+            txtTelefono.Text = proveedor.Telefono;
+
+            // Estado
+            cbEstado.SelectedIndex = -1;
+            int valorEstado = proveedor.Estado ? 1 : 0;
+            foreach (OptionsComboBox oc in cbEstado.Items)
+            {
+                if (Convert.ToInt32(oc.valor) == valorEstado)
+                {
+                    cbEstado.SelectedItem = oc;
+                    break;
+                }
+            }
+
+            // Limpiar() deja el combo en gris; aquí se restaura el color normal
+            cbEstado.ForeColor = Color.Black;
         }
 
-        private void txtId_TextChanged(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int idProveedor = ObtenerIdSeleccionado();
 
-        }
+                if (idProveedor == 0)
+                {
+                    MessageBox.Show("Seleccione un proveedor de la lista para eliminar.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
-        private void dgvProducto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
+                DialogResult dr = MessageBox.Show("¿Está seguro que desea eliminar este proveedor?",
+                    "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dr != DialogResult.Yes)
+                    return;
+
+                bool result = _servicio.Delete(new Entidad_Proveedor() { IdProveedor = idProveedor }, out string Message);
+
+                if (result)
+                {
+                    CargarProveedores();
+
+                    MessageBox.Show("Proveedor eliminado correctamente.", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al eliminar el proveedor: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
     }

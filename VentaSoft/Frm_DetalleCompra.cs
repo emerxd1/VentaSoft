@@ -9,12 +9,26 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Main
 {
     public partial class Frm_DetalleCompra : Form
     {
+        // Datos fijos del negocio (editar aquí)
+        private const string NombreNegocio = "VentaSoft";
+        private const string DocNegocio = "000-000000-0000X";
+        private const string DirecNegocio = "Managua, Nicaragua, del barrio villa nueva 3km.S";
+        private const string TelNegocio = "8888-8888";
+
+        // Logo: se puede cambiar solo cambiando el nombre / ancho
+        private const string ArchivoLogo = "logo.png";
+        private const int AnchoLogo = 80;
+
+        // Cache del logo en base64 (se lee del disco solo una vez)
+        private static string _logoHtmlCache;
+
         public Frm_DetalleCompra()
         {
             InitializeComponent();
@@ -28,24 +42,34 @@ namespace Main
             if (oEntidad_Compra.IdCompra != 0)
             {
                 txtnumerodocumentoo.Text = oEntidad_Compra.NumeroDocumento;
-
                 txtFechaa.Text = oEntidad_Compra.FechaCreacion;
                 txtTipodedocumentoo.Text = oEntidad_Compra.TipoDocumento;
                 txtdocproveedoorr.Text = oEntidad_Compra.Proveedor.RUC;
-
                 txtUsuarioo.Text = oEntidad_Compra.Usuario.Nombre1 + " " + oEntidad_Compra.Usuario.Apellido1;
                 txtnombreproveedoorr.Text = oEntidad_Compra.Proveedor.RazonSocial;
 
-                dataGridView1.Rows.Clear();
-                foreach (Entidad_DetalleCompra d in oEntidad_Compra.DetalleCompra)
+                // índices de columna resueltos una sola vez
+                int colProducto = dataGridView1.Columns["Producto"].Index;
+                int colPrecio = dataGridView1.Columns["PrecioCompra"].Index;
+                int colCantidad = dataGridView1.Columns["Cantidad"].Index;
+                int colSubTotal = dataGridView1.Columns["SubTotal"].Index;
+
+                dataGridView1.SuspendLayout();
+                try
                 {
-                    // se llena por NOMBRE de columna
-                    int fila = dataGridView1.Rows.Add();
-                    DataGridViewRow row = dataGridView1.Rows[fila];
-                    row.Cells["Producto"].Value = d.IdProducto.Nombre;
-                    row.Cells["PrecioCompra"].Value = d.PrecioCompra;
-                    row.Cells["Cantidad"].Value = d.Cantidad;
-                    row.Cells["SubTotal"].Value = d.MontoTotal;
+                    dataGridView1.Rows.Clear();
+                    foreach (Entidad_DetalleCompra d in oEntidad_Compra.DetalleCompra)
+                    {
+                        DataGridViewRow row = dataGridView1.Rows[dataGridView1.Rows.Add()];
+                        row.Cells[colProducto].Value = d.IdProducto.Nombre;
+                        row.Cells[colPrecio].Value = d.PrecioCompra;
+                        row.Cells[colCantidad].Value = d.Cantidad;
+                        row.Cells[colSubTotal].Value = d.MontoTotal;
+                    }
+                }
+                finally
+                {
+                    dataGridView1.ResumeLayout();
                 }
 
                 txtmontototall.Text = oEntidad_Compra.MontoTotal.ToString("0.00");
@@ -58,7 +82,7 @@ namespace Main
 
         private void Frm_DetalleCompra_Load(object sender, EventArgs e)
         {
-            dataGridView1.Invalidate();
+            // Sin Invalidate(): el formulario ya se pinta solo al cargar.
         }
 
         // método del botón Limpiar
@@ -76,7 +100,7 @@ namespace Main
             txtbusquedaa.Focus();
         }
 
-        private void btndescargarpdff_Click(object sender, EventArgs e)
+        private async void btndescargarpdff_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtnumerodocumentoo.Text))
             {
@@ -84,18 +108,10 @@ namespace Main
                 return;
             }
 
-            //editar nombre , direccion y ruc o documento del negocoi
-            string nombreNegocio = "VentaSoft";
-            string docNegocio = "000-000000-0000X";
-            string direcNegocio = "Managua, Nicaragua, del barrio villa nueva 3km.S";
-            string telNegocio = "8888-8888"; // telefono del negocio
-
-            string rutaPlantilla = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plantilla", "PlantillaCompra.html");
-
-            // elige la plantilla segun el tipo de documento Factura o Boleta
+            // elige la plantilla según el tipo de documento: Factura o Boleta
             bool esFactura = string.Equals(txtTipodedocumentoo.Text.Trim(), "Factura", StringComparison.OrdinalIgnoreCase);
             string archivoPlantilla = esFactura ? "PlantillaFactura.html" : "PlantillaBoleta.html";
-            rutaPlantilla = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plantilla", archivoPlantilla);
+            string rutaPlantilla = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plantilla", archivoPlantilla);
 
             if (!File.Exists(rutaPlantilla))
             {
@@ -105,113 +121,123 @@ namespace Main
 
             string html = File.ReadAllText(rutaPlantilla);
 
-            string archivoLogo = "logo.png"; // podes cambiar de logo solo cambiando el nombre
-            int anchoLogo = 80;              // editar el ancho del logo en el pdf
+            // Reemplazos simples (sin el logo todavía, para no copiar el base64 en cada Replace)
+            html = html.Replace("@nombrenegocio", NombreNegocio)
+                       .Replace("@docnegocio", DocNegocio)
+                       .Replace("@direcnegocio", DirecNegocio)
+                       .Replace("@telnegocio", TelNegocio) // teléfono solo la boleta lo usa
+                       .Replace("@tipodocumento", txtTipodedocumentoo.Text)
+                       .Replace("@numerodocumento", txtnumerodocumentoo.Text)
+                       .Replace("@docproveedor", txtdocproveedoorr.Text)
+                       .Replace("@nombreproveedor", txtnombreproveedoorr.Text)
+                       .Replace("@fecharegistro", txtFechaa.Text)
+                       .Replace("@usuarioregistro", txtUsuarioo.Text)
+                       .Replace("@montototal", txtmontototall.Text)
+                       .Replace("@subtotal", txtmontototall.Text); // sin IVA, el subtotal es igual al total
 
-            string rutaLogo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plantilla", archivoLogo);
-            string logoHtml = string.Empty;
+            // Filas: un solo recorrido, StringBuilder e índices de columna resueltos una vez
+            int colProducto = dataGridView1.Columns["Producto"].Index;
+            int colPrecio = dataGridView1.Columns["PrecioCompra"].Index;
+            int colCantidad = dataGridView1.Columns["Cantidad"].Index;
+            int colSubTotal = dataGridView1.Columns["SubTotal"].Index;
 
-            if (File.Exists(rutaLogo))
-            {
-                string tipoLogo = archivoLogo.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ? "image/png" : "image/jpeg";
-                string base64 = Convert.ToBase64String(File.ReadAllBytes(rutaLogo));
-                logoHtml = "<img src=\"data:" + tipoLogo + ";base64," + base64 + "\" style=\"width:" + anchoLogo + "px;\" />";
-            }
-            html = html.Replace("@logo", logoHtml);
-
-            html = html.Replace("@nombrenegocio", nombreNegocio);
-            html = html.Replace("@docnegocio", docNegocio);
-            html = html.Replace("@direcnegocio", direcNegocio);
-            html = html.Replace("@telnegocio", telNegocio); // teléfono solo la boleta lo usa
-            html = html.Replace("@tipodocumento", txtTipodedocumentoo.Text);
-            html = html.Replace("@numerodocumento", txtnumerodocumentoo.Text);
-            html = html.Replace("@docproveedor", txtdocproveedoorr.Text);
-            html = html.Replace("@nombreproveedor", txtnombreproveedoorr.Text);
-            html = html.Replace("@fecharegistro", txtFechaa.Text);
-            html = html.Replace("@usuarioregistro", txtUsuarioo.Text);
-            html = html.Replace("@montototal", txtmontototall.Text);
-            html = html.Replace("@subtotal", txtmontototall.Text); // sin IVA, el subtotal es igual al total
-
-            string filas = string.Empty;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (row.IsNewRow) continue;
-                filas += "<tr>";
-                filas += "<td>" + row.Cells["Producto"].Value + "</td>";
-                filas += "<td>" + row.Cells["PrecioCompra"].Value + "</td>";
-                filas += "<td>" + row.Cells["Cantidad"].Value + "</td>";
-                filas += "<td>" + row.Cells["SubTotal"].Value + "</td>";
-                filas += "</tr>";
-            }
-
-            // las filas cambian según el tipo se vuelven a armar a partir del mismo grid
-            filas = string.Empty;
+            var filas = new StringBuilder();
             int numFila = 0;
+
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.IsNewRow) continue;
                 numFila++;
 
+                object producto = row.Cells[colProducto].Value;
+                object precio = row.Cells[colPrecio].Value;
+                object cantidad = row.Cells[colCantidad].Value;
+                object subtotal = row.Cells[colSubTotal].Value;
+
                 if (esFactura)
                 {
-                    // factura, 4 columnas con fila alterna (gris claro en las impares) y números a la derecha
-                    string fondo = (numFila % 2 == 1) ? "background-color:#F1F5F3;" : "";
-                    string est = fondo + "padding:8px;font-size:12px;";
-                    filas += "<tr>";
-                    filas += "<td style=\"" + est + "text-align:left\">" + row.Cells["Producto"].Value + "</td>";
-                    filas += "<td style=\"" + est + "text-align:right\">" + row.Cells["PrecioCompra"].Value + "</td>";
-                    filas += "<td style=\"" + est + "text-align:right\">" + row.Cells["Cantidad"].Value + "</td>";
-                    filas += "<td style=\"" + est + "text-align:right\">" + row.Cells["SubTotal"].Value + "</td>";
-                    filas += "</tr>";
+                    // factura: 4 columnas, fila alterna (gris claro en las impares), números a la derecha
+                    string est = (numFila % 2 == 1 ? "background-color:#F1F5F3;" : "") + "padding:8px;font-size:12px;";
+                    filas.Append("<tr><td style=\"").Append(est).Append("text-align:left\">").Append(producto)
+                         .Append("</td><td style=\"").Append(est).Append("text-align:right\">").Append(precio)
+                         .Append("</td><td style=\"").Append(est).Append("text-align:right\">").Append(cantidad)
+                         .Append("</td><td style=\"").Append(est).Append("text-align:right\">").Append(subtotal)
+                         .Append("</td></tr>");
                 }
                 else
                 {
-                    //boleta, cada producto en dos líneas (nombre y total, luego cantidad x precio)
-                    filas += "<tr>";
-                    filas += "<td style=\"text-align:left;font-size:12px;padding-top:6px\">" + row.Cells["Producto"].Value + "</td>";
-                    filas += "<td style=\"text-align:right;font-size:12px;padding-top:6px\">" + row.Cells["SubTotal"].Value + "</td>";
-                    filas += "</tr>";
-                    filas += "<tr>";
-                    filas += "<td colspan=\"2\" style=\"text-align:left;font-size:11px;color:#6B7570\">" + row.Cells["Cantidad"].Value + " x " + row.Cells["PrecioCompra"].Value + "</td>";
-                    filas += "</tr>";
+                    // boleta: cada producto en dos líneas (nombre y total, luego cantidad x precio)
+                    filas.Append("<tr><td style=\"text-align:left;font-size:12px;padding-top:6px\">").Append(producto)
+                         .Append("</td><td style=\"text-align:right;font-size:12px;padding-top:6px\">").Append(subtotal)
+                         .Append("</td></tr><tr><td colspan=\"2\" style=\"text-align:left;font-size:11px;color:#6B7570\">")
+                         .Append(cantidad).Append(" x ").Append(precio)
+                         .Append("</td></tr>");
                 }
             }
-            html = html.Replace("@filas", filas);
+            html = html.Replace("@filas", filas.ToString());
 
-            SaveFileDialog guardar = new SaveFileDialog();
-            guardar.FileName = string.Format("Compra_{0}.pdf", txtnumerodocumentoo.Text);
-            guardar.Filter = "PDF (*.pdf)|*.pdf";
+            // El logo (base64 pesado) se inserta al final: ningún otro Replace lo copia
+            html = html.Replace("@logo", ObtenerLogoHtml());
 
-            if (guardar.ShowDialog() == DialogResult.OK)
+            string destino;
+            using (var guardar = new SaveFileDialog())
             {
-                try
-                {
-                    using (FileStream stream = new FileStream(guardar.FileName, FileMode.Create))
-                    {
-                        HtmlConverter.ConvertToPdf(html, stream);
-                    }
-                    MessageBox.Show("PDF generado correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                guardar.FileName = string.Format("Compra_{0}.pdf", txtnumerodocumentoo.Text);
+                guardar.Filter = "PDF (*.pdf)|*.pdf";
 
-                    // abre el PDF al terminar para ver el resultado
-                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(guardar.FileName) { UseShellExecute = true });
-                }
-                catch (IOException) // archivo abierto en otro programa
+                if (guardar.ShowDialog() != DialogResult.OK) return;
+                destino = guardar.FileName;
+            }
+
+            btndescargarpdff.Enabled = false;
+            Cursor = Cursors.WaitCursor;
+            try
+            {
+                // la conversión pesada va en un hilo de fondo para no congelar la ventana
+                string htmlFinal = html;
+                await Task.Run(() =>
                 {
-                    MessageBox.Show("El PDF está abierto en otro programa. Ciérrelo e intente de nuevo.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al generar el PDF: " + ex.Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                    using (var stream = new FileStream(destino, FileMode.Create))
+                    {
+                        HtmlConverter.ConvertToPdf(htmlFinal, stream);
+                    }
+                });
+
+                MessageBox.Show("PDF generado correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // abre el PDF al terminar para ver el resultado
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(destino) { UseShellExecute = true });
+            }
+            catch (IOException) // archivo abierto en otro programa
+            {
+                MessageBox.Show("El PDF está abierto en otro programa. Ciérrelo e intente de nuevo.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el PDF: " + ex.Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+                btndescargarpdff.Enabled = true;
             }
         }
 
-        private void btnbuscarr_KeyDown(object sender, KeyEventArgs e)
+        // Devuelve el <img> del logo en base64; se lee del disco solo la primera vez.
+        private static string ObtenerLogoHtml()
         {
+            if (_logoHtmlCache != null) return _logoHtmlCache;
 
+            string rutaLogo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plantilla", ArchivoLogo);
+            if (!File.Exists(rutaLogo)) return string.Empty; // no se cachea: si luego se agrega el logo, se toma
+
+            string tipoLogo = ArchivoLogo.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ? "image/png" : "image/jpeg";
+            string base64 = Convert.ToBase64String(File.ReadAllBytes(rutaLogo));
+            _logoHtmlCache = "<img src=\"data:" + tipoLogo + ";base64," + base64 + "\" style=\"width:" + AnchoLogo + "px;\" />";
+            return _logoHtmlCache;
         }
 
-        //buscar precionando enter
+        // buscar presionando enter
         private void txtbusquedaa_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -221,39 +247,13 @@ namespace Main
             }
         }
 
-        private void txtFechaa_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void uiGroupBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtnombreproveedoorr_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellValueChanged_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        private void btnbuscarr_KeyDown(object sender, KeyEventArgs e) { }
+        private void txtFechaa_TextChanged(object sender, EventArgs e) { }
+        private void groupBox2_Enter(object sender, EventArgs e) { }
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e) { }
+        private void uiGroupBox1_Click(object sender, EventArgs e) { }
+        private void groupBox2_Click(object sender, EventArgs e) { }
+        private void txtnombreproveedoorr_TextChanged(object sender, EventArgs e) { }
+        private void dataGridView1_CellValueChanged_1(object sender, DataGridViewCellEventArgs e) { }
     }
 }

@@ -53,7 +53,7 @@ namespace Store
         }
 
         // VALIDACIONES antes de llegar a la base de datos
-        private bool Validar(Entidad_Proveedor oProveedor, out string Message)
+       public bool Validar(Entidad_Proveedor oProveedor, out string Message)
         {
             Message = string.Empty;
             string errores = string.Empty;

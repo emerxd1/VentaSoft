@@ -18,7 +18,7 @@ namespace Data
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select u.IdUsuario,u.DNI,u.Nombre1,u.Nombre2,u.Apellido1,u.Apellido2,u.Correo,u.Clave,u.Estado, r.IdRol,r.Descripcion from Usuario u");
+                    query.AppendLine("select u.IdUsuario,u.DNI,u.Nombre1,u.Nombre2,u.Apellido1,u.Apellido2,u.Correo,u.Telefono,u.Clave,u.Estado, r.IdRol,r.Descripcion from Usuario u");
                     query.AppendLine("inner join Rol r on r.IdRol = u.IdRol");
 
 
@@ -42,6 +42,8 @@ namespace Data
                                 Apellido1 = rd["Apellido1"].ToString(),
                                 Apellido2 = rd["Apellido2"].ToString(),
                                 Correo = rd["Correo"].ToString(),
+                                // Telefono puede ser NULL en la BD (usuarios anteriores a la columna): ToString() de DBNull da ""
+                                Telefono = rd["Telefono"] == DBNull.Value ? "" : rd["Telefono"].ToString(),
                                 Clave = rd["Clave"].ToString(),
                                 // Protección contra DBNull: si Estado es NULL en la BD, se asume false
                                 Estado = rd["Estado"] == DBNull.Value ? false : Convert.ToBoolean(rd["Estado"]),
@@ -81,6 +83,13 @@ namespace Data
         }
 
 
+        // Teléfono vacío o nulo se guarda como NULL en la BD
+        private static object TelefonoParaBD(string telefono)
+        {
+            return string.IsNullOrWhiteSpace(telefono) ? (object)DBNull.Value : telefono.Trim();
+        }
+
+
         //METODO PARA REGISTRAR USUARIOS EN LA BASE DE DATOS//
         public int RegisterUser(Entidad_Usuario oUsuario, out string Message)
         {
@@ -103,6 +112,7 @@ namespace Data
                     cm.Parameters.AddWithValue("Apellido1", oUsuario.Apellido1);
                     cm.Parameters.AddWithValue("Apellido2", oUsuario.Apellido2);
                     cm.Parameters.AddWithValue("Correo", oUsuario.Correo);
+                    cm.Parameters.AddWithValue("Telefono", TelefonoParaBD(oUsuario.Telefono));
                     cm.Parameters.AddWithValue("Clave", oUsuario.Clave);
                     cm.Parameters.AddWithValue("Estado", oUsuario.Estado);
                     cm.Parameters.AddWithValue("IdRol", oUsuario.oRol.IdRol);
@@ -149,6 +159,7 @@ namespace Data
                     cm.Parameters.AddWithValue("@Apellido1", oUsuario.Apellido1);
                     cm.Parameters.AddWithValue("@Apellido2", oUsuario.Apellido2);
                     cm.Parameters.AddWithValue("@Correo", oUsuario.Correo);
+                    cm.Parameters.AddWithValue("@Telefono", TelefonoParaBD(oUsuario.Telefono));
                     cm.Parameters.AddWithValue("@Clave", oUsuario.Clave);
                     cm.Parameters.AddWithValue("@Estado", oUsuario.Estado);
                     cm.Parameters.AddWithValue("@IdRol", oUsuario.oRol.IdRol);
@@ -222,6 +233,6 @@ namespace Data
 
         }
 
-        
+
     }
 }

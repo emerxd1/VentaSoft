@@ -28,12 +28,13 @@ namespace Main
         private static readonly Color ColorMorado = Color.FromArgb(124, 77, 220);
         private static readonly Color ColorAmbar = Color.FromArgb(217, 119, 6);
 
+        private readonly DashboardRepositorio repo = new DashboardRepositorio();
+
         private TableLayoutPanel filaTarjetas;
         private CartesianChart graficoBarras;
         private PieChart graficoPastel;
         private DataGridView tablaStockBajo;
-
-        public Dashboard()
+     public Dashboard()
         {
             InitializeComponent();
 
@@ -43,6 +44,10 @@ namespace Main
 
             ConstruirInterfaz();
             CargarDatos();
+
+            var temporizador = new System.Windows.Forms.Timer { Interval = 60000 };
+            temporizador.Tick += (s, e) => CargarDatos();
+            temporizador.Start();
         }
 
         private void ConstruirInterfaz()
@@ -229,73 +234,65 @@ namespace Main
 
         private void CargarDatos()
         {
-            // ====== DATOS DE EJEMPLO ======
-            // Reemplaza estos valores con consultas a tu base de datos.
-            decimal ventasHoy = 4850.50m;
-            int totalProductos = 128;
-            int stockBajo = 7;
-            int totalClientes = 56;
-            int totalProveedores = 12;
-
-            string[] dias = { "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom" };
-            double[] ventasSemana = { 3200, 2800, 3500, 3100, 4200, 5600, 4850 };
-
-            var ventasPorCategoria = new List<KeyValuePair<string, double>>
+            ResumenDashboard datos;
+            try
             {
-                new KeyValuePair<string, double>("Abarrotes", 4500),
-                new KeyValuePair<string, double>("Bebidas", 3200),
-                new KeyValuePair<string, double>("Lácteos", 1800),
-                new KeyValuePair<string, double>("Limpieza", 1200),
-                new KeyValuePair<string, double>("Snacks", 900)
-            };
+                datos = repo.ObtenerResumen(diasCategoria: 30);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudieron cargar los datos del dashboard:\n\n" + ex.Message,
+                    "Error de base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             // ====== TARJETAS ======
             filaTarjetas.Controls.Clear();
-            filaTarjetas.Controls.Add(CrearTarjeta("Ventas de hoy", "C$ " + ventasHoy.ToString("N2"), "Total vendido en el día", ColorVerde), 0, 0);
-            filaTarjetas.Controls.Add(CrearTarjeta("Productos en inventario", totalProductos.ToString(), "Productos registrados", ColorAzul), 1, 0);
-            filaTarjetas.Controls.Add(CrearTarjeta("Stock bajo", stockBajo.ToString(), "Requieren reabastecerse", ColorRojo), 2, 0);
-            filaTarjetas.Controls.Add(CrearTarjeta("Clientes", totalClientes.ToString(), "Clientes registrados", ColorMorado), 3, 0);
-            filaTarjetas.Controls.Add(CrearTarjeta("Proveedores", totalProveedores.ToString(), "Proveedores registrados", ColorAmbar), 4, 0);
+            filaTarjetas.Controls.Add(CrearTarjeta("Ventas de hoy", "C$ " + datos.VentasHoy.ToString("N2"), "Total vendido en el día", ColorVerde), 0, 0);
+            filaTarjetas.Controls.Add(CrearTarjeta("Productos en inventario", datos.TotalProductos.ToString(), "Productos registrados", ColorAzul), 1, 0);
+            filaTarjetas.Controls.Add(CrearTarjeta("Stock bajo", datos.StockBajo.ToString(), "Requieren reabastecerse", ColorRojo), 2, 0);
+            filaTarjetas.Controls.Add(CrearTarjeta("Clientes", datos.TotalClientes.ToString(), "Clientes registrados", ColorMorado), 3, 0);
+            filaTarjetas.Controls.Add(CrearTarjeta("Proveedores", datos.TotalProveedores.ToString(), "Proveedores registrados", ColorAmbar), 4, 0);
 
             // ====== GRÁFICO DE BARRAS ======
             graficoBarras.Series = new ISeries[]
             {
-                new ColumnSeries<double>
-                {
-                    Name = "Ventas",
-                    Values = ventasSemana,
-                    Fill = new SolidColorPaint(SKColor.Parse("#2E7D5B")),
-                    Rx = 6,
-                    Ry = 6,
-                    MaxBarWidth = 40
-                }
+        new ColumnSeries<double>
+        {
+            Name = "Ventas",
+            Values = datos.VentasSemana,
+            Fill = new SolidColorPaint(SKColor.Parse("#2E7D5B")),
+            Rx = 6,
+            Ry = 6,
+            MaxBarWidth = 40
+        }
             };
             graficoBarras.XAxes = new[]
             {
-                new Axis
-                {
-                    Labels = dias,
-                    LabelsPaint = new SolidColorPaint(SKColor.Parse("#6B7280")),
-                    TextSize = 13
-                }
-            };
+        new Axis
+        {
+            Labels = datos.Dias,
+            LabelsPaint = new SolidColorPaint(SKColor.Parse("#6B7280")),
+            TextSize = 13
+        }
+    };
             graficoBarras.YAxes = new[]
             {
-                new Axis
-                {
-                    MinLimit = 0,
-                    Labeler = valor => "C$ " + valor.ToString("N0"),
-                    LabelsPaint = new SolidColorPaint(SKColor.Parse("#6B7280")),
-                    SeparatorsPaint = new SolidColorPaint(SKColor.Parse("#E5E7EB")),
-                    TextSize = 12
-                }
-            };
+        new Axis
+        {
+            MinLimit = 0,
+            Labeler = valor => "C$ " + valor.ToString("N0"),
+            LabelsPaint = new SolidColorPaint(SKColor.Parse("#6B7280")),
+            SeparatorsPaint = new SolidColorPaint(SKColor.Parse("#E5E7EB")),
+            TextSize = 12
+        }
+    };
 
             // ====== GRÁFICO DE DONA ======
-            string[] colores = { "#2E7D5B", "#4CAF82", "#F2B134", "#3B82F6", "#E86A5E" };
+            string[] colores = { "#2E7D5B", "#4CAF82", "#F2B134", "#3B82F6", "#E86A5E", "#7C4DDC", "#D97706" };
             var series = new List<ISeries>();
             int i = 0;
-            foreach (var item in ventasPorCategoria)
+            foreach (var item in datos.VentasPorCategoria)
             {
                 series.Add(new PieSeries<double>
                 {
@@ -310,83 +307,77 @@ namespace Main
             graficoPastel.LegendPosition = LegendPosition.Right;
 
             // ====== TABLA DE STOCK BAJO ======
+            tablaStockBajo.DataSource = null;
             tablaStockBajo.Columns.Clear();
-            tablaStockBajo.Columns.Add("Codigo", "Código");
-            tablaStockBajo.Columns.Add("Producto", "Producto");
-            tablaStockBajo.Columns.Add("Stock", "Stock");
-            tablaStockBajo.Columns.Add("Minimo", "Mínimo");
+            tablaStockBajo.DataSource = datos.ProductosStockBajo;
 
-            // Stock en rojo y negrita
-            tablaStockBajo.Columns["Stock"].DefaultCellStyle.ForeColor = ColorRojo;
-            tablaStockBajo.Columns["Stock"].DefaultCellStyle.Font = new Font("Segoe UI Semibold", 10);
-
-            tablaStockBajo.Rows.Clear();
-            tablaStockBajo.Rows.Add("P-0012", "Arroz 1 lb", 5, 20);
-            tablaStockBajo.Rows.Add("P-0034", "Aceite 1 L", 3, 10);
-            tablaStockBajo.Rows.Add("P-0051", "Azúcar 1 lb", 4, 15);
-            tablaStockBajo.Rows.Add("P-0078", "Leche en polvo", 2, 8);
-
+            if (tablaStockBajo.Columns.Contains("Stock"))
+            {
+                tablaStockBajo.Columns["Stock"].DefaultCellStyle.ForeColor = ColorRojo;
+                tablaStockBajo.Columns["Stock"].DefaultCellStyle.Font = new Font("Segoe UI Semibold", 10);
+            }
             tablaStockBajo.ClearSelection();
         }
-    }
 
-    // Panel blanco con esquinas redondeadas y franja de color opcional a la izquierda
-    public class CardPanel : Panel
-    {
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int Radius { get; set; } = 12;
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Color Accent { get; set; } = Color.Empty;
-
-        public CardPanel()
+        // Panel blanco con esquinas redondeadas y franja de color opcional a la izquierda
+        public class CardPanel : Panel
         {
-            DoubleBuffered = true;
-            ResizeRedraw = true;
-            BackColor = Color.White;
-        }
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+            public int Radius { get; set; } = 12;
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+            public Color Accent { get; set; } = Color.Empty;
 
-        protected override void OnPaintBackground(PaintEventArgs e)
-        {
-            // Pinta el fondo del contenedor para que las esquinas se vean redondeadas
-            Color fondo = Parent != null ? Parent.BackColor : SystemColors.Control;
-            if (fondo == Color.Transparent) fondo = Color.FromArgb(244, 246, 248);
-            e.Graphics.Clear(fondo);
-        }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-            var rect = new Rectangle(0, 0, Width - 1, Height - 1);
-            using (var path = CrearRuta(rect, Radius))
-            using (var relleno = new SolidBrush(Color.White))
-            using (var borde = new Pen(Color.FromArgb(229, 231, 235)))
+            public CardPanel()
             {
-                e.Graphics.FillPath(relleno, path);
-
-                if (Accent != Color.Empty)
-                {
-                    e.Graphics.SetClip(path);
-                    using (var b = new SolidBrush(Accent))
-                        e.Graphics.FillRectangle(b, 0, 0, 6, Height);
-                    e.Graphics.ResetClip();
-                }
-
-                e.Graphics.DrawPath(borde, path);
+                DoubleBuffered = true;
+                ResizeRedraw = true;
+                BackColor = Color.White;
             }
-        }
 
-        private static GraphicsPath CrearRuta(Rectangle r, int radio)
-        {
-            int d = radio * 2;
-            var p = new GraphicsPath();
-            p.AddArc(r.X, r.Y, d, d, 180, 90);
-            p.AddArc(r.Right - d, r.Y, d, d, 270, 90);
-            p.AddArc(r.Right - d, r.Bottom - d, d, d, 0, 90);
-            p.AddArc(r.X, r.Bottom - d, d, d, 90, 90);
-            p.CloseFigure();
-            return p;
+            protected override void OnPaintBackground(PaintEventArgs e)
+            {
+                // Pinta el fondo del contenedor para que las esquinas se vean redondeadas
+                Color fondo = Parent != null ? Parent.BackColor : SystemColors.Control;
+                if (fondo == Color.Transparent) fondo = Color.FromArgb(244, 246, 248);
+                e.Graphics.Clear(fondo);
+            }
+
+            protected override void OnPaint(PaintEventArgs e)
+            {
+                base.OnPaint(e);
+                e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                var rect = new Rectangle(0, 0, Width - 1, Height - 1);
+                using (var path = CrearRuta(rect, Radius))
+                using (var relleno = new SolidBrush(Color.White))
+                using (var borde = new Pen(Color.FromArgb(229, 231, 235)))
+                {
+                    e.Graphics.FillPath(relleno, path);
+
+                    if (Accent != Color.Empty)
+                    {
+                        e.Graphics.SetClip(path);
+                        using (var b = new SolidBrush(Accent))
+                            e.Graphics.FillRectangle(b, 0, 0, 6, Height);
+                        e.Graphics.ResetClip();
+                    }
+
+                    e.Graphics.DrawPath(borde, path);
+                }
+            }
+
+            private static GraphicsPath CrearRuta(Rectangle r, int radio)
+            {
+                int d = radio * 2;
+                var p = new GraphicsPath();
+                p.AddArc(r.X, r.Y, d, d, 180, 90);
+                p.AddArc(r.Right - d, r.Y, d, d, 270, 90);
+                p.AddArc(r.Right - d, r.Bottom - d, d, d, 0, 90);
+                p.AddArc(r.X, r.Bottom - d, d, d, 90, 90);
+                p.CloseFigure();
+                return p;
+            }
+
         }
     }
 }

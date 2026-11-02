@@ -9,6 +9,7 @@ namespace ModuloEntidades
         public int IdUsuario { get; set; }// Identificador único del usuario
         public string DNI { get; set; }// Documento Nacional de Identidad del usuario
 
+        public string Telefono { get; set; }// Número de teléfono del usuario
         public string Nombre1 { get; set; }// Nombre del usuario
         public string Nombre2 { get; set; }// Segundo nombre del usuario
         public string Apellido1 { get; set; }// Primer apellido del usuario
