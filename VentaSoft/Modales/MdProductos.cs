@@ -81,15 +81,6 @@ namespace Main.Modales
             Close();
         }
 
-        private void btnClearSearch_Click(object sender, EventArgs e)
-        {
-            txtSearchPr.Clear();
-
-            foreach (DataGridViewRow row in dgvProducto.Rows)
-            {
-                row.Visible = true;
-            }
-        }
         // comentarios de textos dependiendo lo que seleccione el usuario
         private void cbSearchPr_TabIndexChanged(object sender, EventArgs e)
         {
@@ -138,6 +129,16 @@ namespace Main.Modales
         private void txtSearchPr_TextChanged(object sender, EventArgs e)
         {
             AplicarFiltro();
+        }
+
+        private void lblSubtitulo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

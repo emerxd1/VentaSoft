@@ -34,7 +34,6 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             cbSearchPr = new ComboBox();
             label13 = new Label();
-            btnClearSearch = new Button();
             txtSearchPr = new TextBox();
             dgvProducto = new DataGridView();
             Id = new DataGridViewTextBoxColumn();
@@ -74,28 +73,6 @@
             label13.TabIndex = 54;
             label13.Text = "Buscar por*";
             // 
-            // btnClearSearch
-            // 
-            btnClearSearch.BackColor = Color.Transparent;
-            btnClearSearch.Cursor = Cursors.Hand;
-            btnClearSearch.FlatAppearance.BorderSize = 0;
-            btnClearSearch.FlatAppearance.MouseDownBackColor = Color.Teal;
-            btnClearSearch.FlatAppearance.MouseOverBackColor = Color.Teal;
-            btnClearSearch.FlatStyle = FlatStyle.Flat;
-            btnClearSearch.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnClearSearch.ForeColor = Color.White;
-            btnClearSearch.Image = Properties.Resources.recargar;
-            btnClearSearch.ImageAlign = ContentAlignment.MiddleRight;
-            btnClearSearch.Location = new Point(154, 64);
-            btnClearSearch.Name = "btnClearSearch";
-            btnClearSearch.Size = new Size(94, 32);
-            btnClearSearch.TabIndex = 58;
-            btnClearSearch.Text = "Limpiar";
-            btnClearSearch.TextAlign = ContentAlignment.MiddleLeft;
-            btnClearSearch.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnClearSearch.UseVisualStyleBackColor = false;
-            btnClearSearch.Click += btnClearSearch_Click;
-            // 
             // txtSearchPr
             // 
             txtSearchPr.BorderStyle = BorderStyle.FixedSingle;
@@ -104,7 +81,7 @@
             txtSearchPr.Location = new Point(0, 98);
             txtSearchPr.Name = "txtSearchPr";
             txtSearchPr.PlaceholderText = "Ecribe para Buscar";
-            txtSearchPr.Size = new Size(255, 29);
+            txtSearchPr.Size = new Size(287, 29);
             txtSearchPr.TabIndex = 56;
             txtSearchPr.Tag = "";
             txtSearchPr.TextChanged += txtSearchPr_TextChanged;
@@ -154,8 +131,9 @@
             dgvProducto.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
             dgvProducto.RowTemplate.Height = 36;
             dgvProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProducto.Size = new Size(538, 330);
+            dgvProducto.Size = new Size(571, 330);
             dgvProducto.TabIndex = 59;
+            dgvProducto.CellContentClick += dgvProducto_CellContentClick;
             dgvProducto.CellDoubleClick += dgvProducto_CellDoubleClick;
             // 
             // Id
@@ -222,17 +200,17 @@
             lblSubtitulo.TabIndex = 78;
             lblSubtitulo.Text = "Has doble click en cualquier espacio seleccionado";
             lblSubtitulo.TextAlign = ContentAlignment.MiddleLeft;
+            lblSubtitulo.Click += lblSubtitulo_Click;
             // 
             // MdProductos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(15, 118, 110);
-            ClientSize = new Size(539, 491);
+            ClientSize = new Size(571, 491);
             Controls.Add(lblSubtitulo);
             Controls.Add(bigLabel1);
             Controls.Add(dgvProducto);
-            Controls.Add(btnClearSearch);
             Controls.Add(txtSearchPr);
             Controls.Add(cbSearchPr);
             Controls.Add(label13);
@@ -248,7 +226,6 @@
         #endregion
         private ComboBox cbSearchPr;
         private Label label13;
-        private Button btnClearSearch;
         private TextBox txtSearchPr;
         private DataGridView dgvProducto;
         private DataGridViewTextBoxColumn Id;

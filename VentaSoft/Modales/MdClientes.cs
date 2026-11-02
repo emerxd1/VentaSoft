@@ -81,16 +81,6 @@ namespace Main.Modales
             }
         }
 
-        private void btnClearSearch_Click(object sender, EventArgs e)
-        {
-            txtSearch.Clear();
-
-            foreach (DataGridViewRow row in dgvClients.Rows)
-            {
-                row.Visible = true;
-            }
-        }
-
         // comentarios de textos dependiendo lo que seleccione el usuario
         private void cbSearch_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -135,6 +125,11 @@ namespace Main.Modales
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             AplicarFiltro();
+        }
+
+        private void dgvClients_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
