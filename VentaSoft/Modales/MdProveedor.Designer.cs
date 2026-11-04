@@ -37,11 +37,11 @@
             cbSearchProve = new ComboBox();
             label13 = new Label();
             DvgMduser = new DataGridView();
+            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
+            lblSubtitulo = new Label();
             IdProveedor = new DataGridViewTextBoxColumn();
             RUC = new DataGridViewTextBoxColumn();
             RazonSocial = new DataGridViewTextBoxColumn();
-            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
-            lblSubtitulo = new Label();
             ((System.ComponentModel.ISupportInitialize)DvgMduser).BeginInit();
             SuspendLayout();
             // 
@@ -55,7 +55,7 @@
             txtSearchProve.Margin = new Padding(3, 2, 3, 2);
             txtSearchProve.Name = "txtSearchProve";
             txtSearchProve.PlaceholderText = "Ecribe para Buscar";
-            txtSearchProve.Size = new Size(287, 29);
+            txtSearchProve.Size = new Size(312, 29);
             txtSearchProve.TabIndex = 61;
             txtSearchProve.TextChanged += txtSearchProve_TextChanged;
             // 
@@ -70,7 +70,7 @@
             cbSearchProve.Location = new Point(1, 62);
             cbSearchProve.Margin = new Padding(3, 2, 3, 2);
             cbSearchProve.Name = "cbSearchProve";
-            cbSearchProve.Size = new Size(148, 28);
+            cbSearchProve.Size = new Size(205, 28);
             cbSearchProve.TabIndex = 63;
             cbSearchProve.SelectedIndexChanged += cbSearchProve_TabIndexChanged;
             cbSearchProve.TabIndexChanged += cbSearchProve_TabIndexChanged;
@@ -142,29 +142,10 @@
             DvgMduser.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
             DvgMduser.RowTemplate.Height = 36;
             DvgMduser.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DvgMduser.Size = new Size(571, 306);
+            DvgMduser.Size = new Size(797, 472);
             DvgMduser.TabIndex = 66;
             DvgMduser.CellContentClick += DvgMduser_CellContentClick;
             DvgMduser.CellDoubleClick += DvgMduser_CellDoubleClick;
-            // 
-            // IdProveedor
-            // 
-            IdProveedor.HeaderText = "Id";
-            IdProveedor.Name = "IdProveedor";
-            IdProveedor.ReadOnly = true;
-            IdProveedor.Visible = false;
-            // 
-            // RUC
-            // 
-            RUC.HeaderText = "RUC";
-            RUC.Name = "RUC";
-            RUC.ReadOnly = true;
-            // 
-            // RazonSocial
-            // 
-            RazonSocial.HeaderText = "Razon Social";
-            RazonSocial.Name = "RazonSocial";
-            RazonSocial.ReadOnly = true;
             // 
             // bigLabel1
             // 
@@ -180,21 +161,42 @@
             // lblSubtitulo
             // 
             lblSubtitulo.BackColor = Color.Transparent;
-            lblSubtitulo.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSubtitulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblSubtitulo.ForeColor = Color.White;
-            lblSubtitulo.Location = new Point(0, 434);
+            lblSubtitulo.Location = new Point(0, 600);
             lblSubtitulo.Name = "lblSubtitulo";
-            lblSubtitulo.Size = new Size(569, 20);
+            lblSubtitulo.Size = new Size(569, 30);
             lblSubtitulo.TabIndex = 79;
             lblSubtitulo.Text = "Has doble click sobre el RUC o Razon Social";
             lblSubtitulo.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // IdProveedor
+            // 
+            IdProveedor.HeaderText = "Id";
+            IdProveedor.Name = "IdProveedor";
+            IdProveedor.ReadOnly = true;
+            IdProveedor.Visible = false;
+            // 
+            // RUC
+            // 
+            RUC.FillWeight = 40.60914F;
+            RUC.HeaderText = "RUC";
+            RUC.Name = "RUC";
+            RUC.ReadOnly = true;
+            // 
+            // RazonSocial
+            // 
+            RazonSocial.FillWeight = 159.390869F;
+            RazonSocial.HeaderText = "Razon Social";
+            RazonSocial.Name = "RazonSocial";
+            RazonSocial.ReadOnly = true;
             // 
             // MdProveedor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(15, 118, 110);
-            ClientSize = new Size(573, 461);
+            ClientSize = new Size(798, 630);
             Controls.Add(lblSubtitulo);
             Controls.Add(bigLabel1);
             Controls.Add(DvgMduser);
@@ -216,10 +218,10 @@
         private ComboBox cbSearchProve;
         private Label label13;
         private DataGridView DvgMduser;
+        private ReaLTaiizor.Controls.BigLabel bigLabel1;
+        private Label lblSubtitulo;
         private DataGridViewTextBoxColumn IdProveedor;
         private DataGridViewTextBoxColumn RUC;
         private DataGridViewTextBoxColumn RazonSocial;
-        private ReaLTaiizor.Controls.BigLabel bigLabel1;
-        private Label lblSubtitulo;
     }
 }

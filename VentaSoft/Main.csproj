@@ -11,27 +11,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Plantilla\PlantillaBoleta.html" />
 		<None Remove="Plantilla\PlantillaCompra.html" />
-		<None Remove="Plantilla\PlantillaFactura.html" />
-		<None Remove="Plantilla\PlantillaVentaBoleta.html" />
-		<None Remove="Plantilla\PlantillaVentaFactura.html" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="Plantilla\PlantillaBoleta.html">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
 		<Content Include="Plantilla\PlantillaCompra.html">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="Plantilla\PlantillaFactura.html">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="Plantilla\PlantillaVentaBoleta.html">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="Plantilla\PlantillaVentaFactura.html">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
@@ -74,6 +58,18 @@
 
 	<ItemGroup>
 		<None Update="Plantilla\logo.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Plantilla\PlantillaBoleta.html">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Plantilla\PlantillaFactura.html">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Plantilla\PlantillaVentaBoleta.html">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Plantilla\PlantillaVentaFactura.html">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Update="Properties\Settings.settings">

@@ -1,4 +1,5 @@
 ﻿using Data;
+using iText.IO.Util;
 using Main.Utilities;
 using ModuloEntidades;
 using Store;
@@ -78,7 +79,7 @@ namespace Main.Modales
             if (cbSearchProve.SelectedItem == null) return;
 
             string columnFiltro = Convert.ToString(((OptionsComboBox)cbSearchProve.SelectedItem).valor);
-            string texto = txtSearchProve.Text.Trim().ToUpper();
+            string texto = TextoUtil.Normalizar(txtSearchProve.Text);
 
             DvgMduser.CurrentCell = null; // evita el error al ocultar la fila actual
 
@@ -87,7 +88,7 @@ namespace Main.Modales
                 if (row.IsNewRow) continue;
 
                 string valor = row.Cells[columnFiltro].Value?.ToString() ?? "";
-                row.Visible = valor.Trim().ToUpper().Contains(texto);
+                row.Visible = TextoUtil.Normalizar(valor).Contains(texto);
             }
         }
 
