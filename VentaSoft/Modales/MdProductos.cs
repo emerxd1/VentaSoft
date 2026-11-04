@@ -114,7 +114,7 @@ namespace Main.Modales
             if (cbSearchPr.SelectedItem == null) return;
 
             string columnFiltro = Convert.ToString(((OptionsComboBox)cbSearchPr.SelectedItem).valor);
-            string texto = txtSearchPr.Text.Trim().ToUpper();
+            string texto = TextoUtil.Normalizar(txtSearchPr.Text);
 
             dgvProducto.CurrentCell = null;
 
@@ -123,7 +123,7 @@ namespace Main.Modales
                 if (row.IsNewRow) continue;
 
                 string valor = row.Cells[columnFiltro].Value?.ToString() ?? "";
-                row.Visible = valor.Trim().ToUpper().Contains(texto);
+                row.Visible = TextoUtil.Normalizar(valor).Contains(texto);
             }
         }
         private void txtSearchPr_TextChanged(object sender, EventArgs e)

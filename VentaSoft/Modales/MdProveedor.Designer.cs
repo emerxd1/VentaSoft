@@ -55,7 +55,7 @@
             txtSearchProve.Margin = new Padding(3, 2, 3, 2);
             txtSearchProve.Name = "txtSearchProve";
             txtSearchProve.PlaceholderText = "Ecribe para Buscar";
-            txtSearchProve.Size = new Size(287, 29);
+            txtSearchProve.Size = new Size(312, 29);
             txtSearchProve.TabIndex = 61;
             txtSearchProve.TextChanged += txtSearchProve_TextChanged;
             // 
@@ -70,7 +70,7 @@
             cbSearchProve.Location = new Point(1, 62);
             cbSearchProve.Margin = new Padding(3, 2, 3, 2);
             cbSearchProve.Name = "cbSearchProve";
-            cbSearchProve.Size = new Size(148, 28);
+            cbSearchProve.Size = new Size(205, 28);
             cbSearchProve.TabIndex = 63;
             cbSearchProve.SelectedIndexChanged += cbSearchProve_TabIndexChanged;
             cbSearchProve.TabIndexChanged += cbSearchProve_TabIndexChanged;
@@ -142,7 +142,7 @@
             DvgMduser.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
             DvgMduser.RowTemplate.Height = 36;
             DvgMduser.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DvgMduser.Size = new Size(571, 306);
+            DvgMduser.Size = new Size(933, 472);
             DvgMduser.TabIndex = 66;
             DvgMduser.CellContentClick += DvgMduser_CellContentClick;
             DvgMduser.CellDoubleClick += DvgMduser_CellDoubleClick;
@@ -180,11 +180,11 @@
             // lblSubtitulo
             // 
             lblSubtitulo.BackColor = Color.Transparent;
-            lblSubtitulo.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSubtitulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblSubtitulo.ForeColor = Color.White;
-            lblSubtitulo.Location = new Point(0, 434);
+            lblSubtitulo.Location = new Point(0, 600);
             lblSubtitulo.Name = "lblSubtitulo";
-            lblSubtitulo.Size = new Size(569, 20);
+            lblSubtitulo.Size = new Size(569, 30);
             lblSubtitulo.TabIndex = 79;
             lblSubtitulo.Text = "Has doble click sobre el RUC o Razon Social";
             lblSubtitulo.TextAlign = ContentAlignment.MiddleLeft;
@@ -194,7 +194,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(15, 118, 110);
-            ClientSize = new Size(573, 461);
+            ClientSize = new Size(933, 630);
             Controls.Add(lblSubtitulo);
             Controls.Add(bigLabel1);
             Controls.Add(DvgMduser);

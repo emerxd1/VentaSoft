@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             txtSearch = new TextBox();
             cbSearchClientes = new ComboBox();
             label13 = new Label();
             dgvClients = new DataGridView();
-            lblSubtitulo = new Label();
             IdCliente = new DataGridViewTextBoxColumn();
             DNI = new DataGridViewTextBoxColumn();
             Cliente = new DataGridViewTextBoxColumn();
+            lblSubtitulo = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvClients).BeginInit();
             SuspendLayout();
             // 
@@ -65,7 +65,7 @@
             txtSearch.Location = new Point(-2, 99);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Ecribe para Buscar";
-            txtSearch.Size = new Size(287, 29);
+            txtSearch.Size = new Size(312, 29);
             txtSearch.TabIndex = 73;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
@@ -78,7 +78,7 @@
             cbSearchClientes.FormattingEnabled = true;
             cbSearchClientes.Location = new Point(0, 68);
             cbSearchClientes.Name = "cbSearchClientes";
-            cbSearchClientes.Size = new Size(148, 28);
+            cbSearchClientes.Size = new Size(205, 28);
             cbSearchClientes.TabIndex = 72;
             cbSearchClientes.SelectedIndexChanged += cbSearch_SelectedIndexChanged;
             // 
@@ -97,68 +97,56 @@
             // dgvClients
             // 
             dgvClients.AllowUserToAddRows = false;
-            dataGridViewCellStyle6.BackColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(223, 243, 239);
-            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
-            dgvClients.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(223, 243, 239);
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dgvClients.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvClients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClients.BackgroundColor = Color.White;
             dgvClients.BorderStyle = BorderStyle.None;
             dgvClients.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(246, 248, 248);
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = Color.FromArgb(70, 86, 79);
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(246, 248, 248);
-            dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(70, 86, 79);
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgvClients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(246, 248, 248);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(70, 86, 79);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(246, 248, 248);
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(70, 86, 79);
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvClients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClients.Columns.AddRange(new DataGridViewColumn[] { IdCliente, DNI, Cliente });
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.White;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle8.ForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(223, 243, 239);
-            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(16, 30, 24);
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dgvClients.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(223, 243, 239);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(16, 30, 24);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvClients.DefaultCellStyle = dataGridViewCellStyle3;
             dgvClients.EnableHeadersVisualStyles = false;
             dgvClients.GridColor = Color.White;
             dgvClients.Location = new Point(-2, 131);
             dgvClients.Name = "dgvClients";
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = Color.White;
-            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle9.ForeColor = Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(223, 243, 239);
-            dataGridViewCellStyle9.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            dgvClients.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(223, 243, 239);
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvClients.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvClients.RowHeadersVisible = false;
-            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(223, 243, 239);
-            dataGridViewCellStyle10.SelectionForeColor = Color.Black;
-            dgvClients.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(223, 243, 239);
+            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
+            dgvClients.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvClients.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.FromArgb(223, 243, 239);
             dgvClients.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgvClients.RowTemplate.Height = 36;
             dgvClients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvClients.Size = new Size(569, 294);
+            dgvClients.Size = new Size(933, 456);
             dgvClients.TabIndex = 76;
             dgvClients.CellContentClick += dgvClients_CellContentClick;
             dgvClients.CellDoubleClick += dgvClients_CellDoubleClick;
-            // 
-            // lblSubtitulo
-            // 
-            lblSubtitulo.BackColor = Color.Transparent;
-            lblSubtitulo.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSubtitulo.ForeColor = Color.White;
-            lblSubtitulo.Location = new Point(-2, 426);
-            lblSubtitulo.Name = "lblSubtitulo";
-            lblSubtitulo.Size = new Size(569, 20);
-            lblSubtitulo.TabIndex = 77;
-            lblSubtitulo.Text = "Has doble click sobre el DNI o CLIENTE";
-            lblSubtitulo.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // IdCliente
             // 
@@ -179,12 +167,24 @@
             Cliente.MinimumWidth = 10;
             Cliente.Name = "Cliente";
             // 
+            // lblSubtitulo
+            // 
+            lblSubtitulo.BackColor = Color.Transparent;
+            lblSubtitulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSubtitulo.ForeColor = Color.White;
+            lblSubtitulo.Location = new Point(-2, 590);
+            lblSubtitulo.Name = "lblSubtitulo";
+            lblSubtitulo.Size = new Size(569, 31);
+            lblSubtitulo.TabIndex = 77;
+            lblSubtitulo.Text = "Has doble click sobre el DNI o CLIENTE";
+            lblSubtitulo.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // MdClientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(15, 118, 110);
-            ClientSize = new Size(570, 451);
+            ClientSize = new Size(933, 630);
             Controls.Add(lblSubtitulo);
             Controls.Add(dgvClients);
             Controls.Add(txtSearch);
