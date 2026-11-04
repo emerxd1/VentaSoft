@@ -506,9 +506,9 @@
             Proveedores.ForeColor = Color.FromArgb(57, 79, 71);
             Proveedores.Location = new Point(28, 9);
             Proveedores.Name = "Proveedores";
-            Proveedores.Size = new Size(113, 30);
+            Proveedores.Size = new Size(134, 30);
             Proveedores.TabIndex = 70;
-            Proveedores.Text = "Productos";
+            Proveedores.Text = "Proveedores";
             // 
             // uiPanel1
             // 
