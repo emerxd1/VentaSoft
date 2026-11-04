@@ -38,10 +38,10 @@
             cbSearchClientes = new ComboBox();
             label13 = new Label();
             dgvClients = new DataGridView();
+            lblSubtitulo = new Label();
             IdCliente = new DataGridViewTextBoxColumn();
             DNI = new DataGridViewTextBoxColumn();
             Cliente = new DataGridViewTextBoxColumn();
-            lblSubtitulo = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvClients).BeginInit();
             SuspendLayout();
             // 
@@ -125,7 +125,7 @@
             dgvClients.DefaultCellStyle = dataGridViewCellStyle3;
             dgvClients.EnableHeadersVisualStyles = false;
             dgvClients.GridColor = Color.White;
-            dgvClients.Location = new Point(-2, 131);
+            dgvClients.Location = new Point(-1, 131);
             dgvClients.Name = "dgvClients";
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.White;
@@ -143,29 +143,10 @@
             dgvClients.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgvClients.RowTemplate.Height = 36;
             dgvClients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvClients.Size = new Size(933, 456);
+            dgvClients.Size = new Size(880, 456);
             dgvClients.TabIndex = 76;
             dgvClients.CellContentClick += dgvClients_CellContentClick;
             dgvClients.CellDoubleClick += dgvClients_CellDoubleClick;
-            // 
-            // IdCliente
-            // 
-            IdCliente.HeaderText = "IdCliente";
-            IdCliente.MinimumWidth = 10;
-            IdCliente.Name = "IdCliente";
-            IdCliente.Visible = false;
-            // 
-            // DNI
-            // 
-            DNI.HeaderText = "DNI";
-            DNI.MinimumWidth = 10;
-            DNI.Name = "DNI";
-            // 
-            // Cliente
-            // 
-            Cliente.HeaderText = "Cliente";
-            Cliente.MinimumWidth = 10;
-            Cliente.Name = "Cliente";
             // 
             // lblSubtitulo
             // 
@@ -179,12 +160,33 @@
             lblSubtitulo.Text = "Has doble click sobre el DNI o CLIENTE";
             lblSubtitulo.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // IdCliente
+            // 
+            IdCliente.HeaderText = "IdCliente";
+            IdCliente.MinimumWidth = 10;
+            IdCliente.Name = "IdCliente";
+            IdCliente.Visible = false;
+            // 
+            // DNI
+            // 
+            DNI.FillWeight = 45.68528F;
+            DNI.HeaderText = "DNI";
+            DNI.MinimumWidth = 10;
+            DNI.Name = "DNI";
+            // 
+            // Cliente
+            // 
+            Cliente.FillWeight = 154.314728F;
+            Cliente.HeaderText = "Cliente";
+            Cliente.MinimumWidth = 10;
+            Cliente.Name = "Cliente";
+            // 
             // MdClientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(15, 118, 110);
-            ClientSize = new Size(933, 630);
+            ClientSize = new Size(879, 630);
             Controls.Add(lblSubtitulo);
             Controls.Add(dgvClients);
             Controls.Add(txtSearch);
