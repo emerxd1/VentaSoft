@@ -3628,5 +3628,11 @@ WHERE Correo IS NOT NULL;
 --       = LOWER(LTRIM(RTRIM(p.Nombre)))
 --);
 
+SELECT p.IdProducto, p.Codigo, p.Nombre, p.IdCategoria, p.Stock, p.PrecioCompra, p.PrecioVenta
+FROM Producto p
+ORDER BY p.IdCategoria, p.Nombre;
 
-
+        SELECT Nombre AS Producto, Stock, StockMinimo AS [Mínimo]
+        FROM Producto
+        WHERE Estado = 1 AND Stock <= StockMinimo
+        ORDER BY (Stock * 1.0 / NULLIF(StockMinimo, 0)), Nombre;

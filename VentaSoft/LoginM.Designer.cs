@@ -150,6 +150,7 @@
             linkLabel1.TabIndex = 25;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "¿Olvidaste tu contraseña?";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // label5
             // 
@@ -202,6 +203,7 @@
             textBox_Password.ButtonStyleInherited = false;
             textBox_Password.ButtonSymbol = 61550;
             textBox_Password.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox_Password.ImeMode = ImeMode.Disable;
             textBox_Password.Location = new Point(430, 263);
             textBox_Password.Margin = new Padding(4, 5, 4, 5);
             textBox_Password.MinimumSize = new Size(1, 16);
