@@ -107,7 +107,7 @@ namespace Main.Modales
             if (cbSearchClientes.SelectedItem == null) return;
 
             string columnFiltro = Convert.ToString(((OptionsComboBox)cbSearchClientes.SelectedItem).valor);
-            string texto = txtSearch.Text.Trim().ToUpper();
+            string texto = TextoUtil.Normalizar(txtSearch.Text);
 
             dgvClients.CurrentCell = null; //evita el error al ocultar la fila actual
 
@@ -116,7 +116,7 @@ namespace Main.Modales
                 if (row.IsNewRow) continue;
 
                 string valor = row.Cells[columnFiltro].Value?.ToString() ?? "";
-                row.Visible = valor.Trim().ToUpper().Contains(texto);
+                row.Visible = TextoUtil.Normalizar(valor).Contains(texto);
             }
         }
 

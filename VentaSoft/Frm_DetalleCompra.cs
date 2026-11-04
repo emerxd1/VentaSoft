@@ -17,10 +17,12 @@ namespace Main
     public partial class Frm_DetalleCompra : Form
     {
         // Datos fijos del negocio (editar aquí)
+        private const string NombreReal = "Pulpería Oasis de Bendición";
         private const string NombreNegocio = "VentaSoft";
-        private const string DocNegocio = "000-000000-0000X";
-        private const string DirecNegocio = "Managua, Nicaragua, del barrio villa nueva 3km.S";
-        private const string TelNegocio = "8888-8888";
+        private const string DocNegocio = "J0310000087654";
+        private const string DirecNegocio = "4MJ7+G5, Cd. Sandino";
+        private const string TelNegocio = "7522-8499";
+
 
         // Logo: se puede cambiar solo cambiando el nombre / ancho
         private const string ArchivoLogo = "logo.png";
@@ -123,8 +125,13 @@ namespace Main
 
             // Reemplazos simples (sin el logo todavía, para no copiar el base64 en cada Replace)
             html = html.Replace("@nombrenegocio", NombreNegocio)
+                
+                
+                       .Replace("@nombrereal", NombreReal) // ral name
                        .Replace("@docnegocio", DocNegocio)
                        .Replace("@direcnegocio", DirecNegocio)
+                       .Replace("@telnegocio", TelNegocio) // teléfono solo la boleta lo usa
+                       .Replace("@nombrereal", NombreReal) // ral name
                        .Replace("@telnegocio", TelNegocio) // teléfono solo la boleta lo usa
                        .Replace("@tipodocumento", txtTipodedocumentoo.Text)
                        .Replace("@numerodocumento", txtnumerodocumentoo.Text)

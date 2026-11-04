@@ -136,13 +136,16 @@ namespace Main
             }
 
             //editar el documento del pdf
+            string nombreReal = "Pulpería Oasis de Bendición";
             string nombreNegocio = "VentaSoft";
-            string docNegocio = "000-000000-0000X";
-            string direcNegocio = "Managua, Nicaragua, del barrio villa nueva 3km.S"; //la direccion
-            string telNegocio = "8888-8888"; // telefono del negocio
+            string docNegocio = "J0310000087654";
+            string direcNegocio = "4MJ7+G5, Cd. Sandino"; //la direccion
+            string telNegocio = "7522-8499"; // telefono del negocio
 
             //elige la plantilla ven segun el tipo boleta o fact
             bool esFactura = string.Equals(txtTipodedocumentoo.Text.Trim(), "Factura", StringComparison.OrdinalIgnoreCase);
+
+
             string archivoPlantilla = esFactura ? "PlantillaVentaFactura.html" : "PlantillaVentaBoleta.html";
             string rutaPlantilla = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plantilla", archivoPlantilla);
 
@@ -174,6 +177,7 @@ namespace Main
                 .Where(s => !string.IsNullOrWhiteSpace(s)));
 
             html = html.Replace("@nombrenegocio", nombreNegocio);
+            html = html.Replace("@nombrereal", nombreReal); // nombre real que va arriba del logo
             html = html.Replace("@docnegocio", docNegocio);
             html = html.Replace("@direcnegocio", direcNegocio);
             html = html.Replace("@telnegocio", telNegocio);

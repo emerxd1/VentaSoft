@@ -3636,3 +3636,80 @@ ORDER BY p.IdCategoria, p.Nombre;
         FROM Producto
         WHERE Estado = 1 AND Stock <= StockMinimo
         ORDER BY (Stock * 1.0 / NULLIF(StockMinimo, 0)), Nombre;
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--SELECT name FROM sys.parameters WHERE object_id = OBJECT_ID('SP_EDITUSER') ORDER BY parameter_id;
+--SELECT COL_LENGTH('Usuario', 'Telefono') AS ExisteTelefono;
+
+
+
+
+--CREATE OR ALTER PROC SP_EDITUSER
+--(
+--    @IdUsuario int,
+--    @DNI VARCHAR(30),
+--    @Nombre1 VARCHAR(50),
+--    @Nombre2 VARCHAR(50),
+--    @Apellido1 VARCHAR(50),
+--    @Apellido2 VARCHAR(50),
+--    @Correo VARCHAR(100),
+--    @Clave VARCHAR(20),
+--    @IdRol int,
+--    @Estado bit,
+--    @Telefono VARCHAR(20) = NULL,
+--    @Error bit OUTPUT,
+--    @Mensaje VARCHAR(500) OUTPUT
+--)
+--AS
+--BEGIN
+--    SET @Error = 0
+--    SET @Mensaje = ''
+
+--    IF NOT EXISTS (SELECT 1 FROM Usuario WHERE DNI = @DNI AND IdUsuario <> @IdUsuario)
+--    BEGIN
+--        IF EXISTS (
+--            SELECT 1 FROM Usuario
+--            WHERE IdUsuario = @IdUsuario
+--              AND (
+--                   DNI <> @DNI OR
+--                   Nombre1 <> @Nombre1 OR
+--                   Nombre2 <> @Nombre2 OR
+--                   Apellido1 <> @Apellido1 OR
+--                   Apellido2 <> @Apellido2 OR
+--                   Correo <> @Correo OR
+--                   Clave <> @Clave OR
+--                   IdRol <> @IdRol OR
+--                   Estado <> @Estado OR
+--                   ISNULL(Telefono, '') <> ISNULL(@Telefono, '')
+--              )
+--        )
+--        BEGIN
+--            UPDATE Usuario
+--            SET DNI = @DNI, Nombre1 = @Nombre1, Nombre2 = @Nombre2,
+--                Apellido1 = @Apellido1, Apellido2 = @Apellido2,
+--                Correo = @Correo, Clave = @Clave, IdRol = @IdRol,
+--                Estado = @Estado, Telefono = @Telefono
+--            WHERE IdUsuario = @IdUsuario;
+
+--            SET @Error = 1
+--            SET @Mensaje = 'Usuario actualizado correctamente.'
+--        END
+--        ELSE
+--            SET @Mensaje = 'No se registraron cambios en el usuario.'
+--    END
+--    ELSE
+--        SET @Mensaje = 'El valor ingresado ya se encuentra asignado a otro usuario. No se permiten valores duplicados.'
+--END
+--GO
+
+
+
+--SELECT name FROM sys.parameters WHERE object_id = OBJECT_ID('SP_EDITUSER') ORDER BY parameter_id;
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

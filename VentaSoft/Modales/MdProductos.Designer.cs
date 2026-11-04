@@ -56,7 +56,7 @@
             cbSearchPr.FormattingEnabled = true;
             cbSearchPr.Location = new Point(0, 68);
             cbSearchPr.Name = "cbSearchPr";
-            cbSearchPr.Size = new Size(148, 28);
+            cbSearchPr.Size = new Size(205, 28);
             cbSearchPr.TabIndex = 55;
             cbSearchPr.SelectedIndexChanged += cbSearchPr_TabIndexChanged;
             cbSearchPr.TabIndexChanged += cbSearchPr_TabIndexChanged;
@@ -81,7 +81,7 @@
             txtSearchPr.Location = new Point(0, 98);
             txtSearchPr.Name = "txtSearchPr";
             txtSearchPr.PlaceholderText = "Ecribe para Buscar";
-            txtSearchPr.Size = new Size(287, 29);
+            txtSearchPr.Size = new Size(312, 29);
             txtSearchPr.TabIndex = 56;
             txtSearchPr.Tag = "";
             txtSearchPr.TextChanged += txtSearchPr_TextChanged;
@@ -131,7 +131,7 @@
             dgvProducto.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
             dgvProducto.RowTemplate.Height = 36;
             dgvProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProducto.Size = new Size(571, 330);
+            dgvProducto.Size = new Size(1177, 536);
             dgvProducto.TabIndex = 59;
             dgvProducto.CellContentClick += dgvProducto_CellContentClick;
             dgvProducto.CellDoubleClick += dgvProducto_CellDoubleClick;
@@ -144,18 +144,21 @@
             // 
             // Codigo
             // 
+            Codigo.FillWeight = 43.22908F;
             Codigo.HeaderText = "Codigo";
             Codigo.MinimumWidth = 10;
             Codigo.Name = "Codigo";
             // 
             // Nombre
             // 
+            Nombre.FillWeight = 191.288681F;
             Nombre.HeaderText = "Nombre";
             Nombre.MinimumWidth = 10;
             Nombre.Name = "Nombre";
             // 
             // Categoria
             // 
+            Categoria.FillWeight = 65.48223F;
             Categoria.HeaderText = "Categoria";
             Categoria.MinimumWidth = 10;
             Categoria.Name = "Categoria";
@@ -192,11 +195,11 @@
             // lblSubtitulo
             // 
             lblSubtitulo.BackColor = Color.Transparent;
-            lblSubtitulo.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSubtitulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblSubtitulo.ForeColor = Color.White;
-            lblSubtitulo.Location = new Point(0, 466);
+            lblSubtitulo.Location = new Point(0, 672);
             lblSubtitulo.Name = "lblSubtitulo";
-            lblSubtitulo.Size = new Size(569, 20);
+            lblSubtitulo.Size = new Size(575, 28);
             lblSubtitulo.TabIndex = 78;
             lblSubtitulo.Text = "Has doble click en cualquier espacio seleccionado";
             lblSubtitulo.TextAlign = ContentAlignment.MiddleLeft;
@@ -207,7 +210,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(15, 118, 110);
-            ClientSize = new Size(571, 491);
+            ClientSize = new Size(1177, 700);
             Controls.Add(lblSubtitulo);
             Controls.Add(bigLabel1);
             Controls.Add(dgvProducto);
@@ -228,6 +231,8 @@
         private Label label13;
         private TextBox txtSearchPr;
         private DataGridView dgvProducto;
+        private ReaLTaiizor.Controls.BigLabel bigLabel1;
+        private Label lblSubtitulo;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn Codigo;
         private DataGridViewTextBoxColumn Nombre;
@@ -235,7 +240,5 @@
         private DataGridViewTextBoxColumn Stock;
         private DataGridViewTextBoxColumn PrecioCompra;
         private DataGridViewTextBoxColumn PrecioVenta;
-        private ReaLTaiizor.Controls.BigLabel bigLabel1;
-        private Label lblSubtitulo;
     }
 }
