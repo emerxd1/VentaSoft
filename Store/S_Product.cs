@@ -61,8 +61,8 @@ namespace Store
                 errores += "La Descripción es obligatoria.\n";
             else if (!RegexDescripcionyname.IsMatch(oProducto.Descripcion.Trim()))
                 errores += "La Descripción solo debe contener letras, números y espacios.\n";
-            else if (oProducto.Nombre.Trim().Length > 30)
-                errores += "El Nombre no debe superar los 30 caracteres.\n";
+            else if (oProducto.Nombre.Trim().Length > 100)
+                errores += "El Nombre no debe superar los 100 caracteres.\n";
 
             // ---- Nombre (obligatorio) ----
             if (string.IsNullOrWhiteSpace(oProducto.Nombre))

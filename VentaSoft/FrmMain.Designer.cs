@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            AntdUI.HyperlinkLabel.LinkAppearance linkAppearance3 = new AntdUI.HyperlinkLabel.LinkAppearance();
-            AntdUI.HyperlinkLabel.LinkAppearance linkAppearance4 = new AntdUI.HyperlinkLabel.LinkAppearance();
+            AntdUI.HyperlinkLabel.LinkAppearance linkAppearance1 = new AntdUI.HyperlinkLabel.LinkAppearance();
+            AntdUI.HyperlinkLabel.LinkAppearance linkAppearance2 = new AntdUI.HyperlinkLabel.LinkAppearance();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             Header = new Panel();
             label2 = new Label();
@@ -192,7 +192,7 @@
             nightControlBox1.EnableMaximizeColor = Color.FromArgb(160, 160, 160);
             nightControlBox1.EnableMinimizeButton = true;
             nightControlBox1.EnableMinimizeColor = Color.FromArgb(160, 160, 160);
-            nightControlBox1.Location = new Point(808, 0);
+            nightControlBox1.Location = new Point(780, 0);
             nightControlBox1.MaximizeHoverColor = Color.FromArgb(15, 255, 255, 255);
             nightControlBox1.MaximizeHoverForeColor = Color.Black;
             nightControlBox1.MinimizeHoverColor = Color.FromArgb(15, 255, 255, 255);
@@ -778,11 +778,11 @@
             // 
             lblVentasoft.Font = new Font("Segoe UI Symbol", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblVentasoft.ForeColor = Color.White;
-            lblVentasoft.HoverStyle = linkAppearance3;
+            lblVentasoft.HoverStyle = linkAppearance1;
             lblVentasoft.Location = new Point(58, 9);
             lblVentasoft.Name = "lblVentasoft";
-            linkAppearance4.LinkStyle = FontStyle.Bold;
-            lblVentasoft.NormalStyle = linkAppearance4;
+            linkAppearance2.LinkStyle = FontStyle.Bold;
+            lblVentasoft.NormalStyle = linkAppearance2;
             lblVentasoft.Size = new Size(96, 23);
             lblVentasoft.TabIndex = 26;
             lblVentasoft.Text = "VentaSoft";
@@ -799,8 +799,8 @@
             // 
             // FrmMain
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
-            AutoScaleMode = AutoScaleMode.Dpi;
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1109, 630);
             Controls.Add(PanelContenedor);
             Controls.Add(Header);

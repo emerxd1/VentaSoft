@@ -27,7 +27,7 @@ namespace Data
 
 
 
-                    string query = "select IdUsuario,DNI,Nombre1,Nombre2,Correo,Clave,Estado from Usuario ";
+                    //string query = "select IdUsuario,DNI,Nombre1,Nombre2,Correo,Clave,Estado from Usuario ";
 
                     SqlCommand cm = new SqlCommand(queryPermisos.ToString(), oconnect);//Instancia de la clase SqlCommand para ejecutar la consulta a la base de datos
                     cm.Parameters.AddWithValue("@IdUsuario", IdUsuario);

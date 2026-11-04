@@ -164,5 +164,13 @@ namespace Main
         {
 
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            using (FrmRecoverPassword frmRecover = new FrmRecoverPassword())
+            {
+                frmRecover.ShowDialog(); // Bloquea la interacción con el Login hasta que se cierre esta ventana
+            }
+        }
     }
 }
