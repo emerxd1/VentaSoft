@@ -21,7 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AntdUI" Version="2.4.17" />
+		<PackageReference Include="AntdUI" Version="2.4.18" />
 		<PackageReference Include="ClosedXML" Version="0.105.1" />
 		<PackageReference Include="itext.pdfhtml" Version="6.3.4" />
 		<PackageReference Include="Krypton.Toolkit" Version="105.26.7.201" />

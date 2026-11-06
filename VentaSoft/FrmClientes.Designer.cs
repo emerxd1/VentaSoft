@@ -38,6 +38,18 @@
             label12 = new Label();
             uiPanel1 = new Sunny.UI.UIPanel();
             dgvClients = new ModernControls.ModernGrid();
+            btnSeleccion = new DataGridViewImageColumn();
+            IdCliente = new DataGridViewTextBoxColumn();
+            DNI = new DataGridViewTextBoxColumn();
+            Cliente = new DataGridViewTextBoxColumn();
+            Name1 = new DataGridViewTextBoxColumn();
+            Name2 = new DataGridViewTextBoxColumn();
+            LastName1 = new DataGridViewTextBoxColumn();
+            LastName2 = new DataGridViewTextBoxColumn();
+            Email = new DataGridViewTextBoxColumn();
+            NumTelefono = new DataGridViewTextBoxColumn();
+            EstadoValor = new DataGridViewTextBoxColumn();
+            Estado = new DataGridViewTextBoxColumn();
             txtSearch = new Sunny.UI.UITextBox();
             btnDelete = new Sunny.UI.UISymbolButton();
             btnUpdate = new Sunny.UI.UISymbolButton();
@@ -69,18 +81,9 @@
             label8 = new Label();
             bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
-            Estado = new DataGridViewTextBoxColumn();
-            EstadoValor = new DataGridViewTextBoxColumn();
-            NumTelefono = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
-            LastName2 = new DataGridViewTextBoxColumn();
-            LastName1 = new DataGridViewTextBoxColumn();
-            Name2 = new DataGridViewTextBoxColumn();
-            Name1 = new DataGridViewTextBoxColumn();
-            Cliente = new DataGridViewTextBoxColumn();
-            DNI = new DataGridViewTextBoxColumn();
-            IdCliente = new DataGridViewTextBoxColumn();
-            btnSeleccion = new DataGridViewImageColumn();
+            chip1 = new Sunny.UI.UIPanel();
+            label4 = new Label();
+            label3 = new Label();
             uiPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClients).BeginInit();
             PnlDetails.SuspendLayout();
@@ -209,6 +212,114 @@
             dgvClients.TabIndex = 83;
             dgvClients.CellClick += dgvClients_CellClick;
             // 
+            // btnSeleccion
+            // 
+            btnSeleccion.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            btnSeleccion.DefaultCellStyle = dataGridViewCellStyle3;
+            btnSeleccion.FillWeight = 117F;
+            btnSeleccion.HeaderText = "Cargar Datos";
+            btnSeleccion.Image = Properties.Resources.Check;
+            btnSeleccion.MinimumWidth = 117;
+            btnSeleccion.Name = "btnSeleccion";
+            btnSeleccion.ReadOnly = true;
+            btnSeleccion.Resizable = DataGridViewTriState.False;
+            btnSeleccion.Visible = false;
+            btnSeleccion.Width = 117;
+            // 
+            // IdCliente
+            // 
+            IdCliente.HeaderText = "IdCliente";
+            IdCliente.Name = "IdCliente";
+            IdCliente.ReadOnly = true;
+            IdCliente.SortMode = DataGridViewColumnSortMode.NotSortable;
+            IdCliente.Visible = false;
+            // 
+            // DNI
+            // 
+            DNI.FillWeight = 60F;
+            DNI.HeaderText = "DNI";
+            DNI.MinimumWidth = 60;
+            DNI.Name = "DNI";
+            DNI.ReadOnly = true;
+            DNI.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Cliente
+            // 
+            Cliente.FillWeight = 74F;
+            Cliente.HeaderText = "Cliente";
+            Cliente.MinimumWidth = 74;
+            Cliente.Name = "Cliente";
+            Cliente.ReadOnly = true;
+            Cliente.Resizable = DataGridViewTriState.False;
+            Cliente.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Name1
+            // 
+            Name1.HeaderText = "Primer Nombre";
+            Name1.Name = "Name1";
+            Name1.ReadOnly = true;
+            Name1.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Name1.Visible = false;
+            // 
+            // Name2
+            // 
+            Name2.HeaderText = "Segundo Nombre";
+            Name2.Name = "Name2";
+            Name2.ReadOnly = true;
+            Name2.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Name2.Visible = false;
+            // 
+            // LastName1
+            // 
+            LastName1.HeaderText = "Primer Apellido";
+            LastName1.Name = "LastName1";
+            LastName1.ReadOnly = true;
+            LastName1.SortMode = DataGridViewColumnSortMode.NotSortable;
+            LastName1.Visible = false;
+            // 
+            // LastName2
+            // 
+            LastName2.HeaderText = "Segundo Apellido";
+            LastName2.Name = "LastName2";
+            LastName2.ReadOnly = true;
+            LastName2.SortMode = DataGridViewColumnSortMode.NotSortable;
+            LastName2.Visible = false;
+            // 
+            // Email
+            // 
+            Email.FillWeight = 76F;
+            Email.HeaderText = "Correo";
+            Email.MinimumWidth = 76;
+            Email.Name = "Email";
+            Email.ReadOnly = true;
+            Email.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // NumTelefono
+            // 
+            NumTelefono.FillWeight = 87F;
+            NumTelefono.HeaderText = "Telefono";
+            NumTelefono.MinimumWidth = 87;
+            NumTelefono.Name = "NumTelefono";
+            NumTelefono.ReadOnly = true;
+            NumTelefono.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // EstadoValor
+            // 
+            EstadoValor.HeaderText = "EstadoValor";
+            EstadoValor.Name = "EstadoValor";
+            EstadoValor.ReadOnly = true;
+            EstadoValor.SortMode = DataGridViewColumnSortMode.NotSortable;
+            EstadoValor.Visible = false;
+            // 
+            // Estado
+            // 
+            Estado.FillWeight = 74F;
+            Estado.HeaderText = "Estado";
+            Estado.MinimumWidth = 74;
+            Estado.Name = "Estado";
+            Estado.ReadOnly = true;
+            Estado.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
             // txtSearch
             // 
             txtSearch.ButtonFillColor = Color.White;
@@ -327,6 +438,9 @@
             // 
             PnlDetails.Anchor = AnchorStyles.Top;
             PnlDetails.BackColor = Color.White;
+            PnlDetails.Controls.Add(chip1);
+            PnlDetails.Controls.Add(label4);
+            PnlDetails.Controls.Add(label3);
             PnlDetails.Controls.Add(label2);
             PnlDetails.Controls.Add(txtIndice);
             PnlDetails.Controls.Add(btnClear);
@@ -369,7 +483,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Variable Text", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(255, 128, 128);
-            label2.Location = new Point(20, 64);
+            label2.Location = new Point(20, 50);
             label2.Name = "label2";
             label2.Size = new Size(320, 20);
             label2.TabIndex = 82;
@@ -412,7 +526,7 @@
             btnClear.FillPressColor = Color.Silver;
             btnClear.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClear.ForeColor = Color.FromArgb(57, 79, 71);
-            btnClear.Location = new Point(224, 577);
+            btnClear.Location = new Point(224, 598);
             btnClear.MinimumSize = new Size(1, 1);
             btnClear.Name = "btnClear";
             btnClear.Radius = 15;
@@ -439,7 +553,7 @@
             btnAdd.FillHoverColor = Color.FromArgb(8, 92, 63);
             btnAdd.FillPressColor = Color.Silver;
             btnAdd.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAdd.Location = new Point(29, 577);
+            btnAdd.Location = new Point(29, 598);
             btnAdd.MinimumSize = new Size(1, 1);
             btnAdd.Name = "btnAdd";
             btnAdd.Radius = 15;
@@ -468,7 +582,7 @@
             cbEstado.ItemRectColor = Color.FromArgb(57, 79, 71);
             cbEstado.ItemSelectBackColor = Color.Silver;
             cbEstado.ItemSelectForeColor = Color.FromArgb(57, 79, 71);
-            cbEstado.Location = new Point(220, 474);
+            cbEstado.Location = new Point(220, 497);
             cbEstado.Margin = new Padding(4, 5, 4, 5);
             cbEstado.MinimumSize = new Size(63, 0);
             cbEstado.Name = "cbEstado";
@@ -487,7 +601,7 @@
             label21.AutoSize = true;
             label21.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label21.ForeColor = Color.FromArgb(57, 79, 71);
-            label21.Location = new Point(220, 452);
+            label21.Location = new Point(220, 475);
             label21.Name = "label21";
             label21.Size = new Size(55, 17);
             label21.TabIndex = 77;
@@ -498,7 +612,7 @@
             label22.AutoSize = true;
             label22.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label22.ForeColor = Color.FromArgb(57, 79, 71);
-            label22.Location = new Point(20, 452);
+            label22.Location = new Point(20, 475);
             label22.Name = "label22";
             label22.Size = new Size(65, 17);
             label22.TabIndex = 75;
@@ -507,7 +621,7 @@
             // txtTelefono
             // 
             txtTelefono.Font = new Font("Microsoft Sans Serif", 12F);
-            txtTelefono.Location = new Point(20, 474);
+            txtTelefono.Location = new Point(20, 497);
             txtTelefono.Margin = new Padding(4, 5, 4, 5);
             txtTelefono.MinimumSize = new Size(1, 16);
             txtTelefono.Name = "txtTelefono";
@@ -528,7 +642,7 @@
             label20.AutoSize = true;
             label20.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label20.ForeColor = Color.FromArgb(57, 79, 71);
-            label20.Location = new Point(20, 360);
+            label20.Location = new Point(20, 383);
             label20.Name = "label20";
             label20.Size = new Size(125, 17);
             label20.TabIndex = 73;
@@ -537,7 +651,7 @@
             // txtEmail
             // 
             txtEmail.Font = new Font("Microsoft Sans Serif", 12F);
-            txtEmail.Location = new Point(20, 382);
+            txtEmail.Location = new Point(20, 405);
             txtEmail.Margin = new Padding(4, 5, 4, 5);
             txtEmail.MinimumSize = new Size(1, 16);
             txtEmail.Name = "txtEmail";
@@ -558,7 +672,7 @@
             label18.AutoSize = true;
             label18.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label18.ForeColor = Color.FromArgb(57, 79, 71);
-            label18.Location = new Point(220, 272);
+            label18.Location = new Point(220, 295);
             label18.Name = "label18";
             label18.Size = new Size(115, 17);
             label18.TabIndex = 71;
@@ -567,7 +681,7 @@
             // txtLastName2
             // 
             txtLastName2.Font = new Font("Microsoft Sans Serif", 12F);
-            txtLastName2.Location = new Point(220, 294);
+            txtLastName2.Location = new Point(220, 317);
             txtLastName2.Margin = new Padding(4, 5, 4, 5);
             txtLastName2.MinimumSize = new Size(1, 16);
             txtLastName2.Name = "txtLastName2";
@@ -587,7 +701,7 @@
             label19.AutoSize = true;
             label19.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label19.ForeColor = Color.FromArgb(57, 79, 71);
-            label19.Location = new Point(20, 272);
+            label19.Location = new Point(20, 295);
             label19.Name = "label19";
             label19.Size = new Size(107, 17);
             label19.TabIndex = 69;
@@ -596,7 +710,7 @@
             // txtLastName1
             // 
             txtLastName1.Font = new Font("Microsoft Sans Serif", 12F);
-            txtLastName1.Location = new Point(20, 294);
+            txtLastName1.Location = new Point(20, 317);
             txtLastName1.Margin = new Padding(4, 5, 4, 5);
             txtLastName1.MinimumSize = new Size(1, 16);
             txtLastName1.Name = "txtLastName1";
@@ -616,7 +730,7 @@
             label17.AutoSize = true;
             label17.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label17.ForeColor = Color.FromArgb(57, 79, 71);
-            label17.Location = new Point(220, 180);
+            label17.Location = new Point(220, 203);
             label17.Name = "label17";
             label17.Size = new Size(116, 17);
             label17.TabIndex = 67;
@@ -625,7 +739,7 @@
             // txtName2
             // 
             txtName2.Font = new Font("Microsoft Sans Serif", 12F);
-            txtName2.Location = new Point(220, 202);
+            txtName2.Location = new Point(220, 225);
             txtName2.Margin = new Padding(4, 5, 4, 5);
             txtName2.MinimumSize = new Size(1, 16);
             txtName2.Name = "txtName2";
@@ -645,7 +759,7 @@
             label16.AutoSize = true;
             label16.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label16.ForeColor = Color.FromArgb(57, 79, 71);
-            label16.Location = new Point(20, 180);
+            label16.Location = new Point(20, 203);
             label16.Name = "label16";
             label16.Size = new Size(108, 17);
             label16.TabIndex = 65;
@@ -654,7 +768,7 @@
             // txtName1
             // 
             txtName1.Font = new Font("Microsoft Sans Serif", 12F);
-            txtName1.Location = new Point(20, 202);
+            txtName1.Location = new Point(20, 225);
             txtName1.Margin = new Padding(4, 5, 4, 5);
             txtName1.MinimumSize = new Size(1, 16);
             txtName1.Name = "txtName1";
@@ -674,7 +788,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(57, 79, 71);
-            label1.Location = new Point(20, 84);
+            label1.Location = new Point(20, 107);
             label1.Name = "label1";
             label1.Size = new Size(37, 17);
             label1.TabIndex = 61;
@@ -683,7 +797,7 @@
             // txtDni
             // 
             txtDni.Font = new Font("Microsoft Sans Serif", 12F);
-            txtDni.Location = new Point(20, 106);
+            txtDni.Location = new Point(20, 129);
             txtDni.Margin = new Padding(4, 5, 4, 5);
             txtDni.MinimumSize = new Size(1, 16);
             txtDni.Name = "txtDni";
@@ -774,113 +888,45 @@
             bigLabel1.TabIndex = 59;
             bigLabel1.Text = "Clientes";
             // 
-            // Estado
+            // chip1
             // 
-            Estado.FillWeight = 74F;
-            Estado.HeaderText = "Estado";
-            Estado.MinimumWidth = 74;
-            Estado.Name = "Estado";
-            Estado.ReadOnly = true;
-            Estado.SortMode = DataGridViewColumnSortMode.NotSortable;
+            chip1.BackColor = Color.White;
+            chip1.FillColor = Color.FromArgb(223, 243, 239);
+            chip1.FillColor2 = Color.FromArgb(223, 243, 239);
+            chip1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chip1.ForeColor = Color.FromArgb(11, 94, 88);
+            chip1.Location = new Point(20, 79);
+            chip1.Margin = new Padding(0);
+            chip1.MinimumSize = new Size(1, 1);
+            chip1.Name = "chip1";
+            chip1.Radius = 12;
+            chip1.RectColor = Color.FromArgb(223, 243, 239);
+            chip1.Size = new Size(24, 24);
+            chip1.Style = Sunny.UI.UIStyle.Custom;
+            chip1.TabIndex = 103;
+            chip1.Text = "1";
+            chip1.TextAlignment = ContentAlignment.MiddleCenter;
             // 
-            // EstadoValor
+            // label4
             // 
-            EstadoValor.HeaderText = "EstadoValor";
-            EstadoValor.Name = "EstadoValor";
-            EstadoValor.ReadOnly = true;
-            EstadoValor.SortMode = DataGridViewColumnSortMode.NotSortable;
-            EstadoValor.Visible = false;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Variable Display Semib", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Gray;
+            label4.Location = new Point(47, 82);
+            label4.Name = "label4";
+            label4.Size = new Size(96, 16);
+            label4.TabIndex = 102;
+            label4.Text = "Datos del cliente";
             // 
-            // NumTelefono
+            // label3
             // 
-            NumTelefono.FillWeight = 87F;
-            NumTelefono.HeaderText = "Telefono";
-            NumTelefono.MinimumWidth = 87;
-            NumTelefono.Name = "NumTelefono";
-            NumTelefono.ReadOnly = true;
-            NumTelefono.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Email
-            // 
-            Email.FillWeight = 76F;
-            Email.HeaderText = "Correo";
-            Email.MinimumWidth = 76;
-            Email.Name = "Email";
-            Email.ReadOnly = true;
-            Email.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // LastName2
-            // 
-            LastName2.HeaderText = "Segundo Apellido";
-            LastName2.Name = "LastName2";
-            LastName2.ReadOnly = true;
-            LastName2.SortMode = DataGridViewColumnSortMode.NotSortable;
-            LastName2.Visible = false;
-            // 
-            // LastName1
-            // 
-            LastName1.HeaderText = "Primer Apellido";
-            LastName1.Name = "LastName1";
-            LastName1.ReadOnly = true;
-            LastName1.SortMode = DataGridViewColumnSortMode.NotSortable;
-            LastName1.Visible = false;
-            // 
-            // Name2
-            // 
-            Name2.HeaderText = "Segundo Nombre";
-            Name2.Name = "Name2";
-            Name2.ReadOnly = true;
-            Name2.SortMode = DataGridViewColumnSortMode.NotSortable;
-            Name2.Visible = false;
-            // 
-            // Name1
-            // 
-            Name1.HeaderText = "Primer Nombre";
-            Name1.Name = "Name1";
-            Name1.ReadOnly = true;
-            Name1.SortMode = DataGridViewColumnSortMode.NotSortable;
-            Name1.Visible = false;
-            // 
-            // Cliente
-            // 
-            Cliente.FillWeight = 74F;
-            Cliente.HeaderText = "Cliente";
-            Cliente.MinimumWidth = 74;
-            Cliente.Name = "Cliente";
-            Cliente.ReadOnly = true;
-            Cliente.Resizable = DataGridViewTriState.False;
-            Cliente.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // DNI
-            // 
-            DNI.FillWeight = 60F;
-            DNI.HeaderText = "DNI";
-            DNI.MinimumWidth = 60;
-            DNI.Name = "DNI";
-            DNI.ReadOnly = true;
-            DNI.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // IdCliente
-            // 
-            IdCliente.HeaderText = "IdCliente";
-            IdCliente.Name = "IdCliente";
-            IdCliente.ReadOnly = true;
-            IdCliente.SortMode = DataGridViewColumnSortMode.NotSortable;
-            IdCliente.Visible = false;
-            // 
-            // btnSeleccion
-            // 
-            btnSeleccion.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            btnSeleccion.DefaultCellStyle = dataGridViewCellStyle3;
-            btnSeleccion.FillWeight = 117F;
-            btnSeleccion.HeaderText = "Cargar Datos";
-            btnSeleccion.Image = Properties.Resources.Check;
-            btnSeleccion.MinimumWidth = 117;
-            btnSeleccion.Name = "btnSeleccion";
-            btnSeleccion.ReadOnly = true;
-            btnSeleccion.Resizable = DataGridViewTriState.False;
-            btnSeleccion.Visible = false;
-            btnSeleccion.Width = 117;
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            label3.ForeColor = Color.FromArgb(57, 79, 71);
+            label3.Location = new Point(47, 81);
+            label3.Name = "label3";
+            label3.Size = new Size(0, 17);
+            label3.TabIndex = 101;
             // 
             // FrmClientes
             // 
@@ -954,5 +1000,8 @@
         private DataGridViewTextBoxColumn NumTelefono;
         private DataGridViewTextBoxColumn EstadoValor;
         private DataGridViewTextBoxColumn Estado;
+        private Sunny.UI.UIPanel chip1;
+        private Label label4;
+        private Label label3;
     }
 }

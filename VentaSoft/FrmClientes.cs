@@ -354,7 +354,7 @@ namespace Main
 
         private void btnDelete_Click_1(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtId.Text) || !int.TryParse(txtId.Text.Replace("ID#", "").Trim(), out int idCliente) || idCliente == 0)
+            if (string.IsNullOrWhiteSpace(txtId.Text) || !int.TryParse(txtId.Text.Replace("ID# ", "").Trim(), out int idCliente) || idCliente == 0)
             {
                 MessageBox.Show("Seleccione un Cliente de la lista para eliminar.", "Mensaje",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
