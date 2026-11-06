@@ -444,6 +444,7 @@
             MenuAbout.TabIndex = 25;
             MenuAbout.Text = "  Sobre Nosotros";
             MenuAbout.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            MenuAbout.Click += MenuAbout_Click;
             // 
             // submenuCompras
             // 

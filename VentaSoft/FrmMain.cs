@@ -210,5 +210,10 @@ namespace Main
                     string.Equals(p.NombreMenu, item.Key, StringComparison.OrdinalIgnoreCase));
             }
         }
+
+        private void MenuAbout_Click(object sender, EventArgs e)
+        {
+            MostrarFormularios(new FrmAbout());
+        }
     }
 }
